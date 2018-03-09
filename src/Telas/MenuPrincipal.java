@@ -864,7 +864,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             this.dispose();
             return;
         }
-        MontaImagem();
+//        MontaImagem();
         if(parametrosNS.bcomp.funcaoComputador.equalsIgnoreCase("pdv")){
             MenuVendas();
         }
@@ -1095,7 +1095,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_combo_empresasDoGrupoItemStateChanged
 
     private void formComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentResized
-        MontaImagem();
+//        MontaImagem();
     }//GEN-LAST:event_formComponentResized
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed

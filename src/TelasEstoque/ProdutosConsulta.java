@@ -4,11 +4,17 @@ import FuncoesInternas.InverterData;
 import Beans.*;
 import FuncoesInternas.*;
 import Parametros.parametrosNS;
+import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -21,15 +27,20 @@ public class ProdutosConsulta extends javax.swing.JFrame {
     int    index                = 0;
     int    AbriuFornecedor      = 0;
     int    AbriuFabricante      = 0;
+    int    giLimiteImagens      = 8;
+    int    giResto              = 0;
     
     //Vetores
     ArrayList            parametros                     = new ArrayList();
+    ArrayList            dadosImagens                   = new ArrayList();
     ArrayList            dadosPadroes                   = new ArrayList();
-    ArrayList<ArrayList> dadosGrupoSubGrupoProdutos     = new ArrayList<ArrayList>();
-    ArrayList<ArrayList> dadosProdutos                  = new ArrayList<ArrayList>();
-    ArrayList<ArrayList> dadosFabricante                = new ArrayList<ArrayList>();
-    ArrayList<ArrayList> dadosFornecedor                = new ArrayList<ArrayList>();
-    ArrayList<ArrayList> dadosUsuarios                  = new ArrayList<ArrayList>();
+    ArrayList<ArrayList> dadosGrupoSubGrupoProdutos     = new ArrayList();
+    ArrayList<ArrayList> dadosFabricante                = new ArrayList();
+    ArrayList<ArrayList> dadosFornecedor                = new ArrayList();
+    ArrayList<ArrayList> dadosProdutos                  = new ArrayList();
+    ArrayList<ArrayList> dadosProdutosImagens           = new ArrayList();
+    ArrayList<ArrayList> dadosProdutosImagens2          = new ArrayList();
+    ArrayList<ArrayList> dadosUsuarios                  = new ArrayList();
     
     //Strings
     String sql                  = "";
@@ -60,6 +71,12 @@ public class ProdutosConsulta extends javax.swing.JFrame {
     CapturarDataHora                cdh                 = new CapturarDataHora();
     FormataCampo                    fc                  = new FormataCampo();
     TransformaValorStringeDouble    TransStrDou = new TransformaValorStringeDouble();
+    
+    //Especiais
+    BufferedImage                   BuffImg;
+    ByteArrayOutputStream           BytesImg;
+    ImageIcon                       ImgIcon;
+    Image                           Img;
     
     //Especiais para Excportação em Excel
     JFileChooser                    SeletorExcel;
@@ -92,6 +109,8 @@ public class ProdutosConsulta extends javax.swing.JFrame {
         txt_fabricanteFinal         .setText("99999");
         txt_dataVencimentoInicial   .setText(fc.FormataCampo("", 10, 2));
         txt_dataVencimentoFinal     .setText("99999999");
+        
+        PegaValores();
     }
     
     @SuppressWarnings("unchecked")
@@ -100,6 +119,10 @@ public class ProdutosConsulta extends javax.swing.JFrame {
 
         MenuPopup = new javax.swing.JPopupMenu();
         bt_detalhesItem = new javax.swing.JMenuItem();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanel2 = new javax.swing.JPanel();
+        bt_processa = new javax.swing.JButton();
+        bt_exportar = new javax.swing.JButton();
         bt_sair = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -131,8 +154,25 @@ public class ProdutosConsulta extends javax.swing.JFrame {
         bt_pesquisaFabricanteInicial = new javax.swing.JButton();
         bt_pesquisaFabricanteFinal = new javax.swing.JButton();
         txt_descricao = new javax.swing.JTextField();
-        bt_processa = new javax.swing.JButton();
-        bt_exportar = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        label_imagem2 = new javax.swing.JLabel();
+        label_imagem4 = new javax.swing.JLabel();
+        label_imagem1 = new javax.swing.JLabel();
+        label_imagem3 = new javax.swing.JLabel();
+        label_nome1 = new javax.swing.JLabel();
+        label_nome2 = new javax.swing.JLabel();
+        label_nome3 = new javax.swing.JLabel();
+        label_nome4 = new javax.swing.JLabel();
+        label_nome7 = new javax.swing.JLabel();
+        label_nome8 = new javax.swing.JLabel();
+        label_imagem6 = new javax.swing.JLabel();
+        label_imagem8 = new javax.swing.JLabel();
+        label_imagem5 = new javax.swing.JLabel();
+        label_imagem7 = new javax.swing.JLabel();
+        label_nome5 = new javax.swing.JLabel();
+        label_nome6 = new javax.swing.JLabel();
+        bt_proximo = new javax.swing.JButton();
+        bt_anterior = new javax.swing.JButton();
         jMenu = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         jMenu1 = new javax.swing.JMenu();
@@ -162,6 +202,26 @@ public class ProdutosConsulta extends javax.swing.JFrame {
             }
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
+            }
+        });
+
+        bt_processa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icones/1280454766_system-software-update_1.png"))); // NOI18N
+        bt_processa.setText("Processa");
+        bt_processa.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        bt_processa.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        bt_processa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_processaActionPerformed(evt);
+            }
+        });
+
+        bt_exportar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/18x18/Table.png"))); // NOI18N
+        bt_exportar.setText("Exportar");
+        bt_exportar.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        bt_exportar.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        bt_exportar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_exportarActionPerformed(evt);
             }
         });
 
@@ -570,7 +630,7 @@ public class ProdutosConsulta extends javax.swing.JFrame {
                         .addComponent(txt_dataVencimentoFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txt_descricao, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(344, Short.MAX_VALUE))
+                .addContainerGap(460, Short.MAX_VALUE))
         );
 
         jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jLabel5, jLabel6, txt_codigoProdutoFinal, txt_codigoProdutoInicial, txt_dataCadastroFinal, txt_dataCadastroInicial, txt_dataVencimentoFinal, txt_dataVencimentoInicial});
@@ -629,25 +689,238 @@ public class ProdutosConsulta extends javax.swing.JFrame {
 
         jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jLabel8, jLabel9, txt_fabricanteFinal, txt_fabricanteInicial, txt_fornecedorFinal, txt_fornecedorInicial});
 
-        bt_processa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icones/1280454766_system-software-update_1.png"))); // NOI18N
-        bt_processa.setText("Processa");
-        bt_processa.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        bt_processa.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        bt_processa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bt_processaActionPerformed(evt);
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(bt_processa)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(bt_exportar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(bt_sair))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bt_sair)
+                    .addComponent(bt_processa, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bt_exportar))
+                .addContainerGap())
+        );
+
+        jTabbedPane1.addTab("Consulta por lista", jPanel2);
+
+        jPanel3.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jPanel3FocusGained(evt);
             }
         });
 
-        bt_exportar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/18x18/Table.png"))); // NOI18N
-        bt_exportar.setText("Exportar");
-        bt_exportar.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        bt_exportar.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        bt_exportar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bt_exportarActionPerformed(evt);
+        label_imagem2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        label_imagem2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        label_imagem4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        label_imagem4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        label_imagem1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        label_imagem1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        label_imagem3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        label_imagem3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        label_nome1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        label_nome1.setFocusable(false);
+        label_nome1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                label_nome1MouseEntered(evt);
             }
         });
+
+        label_nome2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        label_nome2.setFocusable(false);
+        label_nome2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                label_nome2MouseEntered(evt);
+            }
+        });
+
+        label_nome3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        label_nome3.setFocusable(false);
+        label_nome3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                label_nome3MouseEntered(evt);
+            }
+        });
+
+        label_nome4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        label_nome4.setFocusable(false);
+        label_nome4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                label_nome4MouseEntered(evt);
+            }
+        });
+
+        label_nome7.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        label_nome7.setFocusable(false);
+        label_nome7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                label_nome7MouseEntered(evt);
+            }
+        });
+
+        label_nome8.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        label_nome8.setFocusable(false);
+        label_nome8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                label_nome8MouseEntered(evt);
+            }
+        });
+
+        label_imagem6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        label_imagem6.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        label_imagem8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        label_imagem8.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        label_imagem5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        label_imagem5.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        label_imagem7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        label_imagem7.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        label_nome5.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        label_nome5.setFocusable(false);
+        label_nome5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                label_nome5MouseEntered(evt);
+            }
+        });
+
+        label_nome6.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        label_nome6.setFocusable(false);
+        label_nome6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                label_nome6MouseEntered(evt);
+            }
+        });
+
+        bt_proximo.setText(">");
+        bt_proximo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_proximoActionPerformed(evt);
+            }
+        });
+
+        bt_anterior.setText("<");
+        bt_anterior.setEnabled(false);
+        bt_anterior.setFocusable(false);
+        bt_anterior.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_anteriorActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(bt_anterior, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(label_imagem1, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                                    .addComponent(label_nome5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(label_imagem2, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                                    .addComponent(label_nome6, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(label_nome7, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(label_imagem3, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(label_imagem5, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(label_imagem6, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(label_imagem7, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(label_imagem4, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                            .addComponent(label_nome8, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(label_imagem8, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(label_nome1, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(label_nome2, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(label_nome3, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(label_nome4, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(bt_proximo, javax.swing.GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jPanel3Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {label_imagem1, label_imagem2, label_imagem3, label_imagem4, label_imagem5, label_imagem6, label_imagem7, label_imagem8, label_nome1, label_nome2, label_nome3, label_nome4, label_nome5, label_nome6, label_nome7, label_nome8});
+
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(bt_anterior, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(bt_proximo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(label_imagem3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+                            .addComponent(label_imagem2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+                            .addComponent(label_imagem1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+                            .addComponent(label_imagem4, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(label_nome3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(label_nome4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(label_nome1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(label_nome2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(label_imagem5, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+                            .addComponent(label_imagem6, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+                            .addComponent(label_imagem7, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+                            .addComponent(label_imagem8, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(label_nome5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(label_nome6, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(label_nome7, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(label_nome8, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap())
+        );
+
+        jPanel3Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {label_imagem1, label_imagem2, label_imagem3, label_imagem4, label_imagem5, label_imagem6, label_imagem7, label_imagem8});
+
+        jPanel3Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {label_nome1, label_nome2, label_nome3, label_nome4, label_nome5, label_nome6, label_nome7, label_nome8});
+
+        jTabbedPane1.addTab("Consulta por Imagens", jPanel3);
 
         jMenu2.setText("Arquivo");
 
@@ -684,29 +957,14 @@ public class ProdutosConsulta extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(bt_processa)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(bt_exportar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(bt_sair))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jTabbedPane1)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(bt_sair)
-                    .addComponent(bt_processa, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bt_exportar))
+                .addComponent(jTabbedPane1)
                 .addContainerGap())
         );
 
@@ -1074,7 +1332,6 @@ public class ProdutosConsulta extends javax.swing.JFrame {
         Table   = (DefaultTableModel)tabela_produtos.getModel();
         
         InicializaCampos();
-        PegaValores();
         
         if(parametrosNS.bu.nivelUsuario < 4 | somostra.equals("S")){
             jMenu.setVisible(false);
@@ -1097,9 +1354,73 @@ public class ProdutosConsulta extends javax.swing.JFrame {
             dispose();
         }
     }//GEN-LAST:event_tabela_produtosKeyPressed
+
+    private void jPanel3FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPanel3FocusGained
+
+    }//GEN-LAST:event_jPanel3FocusGained
+
+    private void label_nome1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_nome1MouseEntered
+        label_nome1.setToolTipText(label_nome1.getText());
+    }//GEN-LAST:event_label_nome1MouseEntered
+
+    private void label_nome2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_nome2MouseEntered
+        label_nome2.setToolTipText(label_nome2.getText());
+    }//GEN-LAST:event_label_nome2MouseEntered
+
+    private void label_nome3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_nome3MouseEntered
+        label_nome3.setToolTipText(label_nome3.getText());
+    }//GEN-LAST:event_label_nome3MouseEntered
+
+    private void label_nome4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_nome4MouseEntered
+        label_nome4.setToolTipText(label_nome4.getText());
+    }//GEN-LAST:event_label_nome4MouseEntered
+
+    private void label_nome5MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_nome5MouseEntered
+        label_nome5.setToolTipText(label_nome5.getText());
+    }//GEN-LAST:event_label_nome5MouseEntered
+
+    private void label_nome6MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_nome6MouseEntered
+        label_nome6.setToolTipText(label_nome6.getText());
+    }//GEN-LAST:event_label_nome6MouseEntered
+
+    private void label_nome7MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_nome7MouseEntered
+        label_nome7.setToolTipText(label_nome7.getText());
+    }//GEN-LAST:event_label_nome7MouseEntered
+
+    private void label_nome8MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_nome8MouseEntered
+        label_nome8.setToolTipText(label_nome8.getText());
+    }//GEN-LAST:event_label_nome8MouseEntered
+
+    private void bt_anteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_anteriorActionPerformed
+        bt_proximo .setEnabled  (true);
+        bt_proximo .setFocusable(true);
+        if(giLimiteImagens > 8){
+            giLimiteImagens = giLimiteImagens - 8;
+        }
+        if(giLimiteImagens == 8){
+            bt_anterior.setEnabled  (false);
+            bt_anterior.setFocusable(false);
+        }
+        IniciaCarregamentoDeImagens();
+    }//GEN-LAST:event_bt_anteriorActionPerformed
+
+    private void bt_proximoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_proximoActionPerformed
+        bt_anterior.setEnabled  (true);
+        bt_anterior.setFocusable(true);
+        if(giLimiteImagens < dadosProdutosImagens.size()){
+            giLimiteImagens = giLimiteImagens + 8;
+        }
+        if(giLimiteImagens > dadosProdutosImagens.size()){
+            bt_proximo .setEnabled  (false);
+            bt_proximo .setFocusable(false);
+            return;
+        }
+        IniciaCarregamentoDeImagens();
+    }//GEN-LAST:event_bt_proximoActionPerformed
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPopupMenu MenuPopup;
+    private javax.swing.JButton bt_anterior;
     private javax.swing.JMenuItem bt_cadastrarProdutos;
     private javax.swing.JMenuItem bt_detalhesItem;
     private javax.swing.JButton bt_exportar;
@@ -1108,6 +1429,7 @@ public class ProdutosConsulta extends javax.swing.JFrame {
     private javax.swing.JButton bt_pesquisaFornecedorFinal;
     private javax.swing.JButton bt_pesquisaFornecedorInicial;
     private javax.swing.JButton bt_processa;
+    private javax.swing.JButton bt_proximo;
     private javax.swing.JButton bt_sair;
     private javax.swing.JMenuItem bt_sair1;
     private javax.swing.JLabel jLabel10;
@@ -1125,9 +1447,28 @@ public class ProdutosConsulta extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JLabel label_imagem1;
+    private javax.swing.JLabel label_imagem2;
+    private javax.swing.JLabel label_imagem3;
+    private javax.swing.JLabel label_imagem4;
+    private javax.swing.JLabel label_imagem5;
+    private javax.swing.JLabel label_imagem6;
+    private javax.swing.JLabel label_imagem7;
+    private javax.swing.JLabel label_imagem8;
+    private javax.swing.JLabel label_nome1;
+    private javax.swing.JLabel label_nome2;
+    private javax.swing.JLabel label_nome3;
+    private javax.swing.JLabel label_nome4;
+    private javax.swing.JLabel label_nome5;
+    private javax.swing.JLabel label_nome6;
+    private javax.swing.JLabel label_nome7;
+    private javax.swing.JLabel label_nome8;
     private javax.swing.JTable tabela_produtos;
     private javax.swing.JFormattedTextField txt_codigoProdutoFinal;
     private javax.swing.JFormattedTextField txt_codigoProdutoInicial;
@@ -1181,9 +1522,10 @@ public class ProdutosConsulta extends javax.swing.JFrame {
         }
         if(binter.produtoInicial != 0 || binter.produtoFinal != 999999){
             if(preenchimento.equals("")){
-                preenchimento  = "codigoProduto between " + binter.produtoInicial + " and " + binter.produtoFinal + " and \n";
+                preenchimento  = "codigoProduto between " + binter.produtoInicial + " and " + binter.produtoFinal;
             }else{
-                preenchimento += "codigoProduto between " + binter.produtoInicial + " and " + binter.produtoFinal + " and \n";
+                preenchimento += "\n and ";
+                preenchimento += "codigoProduto between " + binter.produtoInicial + " and " + binter.produtoFinal;
             }
         }
         
@@ -1196,9 +1538,10 @@ public class ProdutosConsulta extends javax.swing.JFrame {
         }
         if(binter.fornecedorInicial != 0 || binter.fornecedorFinal != 99999){
             if(preenchimento.equals("")){
-                preenchimento  = "codigoFornecedor between " + binter.fornecedorInicial  + " and " + binter.fornecedorFinal + " and \n";
+                preenchimento  = "codigoFornecedor between " + binter.fornecedorInicial  + " and " + binter.fornecedorFinal;
             }else{
-                preenchimento += "codigoFornecedor between " + binter.fornecedorInicial  + " and " + binter.fornecedorFinal + " and \n";
+                preenchimento += "\n and ";
+                preenchimento += "codigoFornecedor between " + binter.fornecedorInicial  + " and " + binter.fornecedorFinal;
             }
         }
         
@@ -1211,9 +1554,10 @@ public class ProdutosConsulta extends javax.swing.JFrame {
         }
         if(binter.fabricanteInicial != 0 || binter.fabricanteFinal != 99999){
             if(preenchimento.equals("")){
-                preenchimento  = "codigoFabricante between " + binter.fabricanteInicial + " and " + binter.fabricanteFinal + " and \n";
+                preenchimento  = "codigoFabricante between " + binter.fabricanteInicial + " and " + binter.fabricanteFinal;
             }else{
-                preenchimento += "codigoFabricante between " + binter.fabricanteInicial + " and " + binter.fabricanteFinal + " and \n";
+                preenchimento += "\n and ";
+                preenchimento += "codigoFabricante between " + binter.fabricanteInicial + " and " + binter.fabricanteFinal;
             }
         }
         
@@ -1228,6 +1572,7 @@ public class ProdutosConsulta extends javax.swing.JFrame {
             if(preenchimento.equals("")){
                 preenchimento  = "dataCadastro between " + binter.dataCadastroInicial + " and " + binter.dataCadastroFinal;
             }else{
+                preenchimento += "\n and ";
                 preenchimento += "dataCadastro between " + binter.dataCadastroInicial + " and " + binter.dataCadastroFinal;
             }
         }
@@ -1242,15 +1587,17 @@ public class ProdutosConsulta extends javax.swing.JFrame {
         if(binter.dataVencimentoInicial != 0 || binter.dataVencimentoFinal != 99999999){
             if(binter.dataCadastroInicial != 0 || binter.dataCadastroFinal != 99999999){
                 if(preenchimento.equals("")){
-                    preenchimento  = " or \ndataDeVencimento between " + binter.dataVencimentoInicial + " and " + binter.dataVencimentoFinal;
+                    preenchimento  = "dataDeVencimento between " + binter.dataVencimentoInicial + " and " + binter.dataVencimentoFinal;
                 }else{
-                    preenchimento += " or \ndataDeVencimento between " + binter.dataVencimentoInicial + " and " + binter.dataVencimentoFinal;
+                    preenchimento += "\n or ";
+                    preenchimento += "dataDeVencimento between " + binter.dataVencimentoInicial + " and " + binter.dataVencimentoFinal;
                 }
             }else{
                 if(preenchimento.equals("")){
-                    preenchimento  = " and \ndataDeVencimento between " + binter.dataVencimentoInicial + " and " + binter.dataVencimentoFinal;
+                    preenchimento  = "dataDeVencimento between " + binter.dataVencimentoInicial + " and " + binter.dataVencimentoFinal;
                 }else{
-                    preenchimento += " and \ndataDeVencimento between " + binter.dataVencimentoInicial + " and " + binter.dataVencimentoFinal;
+                    preenchimento += " and \n";
+                    preenchimento += "dataDeVencimento between " + binter.dataVencimentoInicial + " and " + binter.dataVencimentoFinal;
                 }
             }
         }
@@ -1285,12 +1632,17 @@ public class ProdutosConsulta extends javax.swing.JFrame {
             + "   tb_produtos where idEmpresa = " + parametrosNS.be.IdEmpresa;
         if(!textoBusca.equals("")){
             sql += "\n and ";
-            sql1 = " like '%" + textoBusca + "%' ";
+            sql1 = "like '%" + textoBusca + "%' ";
         }
-        if(!preenchimento.equals(""))
-            sql1 = " and " + sql1 + preenchimento;
+        if(!preenchimento.equals("")){
+            sql1 += " and " + preenchimento;
+        }
         if(textoBusca.equals("")){
-            sql += preenchimento;
+            if(preenchimento.equals("")){
+                sql +=  preenchimento;
+            }else{
+                sql += " and " + preenchimento;
+            }
             sql1 = "";
         }
         dadosProdutos = new ArrayList();
@@ -1301,6 +1653,7 @@ public class ProdutosConsulta extends javax.swing.JFrame {
             bt_exportar.setEnabled(false);
             return;
         }
+        giResto = dadosProdutos.size() % 8;
         PegaDadosProdutos();
     }
     
@@ -1341,73 +1694,51 @@ public class ProdutosConsulta extends javax.swing.JFrame {
         tabela_produtos.getColumnModel().getColumn(11).setResizable(true);
         tabela_produtos.getColumnModel().getColumn(11).setCellRenderer(parametrosNS.tableEsquerda);
         
+        label_imagem1.setIcon(null);
+        label_imagem2.setIcon(null);
+        label_imagem3.setIcon(null);
+        label_imagem4.setIcon(null);
+        label_imagem5.setIcon(null);
+        label_imagem6.setIcon(null);
+        label_imagem7.setIcon(null);
+        label_imagem8.setIcon(null);
+        label_nome1  .setText("");
+        label_nome2  .setText("");
+        label_nome3  .setText("");
+        label_nome4  .setText("");
+        label_nome5  .setText("");
+        label_nome6  .setText("");
+        label_nome7  .setText("");
+        label_nome8  .setText("");
+        
+        dadosProdutosImagens = new ArrayList();
         Table.setNumRows(0);
         String statusProduto = "";
         for(int i = 0; i < dadosProdutos.size(); i++){
+            dadosImagens         = new ArrayList();
+            
             bp  = new BeanProdutos();
-            if(dadosProdutos.get(i).get(0) != null){
-                bp.idProdutos               = Integer.parseInt(  String.valueOf(dadosProdutos.get(i).get(0)));
-            }
-            if(dadosProdutos.get(i).get(1) != null){
-                bp.idEmpresa                = Integer.parseInt(  String.valueOf(dadosProdutos.get(i).get(1)));
-            }
-            if(dadosProdutos.get(i).get(2) != null){
-                bp.codigoGrupo              = Integer.parseInt(  String.valueOf(dadosProdutos.get(i).get(2)));
-            }
-            if(dadosProdutos.get(i).get(3) != null){
-                bp.codigoEmpresa            = Integer.parseInt(  String.valueOf(dadosProdutos.get(i).get(3)));
-            }
-            if(dadosProdutos.get(i).get(4) != null){
-                bp.codigoProduto            = Integer.parseInt(  String.valueOf(dadosProdutos.get(i).get(4)));
-            }
-            if(dadosProdutos.get(i).get(5) != null){
-                bp.produtoInativo           = Integer.parseInt(  String.valueOf(dadosProdutos.get(i).get(5)));
-            }
-            if(dadosProdutos.get(i).get(6) != null){
-                bp.codigoFornecedor         = Integer.parseInt(  String.valueOf(dadosProdutos.get(i).get(6)));
-            }
-            if(dadosProdutos.get(i).get(7) != null){
-                bp.dataCadastro             =                    String.valueOf(dadosProdutos.get(i).get(7));
-            }
-            if(dadosProdutos.get(i).get(8) != null){
-                bp.descricaoProduto         =                    String.valueOf(dadosProdutos.get(i).get(8));
-            }
-            if(dadosProdutos.get(i).get(9) != null){
-                bp.codigoDeBarras           =                    String.valueOf(dadosProdutos.get(i).get(9));
-            }
-            if(dadosProdutos.get(i).get(10) != null){
-                bp.dataDeVencimento         =                    String.valueOf(dadosProdutos.get(i).get(10));
-            }
-            if(dadosProdutos.get(i).get(11) != null){
-                bp.valorDeCompra            = Double.parseDouble(String.valueOf(dadosProdutos.get(i).get(11)));
-            }
-            if(dadosProdutos.get(i).get(12) != null){
-                bp.valorDeVenda             = Double.parseDouble(String.valueOf(dadosProdutos.get(i).get(12)));
-            }
-            if(dadosProdutos.get(i).get(13) != null){
-                bp.tipoDeProduto            =                    String.valueOf(dadosProdutos.get(i).get(13));
-            }
-            if(dadosProdutos.get(i).get(14) != null){
-                bp.codigoFabricante         = Integer.parseInt(  String.valueOf(dadosProdutos.get(i).get(14)));
-            }
-            if(dadosProdutos.get(i).get(15) != null){
-                bp.codigoGrupoProduto       = Integer.parseInt(  String.valueOf(dadosProdutos.get(i).get(15)));
-            }
-            if(dadosProdutos.get(i).get(16) != null){
-                bp.codigoSubGrupoProduto    = Integer.parseInt(  String.valueOf(dadosProdutos.get(i).get(16)));
-            }
-            if(dadosProdutos.get(i).get(17) != null){
-                bp.quantidadeMinima         = Double.parseDouble(String.valueOf(dadosProdutos.get(i).get(17)));
-            }
-            if(dadosProdutos.get(i).get(18) != null){
-                bp.quantidadeIdeal          = Double.parseDouble(String.valueOf(dadosProdutos.get(i).get(18)));
-            }
-            if(dadosProdutos.get(i).get(19) != null){
-                bp.quantidadeAtual          = Double.parseDouble(String.valueOf(dadosProdutos.get(i).get(19)));
-            }
-            if(dadosProdutos.get(i).get(20) != null){
-                bp.observacoes              =                    String.valueOf(dadosProdutos.get(i).get(20));
-            }
+            if(dadosProdutos.get(i).get(0)  != null){bp.idProdutos               = Integer.parseInt(  String.valueOf(dadosProdutos.get(i).get(0)));}
+            if(dadosProdutos.get(i).get(1)  != null){bp.idEmpresa                = Integer.parseInt(  String.valueOf(dadosProdutos.get(i).get(1)));}
+            if(dadosProdutos.get(i).get(2)  != null){bp.codigoGrupo              = Integer.parseInt(  String.valueOf(dadosProdutos.get(i).get(2)));}
+            if(dadosProdutos.get(i).get(3)  != null){bp.codigoEmpresa            = Integer.parseInt(  String.valueOf(dadosProdutos.get(i).get(3)));}
+            if(dadosProdutos.get(i).get(4)  != null){bp.codigoProduto            = Integer.parseInt(  String.valueOf(dadosProdutos.get(i).get(4)));}
+            if(dadosProdutos.get(i).get(5)  != null){bp.produtoInativo           = Integer.parseInt(  String.valueOf(dadosProdutos.get(i).get(5)));}
+            if(dadosProdutos.get(i).get(6)  != null){bp.codigoFornecedor         = Integer.parseInt(  String.valueOf(dadosProdutos.get(i).get(6)));}
+            if(dadosProdutos.get(i).get(7)  != null){bp.dataCadastro             =                    String.valueOf(dadosProdutos.get(i).get(7));}
+            if(dadosProdutos.get(i).get(8)  != null){bp.descricaoProduto         =                    String.valueOf(dadosProdutos.get(i).get(8));}
+            if(dadosProdutos.get(i).get(9)  != null){bp.codigoDeBarras           =                    String.valueOf(dadosProdutos.get(i).get(9));}
+            if(dadosProdutos.get(i).get(10) != null){bp.dataDeVencimento         =                    String.valueOf(dadosProdutos.get(i).get(10));}
+            if(dadosProdutos.get(i).get(11) != null){bp.valorDeCompra            = Double.parseDouble(String.valueOf(dadosProdutos.get(i).get(11)));}
+            if(dadosProdutos.get(i).get(12) != null){bp.valorDeVenda             = Double.parseDouble(String.valueOf(dadosProdutos.get(i).get(12)));}
+            if(dadosProdutos.get(i).get(13) != null){bp.tipoDeProduto            =                    String.valueOf(dadosProdutos.get(i).get(13));}
+            if(dadosProdutos.get(i).get(14) != null){bp.codigoFabricante         = Integer.parseInt(  String.valueOf(dadosProdutos.get(i).get(14)));}
+            if(dadosProdutos.get(i).get(15) != null){bp.codigoGrupoProduto       = Integer.parseInt(  String.valueOf(dadosProdutos.get(i).get(15)));}
+            if(dadosProdutos.get(i).get(16) != null){bp.codigoSubGrupoProduto    = Integer.parseInt(  String.valueOf(dadosProdutos.get(i).get(16)));}
+            if(dadosProdutos.get(i).get(17) != null){bp.quantidadeMinima         = Double.parseDouble(String.valueOf(dadosProdutos.get(i).get(17)));}
+            if(dadosProdutos.get(i).get(18) != null){bp.quantidadeIdeal          = Double.parseDouble(String.valueOf(dadosProdutos.get(i).get(18)));}
+            if(dadosProdutos.get(i).get(19) != null){bp.quantidadeAtual          = Double.parseDouble(String.valueOf(dadosProdutos.get(i).get(19)));}
+            if(dadosProdutos.get(i).get(20) != null){bp.observacoes              =                    String.valueOf(dadosProdutos.get(i).get(20));}
             
             if(bp.produtoInativo == 0){
                 statusProduto = "À venda";
@@ -1446,14 +1777,19 @@ public class ProdutosConsulta extends javax.swing.JFrame {
                 bsgp.descricaoSubGrupo  = "----------";
             }
             
+            dadosImagens        .add(bp.codigoProduto);
+            dadosImagens        .add(bp.descricaoProduto);
+            dadosProdutosImagens.add(dadosImagens);
+            
             Table.addRow(new Object [] {fc.FormataCampo(String.valueOf(bp.codigoProduto), 6, 0), statusProduto, bp.dataCadastro, bp.dataDeVencimento, bp.descricaoProduto, fc.FormataCampo(String.valueOf(bfab.codigoFabricante), 5, 0) + "-" + bfab.nomeFabricante, fc.FormataCampo(String.valueOf(bfor.codigoFornecedor), 5, 0) + "-" + bfor.nome, TransStrDou.TransformaValorStringeDouble(String.valueOf(bp.valorDeVenda), 0) , String.valueOf(bp.quantidadeAtual), bp.codigoDeBarras, bgp.descricaoGrupo, bsgp.descricaoSubGrupo, bp.observacoes});
         }
         new AjustarLarguraColunas(tabela_produtos);
+        IniciaCarregamentoDeImagens();
     }
     
     private void PegaFabricante(){
         bfab.nomeFabricante = "----------";
-        sql = "select codigoFabricante, nomeFabricante, siteFabricante from tb_fabricante where idEmpresa = " + parametrosNS.be.IdEmpresa + " and codigoFabricante = " + bfab.codigoFabricante + ";";
+        sql = "select idFabricante, idEmpresa, codigoGrupo, codigoEmpresa, codigoFabricante, nomeFabricante, siteFabricante from tb_fabricante where idEmpresa = " + parametrosNS.be.IdEmpresa + " and codigoFabricante = " + bfab.codigoFabricante + ";";
         dadosFabricante.clear();
         dadosFabricante = parametrosNS.dao.Consulta(sql);
         if(dadosFabricante.isEmpty()){
@@ -1465,13 +1801,13 @@ public class ProdutosConsulta extends javax.swing.JFrame {
     private void PegaDadosFabricante(){
         for(int i = 0; i < dadosFabricante.size(); i++){
             bfab = new BeanFabricante();
-//            bfab.idFabricante       = Integer.parseInt(  String.valueOf(dadosFabricante.get(i).get(0)));
-//            bfab.idEmpresa          = Integer.parseInt(  String.valueOf(dadosFabricante.get(i).get(1)));
-//            bfab.codigoGrupo        = Integer.parseInt(  String.valueOf(dadosFabricante.get(i).get(2)));
-//            bfab.codigoEmpresa      = Integer.parseInt(  String.valueOf(dadosFabricante.get(i).get(3)));
-            bfab.codigoFabricante   = Integer.parseInt(  String.valueOf(dadosFabricante.get(i).get(0)));
-            bfab.nomeFabricante     =                    String.valueOf(dadosFabricante.get(i).get(1));
-            bfab.siteFabricante     =                    String.valueOf(dadosFabricante.get(i).get(2));
+            bfab.idFabricante       = Integer.parseInt(  String.valueOf(dadosFabricante.get(i).get(0)));
+            bfab.idEmpresa          = Integer.parseInt(  String.valueOf(dadosFabricante.get(i).get(1)));
+            bfab.codigoGrupo        = Integer.parseInt(  String.valueOf(dadosFabricante.get(i).get(2)));
+            bfab.codigoEmpresa      = Integer.parseInt(  String.valueOf(dadosFabricante.get(i).get(3)));
+            bfab.codigoFabricante   = Integer.parseInt(  String.valueOf(dadosFabricante.get(i).get(4)));
+            bfab.nomeFabricante     =                    String.valueOf(dadosFabricante.get(i).get(5));
+            bfab.siteFabricante     =                    String.valueOf(dadosFabricante.get(i).get(6));
         }
     }
     
@@ -1556,6 +1892,96 @@ public class ProdutosConsulta extends javax.swing.JFrame {
         }
     }
     
+    public void PegaImagemProduto(){
+        sql = "select imagemProduto from tb_produtos where codigoGrupo = " + bp.codigoGrupo + " and codigoEmpresa = " + bp.codigoEmpresa + " and codigoProduto = " + bp.codigoProduto + ";";
+        bp.imagemProduto = parametrosNS.dao.ConsultaLogotipo(sql, "imagemProduto");
+    }
+    
+    private void IniciaCarregamentoDeImagens(){
+        label_imagem1.setIcon(null);
+        label_imagem2.setIcon(null);
+        label_imagem3.setIcon(null);
+        label_imagem4.setIcon(null);
+        label_imagem5.setIcon(null);
+        label_imagem6.setIcon(null);
+        label_imagem7.setIcon(null);
+        label_imagem8.setIcon(null);
+        label_nome1  .setText("");
+        label_nome2  .setText("");
+        label_nome3  .setText("");
+        label_nome4  .setText("");
+        label_nome5  .setText("");
+        label_nome6  .setText("");
+        label_nome7  .setText("");
+        label_nome8  .setText("");
+        
+        if(dadosProdutosImagens.size() < 9){
+            bt_anterior.setEnabled  (false);
+            bt_anterior.setFocusable(false);
+            bt_proximo .setEnabled  (false);
+            bt_proximo .setFocusable(false);
+        }
+        
+        dadosProdutosImagens2 = new ArrayList();
+        if(dadosProdutosImagens.size() <= giLimiteImagens){
+            for(int i = giLimiteImagens - 8; i < (8 - (giLimiteImagens - dadosProdutosImagens.size())); i++){
+                dadosProdutosImagens2.add(dadosProdutosImagens.get(i));
+            }
+        }
+        if(dadosProdutosImagens.size() >  giLimiteImagens){
+            for(int i = giLimiteImagens - 8; i < giLimiteImagens; i++){
+                dadosProdutosImagens2.add(dadosProdutosImagens.get(i));
+            }
+        }
+        CarregaImagens();
+    }
+    
+    private void CarregaImagens(){
+        String descricaoProduto = "";
+        for(int i = 0; i < dadosProdutosImagens2.size(); i++){
+            if(dadosProdutosImagens2.get(i).get(0) != null){
+                bp.codigoProduto    = Integer.parseInt(String.valueOf(dadosProdutosImagens2.get(i).get(0)));
+            }
+            if(dadosProdutosImagens2.get(i).get(1) != null){
+                bp.descricaoProduto =                  String.valueOf(dadosProdutosImagens2.get(i).get(1));
+            }
+            descricaoProduto = bp.descricaoProduto;
+            if(bp.descricaoProduto.length() > 10){
+                descricaoProduto = parametrosNS.fc.FormataCampo(String.valueOf(bp.codigoProduto), 6, 0) + "-" + bp.descricaoProduto.substring(0, 10);
+            }
+            if(bp.descricaoProduto.length() > 20){
+                descricaoProduto = parametrosNS.fc.FormataCampo(String.valueOf(bp.codigoProduto), 6, 0) + "-" + bp.descricaoProduto.substring(0, 20);
+            }
+            if(bp.descricaoProduto.length() > 30){
+                descricaoProduto = parametrosNS.fc.FormataCampo(String.valueOf(bp.codigoProduto), 6, 0) + "-" + bp.descricaoProduto.substring(0, 30);
+            }
+            
+            PegaImagemProduto();
+            if(bp.imagemProduto == null)continue;
+            
+            TransformaImagem();
+            if(i == 0){label_imagem1.setIcon(new ImageIcon(Img));label_nome1.setText(descricaoProduto);continue;}
+            if(i == 1){label_imagem2.setIcon(new ImageIcon(Img));label_nome2.setText(descricaoProduto);continue;}
+            if(i == 2){label_imagem3.setIcon(new ImageIcon(Img));label_nome3.setText(descricaoProduto);continue;}
+            if(i == 3){label_imagem4.setIcon(new ImageIcon(Img));label_nome4.setText(descricaoProduto);continue;}
+            if(i == 4){label_imagem5.setIcon(new ImageIcon(Img));label_nome5.setText(descricaoProduto);continue;}
+            if(i == 5){label_imagem6.setIcon(new ImageIcon(Img));label_nome6.setText(descricaoProduto);continue;}
+            if(i == 6){label_imagem7.setIcon(new ImageIcon(Img));label_nome7.setText(descricaoProduto);continue;}
+            if(i == 7){label_imagem8.setIcon(new ImageIcon(Img));label_nome8.setText(descricaoProduto);continue;}
+        }
+    }
+    
+    private void TransformaImagem(){
+        try{
+            BuffImg = ImageIO.read(new ByteArrayInputStream(bp.imagemProduto));
+            ImgIcon = new ImageIcon(BuffImg);
+            Img     = ImgIcon.getImage();
+            Img     = Img.getScaledInstance(label_imagem1.getWidth() - 5, label_imagem1.getHeight() - 5, Img.SCALE_DEFAULT);
+        }catch(IOException e){
+            
+        }
+    }
+    
 //    private void PegaUsuario(){
 //        sql = "select usuario from tb_usuarios where idEmpresa = " + parametrosNS.be.IdEmpresa + " and codigoUsuario = " + bu.codigoUsuario + ";";
 //        dadosUsuarios.clear();
@@ -1569,8 +1995,9 @@ public class ProdutosConsulta extends javax.swing.JFrame {
 //    }
 //    
 //    private void PegaDadosUsuario(){
-//        for(int i = 0; i < dadosUsuarios.size(); i++)
+//        for(int i = 0; i < dadosUsuarios.size(); i++){
 //            bu.usuario              = String.valueOf(dadosUsuarios.get(i).get(0));
+//        }
 //    }
     
 }
