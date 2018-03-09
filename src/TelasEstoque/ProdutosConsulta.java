@@ -189,6 +189,7 @@ public class ProdutosConsulta extends javax.swing.JFrame {
         MenuPopup.add(bt_detalhesItem);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
         addWindowFocusListener(new java.awt.event.WindowFocusListener() {
             public void windowGainedFocus(java.awt.event.WindowEvent evt) {
                 formWindowGainedFocus(evt);
@@ -310,7 +311,7 @@ public class ProdutosConsulta extends javax.swing.JFrame {
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addComponent(jLabel3)
                 .addGap(11, 11, 11)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 428, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -709,7 +710,7 @@ public class ProdutosConsulta extends javax.swing.JFrame {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(14, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -731,15 +732,35 @@ public class ProdutosConsulta extends javax.swing.JFrame {
 
         label_imagem2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label_imagem2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        label_imagem2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                label_imagem2MouseClicked(evt);
+            }
+        });
 
         label_imagem4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label_imagem4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        label_imagem4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                label_imagem4MouseClicked(evt);
+            }
+        });
 
         label_imagem1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label_imagem1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        label_imagem1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                label_imagem1MouseClicked(evt);
+            }
+        });
 
         label_imagem3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label_imagem3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        label_imagem3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                label_imagem3MouseClicked(evt);
+            }
+        });
 
         label_nome1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         label_nome1.setFocusable(false);
@@ -791,15 +812,35 @@ public class ProdutosConsulta extends javax.swing.JFrame {
 
         label_imagem6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label_imagem6.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        label_imagem6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                label_imagem6MouseClicked(evt);
+            }
+        });
 
         label_imagem8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label_imagem8.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        label_imagem8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                label_imagem8MouseClicked(evt);
+            }
+        });
 
         label_imagem5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label_imagem5.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        label_imagem5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                label_imagem5MouseClicked(evt);
+            }
+        });
 
         label_imagem7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label_imagem7.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        label_imagem7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                label_imagem7MouseClicked(evt);
+            }
+        });
 
         label_nome5.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         label_nome5.setFocusable(false);
@@ -837,50 +878,45 @@ public class ProdutosConsulta extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(bt_anterior, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(bt_anterior, javax.swing.GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(label_imagem1, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
-                                    .addComponent(label_nome5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(label_imagem2, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
-                                    .addComponent(label_nome6, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(label_nome7, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(label_imagem3, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(label_imagem5, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(label_imagem6, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(label_imagem7, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(label_imagem4, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
-                            .addComponent(label_nome8, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(label_imagem8, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(label_nome1, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(label_nome2, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(label_nome3, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(label_nome4, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)))
+                    .addComponent(label_imagem5, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(label_imagem1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(label_nome5, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(label_nome1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(bt_proximo, javax.swing.GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(label_imagem6, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(label_imagem2, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(label_nome6, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(label_nome2, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(label_nome3, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(label_nome7, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(label_imagem7, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(label_imagem3, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(label_nome4, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(label_nome8, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(label_imagem8, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(label_imagem4, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(bt_proximo, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
-        jPanel3Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {label_imagem1, label_imagem2, label_imagem3, label_imagem4, label_imagem5, label_imagem6, label_imagem7, label_imagem8, label_nome1, label_nome2, label_nome3, label_nome4, label_nome5, label_nome6, label_nome7, label_nome8});
+        jPanel3Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {label_imagem1, label_imagem5, label_nome1, label_nome5});
+
+        jPanel3Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {label_imagem2, label_imagem6, label_nome2, label_nome6});
+
+        jPanel3Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {label_imagem3, label_imagem7, label_nome3, label_nome7});
+
+        jPanel3Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {label_imagem4, label_imagem8, label_nome4, label_nome8});
 
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -890,7 +926,7 @@ public class ProdutosConsulta extends javax.swing.JFrame {
                     .addComponent(bt_anterior, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(bt_proximo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(label_imagem3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
                             .addComponent(label_imagem2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
                             .addComponent(label_imagem1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
@@ -902,12 +938,12 @@ public class ProdutosConsulta extends javax.swing.JFrame {
                             .addComponent(label_nome1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(label_nome2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(label_imagem5, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
                             .addComponent(label_imagem6, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
                             .addComponent(label_imagem7, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
                             .addComponent(label_imagem8, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(label_nome5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(label_nome6, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -915,8 +951,6 @@ public class ProdutosConsulta extends javax.swing.JFrame {
                             .addComponent(label_nome8, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
-
-        jPanel3Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {label_imagem1, label_imagem2, label_imagem3, label_imagem4, label_imagem5, label_imagem6, label_imagem7, label_imagem8});
 
         jPanel3Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {label_nome1, label_nome2, label_nome3, label_nome4, label_nome5, label_nome6, label_nome7, label_nome8});
 
@@ -980,9 +1014,11 @@ public class ProdutosConsulta extends javax.swing.JFrame {
 
     private void tabela_produtosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabela_produtosMouseClicked
         RetornaProduto();
-        if(evt.getButton() == MouseEvent.BUTTON3)
-            if(somostra.equals("N"))
+        if(evt.getButton() == MouseEvent.BUTTON3){
+            if(somostra.equals("N")){
                 MenuPopup.show(evt.getComponent(), evt.getX(), evt.getY());
+            }
+        }
         if(evt.getClickCount() < 2){
             return;
         }
@@ -1417,6 +1453,62 @@ public class ProdutosConsulta extends javax.swing.JFrame {
         }
         IniciaCarregamentoDeImagens();
     }//GEN-LAST:event_bt_proximoActionPerformed
+
+    private void label_imagem1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_imagem1MouseClicked
+        if(evt.getClickCount() < 2){
+            return;
+        }
+        SelecionarItemImagem(1);
+    }//GEN-LAST:event_label_imagem1MouseClicked
+
+    private void label_imagem2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_imagem2MouseClicked
+        if(evt.getClickCount() < 2){
+            return;
+        }
+        SelecionarItemImagem(2);
+    }//GEN-LAST:event_label_imagem2MouseClicked
+
+    private void label_imagem3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_imagem3MouseClicked
+        if(evt.getClickCount() < 2){
+            return;
+        }
+        SelecionarItemImagem(3);
+    }//GEN-LAST:event_label_imagem3MouseClicked
+
+    private void label_imagem4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_imagem4MouseClicked
+        if(evt.getClickCount() < 2){
+            return;
+        }
+        SelecionarItemImagem(4);
+    }//GEN-LAST:event_label_imagem4MouseClicked
+
+    private void label_imagem5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_imagem5MouseClicked
+        if(evt.getClickCount() < 2){
+            return;
+        }
+        SelecionarItemImagem(5);
+    }//GEN-LAST:event_label_imagem5MouseClicked
+
+    private void label_imagem6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_imagem6MouseClicked
+        if(evt.getClickCount() < 2){
+            return;
+        }
+        SelecionarItemImagem(6);
+    }//GEN-LAST:event_label_imagem6MouseClicked
+
+    private void label_imagem7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_imagem7MouseClicked
+        if(evt.getClickCount() < 2){
+            return;
+        }
+        SelecionarItemImagem(7);
+    }//GEN-LAST:event_label_imagem7MouseClicked
+
+    private void label_imagem8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_imagem8MouseClicked
+        if(evt.getClickCount() < 2){
+            return;
+        }
+        SelecionarItemImagem(8);
+    }//GEN-LAST:event_label_imagem8MouseClicked
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPopupMenu MenuPopup;
@@ -1779,6 +1871,7 @@ public class ProdutosConsulta extends javax.swing.JFrame {
             
             dadosImagens        .add(bp.codigoProduto);
             dadosImagens        .add(bp.descricaoProduto);
+            dadosImagens        .add(bp.codigoDeBarras);
             dadosProdutosImagens.add(dadosImagens);
             
             Table.addRow(new Object [] {fc.FormataCampo(String.valueOf(bp.codigoProduto), 6, 0), statusProduto, bp.dataCadastro, bp.dataDeVencimento, bp.descricaoProduto, fc.FormataCampo(String.valueOf(bfab.codigoFabricante), 5, 0) + "-" + bfab.nomeFabricante, fc.FormataCampo(String.valueOf(bfor.codigoFornecedor), 5, 0) + "-" + bfor.nome, TransStrDou.TransformaValorStringeDouble(String.valueOf(bp.valorDeVenda), 0) , String.valueOf(bp.quantidadeAtual), bp.codigoDeBarras, bgp.descricaoGrupo, bsgp.descricaoSubGrupo, bp.observacoes});
@@ -1982,22 +2075,22 @@ public class ProdutosConsulta extends javax.swing.JFrame {
         }
     }
     
-//    private void PegaUsuario(){
-//        sql = "select usuario from tb_usuarios where idEmpresa = " + parametrosNS.be.IdEmpresa + " and codigoUsuario = " + bu.codigoUsuario + ";";
-//        dadosUsuarios.clear();
-//        dadosUsuarios = parametrosNS.dao.Consulta(sql);        
-//        if(dadosUsuarios.isEmpty()){
-//            mensagem = "Codigo do Usuário " + bu.codigoUsuario + " não encontrado!!!";
-//            new MostraMensagem(mensagem);
-//            return;
-//        }
-//        PegaDadosUsuario();
-//    }
-//    
-//    private void PegaDadosUsuario(){
-//        for(int i = 0; i < dadosUsuarios.size(); i++){
-//            bu.usuario              = String.valueOf(dadosUsuarios.get(i).get(0));
-//        }
-//    }
+    private void SelecionarItemImagem(int imagemSelecionada){
+        if(tipo.equalsIgnoreCase("cdb")){
+            retorno = String.valueOf(dadosProdutosImagens2.get(imagemSelecionada - 1).get(2));
+        }else{
+            switch(imagemSelecionada){
+                case 1: if(label_nome1.getText().equals("")){return;}else{retorno = String.valueOf(Integer.parseInt(label_nome1.getText().substring(0, 6)));} break;
+                case 2: if(label_nome2.getText().equals("")){return;}else{retorno = String.valueOf(Integer.parseInt(label_nome2.getText().substring(0, 6)));} break;
+                case 3: if(label_nome3.getText().equals("")){return;}else{retorno = String.valueOf(Integer.parseInt(label_nome3.getText().substring(0, 6)));} break;
+                case 4: if(label_nome4.getText().equals("")){return;}else{retorno = String.valueOf(Integer.parseInt(label_nome4.getText().substring(0, 6)));} break;
+                case 5: if(label_nome5.getText().equals("")){return;}else{retorno = String.valueOf(Integer.parseInt(label_nome5.getText().substring(0, 6)));} break;
+                case 6: if(label_nome6.getText().equals("")){return;}else{retorno = String.valueOf(Integer.parseInt(label_nome6.getText().substring(0, 6)));} break;
+                case 7: if(label_nome7.getText().equals("")){return;}else{retorno = String.valueOf(Integer.parseInt(label_nome7.getText().substring(0, 6)));} break;
+                case 8: if(label_nome8.getText().equals("")){return;}else{retorno = String.valueOf(Integer.parseInt(label_nome8.getText().substring(0, 6)));} break;
+            }
+        }
+        dispose();
+    }
     
 }
