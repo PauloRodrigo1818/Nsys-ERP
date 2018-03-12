@@ -796,11 +796,12 @@ public class ParametrosGestao extends javax.swing.JFrame {
     
     private void AlterarRegistro(){
         PegaValores();
-        sql = "update tb_parametrosgestao set codigoContaCorrenteBoleto = "          + bparges.codigoContaCorrenteBoleto          + ", " +
-                                             "codigoContaCorrenteOrdemServico = "    + bparges.codigoContaCorrenteOrdemServico    + ", " +
-                                             "codigoContaCorrenteRecibo = "          + bparges.codigoContaCorrenteRecibo          + ", " +
-                                             "codigoContaCorrenteVenda = "           + bparges.codigoContaCorrenteVenda           + " " +
-                                             "where idParametrosGestao = " + bparges.idParametrosGestao + ";";
+        sql = "update tb_parametrosgestao set codigoContaCorrenteBoleto = "       + bparges.codigoContaCorrenteBoleto          + ", " +
+                                             "codigoContaCorrenteOrdemServico = " + bparges.codigoContaCorrenteOrdemServico    + ", " +
+                                             "codigoContaCorrenteRecibo = "       + bparges.codigoContaCorrenteRecibo          + ", " +
+                                             "codigoContaCorrenteVenda = "        + bparges.codigoContaCorrenteVenda           + ", " +
+                                             "atualizado = 1" +
+                                             "where idParametrosGestao = "        + bparges.idParametrosGestao + ";";
         sqlstate = parametrosNS.dao.incluirRegistro(sql);
         if(!sqlstate.equals("00000"))
             return;

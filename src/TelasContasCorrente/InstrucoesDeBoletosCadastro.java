@@ -363,7 +363,8 @@ public class InstrucoesDeBoletosCadastro extends javax.swing.JFrame {
         sql = "update tb_boletos_instrucoes set descricaoInstrucao = '"             + bbi.descricaoInstrucao    + "', "
                                             + "primeiraInstrucao = '"               + bbi.primeiraInstrucao     + "', "
                                             + "segundaInstrucao = '"                + bbi.segundaInstrucao      + "', "
-                                            + "terceiraInstrucao = '"               + bbi.terceiraInstrucao     + "' "
+                                            + "terceiraInstrucao = '"               + bbi.terceiraInstrucao     + "', "
+                                            + "atualizado = 1 "
                                             + "where idBoletoInstrucao = "          + bbi.idBoletoInstrucao     + ";";
         
         sqlstate = parametrosNS.dao.AlterarRegistroOuConsultaSeTabelaExiste(sql, "S");

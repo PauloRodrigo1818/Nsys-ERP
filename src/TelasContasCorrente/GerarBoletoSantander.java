@@ -1213,7 +1213,8 @@ public class GerarBoletoSantander extends javax.swing.JFrame {
                                   + "codigoEmpresaAlterou = "   + bbol.codigoEmpresaAlterou     + ", "
                                   + "dataAlterou = '"           + bbol.dataAlterou              + "', "
                                   + "horaAlterou = '"           + bbol.horaAlterou              + "', "
-                                  + "usuarioAlterou = "         + bbol.usuarioAlterou           + " "
+                                  + "usuarioAlterou = "         + bbol.usuarioAlterou           + ", "
+                                  + "atualizado = 1 "
                                   + "where idBoletos = "    + bbol.idBoletos    + ";";
         sqlstate = parametrosNS.dao.AlterarRegistroOuConsultaSeTabelaExiste(sql, "S");
         if(!sqlstate.equals("00000"))

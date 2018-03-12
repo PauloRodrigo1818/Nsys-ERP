@@ -263,7 +263,8 @@ public class CancelamentosCadastro extends javax.swing.JFrame {
     private void bt_alterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_alterarActionPerformed
         PegaValores();
         if(fatal.equals("S"))return;
-        sql = "update tb_cancelamento set descricaoCancelamento = '"        + bcan.descricaoCancelamento    + "' "
+        sql = "update tb_cancelamento set descricaoCancelamento = '"        + bcan.descricaoCancelamento    + "', "
+                                        + "atualizado = 1 "
                                         + "where idCancelamento = " + bcan.idCancelamento       + ";";
         
         sqlstate = parametrosNS.dao.AlterarRegistroOuConsultaSeTabelaExiste(sql, "S");

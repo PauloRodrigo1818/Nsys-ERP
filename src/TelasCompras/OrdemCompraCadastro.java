@@ -1544,7 +1544,8 @@ public class OrdemCompraCadastro extends javax.swing.JFrame {
                                "usuarioAlterou = "             + boc.usuarioAlterou             + ", "  + 
                                "idEmpresaAlterou = "           + boc.idEmpresaAlterou           + ", "  + 
                                "codigoGrupoAlterou = "         + boc.codigoGrupoAlterou         + ", "  + 
-                               "codigoEmpresaAlterou = "       + boc.codigoEmpresaAlterou       + " "  + 
+                               "codigoEmpresaAlterou = "       + boc.codigoEmpresaAlterou       + ", "  + 
+                               "atualizado = 1 "               +
                                "where idOrdemCompra = "     + boc.idOrdemCompra + ";";
         sqlstate = parametrosNS.dao.AlterarRegistroOuConsultaSeTabelaExiste(sql, "S");
         if(!sqlstate.equals("00000")){
@@ -1684,7 +1685,7 @@ public class OrdemCompraCadastro extends javax.swing.JFrame {
         for(int i = 0; i < tabela_detalhesOrdemCompra.getRowCount(); i++){
             boci.codigoOrdemCompraItem = Integer.parseInt(String.valueOf(tabela_detalhesOrdemCompra.getValueAt(i, 0)));
             codigoOrdemCompraItem = boci.codigoOrdemCompraItem + 1;
-            sql = "update tb_oc_itens set codigoOrdemCompraItem = " + boci.codigoOrdemCompraItem + " where idEmpresa = " + boci.idEmpresa + " and codigoOrdemCompra = " + boci.codigoOrdemCompra + " and codigoOrdemCompraItem = " + codigoOrdemCompraItem + ";";
+            sql = "update tb_oc_itens set codigoOrdemCompraItem = " + boci.codigoOrdemCompraItem + ", atualizado = 1 where idEmpresa = " + boci.idEmpresa + " and codigoOrdemCompra = " + boci.codigoOrdemCompra + " and codigoOrdemCompraItem = " + codigoOrdemCompraItem + ";";
             parametrosNS.dao.AlterarRegistroOuConsultaSeTabelaExiste(sql, "S");
         }
         PegaOrdemCompraItem();
@@ -2440,7 +2441,7 @@ public class OrdemCompraCadastro extends javax.swing.JFrame {
         
         bp.quantidadeAtual = bp.quantidadeAtual + boci.quantidade;
         
-        sql = "update tb_produtos set quantidadeAtual = " + bp.quantidadeAtual + " where idEmpresa = " + parametrosNS.be.IdEmpresa + " and codigoProduto = " + bp.codigoProduto + ";";
+        sql = "update tb_produtos set quantidadeAtual = " + bp.quantidadeAtual + ", atualizado = 1 where idEmpresa = " + parametrosNS.be.IdEmpresa + " and codigoProduto = " + bp.codigoProduto + ";";
         sqlstate = parametrosNS.dao.AlterarRegistroOuConsultaSeTabelaExiste(sql, "S");
         if(sqlstate.equals("00000"))
             return;

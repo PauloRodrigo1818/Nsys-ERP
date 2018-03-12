@@ -260,8 +260,9 @@ public class ParametrosProducao extends javax.swing.JFrame {
         PegaValores();
         if(fatal.equals("S"))
             return;
-        sql = "update tb_parametrosproducao set impressaoDoLaudo = "            + bparpro.impressaoDoLaudo     + ", " +
-                                               "termoDeRecebimento = '"         + bparpro.termoDeRecebimento   + "' " +
+        sql = "update tb_parametrosproducao set impressaoDoLaudo = "            + bparpro.impressaoDoLaudo     + ", "  +
+                                               "termoDeRecebimento = '"         + bparpro.termoDeRecebimento   + "', " +
+                                               "atualizado = 1 " + 
                                                "where idParametrosProducao = "  + bparpro.idParametrosProducao + ";";
         sqlstate = parametrosNS.dao.AlterarRegistroOuConsultaSeTabelaExiste(sql, "S");
         if(!sqlstate.equals("00000"))

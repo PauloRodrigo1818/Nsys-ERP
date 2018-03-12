@@ -296,7 +296,8 @@ public class SelecionarDataDoSistemaContabil extends javax.swing.JFrame {
         PegaValores();
         if(fatal.equals("S"))return;
         
-        sql = "update tb_parametroscontabil set dataContabil = '"           + bparcon.dataContabil          + "' " +
+        sql = "update tb_parametroscontabil set dataContabil = '"           + bparcon.dataContabil          + "', " +
+                                            "atualizado = 1 "               +
                                             "where idParametrosContabil = " + bparcon.idParametrosContabil  + ";";
         sqlstate = parametrosNS.dao.AlterarRegistroOuConsultaSeTabelaExiste(sql, "S");
         if(!sqlstate.equals("00000"))

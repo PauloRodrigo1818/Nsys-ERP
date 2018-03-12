@@ -1186,7 +1186,7 @@ public class NegociosCadastro extends javax.swing.JFrame {
     }
 
     private void editarRegistro() {
-        sql = "update tb_negocios set nomeNegocio = '"+bn.nomeNegocio+"', contato = '"+bn.contato+"', tipoFJ = '"+bn.tipoFJ+"', nDocumento = '"+bn.nDocumento+"', cep = '"+bn.cep+"', endereco = '"+bn.endereco+"', numero = '"+bn.numero+"', cidade = '"+bn.cidade+"', bairro = '"+bn.bairro+"', uf = '"+bn.uf+"', telefone1 = '"+bn.telefone1+"', telefone2 = '"+bn.telefone2+"', email = '"+bn.email+"', site = '"+bn.site+"', observacoes = '"+bn.observacoes+"' where idNegocios = '"+bn.idNegocios+"'";
+        sql = "update tb_negocios set nomeNegocio = '"+bn.nomeNegocio+"', contato = '"+bn.contato+"', tipoFJ = '"+bn.tipoFJ+"', nDocumento = '"+bn.nDocumento+"', cep = '"+bn.cep+"', endereco = '"+bn.endereco+"', numero = '"+bn.numero+"', cidade = '"+bn.cidade+"', bairro = '"+bn.bairro+"', uf = '"+bn.uf+"', telefone1 = '"+bn.telefone1+"', telefone2 = '"+bn.telefone2+"', email = '"+bn.email+"', site = '"+bn.site+"', observacoes = '"+bn.observacoes+"', atualizado = 1 where idNegocios = '"+bn.idNegocios+"'";
         sqlstate = parametrosNS.dao.incluirRegistro(sql);
         if(sqlstate.equals("00000")){
             mensagem = "Registro alterado com sucesso!";

@@ -272,7 +272,7 @@ public class DepartamentosCadastro extends javax.swing.JFrame {
     private void bt_alterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_alterarActionPerformed
         PegaValores();
         if(fatal.equals("S"))return;
-        sql = "update tb_departamento set descricaoDepartamento = '" + bd.descricaoDepartamento + "' where idDepartamento = " + bd.idDepartamento + ";";
+        sql = "update tb_departamento set descricaoDepartamento = '" + bd.descricaoDepartamento + "', atualizado = 1 where idDepartamento = " + bd.idDepartamento + ";";
         
         sqlstate = parametrosNS.dao.AlterarRegistroOuConsultaSeTabelaExiste(sql, "S");
 

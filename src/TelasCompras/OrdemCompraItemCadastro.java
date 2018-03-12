@@ -1231,7 +1231,8 @@ public class OrdemCompraItemCadastro extends javax.swing.JFrame {
                                      "usuarioAlterou = "            + boci.usuarioAlterou       + ", "  +
                                      "idEmpresaAlterou = "          + boci.idEmpresaAlterou     + ", "  +
                                      "codigoGrupoAlterou = "        + boci.codigoGrupoAlterou   + ", "  +
-                                     "codigoEmpresaAlterou = "      + boci.codigoEmpresaAlterou + " "   +
+                                     "codigoEmpresaAlterou = "      + boci.codigoEmpresaAlterou + ", "  +
+                                     "atualizado = 1 "              +
                                      "where idOrdemCompraItem = " + boci.idOrdemCompraItem + ";";
         sqlstate = parametrosNS.dao.AlterarRegistroOuConsultaSeTabelaExiste(sql, "N");
         if(!sqlstate.equals("00000")){
@@ -1253,7 +1254,7 @@ public class OrdemCompraItemCadastro extends javax.swing.JFrame {
             bp.quantidadeAtual = bp.quantidadeAtual + boci.quantidade;
         }
         
-        sql = "update tb_produtos set quantidadeAtual = " + bp.quantidadeAtual + " where idEmpresa = " + parametrosNS.be.IdEmpresa + " and codigoProduto = " + bp.codigoProduto + ";";
+        sql = "update tb_produtos set quantidadeAtual = " + bp.quantidadeAtual + ", atualizado = 1 where idEmpresa = " + parametrosNS.be.IdEmpresa + " and codigoProduto = " + bp.codigoProduto + ";";
         sqlstate = parametrosNS.dao.AlterarRegistroOuConsultaSeTabelaExiste(sql, "S");
         if(sqlstate.equals("00000"))
             return;

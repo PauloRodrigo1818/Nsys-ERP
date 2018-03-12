@@ -1812,23 +1812,24 @@ public class UsuariosCadastro extends javax.swing.JFrame {
         if(fatal.equals("S"))
             return;
         
-        sql = "update tb_usuarios set idEmpresa = "             + bu.idEmpresa            + ", " +
+        sql = "update tb_usuarios set idEmpresa = "             + bu.idEmpresa            + ", "  +
                                      "codigoEmpresa = "         + bu.codigoEmpresa        + ", "  +
                                      "dataCriacao = '"          + bu.dataCriacao          + "', " +
                                      "nome = '"                 + bu.nome                 + "', " +
                                      "usuario = '"              + bu.usuario              + "', " +
                                      "senha = '"                + bu.senha                + "', " +
-                                     "telefone = "              + bu.telefone             + ", " +
-                                     "codigoDepartamento = "    + bu.codigoDepartamento   + ", " +
-                                     "nivelUsuario = "          + bu.nivelUsuario         + ", " +
-                                     "podeMudarEmpresa = "      + bu.podeMudarEmpresa     + ", " +
+                                     "telefone = "              + bu.telefone             + ", "  +
+                                     "codigoDepartamento = "    + bu.codigoDepartamento   + ", "  +
+                                     "nivelUsuario = "          + bu.nivelUsuario         + ", "  +
+                                     "podeMudarEmpresa = "      + bu.podeMudarEmpresa     + ", "  +
                                      "observacoes = '"          + bu.observacoes          + "', " +
-                                     "idEmpresaAlterou = "      + bu.idEmpresaAlterou     + ", " +
-                                     "codigoGrupoAlterou = "    + bu.codigoGrupoAlterou   + ", " +
-                                     "codigoEmpresaAlterou = "  + bu.codigoEmpresaAlterou + ", " +
+                                     "idEmpresaAlterou = "      + bu.idEmpresaAlterou     + ", "  +
+                                     "codigoGrupoAlterou = "    + bu.codigoGrupoAlterou   + ", "  +
+                                     "codigoEmpresaAlterou = "  + bu.codigoEmpresaAlterou + ", "  +
                                      "dataAlterou = '"          + bu.dataAlterou          + "', " +
                                      "horaAlterou = '"          + bu.horaAlterou          + "', " +
-                                     "usuarioAlterou = "        + bu.usuarioAlterou       + " " + 
+                                     "usuarioAlterou = "        + bu.usuarioAlterou       + ", "  + 
+                                     "atualizado = 1 "          +
                                      "where idUsuario = "   + bu.idUsuario          + ";";
         
         sqlstate = parametrosNS.dao.AlterarRegistroOuConsultaSeTabelaExiste(sql, "S");
@@ -1846,7 +1847,7 @@ public class UsuariosCadastro extends javax.swing.JFrame {
     }
     
     private void AtualizaImagens(){
-        sql = "update tb_usuarios set imagemUsuario = ? where idEmpresa = " + bu.idEmpresa + " and codigoUsuario = " + bu.codigoUsuario + ";";
+        sql = "update tb_usuarios set imagemUsuario = ?, atualizado = 1 where idEmpresa = " + bu.idEmpresa + " and codigoUsuario = " + bu.codigoUsuario + ";";
         sqlstate = parametrosNS.dao.atualizarImagens(sql, bu.getimagemUsuario());
     }
     
@@ -1873,11 +1874,12 @@ public class UsuariosCadastro extends javax.swing.JFrame {
 //        if(fatal.equals("S"))
 //            return;
 //        sql = "update tb_usuarios_email set servidorEmail = '"         + bue.servidorEmail              + "', " +
-//                                           "portaEmail = "            + bue.portaEmail                 + ", " +
+//                                           "portaEmail = "            + bue.portaEmail                 + ", "  +
 //                                           "usuarioServidorEmail = '" + bue.usuarioServidorEmail       + "', " +
 //                                           "senhaServidorEmail = '"   + bue.senhaServidorEmail         + "', " +
 //                                           "email = '"                + bue.email                      + "', " +
-//                                           "autenticacaoSSL = "       + bue.autenticacaoSSL            + " " +
+//                                           "autenticacaoSSL = "       + bue.autenticacaoSSL            + ", "  +
+//                                           "atualizado = 1 "
 //                                           "where idUsuario = " + bue.idUsuario + ";";
 //        sqlstate = parametrosNS.dao.AlterarRegistroOuConsultaSeTabelaExiste(sql, "S");
 //        if(!sqlstate.equals("00000")){
@@ -2043,7 +2045,8 @@ public class UsuariosCadastro extends javax.swing.JFrame {
                                     "abasRecebimento = '"       + bm.abasRecebimento    + "', " +
                                     "abasCRM = '"               + bm.abasCRM            + "', " +
                                     "abasCC = '"                + bm.abasCC             + "', " +
-                                    "abasRH = '"                + bm.abasRH             + "' "  +
+                                    "abasRH = '"                + bm.abasRH             + "', " +
+                                    "atualizado = 1 "           +
                                     "where codigoGrupo = "  + bm.codigoGrupo        + " and " +
                                     "codigoEmpresa = "      + bm.codigoEmpresa      + " and " +
                                     "usuarioModulo = "      + bm.usuarioModulo      + ";";

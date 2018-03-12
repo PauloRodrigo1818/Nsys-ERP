@@ -786,7 +786,8 @@ public class ContaCorrenteCadastro extends javax.swing.JFrame {
                                         + "numeroDaCarteira = "             + bcc.numeroDaCarteira         + ", "
                                         + "especieDoDocumento = "           + bcc.especieDoDocumento       + ", "
                                         + "AceiteOuNaoAceite = "            + bcc.AceiteOuNaoAceite        + ", "
-                                        + "descricao = '"                   + bcc.descricao                + "' "
+                                        + "descricao = '"                   + bcc.descricao                + "', "
+                                        + "atualizado = 1 "
                                         + "where idContaCorrente = "    + bcc.idContaCorrente       + ";";
         sqlstate = parametrosNS.dao.AlterarRegistroOuConsultaSeTabelaExiste(sql, "S");
         if(!sqlstate.equals("00000")){
@@ -1310,7 +1311,7 @@ public class ContaCorrenteCadastro extends javax.swing.JFrame {
     
     private void AtualizaContaCorrentePadrao(){
         if(check_contaCorrentePadrao.isSelected() == true){
-            sql = "update tb_contacorrente set contaCorrentePadrao = 0 where idBanco = " + bcc.idBanco + " and contaCorrentePadrao = 1;";
+            sql = "update tb_contacorrente set contaCorrentePadrao = 0, atualizado = 1 where idBanco = " + bcc.idBanco + " and contaCorrentePadrao = 1;";
             sqlstate = parametrosNS.dao.AlterarRegistroOuConsultaSeTabelaExiste(sql, "S");
             if(!sqlstate.equals("00000")){
                 fatal = "S";

@@ -390,7 +390,8 @@ public class ParametrosVendas extends javax.swing.JFrame {
         sql = "update tb_parametrosvendas set infQtdMenor = "             + bparven.infQtdMenor                 + ", "
                                        + "valorDeMeta = "                 + bparven.valorDeMeta                 + ", "
                                        + "porcentagemDeComissao = "       + bparven.porcentagemDeComissao       + ", "
-                                       + "pastaImpressaoAberturaCaixa = " + bparven.pastaImpressaoAberturaCaixa + " "
+                                       + "pastaImpressaoAberturaCaixa = " + bparven.pastaImpressaoAberturaCaixa + ", "
+                                       + "atualizado = 1 "
                                        + "where idEmpresa = " + bparven.idEmpresa + ";";
         sqlstate = parametrosNS.dao.AlterarRegistroOuConsultaSeTabelaExiste(sql, "S");
         if(!sqlstate.equals("00000")){

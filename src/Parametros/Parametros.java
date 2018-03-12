@@ -253,9 +253,9 @@ public class Parametros extends javax.swing.JFrame {//String's
         VerificaValores();
         if(fatal.equals("S"))
             return;
-        sql = "update tb_parametros set pastaRelatorios = '"        + bpar.pastaRelatorios  + "'," +
+        sql = "update tb_parametros set pastaRelatorios = '"   + bpar.pastaRelatorios  + "', " +
                                        "atualizado = 1 " +
-                                       "where idParametros = "   + bpar.idParametros     + ";";
+                                       "where idParametros = " + bpar.idParametros     + ";";
         sqlstate = parametrosNS.dao.AlterarRegistroOuConsultaSeTabelaExiste(sql, "S");
         if(!sqlstate.equals("00000"))
             return;

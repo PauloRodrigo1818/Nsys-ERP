@@ -362,7 +362,8 @@ public class BaixaManualDeBoletos extends javax.swing.JFrame {
                                   + "codigoEmpresaAlterou = "   + bbol.codigoEmpresaAlterou + ", "
                                   + "dataAlterou = '"           + bbol.dataAlterou          + "', "
                                   + "horaAlterou = '"           + bbol.horaAlterou          + "', "
-                                  + "usuarioAlterou = "         + bbol.usuarioAlterou       + " "
+                                  + "usuarioAlterou = "         + bbol.usuarioAlterou       + ", "
+                                  + "atualizado = 1 "
                                   + "where idBoletos = "        + bbol.idBoletos + ";";
         sqlstate = parametrosNS.dao.incluirRegistro(sql);
         if(!sqlstate.equals("00000"))

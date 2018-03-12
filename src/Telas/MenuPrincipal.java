@@ -1217,7 +1217,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         sql = "select max(idLogAcesso) from tb_logacesso where idEmpresa = " + bla.idEmpresa + " and codigoUsuario = " + bla.codigoUsuario + ";";
         dadosLogAcesso = parametrosNS.dao.Consulta(sql);
         bla.idLogAcesso = Integer.parseInt(  String.valueOf(dadosLogAcesso.get(0).get(0)));
-        sql = "update tb_logacesso set horaSaida = '" + cdh.CapturaHora() + "' where idEmpresa = " + bla.idEmpresa + " and idLogAcesso = " + bla.idLogAcesso + ";";
+        sql = "update tb_logacesso set horaSaida = '" + cdh.CapturaHora() + "', atualizado = 1 where idEmpresa = " + bla.idEmpresa + " and idLogAcesso = " + bla.idLogAcesso + ";";
         sqlstate = parametrosNS.dao.AlterarRegistroOuConsultaSeTabelaExiste(sql, "S");
         if(!sqlstate.equals("00000"))
             return;
@@ -1225,7 +1225,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         bu.codigoGrupo   = bla.codigoGrupo;
         bu.codigoEmpresa = bla.codigoEmpresa;
         bu.codigoUsuario = bla.codigoUsuario;
-        sql = "update tb_usuarios set nomeConexao = null where idEmpresa = " + bu.idEmpresa + " and codigoUsuario = " + bu.codigoUsuario + ";" ;
+        sql = "update tb_usuarios set nomeConexao = null, atualizado = 1 where idEmpresa = " + bu.idEmpresa + " and codigoUsuario = " + bu.codigoUsuario + ";" ;
         sqlstate = parametrosNS.dao.AlterarRegistroOuConsultaSeTabelaExiste(sql, "S");
     }
     

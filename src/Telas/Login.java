@@ -1517,7 +1517,7 @@ public class Login extends javax.swing.JFrame {
             return;
         }
         dispose();
-        sql = "update tb_usuarios set nomeConexao = '" + con + "' where idUsuario = '" + parametrosNS.bu.idUsuario + "';" ;
+        sql = "update tb_usuarios set nomeConexao = '" + con + "' where idUsuario = " + parametrosNS.bu.idUsuario + ";" ;
         SetaConexao();
         if(fatal.equals("S")){DefineAcesso(false);return;}
         if(parametrosNS.bu.usuario.equalsIgnoreCase("NS3"))

@@ -219,7 +219,8 @@ public class ParametrosEstoque extends javax.swing.JFrame {
             return;
         MontaArquivo();
         sql = "update tb_parametrosestoque set infFaltaEstoqueOuAbaixLim = " + bpare.infFaltaEstoqueOuAbaixLim  + ", " +
-                                              "where idParametrosEstoque = "  + bpare.idParametrosEstoque       + ";";
+                                              "atualizado = 1" +
+                                              "where idParametrosEstoque = " + bpare.idParametrosEstoque       + ";";
         sqlstate = parametrosNS.dao.AlterarRegistroOuConsultaSeTabelaExiste(sql, "S");
         if(!sqlstate.equals("00000"))
             return;

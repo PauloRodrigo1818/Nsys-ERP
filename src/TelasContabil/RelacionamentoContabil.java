@@ -621,10 +621,11 @@ public class RelacionamentoContabil extends javax.swing.JFrame {
     }
     
     private void AlterarRelacionamento(){
-        sql = "update tb_planodecontasrelacionamento set idPlanoDeContasVendas = "                  + bplarel.codigoPlanoDeContasVendas         + ", "  +
-                                                        "idPlanoDeContasOS = "                      + bplarel.codigoPlanoDeContasOS             + ", "  +
-                                                        "idPlanoDeContasBoletos = "                 + bplarel.codigoPlanoDeContasBoletos        + ", "  +
-                                                        "idPlanoDeContasRecibos = "                 + bplarel.codigoPlanoDeContasRecibos        + " "   +
+        sql = "update tb_planodecontasrelacionamento set idPlanoDeContasVendas = "                  + bplarel.codigoPlanoDeContasVendas         + ", " +
+                                                        "idPlanoDeContasOS = "                      + bplarel.codigoPlanoDeContasOS             + ", " +
+                                                        "idPlanoDeContasBoletos = "                 + bplarel.codigoPlanoDeContasBoletos        + ", " +
+                                                        "idPlanoDeContasRecibos = "                 + bplarel.codigoPlanoDeContasRecibos        + ", " +
+                                                        "atualizado = 1 "                           + 
                                                         "where idPlanoDeContasRelacionamento = "    + bplarel.idPlanoDeContasRelacionamento + ";";
         sqlstate = parametrosNS.dao.AlterarRegistroOuConsultaSeTabelaExiste(sql, "S");
         if(!sqlstate.equals("00000"))
