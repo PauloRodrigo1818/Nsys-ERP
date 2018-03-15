@@ -426,7 +426,7 @@ public class SaidaDeCaixaCadastro extends javax.swing.JFrame {
         if(JOptionPane.showConfirmDialog(null, "Deseja realmente cancelar a Saída de Caixa " + bcs.codigoCaixaSaida + "?") != JOptionPane.YES_OPTION)
             return;
         
-        sql = "update tb_caixa_saida set statusSaida = 1 where idCaixaSaida = " + bcs.idCaixaSaida + ";";
+        sql = "update tb_caixa_saida set statusSaida = 1, atualizado = 1 where idCaixaSaida = " + bcs.idCaixaSaida + ";";
         
         sqlstate = parametrosNS.dao.AlterarRegistroOuConsultaSeTabelaExiste(sql, "S");
         if(!sqlstate.equals("00000"))

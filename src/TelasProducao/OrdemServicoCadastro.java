@@ -1625,40 +1625,41 @@ public class OrdemServicoCadastro extends javax.swing.JFrame {
     private void bt_alterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_alterarActionPerformed
         PegaValores();
         if(fatal.equals("S"))return;
-        sql = "update tb_os set codigoCliente = "                   + bos.codigoCliente         + ", " +
-                               "dataEntrada = "                     + bos.dataEntrada           + ", " +
-                               "horaEntrada = "                     + bos.horaEntrada           + ", " +
-                               "dataSaida = "                       + bos.dataSaida             + ", " +
-                               "horaSaida = "                       + bos.horaSaida             + ", " +
-                               "dataGarantia = "                    + bos.dataGarantia          + ", " +
-                               "dataPrevista = "                    + bos.dataPrevista          + ", " +
-                               "codigoSituacao = "                  + bos.codigoSituacao        + ", " +
-                               "valorAdiantamento = "               + bos.valorAdiantamento     + ", " +
-                               "valorDeslocamento = "               + bos.valorDeslocamento     + ", " +
-                               "valorPecas = "                      + bos.valorPecas            + ", " +
-                               "valorMaoDeObra = "                  + bos.valorMaoDeObra        + ", " +
-                               "valorTerceiros = "                  + bos.valorTerceiros        + ", " +
-                               "valorOutros = "                     + bos.valorOutros           + ", " +
+        sql = "update tb_os set codigoCliente = "                   + bos.codigoCliente         + ", "  +
+                               "dataEntrada = "                     + bos.dataEntrada           + ", "  +
+                               "horaEntrada = "                     + bos.horaEntrada           + ", "  +
+                               "dataSaida = "                       + bos.dataSaida             + ", "  +
+                               "horaSaida = "                       + bos.horaSaida             + ", "  +
+                               "dataGarantia = "                    + bos.dataGarantia          + ", "  +
+                               "dataPrevista = "                    + bos.dataPrevista          + ", "  +
+                               "codigoSituacao = "                  + bos.codigoSituacao        + ", "  +
+                               "valorAdiantamento = "               + bos.valorAdiantamento     + ", "  +
+                               "valorDeslocamento = "               + bos.valorDeslocamento     + ", "  +
+                               "valorPecas = "                      + bos.valorPecas            + ", "  +
+                               "valorMaoDeObra = "                  + bos.valorMaoDeObra        + ", "  +
+                               "valorTerceiros = "                  + bos.valorTerceiros        + ", "  +
+                               "valorOutros = "                     + bos.valorOutros           + ", "  +
                                "descricao = '"                      + bos.descricao             + "', " +
                                "patrimonio = '"                     + bos.patrimonio            + "', " +
                                "marca = '"                          + bos.marca                 + "', " +
                                "modelo = '"                         + bos.modelo                + "', " +
-                               "numeroNF= "                         + bos.numeroNF              + ", " +
+                               "numeroNF= "                         + bos.numeroNF              + ", "  +
                                "serie = '"                          + bos.serie                 + "', " +
                                "acessorio = '"                      + bos.acessorio             + "', " +
                                "defeito = '"                        + bos.defeito               + "', " +
                                "observacoes = '"                    + bos.observacoes           + "', " +
                                "laudo = '"                          + bos.laudo                 + "', " +
-                               "prioridade = "                      + bos.prioridade            + ", " +
-                               "statusOs = "                        + bos.statusOs              + ", " +
-                               "aprovacao = "                       + bos.aprovacao             + ", " +
-                               "pagamento = "                       + bos.pagamento             + ", " +
-                               "idEmpresaAlterou = "                + bos.idEmpresaAlterou      + ", " +
-                               "codigoGrupoAlterou = "              + bos.codigoGrupoAlterou    + ", " +
-                               "codigoEmpresaAlterou = "            + bos.codigoEmpresaAlterou  + ", " +
+                               "prioridade = "                      + bos.prioridade            + ", "  +
+                               "statusOs = "                        + bos.statusOs              + ", "  +
+                               "aprovacao = "                       + bos.aprovacao             + ", "  +
+                               "pagamento = "                       + bos.pagamento             + ", "  +
+                               "idEmpresaAlterou = "                + bos.idEmpresaAlterou      + ", "  +
+                               "codigoGrupoAlterou = "              + bos.codigoGrupoAlterou    + ", "  +
+                               "codigoEmpresaAlterou = "            + bos.codigoEmpresaAlterou  + ", "  +
                                "dataAlterou = '"                    + bos.dataAlterou           + "', " +
                                "horaAlterou = '"                    + bos.horaAlterou           + "', " +
-                               "usuarioAlterou = "                  + bos.usuarioAlterou        + " "  +
+                               "usuarioAlterou = "                  + bos.usuarioAlterou        + ", "  +
+                               "atualizado = 1 "                    + 
                                "where idOrdemServico = "    + bos.idOrdemServico    + ";";
         sqlstate = parametrosNS.dao.AlterarRegistroOuConsultaSeTabelaExiste(sql, "S");
         if(!sqlstate.equals("00000"))
@@ -1951,7 +1952,7 @@ public class OrdemServicoCadastro extends javax.swing.JFrame {
         for(int i = linha; i < tabela_detalhesOrdemServico.getRowCount(); i++){
             bosi.codigoOrdemServicoItem = Integer.parseInt(String.valueOf(tabela_detalhesOrdemServico.getValueAt(i, 0)));
             codigoOrdemServicoItem = bosi.codigoOrdemServicoItem + 1;
-            sql = "update tb_os_itens set codigoOrdemServicoItem = " + bosi.codigoOrdemServicoItem + " where idEmpresa = " + bosi.idEmpresa + " and codigoOrdemServico = " + bosi.codigoOrdemServico + " and codigoOrdemServicoItem = " + codigoOrdemServicoItem + ";";
+            sql = "update tb_os_itens set codigoOrdemServicoItem = " + bosi.codigoOrdemServicoItem + ", atualizado = 1 where idEmpresa = " + bosi.idEmpresa + " and codigoOrdemServico = " + bosi.codigoOrdemServico + " and codigoOrdemServicoItem = " + codigoOrdemServicoItem + ";";
             parametrosNS.dao.AlterarRegistroOuConsultaSeTabelaExiste(sql, "S");
         }
         PegaOrdemServicoItem();
@@ -3135,7 +3136,7 @@ public class OrdemServicoCadastro extends javax.swing.JFrame {
         
         bp.quantidadeAtual = bp.quantidadeAtual + bosi.quantidade;
         
-        sql = "update tb_produtos set quantidadeAtual = " + bp.quantidadeAtual + " where idEmpresa = " + parametrosNS.be.IdEmpresa + " and codigoProduto = " + bp.codigoProduto + ";";
+        sql = "update tb_produtos set quantidadeAtual = " + bp.quantidadeAtual + ", atualizado = 1 where idEmpresa = " + parametrosNS.be.IdEmpresa + " and codigoProduto = " + bp.codigoProduto + ";";
         sqlstate = parametrosNS.dao.AlterarRegistroOuConsultaSeTabelaExiste(sql, "S");
         if(sqlstate.equals("00000"))
             return;

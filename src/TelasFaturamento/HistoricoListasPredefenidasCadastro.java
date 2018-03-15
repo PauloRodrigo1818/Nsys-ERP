@@ -354,19 +354,24 @@ public class HistoricoListasPredefenidasCadastro extends javax.swing.JFrame {
 
     private void bt_alterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_alterarActionPerformed
         PegaValores();
-        if(fatal.equals("S"))return;
-        sql = "update tb_clientes_historico_listas set descricaoPredefenida = '"    + bchl.descricaoPredefenida + "' "
+        if(fatal.equals("S")){
+            return;
+        }
+        sql = "update tb_clientes_historico_listas set descricaoPredefenida = '"    + bchl.descricaoPredefenida + "', "
+                                                + "atualizado = 1 "
                                                 + "where idClienteHistorico = "     + bchl.idClienteHistorico   + ";";
         sqlstate = parametrosNS.dao.AlterarRegistroOuConsultaSeTabelaExiste(sql, "S");
-        if(!sqlstate.equals("00000"))
+        if(!sqlstate.equals("00000")){
             return;
+        }
         txt_codigoPredefenido.grabFocus();
         VerificaUltimoRegistro();
     }//GEN-LAST:event_bt_alterarActionPerformed
 
     private void bt_proximoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_proximoActionPerformed
-        if(txt_codigoPredefenido.getText().replace(" ", "").equals(""))
+        if(txt_codigoPredefenido.getText().replace(" ", "").equals("")){
             txt_codigoPredefenido.setText(fc.FormataCampo(txt_codigoPredefenido.getText(), 9, 0));
+        }
         bchl.codigoPredefenido    = Integer.parseInt(txt_codigoPredefenido.getText().replace(" ", ""));
         bchl.codigoPredefenido    = bchl.codigoPredefenido + 1;
         if(bchl.codigoPredefenido > UltimoRegistro){
@@ -380,8 +385,9 @@ public class HistoricoListasPredefenidasCadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_bt_proximoActionPerformed
 
     private void bt_anteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_anteriorActionPerformed
-        if(txt_codigoPredefenido.getText().replace(" ", "").equals(""))
+        if(txt_codigoPredefenido.getText().replace(" ", "").equals("")){
             txt_codigoPredefenido.setText(fc.FormataCampo("2", 9, 0));
+        }
         bchl.codigoPredefenido = Integer.parseInt(txt_codigoPredefenido.getText());
         bchl.codigoPredefenido = bchl.codigoPredefenido - 1;
         if(bchl.codigoPredefenido <= 0){
@@ -390,8 +396,9 @@ public class HistoricoListasPredefenidasCadastro extends javax.swing.JFrame {
             new MostraMensagem(Mensagem);
             return;
         }
-        if(bchl.codigoPredefenido > UltimoRegistro)
+        if(bchl.codigoPredefenido > UltimoRegistro){
             bchl.codigoPredefenido = UltimoRegistro;
+        }
         txt_codigoPredefenido.setText(fc.FormataCampo(String.valueOf(bchl.codigoPredefenido), 9, 0));
         PegaHistorico();
     }//GEN-LAST:event_bt_anteriorActionPerformed
@@ -401,8 +408,9 @@ public class HistoricoListasPredefenidasCadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_codigoPredefenidoAncestorRemoved
 
     private void txt_codigoPredefenidoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txt_codigoPredefenidoMouseClicked
-        if(evt.getClickCount() < 2)
+        if(evt.getClickCount() < 2){
             return;
+        }
     }//GEN-LAST:event_txt_codigoPredefenidoMouseClicked
 
     private void bt_pesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_pesquisaActionPerformed

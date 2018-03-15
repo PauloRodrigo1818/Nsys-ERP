@@ -950,12 +950,12 @@ public class FornecedorCadastro extends javax.swing.JFrame {
         PegaValores();
         if(fatal.equals("S"))
             return;
-        sql = "update tb_fornecedor set statusFornecedor = "        + bfor.statusFornecedor     + ", " +
+        sql = "update tb_fornecedor set statusFornecedor = "        + bfor.statusFornecedor     + ", "  +
                                        "cnpj = '"                   + bfor.cnpj                 + "', " +
                                        "dataCadastro = '"           + bfor.dataCadastro         + "', " +
                                        "nome = '"                   + bfor.nome                 + "', " +
                                        "contato = '"                + bfor.contato              + "', " +
-                                       "telefone = "                + bfor.telefone             + ", " +
+                                       "telefone = "                + bfor.telefone             + ", "  +
                                        "email = '"                  + bfor.email                + "', " +
                                        "cep = '"                    + bfor.cep                  + "', " +
                                        "cidade = '"                 + bfor.cidade               + "', " +
@@ -963,14 +963,15 @@ public class FornecedorCadastro extends javax.swing.JFrame {
                                        "numero = '"                 + bfor.numero               + "', " +
                                        "bairro = '"                 + bfor.bairro               + "', " +
                                        "uf = '"                     + bfor.uf                   + "', " +
-                                       "codigoPais = "              + bfor.codigoPais           + ", " +
+                                       "codigoPais = "              + bfor.codigoPais           + ", "  +
                                        "observacoes = '"            + bfor.observacoes          + "', " +
-                                       "idEmpresaAlterou = "        + bfor.idEmpresaAlterou     + ", " +
-                                       "codigoGrupoAlterou = "      + bfor.codigoGrupoAlterou   + ", " +
-                                       "codigoEmpresaAlterou = "    + bfor.codigoEmpresaAlterou + ", " +
+                                       "idEmpresaAlterou = "        + bfor.idEmpresaAlterou     + ", "  +
+                                       "codigoGrupoAlterou = "      + bfor.codigoGrupoAlterou   + ", "  +
+                                       "codigoEmpresaAlterou = "    + bfor.codigoEmpresaAlterou + ", "  +
                                        "dataAlterou = '"            + bfor.dataAlterou          + "', " +
                                        "horaAlterou = '"            + bfor.horaAlterou          + "', " +
-                                       "usuarioAlterou = "          + bfor.usuarioAlterou       + " " +
+                                       "usuarioAlterou = "          + bfor.usuarioAlterou       + ", "  +
+                                       "atualizado = 1 "            +
                                        "where idFornecedor = "  + bfor.idFornecedor + ";";
         sqlstate = parametrosNS.dao.AlterarRegistroOuConsultaSeTabelaExiste(sql, "S");
         if(!sqlstate.equals("00000"))

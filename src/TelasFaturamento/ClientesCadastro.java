@@ -1330,11 +1330,13 @@ public class ClientesCadastro extends javax.swing.JFrame {
                                       "observacoes = '"         + bc.observacoes        + "', " +
                                       "dataAlterou = '"         + bc.dataAlterou        + "', " +
                                       "horaAlterou = '"         + bc.horaAlterou        + "', " +
-                                      "usuarioAlterou = "   + bc.usuarioAlterou     + " "  +
+                                      "usuarioAlterou = "       + bc.usuarioAlterou     + ", "  +
+                                      "atualizado = 1 "         +
                                       "where idCliente = "  + bc.idCliente          + ";";
         sqlstate = parametrosNS.dao.AlterarRegistroOuConsultaSeTabelaExiste(sql, "S");
-        if(!sqlstate.equals("00000"))
+        if(!sqlstate.equals("00000")){
             return;
+        }
         mensagem = "Registro alterado com sucesso!";
         new MostraMensagem(mensagem);
         VerificaUltimoRegistro();

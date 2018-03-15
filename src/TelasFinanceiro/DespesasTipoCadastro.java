@@ -293,7 +293,8 @@ public class DespesasTipoCadastro extends javax.swing.JFrame {
         PegaValores();
         if(fatal.equals("S"))return;
         
-        sql = "update tb_despesas_tipo set descricaoDespesaTipo = '"    + bdest.descricaoDespesaTipo    + "' "
+        sql = "update tb_despesas_tipo set descricaoDespesaTipo = '"    + bdest.descricaoDespesaTipo    + "', "
+                                        + "atualizado = 1 "
                                         + "where idDespesaTipo = "  + bdest.idDespesaTipo   + ";";
         sqlstate = parametrosNS.dao.AlterarRegistroOuConsultaSeTabelaExiste(sql, "S");
         if(!sqlstate.equals("00000"))

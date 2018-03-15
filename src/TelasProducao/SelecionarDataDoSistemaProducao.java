@@ -302,7 +302,8 @@ public class SelecionarDataDoSistemaProducao extends javax.swing.JFrame {
         PegaValores();
         if(fatal.equals("S"))
             return;
-        sql = "update tb_parametrosproducao set dataProducao = '"           + bparpro.dataProducao          + "' " +
+        sql = "update tb_parametrosproducao set dataProducao = '"           + bparpro.dataProducao          + "', " +
+                                            "atualizado = 1 "               +
                                             "where idParametrosProducao = " + bparpro.idParametrosProducao  + ";";
         sqlstate = parametrosNS.dao.AlterarRegistroOuConsultaSeTabelaExiste(sql, "S");
         if(!sqlstate.equals("00000"))

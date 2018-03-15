@@ -285,8 +285,9 @@ public class FormasDePagamentoCadastro extends javax.swing.JFrame {
     private void bt_alterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_alterarActionPerformed
         PegaValores();
         if(fatal.equals("S"))return;
-        sql = "update tb_formaspagamentos set descricaoPagamento = '"   + bfp.descricaoPagamento    + "' "    +
-                                        "where idPagamento = "      + bfp.idPagamento           + ";";
+        sql = "update tb_formaspagamentos set descricaoPagamento = '"   + bfp.descricaoPagamento    + "', " +
+                                        "atualizado = 1"                +
+                                        "where idPagamento = "  + bfp.idPagamento   + ";";
         sqlstate = parametrosNS.dao.AlterarRegistroOuConsultaSeTabelaExiste(sql, "S");
         if(!sqlstate.equals("00000"))
             return;

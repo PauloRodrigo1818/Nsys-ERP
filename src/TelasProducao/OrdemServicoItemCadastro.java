@@ -1060,20 +1060,21 @@ public class OrdemServicoItemCadastro extends javax.swing.JFrame {
         if(fatal.equals("S")){return;}
         PegaValores();
         if(fatal.equals("S")){return;}
-        sql = "update tb_os_itens set codigoServicoProduto =  "         + bosi.codigoServicoProduto     + ", " +
-                                     "tipo = "                          + bosi.tipo                     + ", " +
-                                     "valorUnitario = "                 + bosi.valorUnitario            + ", " +
-                                     "quantidade = "                    + bosi.quantidade               + ", " +
-                                     "valorTotal = "                    + bosi.valorTotal               + ", " +
-                                     "codigoServico = "                 + bosi.codigoServico            + ", " +
-                                     "codigoProduto = "                 + bosi.codigoProduto            + ", " +
-                                     "idEmpresaAlterou = "              + bosi.idEmpresaAlterou         + ", " +
-                                     "codigoGrupoAlterou = "            + bosi.codigoGrupoAlterou       + ", " +
-                                     "codigoEmpresaAlterou = "          + bosi.codigoEmpresaAlterou     + ", " +
+        sql = "update tb_os_itens set codigoServicoProduto =  "         + bosi.codigoServicoProduto     + ", "  +
+                                     "tipo = "                          + bosi.tipo                     + ", "  +
+                                     "valorUnitario = "                 + bosi.valorUnitario            + ", "  +
+                                     "quantidade = "                    + bosi.quantidade               + ", "  +
+                                     "valorTotal = "                    + bosi.valorTotal               + ", "  +
+                                     "codigoServico = "                 + bosi.codigoServico            + ", "  +
+                                     "codigoProduto = "                 + bosi.codigoProduto            + ", "  +
+                                     "idEmpresaAlterou = "              + bosi.idEmpresaAlterou         + ", "  +
+                                     "codigoGrupoAlterou = "            + bosi.codigoGrupoAlterou       + ", "  +
+                                     "codigoEmpresaAlterou = "          + bosi.codigoEmpresaAlterou     + ", "  +
                                      "dataAlterou = '"                  + bosi.dataAlterou              + "', " +
                                      "horaAlterou = '"                  + bosi.horaAlterou              + "', " +
-                                     "usuarioAlterou = "                + bosi.usuarioAlterou           + " " +
-                                     "where idOrdemServicoItem = "      + bosi.idOrdemServicoItem       + ";";
+                                     "usuarioAlterou = "                + bosi.usuarioAlterou           + ", "  +
+                                     "atualizado = 1 "                  +
+                                     "where idOrdemServicoItem = "  + bosi.idOrdemServicoItem       + ";";
         sqlstate = parametrosNS.dao.AlterarRegistroOuConsultaSeTabelaExiste(sql, "S");
         if(!sqlstate.equals("00000")){
             return;
@@ -1096,7 +1097,7 @@ public class OrdemServicoItemCadastro extends javax.swing.JFrame {
             bp.quantidadeAtual = bp.quantidadeAtual + bosi.quantidade;
         }
         
-        sql = "update tb_produtos set quantidadeAtual = " + bp.quantidadeAtual + " where idEmpresa = " + parametrosNS.be.IdEmpresa + " and codigoProduto = " + bp.codigoProduto + ";";
+        sql = "update tb_produtos set quantidadeAtual = " + bp.quantidadeAtual + ", atualizado = 1 where idEmpresa = " + parametrosNS.be.IdEmpresa + " and codigoProduto = " + bp.codigoProduto + ";";
         sqlstate = parametrosNS.dao.AlterarRegistroOuConsultaSeTabelaExiste(sql, "S");
         if(sqlstate.equals("00000"))
             return;

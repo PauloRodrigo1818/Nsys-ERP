@@ -1658,7 +1658,7 @@ public class VendasConsultaEManutencao extends javax.swing.JFrame {
     }
     
     private void AtualizaEstoque(){
-        sql = "update tb_produtos set quantidadeAtual = " + bp.quantidadeAtual + " where idProdutos = " + bp.idProdutos + ";";
+        sql = "update tb_produtos set quantidadeAtual = " + bp.quantidadeAtual + ", atualizado = 1 where idProdutos = " + bp.idProdutos + ";";
         sqlstate = parametrosNS.dao.AlterarRegistroOuConsultaSeTabelaExiste(sql, "S");
         if(sqlstate.equals("00000")){
             return;

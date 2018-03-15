@@ -2392,41 +2392,42 @@ public class FuncionariosCadastro extends javax.swing.JFrame {
         if(fatal.equals("S"))
             return;
         
-        sql = "update tb_funcionarios set idEmpresa = "             + bfunc.idEmpresa            + ", \n" +
-                                         "codigoEmpresa = "         + bfunc.codigoEmpresa        + ", \n" +
-                                         "codigoDepartamento = "    + bfunc.codigoDepartamento   + ", \n" +
-                                         "statusFuncionario = "     + bfunc.statusFuncionario    + ", \n" +
-                                         "tipoPessoa = "            + bfunc.tipoPessoa           + ", \n" +
+        sql = "update tb_funcionarios set idEmpresa = "             + bfunc.idEmpresa            + ", \n"  +
+                                         "codigoEmpresa = "         + bfunc.codigoEmpresa        + ", \n"  +
+                                         "codigoDepartamento = "    + bfunc.codigoDepartamento   + ", \n"  +
+                                         "statusFuncionario = "     + bfunc.statusFuncionario    + ", \n"  +
+                                         "tipoPessoa = "            + bfunc.tipoPessoa           + ", \n"  +
                                          "cpfCnpj = '"              + bfunc.cpfCnpj              + "', \n" +
-                                         "dataAdmissao = "          + bfunc.dataAdmissao         + ", \n" +
+                                         "dataAdmissao = "          + bfunc.dataAdmissao         + ", \n"  +
                                          "nomeFuncionario = '"      + bfunc.nomeFuncionario      + "', \n" +
-                                         "rg = "                    + bfunc.rg                   + ", \n" +
-                                         "sexo = "                  + bfunc.sexo                 + ", \n" +
-                                         "estadoCivil = "           + bfunc.estadoCivil          + ", \n" +
+                                         "rg = "                    + bfunc.rg                   + ", \n"  +
+                                         "sexo = "                  + bfunc.sexo                 + ", \n"  +
+                                         "estadoCivil = "           + bfunc.estadoCivil          + ", \n"  +
                                          "profissao = '"            + bfunc.profissao            + "', \n" +
-                                         "dataNascimento = "        + bfunc.dataNascimento       + ", \n" +
+                                         "dataNascimento = "        + bfunc.dataNascimento       + ", \n"  +
                                          "nacionalidade = '"        + bfunc.nacionalidade        + "', \n" +
                                          "naturalidade = '"         + bfunc.naturalidade         + "', \n" +
-                                         "ufNaturalidade = "        + bfunc.ufNaturalidade       + ", \n" +
-                                         "cep = "                   + bfunc.cep                  + ", \n" +
+                                         "ufNaturalidade = "        + bfunc.ufNaturalidade       + ", \n"  +
+                                         "cep = "                   + bfunc.cep                  + ", \n"  +
                                          "cidade = '"               + bfunc.cidade               + "', \n" +
                                          "municipio = '"            + bfunc.municipio            + "', \n" +
                                          "endereco = '"             + bfunc.endereco             + "', \n" +
                                          "complemento = '"          + bfunc.complemento          + "', \n" +
                                          "bairro = '"               + bfunc.bairro               + "', \n" +
                                          "numero = '"               + bfunc.numero               + "', \n" +
-                                         "uf = "                    + bfunc.uf                   + ", \n" +
-                                         "codigoPais = "            + bfunc.codigoPais           + ", \n" +
-                                         "telefone = "              + bfunc.telefone             + ", \n" +
-                                         "celular = "               + bfunc.celular              + ", \n" +
+                                         "uf = "                    + bfunc.uf                   + ", \n"  +
+                                         "codigoPais = "            + bfunc.codigoPais           + ", \n"  +
+                                         "telefone = "              + bfunc.telefone             + ", \n"  +
+                                         "celular = "               + bfunc.celular              + ", \n"  +
                                          "email = '"                + bfunc.email                + "', \n" +
                                          "observacoes = '"          + bfunc.observacoes          + "', \n" +
                                          "dataAlterou = '"          + bfunc.dataAlterou          + "', \n" +
                                          "horaAlterou = '"          + bfunc.horaAlterou          + "', \n" +
-                                         "usuarioAlterou = "        + bfunc.usuarioAlterou       + ", \n" +
-                                         "idEmpresaAlterou = "      + bfunc.idEmpresaAlterou     + ", \n" +
-                                         "codigoGrupoAlterou = "    + bfunc.codigoGrupoAlterou   + ", \n" +
-                                         "codigoEmpresaAlterou = "  + bfunc.codigoEmpresaAlterou + " \n" +
+                                         "usuarioAlterou = "        + bfunc.usuarioAlterou       + ", \n"  +
+                                         "idEmpresaAlterou = "      + bfunc.idEmpresaAlterou     + ", \n"  +
+                                         "codigoGrupoAlterou = "    + bfunc.codigoGrupoAlterou   + ", \n"  +
+                                         "codigoEmpresaAlterou = "  + bfunc.codigoEmpresaAlterou + ", \n"  +
+                                         "atualizado = 1 \n"        +
                                          "where idFuncionario = " + bfunc.idFuncionario + ";";
         sqlstate = parametrosNS.dao.AlterarRegistroOuConsultaSeTabelaExiste(sql, "S");
         if(!sqlstate.equals("00000")){

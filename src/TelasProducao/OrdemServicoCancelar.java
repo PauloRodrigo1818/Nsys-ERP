@@ -307,7 +307,8 @@ public class OrdemServicoCancelar extends javax.swing.JFrame {
                              + "usuarioCancelou = "         + bos.usuarioCancelou      + ", "
                              + "idEmpresaCancelou = "       + bos.idEmpresaCancelou    + ", "
                              + "detalhesCancelamento = "    + bos.idEmpresaCancelou    + ", "
-                             + "computadorCancelou = "      + bos.computadorCancelou   + " "
+                             + "computadorCancelou = "      + bos.computadorCancelou   + ", "
+                             + "atualizado = 1 "
                              + "where idOrdemServico = " +  bos.idOrdemServico + ";";
         sqlstate = parametrosNS.dao.AlterarRegistroOuConsultaSeTabelaExiste(sql, "S");
         if(!sqlstate.equals("00000"))

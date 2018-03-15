@@ -941,7 +941,7 @@ public class FechamentoDeCaixa extends javax.swing.JFrame {
     }
     
     private void FinalizarCaixa(){
-        sql = "update tb_caixa_abertura set status = 'Z' where idAbertura = " + bca.idAbertura + ";";
+        sql = "update tb_caixa_abertura set status = 'Z', atualizado = 1 where idAbertura = " + bca.idAbertura + ";";
         sqlstate = parametrosNS.dao.AlterarRegistroOuConsultaSeTabelaExiste(sql, "S");
     }
     

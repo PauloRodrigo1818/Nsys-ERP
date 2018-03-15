@@ -307,7 +307,8 @@ public class OrdemServicoSemSolucaoCadastro extends javax.swing.JFrame {
                              + "horaSemSolucao = '"                 + bos.horaSemSolucao                 + "', "
                              + "usuarioSemSolucao = "               + bos.usuarioSemSolucao              + ", "
                              + "idEmpresaSemSolucao = "             + bos.idEmpresaSemSolucao            + ", "
-                             + "computadorSemSolucao = "            + bos.computadorSemSolucao           + " "
+                             + "computadorSemSolucao = "            + bos.computadorSemSolucao           + ", "
+                             + "atualizado = 1 "
                              + "where idOrdemServico = " + bos.idOrdemServico + ";";
         sqlstate = parametrosNS.dao.AlterarRegistroOuConsultaSeTabelaExiste(sql, "S");
         if(!sqlstate.equals("00000"))

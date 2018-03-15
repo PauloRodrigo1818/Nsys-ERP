@@ -355,7 +355,7 @@ public class GrupoProdutoCadastro extends javax.swing.JFrame {
     private void bt_alterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_alterarActionPerformed
         PegaValores();
         if(fatal.equals("S"))return;
-        sql = "update tb_grupoproduto set descricaoGrupo = '" + bgp.descricaoGrupo + "' where idGrupoProduto = " + bgp.idGrupoProduto + ";";
+        sql = "update tb_grupoproduto set descricaoGrupo = '" + bgp.descricaoGrupo + "', atualizado = 1 where idGrupoProduto = " + bgp.idGrupoProduto + ";";
         
         sqlstate = parametrosNS.dao.AlterarRegistroOuConsultaSeTabelaExiste(sql, "S");
 

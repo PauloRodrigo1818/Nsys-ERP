@@ -320,14 +320,17 @@ public class ServicoCadastro extends javax.swing.JFrame {
 
     private void bt_alterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_alterarActionPerformed
         PegaValores();
-        if(fatal.equals("S"))return;
-        sql = "update tb_servicos set descricaoServico = '"     + bser.descricaoServico + "', " +
-                                     "valorServico = "          + bser.valorServico     + " "  +
-                                     "where idServico = "   + bser.idServico        + ";";
-        
-        sqlstate = parametrosNS.dao.AlterarRegistroOuConsultaSeTabelaExiste(sql, "S");
-        if(!sqlstate.equals("00000"))
+        if(fatal.equals("S")){
             return;
+        }
+        sql = "update tb_servicos set descricaoServico = '"     + bser.descricaoServico + "', " +
+                                     "valorServico = "          + bser.valorServico     + ", " +
+                                     "atualizado = 1 "          +
+                                     "where idServico = "   + bser.idServico        + ";";
+        sqlstate = parametrosNS.dao.AlterarRegistroOuConsultaSeTabelaExiste(sql, "S");
+        if(!sqlstate.equals("00000")){
+            return;
+        }
         txt_codigoServico.grabFocus();
     }//GEN-LAST:event_bt_alterarActionPerformed
 

@@ -303,7 +303,7 @@ public class CancelarVenda extends javax.swing.JFrame {
         if(JOptionPane.showConfirmDialog(null, "Confirma Cancelamento da Venda n°" + bv.codigoVenda + "?", "", JOptionPane.YES_NO_OPTION) != JOptionPane.YES_OPTION){
             return;
         }
-        sql = "update tb_vendas set status = 1 where idVenda = " + bv.idVenda + ";";
+        sql = "update tb_vendas set status = 1, atualizado = 1 where idVenda = " + bv.idVenda + ";";
         sqlstate = parametrosNS.dao.AlterarRegistroOuConsultaSeTabelaExiste(sql, "S");
         if(!sqlstate.equals("00000")){
             return;

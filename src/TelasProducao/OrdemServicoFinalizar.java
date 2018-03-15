@@ -818,12 +818,14 @@ public class OrdemServicoFinalizar extends javax.swing.JFrame {
     }
     
     private void AbreFaturarOrdemServico(){
-        if(FaturarOrdemServico == 0)
+        if(FaturarOrdemServico == 0){
             return;
+        }
         FaturarOrdemServico = 0;
         sqlstate = GerBolItau.getRetorno();
-        if(!sqlstate.equals("ok"))
+        if(!sqlstate.equals("ok")){
             return;
+        }
         bos.dataFinalizou       = parametrosNS.invdata.inverterData(parametrosNS.cdh.CapturarData(), 2);
         bos.horaFinalizou       = parametrosNS.cdh.CapturaHora();
         bos.usuarioFinalizou    = parametrosNS.bu.codigoUsuario;
@@ -832,13 +834,15 @@ public class OrdemServicoFinalizar extends javax.swing.JFrame {
         sql = "update tb_os set statusOs = 4, " +
                                "dataFinalizou = '"      + bos.dataFinalizou         + "', " +
                                "horaFinalizou = '"      + bos.horaFinalizou         + "', " +
-                               "usuarioFinalizou = "    + bos.usuarioFinalizou      + ", " +
-                               "idEmpresaFinalizou = "  + bos.idEmpresaFinalizou    + ", " +
-                               "computadorFinalizou = " + bos.computadorFinalizou   + " " +
+                               "usuarioFinalizou = "    + bos.usuarioFinalizou      + ", "  +
+                               "idEmpresaFinalizou = "  + bos.idEmpresaFinalizou    + ", "  +
+                               "computadorFinalizou = " + bos.computadorFinalizou   + ", "  +
+                               "atualizado = 1 "        +
                                "where idEmpresa = " + parametrosNS.be.IdEmpresa + " and codigoOrdemServico = " + bos.codigoOrdemServico + ";";
         sqlstate = parametrosNS.dao.AlterarRegistroOuConsultaSeTabelaExiste(sql, "S");
-        if(!sqlstate.equals("00000"))
+        if(!sqlstate.equals("00000")){
             return;
+        }
         retorno = "ok";
         dispose();
     }

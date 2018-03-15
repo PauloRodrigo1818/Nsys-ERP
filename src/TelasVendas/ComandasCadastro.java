@@ -305,7 +305,8 @@ public class ComandasCadastro extends javax.swing.JFrame {
         if(fatal.equals("S"))return;
         
         sql = "update tb_comandas set codigoBarrasComanda = '"  + bcom.codigoBarrasComanda  + "', "
-                                    + "statusComanda = "        + bcom.statusComanda        + " "
+                                    + "statusComanda = "        + bcom.statusComanda        + ", "
+                                    + "atualizado = 1 "
                                     + "where idComanda = "  + bcom.idComanda        + ";";
         sqlstate = parametrosNS.dao.AlterarRegistroOuConsultaSeTabelaExiste(sql, "S");
         if(!sqlstate.equals("00000"))

@@ -835,7 +835,8 @@ public class TransportadoraCadastro extends javax.swing.JFrame {
                                             "Bairro = '"                    + btrans.Bairro                 + "', " +
                                             "Endereco = '"                  + btrans.Endereco               + "', " +
                                             "Numero = '"                    + btrans.Numero                 + "', " +
-                                            "codigoPais = "                 + btrans.codigoPais             + " "   +
+                                            "codigoPais = "                 + btrans.codigoPais             + ", "  +
+                                            "atualizado = 1"                +
                                             "where idTransportadora = " + btrans.idTransportadora       + ";";
         sqlstate = parametrosNS.dao.AlterarRegistroOuConsultaSeTabelaExiste(sql, "S");
         if(!sqlstate.equals("00000"))

@@ -800,7 +800,7 @@ public class ParametrosGestao extends javax.swing.JFrame {
                                              "codigoContaCorrenteOrdemServico = " + bparges.codigoContaCorrenteOrdemServico    + ", " +
                                              "codigoContaCorrenteRecibo = "       + bparges.codigoContaCorrenteRecibo          + ", " +
                                              "codigoContaCorrenteVenda = "        + bparges.codigoContaCorrenteVenda           + ", " +
-                                             "atualizado = 1" +
+                                             "atualizado = 1 " +
                                              "where idParametrosGestao = "        + bparges.idParametrosGestao + ";";
         sqlstate = parametrosNS.dao.incluirRegistro(sql);
         if(!sqlstate.equals("00000"))

@@ -784,13 +784,13 @@ public class PlanoDeContasCadastro extends javax.swing.JFrame {
         PegaValores();
         if(fatal.equals("S"))return;
         
-        sql = "update tb_planodecontas set descricaoPlanoDeContas = '"         + bpla.descricaoPlanoDeContas       + "', ";
+        sql = "update tb_planodecontas set descricaoPlanoDeContas = '" + bpla.descricaoPlanoDeContas       + "', ";
         if(bpla.nivelPlanoDeContas > 5){
-            sql +="saldoDeAbertura = '"             + bpla.saldoDeAbertura              + "', ";
+            sql +="saldoDeAbertura = "    + bpla.saldoDeAbertura              + ", ";
         }
-        sql += "idPlanoReferencial = "              + bpla.idPlanoReferencial           + ", " +
-               "atualizado = 1"                     + 
-               "where idPlanoDeContas = "           + bpla.idPlanoDeContas              + ";";
+        sql += "idPlanoReferencial = "    + bpla.idPlanoReferencial           + ", " +
+               "atualizado = 1 "          + 
+               "where idPlanoDeContas = " + bpla.idPlanoDeContas              + ";";
         sqlstate = parametrosNS.dao.AlterarRegistroOuConsultaSeTabelaExiste(sql, "S");
         if(!sqlstate.equals("00000"))
             return;

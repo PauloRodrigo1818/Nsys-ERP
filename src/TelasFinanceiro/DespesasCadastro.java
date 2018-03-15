@@ -773,7 +773,8 @@ public class DespesasCadastro extends javax.swing.JFrame {
                                     + "codigoEmpresaAlterou = " + bd.codigoEmpresaAlterou   + ", "
                                     + "dataAlterou = '"         + bd.dataAlterou            + "', "
                                     + "horaAlterou = '"         + bd.horaAlterou            + "', "
-                                    + "usuarioAlterou = "       + bd.usuarioAlterou         + " "
+                                    + "usuarioAlterou = "       + bd.usuarioAlterou         + ", "
+                                    + "atualizado = 1 "
                                     + "where idDespesa = "  + bd.idDespesa              + ";";
         sqlstate = parametrosNS.dao.AlterarRegistroOuConsultaSeTabelaExiste(sql, "S");
         if(!sqlstate.equals("00000"))

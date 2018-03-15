@@ -1265,7 +1265,8 @@ public class EfetuarPagamento extends javax.swing.JFrame {
                              + "horaFinalizou = '"      + bos.horaFinalizou       + "', "
                              + "usuarioFinalizou = "    + bos.usuarioFinalizou    + ", "
                              + "idEmpresaFinalizou = "  + bos.idEmpresaFinalizou  + ", "
-                             + "computadorFinalizou = " + bos.computadorFinalizou + " "
+                             + "computadorFinalizou = " + bos.computadorFinalizou + ", "
+                             + "atualizado = 1 "
                              + "where idOrdemServico = " + bos.idOrdemServico + ";";
         sqlstate = parametrosNS.dao.AlterarRegistroOuConsultaSeTabelaExiste(sql, "S");
         if(!sqlstate.equals("00000")){
@@ -1720,7 +1721,7 @@ public class EfetuarPagamento extends javax.swing.JFrame {
     }
     
     private void AtualizaEstoque(){
-        sql = "update tb_produtos set quantidadeAtual = " + bp.quantidadeAtual + " where idProdutos = " + bp.idProdutos + ";";
+        sql = "update tb_produtos set quantidadeAtual = " + bp.quantidadeAtual + ", atualizado = 1 where idProdutos = " + bp.idProdutos + ";";
         sqlstate = parametrosNS.dao.AlterarRegistroOuConsultaSeTabelaExiste(sql, "S");
         if(sqlstate.equals("00000")){
             return;
@@ -1730,7 +1731,7 @@ public class EfetuarPagamento extends javax.swing.JFrame {
     }
     
 //    private void FinalizaVenda(){
-//        sql = "update tb_vendas set status = 2 where idVenda = " + bv.idVenda + ";";
+//        sql = "update tb_vendas set status = 2, atualizado = 1 where idVenda = " + bv.idVenda + ";";
 //        sqlstate = parametrosNS.dao.AlterarRegistroOuConsultaSeTabelaExiste(sql, "S");
 //        if(!sqlstate.equals("00000"))
 //            return;

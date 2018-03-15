@@ -364,21 +364,26 @@ public class SubGrupoProdutoCadastro extends javax.swing.JFrame {
 
     private void bt_incluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_incluirActionPerformed
         PegaValores();
-        if(fatal.equals("S"))return;
+        if(fatal.equals("S")){
+            return;
+        }
         
         sql = "insert into tb_subgrupoproduto (idEmpresa, codigoGrupo, codigoEmpresa, codigoGrupoProduto, codigoSubGrupoProduto, descricaoSubGrupo) "
             + "values (" + bsgp.idEmpresa + ", " + bsgp.codigoGrupo + ", " + bsgp.codigoEmpresa + ", " + bsgp.codigoGrupoProduto + ", " + bsgp.codigoSubGrupoProduto + ", '" + bsgp.descricaoSubGrupo + "');";
         sqlstate = parametrosNS.dao.incluirRegistro(sql);
-        if(!sqlstate.equals("00000"))
+        if(!sqlstate.equals("00000")){
             return;
+        }
         txt_codigoGrupoProduto.grabFocus();
     }//GEN-LAST:event_bt_incluirActionPerformed
 
     private void txt_codigoGrupoProdutoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_codigoGrupoProdutoFocusLost
-        if(txt_codigoGrupoProduto.isEditable()== false)
+        if(txt_codigoGrupoProduto.isEditable()== false){
             return;
-        if(txt_codigoGrupoProduto.getText().replace(" ", "").equals(""))
+        }
+        if(txt_codigoGrupoProduto.getText().replace(" ", "").equals("")){
             return;
+        }
         PegaGrupoProduto();
     }//GEN-LAST:event_txt_codigoGrupoProdutoFocusLost
 
@@ -387,10 +392,12 @@ public class SubGrupoProdutoCadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_codigoGrupoProdutoActionPerformed
 
     private void txt_codigoGrupoProdutoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_codigoGrupoProdutoFocusGained
-        if(txt_codigoGrupoProduto.getText().replace(" ", "").equals(""))
+        if(txt_codigoGrupoProduto.getText().replace(" ", "").equals("")){
             return;
-        if(txt_codigoGrupoProduto.isEditable()== false)
+        }
+        if(txt_codigoGrupoProduto.isEditable()== false){
             return;
+        }
 //        if(bsgp.idSubGrupoProduto != 0)
 //            return;
         operacao = "";
@@ -400,10 +407,12 @@ public class SubGrupoProdutoCadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_codigoGrupoProdutoFocusGained
 
     private void txt_codigoSubGrupoProdutoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_codigoSubGrupoProdutoFocusGained
-        if(txt_codigoSubGrupoProduto.getText().replace(" ", "").equals(""))
+        if(txt_codigoSubGrupoProduto.getText().replace(" ", "").equals("")){
             return;
-        if(txt_codigoSubGrupoProduto.isEditable() == false)
+        }
+        if(txt_codigoSubGrupoProduto.isEditable() == false){
             return;
+        }
         txt_codigoSubGrupoProduto.setSelectionStart(0);
         txt_codigoSubGrupoProduto.setSelectionEnd  (txt_codigoSubGrupoProduto.getText().length());
         bsgp = new BeanSubGrupoProduto();
@@ -413,10 +422,12 @@ public class SubGrupoProdutoCadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_codigoSubGrupoProdutoFocusGained
 
     private void txt_codigoSubGrupoProdutoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_codigoSubGrupoProdutoFocusLost
-        if(txt_codigoSubGrupoProduto.isEditable() == false)
+        if(txt_codigoSubGrupoProduto.isEditable() == false){
             return;
-        if(txt_codigoSubGrupoProduto.getText().replace(" ", "").equals(""))
+        }
+        if(txt_codigoSubGrupoProduto.getText().replace(" ", "").equals("")){
             return;
+        }
         PegaSubGrupoProduto();
     }//GEN-LAST:event_txt_codigoSubGrupoProdutoFocusLost
 
@@ -426,15 +437,17 @@ public class SubGrupoProdutoCadastro extends javax.swing.JFrame {
 
     private void bt_alterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_alterarActionPerformed
         PegaValores();
-        if(fatal.equals("S"))
+        if(fatal.equals("S")){
             return;
-        
-        sql = "update tb_subgrupoproduto set codigoGrupoProduto = "         + bsgp.codigoGrupoProduto           + ", " +
-                                            "descricaoSubGrupo = '"         + bsgp.descricaoSubGrupo        + "' " +
-                                            "where idSubGrupoProduto = "    + bsgp.idSubGrupoProduto        + ";";
+        }
+        sql = "update tb_subgrupoproduto set codigoGrupoProduto = "         + bsgp.codigoGrupoProduto   + ", " +
+                                            "descricaoSubGrupo = '"         + bsgp.descricaoSubGrupo    + "', " +
+                                            "atualizado = 1 "               +
+                                            "where idSubGrupoProduto = "    + bsgp.idSubGrupoProduto    + ";";
         sqlstate = parametrosNS.dao.AlterarRegistroOuConsultaSeTabelaExiste(sql, "S");
-        if(!sqlstate.equals("00000"))
+        if(!sqlstate.equals("00000")){
             return;
+        }
         txt_codigoGrupoProduto.grabFocus();
     }//GEN-LAST:event_bt_alterarActionPerformed
 
@@ -456,19 +469,22 @@ public class SubGrupoProdutoCadastro extends javax.swing.JFrame {
             return;
         }
         retorno = ConSubGruPro.getRetorno();
-        if(retorno.equals(""))
+        if(retorno.equals("")){
             return;
+        }
         AbriuSubGrupoProduto = 0;
         txt_codigoSubGrupoProduto.setText(retorno);
         PegaSubGrupoProduto();
     }//GEN-LAST:event_formWindowGainedFocus
     
     private void AbriuGrupoProduto(){
-        if(AbriuGrupoProduto == 0)
+        if(AbriuGrupoProduto == 0){
             return;
+        }
         retorno = GruProCon.getRetorno();
-        if(retorno.equals(""))
+        if(retorno.equals("")){
             return;
+        }
         AbriuGrupoProduto = 0;
         txt_codigoGrupoProduto.setText(retorno);
         PegaGrupoProduto();
@@ -552,25 +568,28 @@ public class SubGrupoProdutoCadastro extends javax.swing.JFrame {
             bt_novo                         .setEnabled     (false);
             bt_novo                         .setFocusable   (false);
         }
-        if(somostra.equals("SN"))
+        if(somostra.equals("SN")){
             bt_pesquisaSubGrupoProduto  .setVisible(false);
+        }
     }//GEN-LAST:event_formWindowOpened
 
     private void bt_excluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_excluirActionPerformed
         bsgp.codigoSubGrupoProduto = Integer.parseInt(txt_codigoSubGrupoProduto.getText());
-        if(JOptionPane.showConfirmDialog(null, "Deseja mesmo excluir o registro n°" + bsgp.codigoSubGrupoProduto + "?", "", JOptionPane.YES_NO_OPTION) != JOptionPane.YES_OPTION)
+        if(JOptionPane.showConfirmDialog(null, "Deseja mesmo excluir o registro n°" + bsgp.codigoSubGrupoProduto + "?", "", JOptionPane.YES_NO_OPTION) != JOptionPane.YES_OPTION){
             return;
+        }
         sql = "delete from tb_subgrupoproduto where idSubGrupoProduto = " + bsgp.idSubGrupoProduto + ";";
         sqlstate = parametrosNS.dao.ExcluirRegistro(sql);
         
-        if(!sqlstate.equals("00000"))
+        if(!sqlstate.equals("00000")){
             return;
+        }
         txt_codigoGrupoProduto.grabFocus();
     }//GEN-LAST:event_bt_excluirActionPerformed
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-        if(GruProCon    != null)GruProCon   .dispose();
-        if(ConSubGruPro != null)ConSubGruPro.dispose();
+        if(GruProCon    != null){GruProCon   .dispose();}
+        if(ConSubGruPro != null){ConSubGruPro.dispose();}
     }//GEN-LAST:event_formWindowClosed
 
     private void bt_sairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_sairActionPerformed
@@ -578,13 +597,15 @@ public class SubGrupoProdutoCadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_bt_sairActionPerformed
 
     private void txt_codigoGrupoProdutoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_codigoGrupoProdutoKeyPressed
-        if(evt.getKeyCode() == KeyEvent.VK_ENTER)
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
             bt_pesquisaGrupoProduto.grabFocus();
+        }
     }//GEN-LAST:event_txt_codigoGrupoProdutoKeyPressed
 
     private void txt_codigoSubGrupoProdutoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_codigoSubGrupoProdutoKeyPressed
-        if(evt.getKeyCode() == KeyEvent.VK_ENTER)
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
             bt_novo.grabFocus();
+        }
     }//GEN-LAST:event_txt_codigoSubGrupoProdutoKeyPressed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -654,8 +675,9 @@ public class SubGrupoProdutoCadastro extends javax.swing.JFrame {
     private void PegaGrupoProduto(){
         txt_codigoGrupoProduto.setText(fc.FormataCampo(txt_codigoGrupoProduto.getText(), 3, 0));
         bgp.codigoGrupoProduto = Integer.parseInt(txt_codigoGrupoProduto.getText());
-        if(bgp.codigoGrupoProduto != 0)
+        if(bgp.codigoGrupoProduto != 0){
             sql = "select * from tb_grupoproduto where idEmpresa = " + parametrosNS.be.IdEmpresa + " and codigoGrupoProduto = " + bgp.codigoGrupoProduto + ";";
+        }
         dadosGrupoProdutos.clear();
         dadosGrupoProdutos = parametrosNS.dao.Consulta(sql);
         if(dadosGrupoProdutos.isEmpty()){
@@ -690,8 +712,9 @@ public class SubGrupoProdutoCadastro extends javax.swing.JFrame {
         bsgp.codigoGrupoProduto    = bgp.codigoGrupoProduto;
         txt_codigoSubGrupoProduto.setText(fc.FormataCampo(txt_codigoSubGrupoProduto.getText(), 3, 0));
         bsgp.codigoSubGrupoProduto = Integer.parseInt(txt_codigoSubGrupoProduto.getText());
-        if(bsgp.codigoSubGrupoProduto == 0)
+        if(bsgp.codigoSubGrupoProduto == 0){
             return;
+        }
         sql = "select * from tb_subgrupoproduto where idEmpresa = " + bsgp.idEmpresa + " and codigoGrupoProduto = " + bsgp.codigoGrupoProduto + " and codigoSubGrupoProduto = " + bsgp.codigoSubGrupoProduto + ";";
         dadosSubGrupoProdutos.clear();
         dadosSubGrupoProdutos = parametrosNS.dao.Consulta(sql);

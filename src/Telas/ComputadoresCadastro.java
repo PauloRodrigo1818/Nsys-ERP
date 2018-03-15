@@ -586,7 +586,7 @@ public class ComputadoresCadastro extends javax.swing.JFrame {
                                          "dataAlterou = '"              + bcomp.dataAlterou             + "', " + 
                                          "horaAlterou = '"              + bcomp.horaAlterou             + "', " + 
                                          "usuarioAlterou = "            + bcomp.usuarioAlterou          + ", "  + 
-                                         "atualizado = 1"               +
+                                         "atualizado = 1 "              +
                                          "where idComputador = "    + bcomp.idComputador            + ";";
         sqlstate = parametrosNS.dao.AlterarRegistroOuConsultaSeTabelaExiste(sql, "S");
         

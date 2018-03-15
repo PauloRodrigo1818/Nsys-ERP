@@ -1847,7 +1847,7 @@ public class UsuariosCadastro extends javax.swing.JFrame {
     }
     
     private void AtualizaImagens(){
-        sql = "update tb_usuarios set imagemUsuario = ?, atualizado = 1 where idEmpresa = " + bu.idEmpresa + " and codigoUsuario = " + bu.codigoUsuario + ";";
+        sql = "update tb_usuarios set imagemUsuario = ? where idEmpresa = " + bu.idEmpresa + " and codigoUsuario = " + bu.codigoUsuario + ";";
         sqlstate = parametrosNS.dao.atualizarImagens(sql, bu.getimagemUsuario());
     }
     

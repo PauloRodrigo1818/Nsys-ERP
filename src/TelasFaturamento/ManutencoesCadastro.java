@@ -338,7 +338,8 @@ public class ManutencoesCadastro extends javax.swing.JFrame {
         if(fatal.equals("S"))return;
         
         sql = "update tb_codigomanutencoes set descricaoManutencao = '"     + bman.descricaoManutencao  + "', "
-                                            + "valorManutencao = "          + bman.valorManutencao      + " "
+                                            + "valorManutencao = "          + bman.valorManutencao      + ", "
+                                            + "atualizado = 1 "
                                             + "where codigoManutencao = "   + bman.codigoManutencao     + ";";
         sqlstate = parametrosNS.dao.AlterarRegistroOuConsultaSeTabelaExiste(sql, "S");
         if(!sqlstate.equals("00000"))

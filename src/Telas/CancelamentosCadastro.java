@@ -266,7 +266,6 @@ public class CancelamentosCadastro extends javax.swing.JFrame {
         sql = "update tb_cancelamento set descricaoCancelamento = '"        + bcan.descricaoCancelamento    + "', "
                                         + "atualizado = 1 "
                                         + "where idCancelamento = " + bcan.idCancelamento       + ";";
-        
         sqlstate = parametrosNS.dao.AlterarRegistroOuConsultaSeTabelaExiste(sql, "S");
         if(!sqlstate.equals("00000"))
             return;

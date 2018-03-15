@@ -305,9 +305,10 @@ public class FabricanteCadastro extends javax.swing.JFrame {
         PegaValores();
         if(fatal.equals("S"))return;
         
-        sql = "update tb_fabricante set nomeFabricante = '"         + bfab.nomeFabricante       + "', "     +
-                                      "siteFabricante = '"          + bfab.siteFabricante       + "' "      +
-                                      "where idFabricante = "   + bfab.idFabricante         + ";";
+        sql = "update tb_fabricante set nomeFabricante = '"     + bfab.nomeFabricante   + "', " +
+                                      "siteFabricante = '"      + bfab.siteFabricante   + "', " +
+                                      "atualizado = 1 "         +
+                                      "where idFabricante = "   + bfab.idFabricante     + ";";
         
         sqlstate = parametrosNS.dao.AlterarRegistroOuConsultaSeTabelaExiste(sql, "S");
         if(!sqlstate.equals("00000"))

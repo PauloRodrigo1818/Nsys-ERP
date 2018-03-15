@@ -132,7 +132,7 @@ public class ProdutosCadastro extends javax.swing.JFrame {
     }
     
     public void AtualizarImagens(){
-        sql = "update tb_produtos set imagemProduto = ? where codigoGrupo = " + bp.codigoGrupo + " and codigoEmpresa = " + bp.codigoEmpresa + " and codigoProduto = " + bp.codigoProduto + ";";
+        sql = "update tb_produtos set imagemProduto = ?, atualizado = 1 where codigoGrupo = " + bp.codigoGrupo + " and codigoEmpresa = " + bp.codigoEmpresa + " and codigoProduto = " + bp.codigoProduto + ";";
         sqlstate = parametrosNS.dao.atualizarImagens(sql, bp.getImagemProduto());
     }
     
@@ -2765,28 +2765,29 @@ public class ProdutosCadastro extends javax.swing.JFrame {
             return;
         }
         
-        sql =   "update tb_produtos set produtoInativo = "              + bp.produtoInativo             + ", " +
-                                        "codigoFornecedor = "           + bp.codigoFornecedor           + ", " +
+        sql =   "update tb_produtos set produtoInativo = "              + bp.produtoInativo             + ", "  +
+                                        "codigoFornecedor = "           + bp.codigoFornecedor           + ", "  +
                                         "dataCadastro = '"              + bp.dataCadastro               + "', " +
                                         "descricaoProduto = '"          + bp.descricaoProduto           + "', " +
                                         "codigoDeBarras = '"            + bp.codigoDeBarras             + "', " +
                                         "dataDeVencimento = "           + bp.dataDeVencimento           + ", "  +
-                                        "valorDeCompra = "              + bp.valorDeCompra              + ", " +
-                                        "valorDeVenda = "               + bp.valorDeVenda               + ", " +
+                                        "valorDeCompra = "              + bp.valorDeCompra              + ", "  +
+                                        "valorDeVenda = "               + bp.valorDeVenda               + ", "  +
                                         "tipoDeProduto = '"             + bp.tipoDeProduto              + "', " +
-                                        "codigoFabricante = "           + bp.codigoFabricante           + ", " +
-                                        "codigoGrupoProduto   = "       + bp.codigoGrupoProduto         + ", " +
-                                        "codigoSubGrupoProduto   = "    + bp.codigoSubGrupoProduto      + ", " +
-                                        "quantidadeMinima = "           + bp.quantidadeMinima           + ", " +
-                                        "quantidadeIdeal = "            + bp.quantidadeIdeal            + ", " +
-                                        "quantidadeAtual = "            + bp.quantidadeAtual            + ", " +
+                                        "codigoFabricante = "           + bp.codigoFabricante           + ", "  +
+                                        "codigoGrupoProduto   = "       + bp.codigoGrupoProduto         + ", "  +
+                                        "codigoSubGrupoProduto   = "    + bp.codigoSubGrupoProduto      + ", "  +
+                                        "quantidadeMinima = "           + bp.quantidadeMinima           + ", "  +
+                                        "quantidadeIdeal = "            + bp.quantidadeIdeal            + ", "  +
+                                        "quantidadeAtual = "            + bp.quantidadeAtual            + ", "  +
                                         "observacoes = '"               + bp.observacoes                + "', " +
-                                        "idEmpresaAlterou = "           + bp.idEmpresaAlterou           + ", " +
-                                        "codigoGrupoAlterou = "         + bp.codigoGrupoAlterou         + ", " +
-                                        "codigoEmpresaAlterou = "       + bp.codigoEmpresaAlterou       + ", " +
+                                        "idEmpresaAlterou = "           + bp.idEmpresaAlterou           + ", "  +
+                                        "codigoGrupoAlterou = "         + bp.codigoGrupoAlterou         + ", "  +
+                                        "codigoEmpresaAlterou = "       + bp.codigoEmpresaAlterou       + ", "  +
                                         "dataAlterou = '"               + bp.dataAlterou                + "', " +
                                         "horaAlterou = '"               + bp.horaAlterou                + "', " +
-                                        "usuarioAlterou = "             + bp.usuarioAlterou             + " " +
+                                        "usuarioAlterou = "             + bp.usuarioAlterou             + ", "  +
+                                        "atualizado = 1 "               +
                                         "where idProdutos = "   + bp.idProdutos                 + ";";
         
         sqlstate = parametrosNS.dao.AlterarRegistroOuConsultaSeTabelaExiste(sql, "S");

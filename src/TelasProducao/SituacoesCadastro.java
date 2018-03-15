@@ -298,7 +298,8 @@ public class SituacoesCadastro extends javax.swing.JFrame {
         PegaValores();
         if(fatal.equals("S"))
             return;
-        sql = "update tb_situacoes set descricaoSituacao = '"   + bsit.descricaoSituacao    + "' "
+        sql = "update tb_situacoes set descricaoSituacao = '"   + bsit.descricaoSituacao    + "', "
+                                    + "atualizado = 1 "
                                     + "where idSituacao = "     + bsit.idSituacao           + ";";
         sqlstate = parametrosNS.dao.AlterarRegistroOuConsultaSeTabelaExiste(sql, "S");
         if(!sqlstate.equals("00000"))

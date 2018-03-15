@@ -285,7 +285,8 @@ public class MotivosDeSaidaDeCaixaCadastro extends javax.swing.JFrame {
     private void bt_alterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_alterarActionPerformed
         PegaValores();
         if(fatal.equals("S"))return;
-        sql = "update tb_caixa_motivo_saida set descricaoMotivoSaida = '"       + bcms.descricaoMotivoSaida + "' "
+        sql = "update tb_caixa_motivo_saida set descricaoMotivoSaida = '"       + bcms.descricaoMotivoSaida + "', "
+                                            + "atualizado = 1 "
                                             + "where idMotivoSaida = "  + bcms.idMotivoSaida    + ";";
         sqlstate = parametrosNS.dao.AlterarRegistroOuConsultaSeTabelaExiste(sql, "S");
         if(!sqlstate.equals("00000"))

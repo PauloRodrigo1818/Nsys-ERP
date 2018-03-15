@@ -777,18 +777,18 @@ public class ContaCorrenteCadastro extends javax.swing.JFrame {
         AtualizaContaCorrentePadrao();
         if(fatal.equals("S")){return;}
         
-        sql = "update tb_contacorrente set idBanco = '"                     + bcc.idBanco                  + "', "
-                                        + "numeroAgencia = "                + bcc.numeroAgencia            + ", "
-                                        + "digitoVerificadorAgencia = "     + bcc.digitoVerificadorAgencia + ", "
-                                        + "numeroContaCorrente = "          + bcc.numeroContaCorrente      + ", "
-                                        + "digitoVerificador = "            + DigitoVerificador            + ", "
-                                        + "contaCorrentePadrao = "          + bcc.contaCorrentePadrao      + ", "
-                                        + "numeroDaCarteira = "             + bcc.numeroDaCarteira         + ", "
-                                        + "especieDoDocumento = "           + bcc.especieDoDocumento       + ", "
-                                        + "AceiteOuNaoAceite = "            + bcc.AceiteOuNaoAceite        + ", "
-                                        + "descricao = '"                   + bcc.descricao                + "', "
-                                        + "atualizado = 1 "
-                                        + "where idContaCorrente = "    + bcc.idContaCorrente       + ";";
+        sql = "update tb_contacorrente set idBanco = '"                    + bcc.idBanco                  + "', " +
+                                         "numeroAgencia = "                + bcc.numeroAgencia            + ", "  +
+                                         "digitoVerificadorAgencia = "     + bcc.digitoVerificadorAgencia + ", "  +
+                                         "numeroContaCorrente = "          + bcc.numeroContaCorrente      + ", "  +
+                                         "digitoVerificador = "            + DigitoVerificador            + ", "  +
+                                         "contaCorrentePadrao = "          + bcc.contaCorrentePadrao      + ", "  +
+                                         "numeroDaCarteira = "             + bcc.numeroDaCarteira         + ", "  +
+                                         "especieDoDocumento = "           + bcc.especieDoDocumento       + ", "  +
+                                         "AceiteOuNaoAceite = "            + bcc.AceiteOuNaoAceite        + ", "  +
+                                         "descricao = '"                   + bcc.descricao                + "', " +
+                                         "atualizado = 1 "          +
+                                         "where idContaCorrente = " + bcc.idContaCorrente       + ";";
         sqlstate = parametrosNS.dao.AlterarRegistroOuConsultaSeTabelaExiste(sql, "S");
         if(!sqlstate.equals("00000")){
             return;

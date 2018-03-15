@@ -354,7 +354,7 @@ public class BaixaManualDeBoletos extends javax.swing.JFrame {
         if(bbol.valorPago == 0){
             valorPago = "null";
         }
-        sql = "update tb_boletos set valorPago = "              + bbol.valorPago            + ", "
+        sql = "update tb_boletos set valorPago = "              + valorPago                 + ", "
                                   + "dataDePagamento = '"       + bbol.dataDePagamento      + "', "
                                   + "Ocorrencia = 6, "
                                   + "idEmpresaAlterou = "       + bbol.idEmpresaAlterou     + ", "

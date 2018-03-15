@@ -1778,16 +1778,19 @@ public class RecibosCadastro extends javax.swing.JFrame {
         }
         br.codigoRecibo         = Integer.parseInt(txt_codigoRecibo.getText());
         Confirmacao = JOptionPane.showConfirmDialog(null, "Deseja finalizar o recibo n°" + br.codigoRecibo + "?", "", JOptionPane.YES_NO_OPTION);
-        if(Confirmacao != 0)
+        if(Confirmacao != 0){
             return;
+        }
         br.codigoRecibo         = Integer.parseInt(txt_codigoRecibo.getText());
-        sql = "update tb_recibos set status = 2 where idEmpresa = " + parametrosNS.be.IdEmpresa + " and codigoRecibo = " + br.codigoRecibo + ";";
+        sql = "update tb_recibos set status = 2, atualizado = 1 where idEmpresa = " + parametrosNS.be.IdEmpresa + " and codigoRecibo = " + br.codigoRecibo + ";";
         sqlstate = parametrosNS.dao.AlterarRegistroOuConsultaSeTabelaExiste(sql, "S");
-        if(!sqlstate.equals("00000"))
+        if(!sqlstate.equals("00000")){
             return;
+        }
         PegaDadosPagamentoRecibos();
-        if(!sqlstate.equals("00000"))
+        if(!sqlstate.equals("00000")){
             return;
+        }
         mensagem = "Recibo n°" + br.codigoRecibo + " finalizado com êxito!";
         new MostraMensagem(mensagem);
         ImprimirRecibo();
@@ -1939,7 +1942,7 @@ public class RecibosCadastro extends javax.swing.JFrame {
             brd.codigoReciboItem    = Integer.parseInt(String.valueOf(tabela_itens.getValueAt(i, 0)));
             codigoReciboItem        = brd.codigoReciboItem + 1;
             
-            sql = "update tb_recibos_detalhes set codigoReciboItem = " + brd.codigoReciboItem + " where idEmpresa = " + brd.idEmpresa + " and codigoRecibo = " + brd.codigoRecibo + " and codigoReciboItem = " + codigoReciboItem + ";";
+            sql = "update tb_recibos_detalhes set codigoReciboItem = " + brd.codigoReciboItem + ", atualizado = 1 where idEmpresa = " + brd.idEmpresa + " and codigoRecibo = " + brd.codigoRecibo + " and codigoReciboItem = " + codigoReciboItem + ";";
             sqlstate = parametrosNS.dao.AlterarRegistroOuConsultaSeTabelaExiste(sql, "S");
         }
         PegaRecibos();

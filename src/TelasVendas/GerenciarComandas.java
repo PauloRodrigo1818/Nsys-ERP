@@ -912,7 +912,7 @@ public class GerenciarComandas extends javax.swing.JFrame {
         sqlstate = parametrosNS.dao.ExcluirRegistro(sql);
         if(!sqlstate.equals("00000"))
             return;
-        sql = "update tb_comandas set statusComanda = 0 where idComanda = " + bcom.idComanda + ";";
+        sql = "update tb_comandas set statusComanda = 0, atualizado = 1 where idComanda = " + bcom.idComanda + ";";
         sqlstate = parametrosNS.dao.AlterarRegistroOuConsultaSeTabelaExiste(sql, "S");
         if(!sqlstate.equals("00000"))
             return;
@@ -1114,7 +1114,7 @@ public class GerenciarComandas extends javax.swing.JFrame {
             
             bp.quantidadeAtual      = bp.quantidadeAtual + quantidade;
             
-            sql = "update tb_produtos set quantidadeAtual = " + bp.quantidadeAtual + " where idProdutos = " + bp.idProdutos + ";";
+            sql = "update tb_produtos set quantidadeAtual = " + bp.quantidadeAtual + ", atualizado = 1 where idProdutos = " + bp.idProdutos + ";";
             sqlstate = parametrosNS.dao.AlterarRegistroOuConsultaSeTabelaExiste(sql, "S");
             if(!sqlstate.equals("00000")){
                 Mensagem = "Erro ao Atualizar estoque do produto n°" + bp.codigoProduto + "!";
@@ -1131,7 +1131,7 @@ public class GerenciarComandas extends javax.swing.JFrame {
         txt_total           .setText(TransStrDou.TransformaValorStringeDouble("0", 0));
         PegaComanda();
         if(tabela_itens_comandas.getRowCount() < 1){
-            sql = "update tb_comandas set statusComanda = 0 where idComanda = " + bcom.idComanda + ";";
+            sql = "update tb_comandas set statusComanda = 0, atualizado = 1 where idComanda = " + bcom.idComanda + ";";
             parametrosNS.dao.AlterarRegistroOuConsultaSeTabelaExiste(sql, "N");
         }
         PegaComanda();
@@ -1168,7 +1168,7 @@ public class GerenciarComandas extends javax.swing.JFrame {
         
         bp.quantidadeAtual          = bp.quantidadeAtual + quantidade;
         
-        sql = "update tb_produtos set quantidadeAtual = " + bp.quantidadeAtual + " where idProdutos = " + bp.idProdutos + ";";
+        sql = "update tb_produtos set quantidadeAtual = " + bp.quantidadeAtual + ", atualizado = 1 where idProdutos = " + bp.idProdutos + ";";
         sqlstate = parametrosNS.dao.AlterarRegistroOuConsultaSeTabelaExiste(sql, "S");
         if(!sqlstate.equals("00000")){
             Mensagem = "Erro ao Atualizar estoque do produto n°" + bp.codigoProduto + "!";
@@ -1185,12 +1185,12 @@ public class GerenciarComandas extends javax.swing.JFrame {
             bcomi.codigoComandaItem = Integer.parseInt(String.valueOf(tabela_itens_comandas.getValueAt(i, 0)));
             codigoComandaItem       = bcomi.codigoComandaItem + 1;
             
-            sql = "update tb_comandas_itens set codigoComandaItem = " + bcomi.codigoComandaItem + " where idEmpresa = " + bcomi.idEmpresa + " and codigoComanda = " + bcomi.codigoComanda + " and codigoComandaItem = " + codigoComandaItem + ";";
+            sql = "update tb_comandas_itens set codigoComandaItem = " + bcomi.codigoComandaItem + ", atualizado = 1 where idEmpresa = " + bcomi.idEmpresa + " and codigoComanda = " + bcomi.codigoComanda + " and codigoComandaItem = " + codigoComandaItem + ";";
             sqlstate = parametrosNS.dao.AlterarRegistroOuConsultaSeTabelaExiste(sql, "S");
         }
         PegaComanda();
         if(tabela_itens_comandas.getRowCount() < 1){
-            sql = "update tb_comandas set statusComanda = 0 where idComanda = " + bcom.idComanda + ";";
+            sql = "update tb_comandas set statusComanda = 0, atualizado = 1 where idComanda = " + bcom.idComanda + ";";
             parametrosNS.dao.AlterarRegistroOuConsultaSeTabelaExiste(sql, "N");
         }
         PegaComanda();
@@ -1261,11 +1261,11 @@ public class GerenciarComandas extends javax.swing.JFrame {
         sqlstate = parametrosNS.dao.incluirRegistro(sql);
         if(!sqlstate.equals("00000"))
             return;
-        sql = "update tb_comandas set statusComanda = 1 where idComanda = " + bcom.idComanda + ";";
+        sql = "update tb_comandas set statusComanda = 1, atualizado = 1 where idComanda = " + bcom.idComanda + ";";
         sqlstate = parametrosNS.dao.AlterarRegistroOuConsultaSeTabelaExiste(sql, "S");
         if(!sqlstate.equals("00000"))
             return;
-        sql = "update tb_produtos set quantidadeAtual = " + bp.quantidadeAtual + " where idEmpresa = " + parametrosNS.be.IdEmpresa + " and codigoProduto = " + bp.codigoProduto + ";";
+        sql = "update tb_produtos set quantidadeAtual = " + bp.quantidadeAtual + ", atualizado = 1 where idEmpresa = " + parametrosNS.be.IdEmpresa + " and codigoProduto = " + bp.codigoProduto + ";";
         sqlstate = parametrosNS.dao.AlterarRegistroOuConsultaSeTabelaExiste(sql, "S");
         if(!sqlstate.equals("00000"))
             return;

@@ -1342,7 +1342,7 @@ public class PDV extends javax.swing.JFrame {
             if(!sqlstate.equals("00000")){
                 return;
             }
-            sql = "update tb_vendas set status = 2 where idEmpresa = " + parametrosNS.be.IdEmpresa + " and codigoVenda = " + bv.codigoVenda + ";";
+            sql = "update tb_vendas set status = 2, atualizado = 1 where idEmpresa = " + parametrosNS.be.IdEmpresa + " and codigoVenda = " + bv.codigoVenda + ";";
             sqlstate = parametrosNS.dao.AlterarRegistroOuConsultaSeTabelaExiste(sql, "S");
             if(!sqlstate.equals("00000")){
                 return;
@@ -2117,7 +2117,7 @@ public class PDV extends javax.swing.JFrame {
 //            
 //            bp.quantidadeAtual  = bp.quantidadeAtual + quantidade;
 //            
-//            sql = "update tb_produtos set quantidadeAtual = " + bp.quantidadeAtual + " where idProdutos = " + bp.idProdutos + ";";
+//            sql = "update tb_produtos set quantidadeAtual = " + bp.quantidadeAtual + ", atualizado = 1 where idProdutos = " + bp.idProdutos + ";";
 //            sqlstate = parametrosNS.dao.AlterarRegistroOuConsultaSeTabelaExiste(sql, "S");
 //            if(!sqlstate.equals("00000")){
 //                mensagem = "Erro ao Atualizar estoque do produto n°" + bp.codigoProduto + "!";
@@ -2190,7 +2190,7 @@ public class PDV extends javax.swing.JFrame {
 //        
 //        bp.quantidadeAtual      = bp.quantidadeAtual + quantidade;
 //        
-//        sql = "update tb_produtos set quantidadeAtual = " + bp.quantidadeAtual + " where idProdutos = " + bp.idProdutos + ";";
+//        sql = "update tb_produtos set quantidadeAtual = " + bp.quantidadeAtual + ", atualizado = 1 where idProdutos = " + bp.idProdutos + ";";
 //        sqlstate = parametrosNS.dao.AlterarRegistroOuConsultaSeTabelaExiste(sql, "S");
 //        if(!sqlstate.equals("00000")){
 //            mensagem = "Erro ao Atualizar estoque do produto n°" + bp.codigoProduto + "!";
@@ -2207,7 +2207,7 @@ public class PDV extends javax.swing.JFrame {
 //            bvi.codigoItemVenda     = Integer.parseInt(String.valueOf(tabela_itens_vendas.getValueAt(i, 0)));
 //            codigoItemVenda         = bvi.codigoItemVenda + 1;
 //            
-//            sql = "update tb_vendas_itens set codigoItemVenda = " + bvi.codigoItemVenda + " where idVenda = " + bvi.idVenda + " and codigoItemVenda = " +  codigoItemVenda + ";";
+//            sql = "update tb_vendas_itens set codigoItemVenda = " + bvi.codigoItemVenda + ", atualizado = 1 where idVenda = " + bvi.idVenda + " and codigoItemVenda = " +  codigoItemVenda + ";";
 //            sqlstate = parametrosNS.dao.AlterarRegistroOuConsultaSeTabelaExiste(sql, "S");
 //        }
 //        PegaVendaItens();
@@ -2892,7 +2892,7 @@ public class PDV extends javax.swing.JFrame {
     }
     
     private void AtualizaEstoque(){
-        sql = "update tb_produtos set quantidadeAtual = " + bp.quantidadeAtual + " where idProdutos = " + bp.idProdutos + ";";
+        sql = "update tb_produtos set quantidadeAtual = " + bp.quantidadeAtual + ", atualizado = 1 where idProdutos = " + bp.idProdutos + ";";
         sqlstate = parametrosNS.dao.AlterarRegistroOuConsultaSeTabelaExiste(sql, "S");
         if(sqlstate.equals("00000")){
             return;

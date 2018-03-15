@@ -397,40 +397,47 @@ public class VeiculosCadastro extends javax.swing.JFrame {
 
     private void bt_incluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_incluirActionPerformed
         PegaValores();
-        if(fatal.equals("S"))return;
+        if(fatal.equals("S")){
+            return;
+        }
         
         sql = "insert into tb_veiculos (idEmpresa, codigoGrupo, codigoEmpresa, codigoVeiculo, placaVeiculo, ufVeiculo, cidadeVeiculo, rntcVeiculo) "
             + "values (" + bvei.idEmpresa + ", " + bvei.codigoGrupo + ", " + bvei.codigoEmpresa + ", " + bvei.codigoVeiculo + ", '" + bvei.placaVeiculo + "', '" + bvei.ufVeiculo + "', '" + bvei.cidadeVeiculo + "', '" + bvei.rntcVeiculo + "');";
         sqlstate = parametrosNS.dao.incluirRegistro(sql);
-        if(!sqlstate.equals("00000"))
+        if(!sqlstate.equals("00000")){
             return;
+        }
         txt_codigoVeiculo.grabFocus();
     }//GEN-LAST:event_bt_incluirActionPerformed
 
     private void bt_alterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_alterarActionPerformed
         PegaValores();
-        if(fatal.equals("S"))return;
-        
-        sql = "update tb_veiculos set placaVeiculo = '"         + bvei.placaVeiculo     + "'," +
-                                    " ufVeiculo = '"            + bvei.ufVeiculo        + "'," +
-                                    " cidadeVeiculo = '"        + bvei.cidadeVeiculo    + "'," +
-                                    " rntcVeiculo = '"          + bvei.rntcVeiculo      + "' " +
-                                    " where idVeiculo = "   + bvei.idVeiculo        + ";";
-        sqlstate = parametrosNS.dao.AlterarRegistroOuConsultaSeTabelaExiste(sql, "S");
-        if(!sqlstate.equals("00000"))
+        if(fatal.equals("S")){
             return;
+        }
+        sql = "update tb_veiculos set placaVeiculo = '"     + bvei.placaVeiculo     + "', " +
+                                     "ufVeiculo = '"        + bvei.ufVeiculo        + "', " +
+                                     "cidadeVeiculo = '"    + bvei.cidadeVeiculo    + "', " +
+                                     "rntcVeiculo = '"      + bvei.rntcVeiculo      + "', " +
+                                     "atualizado = 1 "       +
+                                     "where idVeiculo = "   + bvei.idVeiculo        + ";";
+        sqlstate = parametrosNS.dao.AlterarRegistroOuConsultaSeTabelaExiste(sql, "S");
+        if(!sqlstate.equals("00000")){
+            return;
+        }
         txt_codigoVeiculo.grabFocus();
     }//GEN-LAST:event_bt_alterarActionPerformed
 
     private void bt_excluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_excluirActionPerformed
         bvei.codigoVeiculo  = Integer.parseInt(txt_codigoVeiculo.getText());
-        if(JOptionPane.showConfirmDialog(null, "Deseja mesmo excluir o registro n°" + bvei.codigoVeiculo + "?", "", JOptionPane.YES_NO_OPTION) != JOptionPane.YES_OPTION)
+        if(JOptionPane.showConfirmDialog(null, "Deseja mesmo excluir o registro n°" + bvei.codigoVeiculo + "?", "", JOptionPane.YES_NO_OPTION) != JOptionPane.YES_OPTION){
             return;
-        
+        }
         sql = "delete from tb_veiculos where idVeiculo = " + bvei.idVeiculo + ";";
         sqlstate = parametrosNS.dao.ExcluirRegistro(sql);
-        if(!sqlstate.equals("00000"))
+        if(!sqlstate.equals("00000")){
             return;
+        }
         txt_codigoVeiculo.grabFocus();
     }//GEN-LAST:event_bt_excluirActionPerformed
 

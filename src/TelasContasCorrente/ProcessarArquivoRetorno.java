@@ -529,10 +529,10 @@ public class ProcessarArquivoRetorno extends javax.swing.JFrame {
                                       + "codigoEmpresa = "      + bbol.codigoEmpresa        + " and "
                                       + "codigoBoleto = "       + bbol.codigoBoleto         + ";";
             if(bbol.ocorrenciaRetorno == 6 || bbol.ocorrenciaRetorno == 8){
-                sql = "update tb_boletos set dataDePagamento = '"       + bbol.dataDePagamento      + "', "
-                                          + "valorPago = "              + bbol.valorPago            + ", "
-                                          + "ocorrenciaRetorno = "      + bbol.ocorrenciaRetorno    + ", "
-                                          + "statusBoleto = "           + bbol.statusBoleto         + ", "
+                sql = "update tb_boletos set dataDePagamento = '"   + bbol.dataDePagamento      + "', "
+                                          + "valorPago = "          + bbol.valorPago            + ", "
+                                          + "ocorrenciaRetorno = "  + bbol.ocorrenciaRetorno    + ", "
+                                          + "statusBoleto = "       + bbol.statusBoleto         + ", "
                                           + "atualizado = 1 "
                                           + "where codigoGrupo = "  + bbol.codigoGrupo          + " and " 
                                           + "codigoEmpresa = "      + bbol.codigoEmpresa        + " and "

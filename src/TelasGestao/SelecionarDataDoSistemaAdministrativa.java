@@ -274,7 +274,8 @@ public class SelecionarDataDoSistemaAdministrativa extends javax.swing.JFrame {
         PegaValores();
         if(fatal.equals("S"))return;
         
-        sql = "update tb_parametrosgestao set dataGestao = '"           + bparges.dataGestao            + "' "
+        sql = "update tb_parametrosgestao set dataGestao = '"           + bparges.dataGestao            + "', "
+                                     + "atualizado = 1 "
                                      + "where idParametrosGestao = "    + bparges.idParametrosGestao    + ";";
         sqlstate = parametrosNS.dao.AlterarRegistroOuConsultaSeTabelaExiste(sql, "S");
         if(!sqlstate.equals("00000"))

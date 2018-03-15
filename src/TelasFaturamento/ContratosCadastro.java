@@ -514,17 +514,18 @@ public class ContratosCadastro extends javax.swing.JFrame {
         PegaValores();
         if(fatal.equals("S"))return;
         
-        sql = "update tb_contratos set dataContrato = '"        + bcon.dataContrato         + "', "
-                                    + "dataVencimento = "       + bcon.dataVencimento       + ", "
-                                    + "dataReajuste = '"        + bcon.dataReajuste         + "', "
-                                    + "descricaoContrato = '"   + bcon.descricaoContrato    + "', "
-                                    + "idEmpresaAlterou = "     + bcon.idEmpresaAlterou     + ", "
-                                    + "codigoGrupoAlterou = "   + bcon.codigoGrupoAlterou   + ", "
-                                    + "codigoEmpresaAlterou = " + bcon.codigoEmpresaAlterou + ", "
-                                    + "dataAlterou = '"         + bcon.dataAlterou          + "', "
-                                    + "horaAlterou = '"         + bcon.horaAlterou          + "', "
-                                    + "usuarioAlterou = "       + bcon.usuarioAlterou       + " "
-                                    + "where idContrato = " + bcon.idContrato   + ";";
+        sql = "update tb_contratos set dataContrato = '"      + bcon.dataContrato         + "', " +
+                                    "dataVencimento = "       + bcon.dataVencimento       + ", "  +
+                                    "dataReajuste = '"        + bcon.dataReajuste         + "', " +
+                                    "descricaoContrato = '"   + bcon.descricaoContrato    + "', " +
+                                    "idEmpresaAlterou = "     + bcon.idEmpresaAlterou     + ", "  +
+                                    "codigoGrupoAlterou = "   + bcon.codigoGrupoAlterou   + ", "  +
+                                    "codigoEmpresaAlterou = " + bcon.codigoEmpresaAlterou + ", "  +
+                                    "dataAlterou = '"         + bcon.dataAlterou          + "', " +
+                                    "horaAlterou = '"         + bcon.horaAlterou          + "', " +
+                                    "usuarioAlterou = "       + bcon.usuarioAlterou       + ", "  +
+                                    "atualizado = 1 " +
+                                    "where idContrato = " + bcon.idContrato   + ";";
         sqlstate = parametrosNS.dao.AlterarRegistroOuConsultaSeTabelaExiste(sql, "S");
         if(!sqlstate.equals("00000"))
             return;
