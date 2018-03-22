@@ -83,8 +83,8 @@ public class AtualizadorDeBancoDeDados {
     //Configurações da base de dados online
     String servidor  = "mysql.ns3info.com.br";
     int    porta     = 3306;
-    String nomeBanco = "ns3info03";
-    String usuario   = "ns3info03";
+    String nomeBanco = "ns3info";
+    String usuario   = "ns3info";
     String senha     = "adm2322";
     
     //Telas
