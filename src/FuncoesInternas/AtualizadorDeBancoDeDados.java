@@ -6,7 +6,6 @@ import Telas.MenuPrincipal;
 import daoConexao.fabricaConexaoMySQL;
 import java.sql.Connection;
 import java.util.ArrayList;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -126,6 +125,7 @@ public class AtualizadorDeBancoDeDados {
 //        sql = "show tables from " + Parametros.parametrosNS.bbd.nomeBanco + ";";
         sql = "show tables from " + parametrosNS.bbd.nomeBanco + " where (substring(Tables_in_" + parametrosNS.bbd.nomeBanco + ", 1, 3) <> 'ns_' and Tables_in_" + parametrosNS.bbd.nomeBanco + " <> 'tb_etiquetas' and Tables_in_" + parametrosNS.bbd.nomeBanco + " <> 'usuarios'and Tables_in_" + parametrosNS.bbd.nomeBanco + " <> 'tb_versao');";
         dadosNomeTabelas = dLoc.Consulta(sql);
+        System.out.println(sql);
         
         if(tela.equalsIgnoreCase("mp")){
             Mp.barra_tabelas    .setMaximum(dadosNomeTabelas.size());
@@ -154,8 +154,14 @@ public class AtualizadorDeBancoDeDados {
 //            if(nomeTabela.equals("lc_cat"))                   continue;
 //            if(nomeTabela.equals("lc_movimento"))             continue;
 //            if(nomeTabela.equals("tb_etiquetas"))             continue;
-//            if(nomeTabela.equals("tb_logacesso"))              continue;
-            if(nomeTabela.equals(nomeSubTabela))              continue;
+//            if(nomeTabela.equals("tb_logacesso"))             continue;
+            if(nomeTabela.equals("tb_mes"))                   continue;
+            if(nomeTabela.equals("consulta_mes_os"))          continue;
+            if(nomeTabela.equals("migrations"))               continue;
+            if(nomeTabela.equals("total_os_dashboard"))       continue;
+            if(nomeTabela.equals("users"))                    continue;
+            if(nomeTabela.equals("password_resets"))          continue;
+            if(nomeTabela.equals("tb_caixa_fechamento_detalhes"))continue;
             
             VerificarNomeColunaChave(nomeTabela);
             
@@ -234,7 +240,7 @@ public class AtualizadorDeBancoDeDados {
         if(quantidadeAtualizadaRegistros == 100){
             valorAtualizadoRegistros = "100.0% / 100.0%";
         }
-        System.out.println("Registros: " + valorAtualizadoRegistros);
+        System.out.println("Registros: " + valorAtualizadoRegistros + " Tabela: " + nomeTabela);
         if(tela.equalsIgnoreCase("mp")){
             Mp.barra_processoAtual.setValue(i2);
             Mp.barra_processoAtual.repaint();
@@ -423,13 +429,21 @@ public class AtualizadorDeBancoDeDados {
             }
             if(verificaTabelasFilhas.equals("N")){if(!nomeExtra.equals(""))continue;}
             
-            if(tipoDadoMySQL.substring(0, 3).equals("int"     )){tipoDadoJava = "int";}
+                 if(tipoDadoMySQL.substring(0, 3).equals("int"     )){tipoDadoJava = "int";}
             else if(tipoDadoMySQL.substring(0, 4).equals("date"    )){tipoDadoJava = "data";}
             else if(tipoDadoMySQL.substring(0, 4).equals("time"    )){tipoDadoJava = "Hora";}
             else if(tipoDadoMySQL.substring(0, 6).equals("double"  )){tipoDadoJava = "double";}
             else if(tipoDadoMySQL.substring(0, 7).equals("varchar" )){tipoDadoJava = "String";}
             else if(tipoDadoMySQL.substring(0, 8).equals("longblob")){tipoDadoJava = "blob";}
             
+            if(nomeCampo.equals("atualizado")){
+                if(!aux1.equals("null")){
+                    if(Integer.parseInt(aux1) == 0){
+                        return;
+                    }
+                }
+            }
+                 
             variaveisColunasInsert = variaveisColunasInsert + MontaInstrucao(aux1, i, "I", nomeCampo);
             if(verificouSeExiste.equals("S")){variaveisColunasUpdate = variaveisColunasUpdate + MontaInstrucao(aux1, i, "U", nomeCampo);}
             
@@ -451,7 +465,7 @@ public class AtualizadorDeBancoDeDados {
                 }
                 sql += ";";
                 dadosTabelasParc = new ArrayList();
-                System.out.println(dOnl + " : " + sql);
+//                System.out.println(dOnl + " : " + sql);
                 dadosTabelasParc = dOnl.Consulta(sql);
             }
             
@@ -541,7 +555,7 @@ public class AtualizadorDeBancoDeDados {
         
         sql = "insert into " + nomeTabela + " (" + nomesColunas + ") values (" + variaveisColunasInsert + ");";
 //        System.out.println(sql);
-//        sqlstate = dOnl.incluirRegistro(sql);
+        sqlstate = dOnl.incluirRegistro(sql);
         sqlstate = "00000";
         if(!sqlstate.equals("00000")){
             mensagem = "Erro ao incluir registro n°" + varChave + " da tabela: " + nomeTabela + ";";
@@ -553,7 +567,7 @@ public class AtualizadorDeBancoDeDados {
     
     private void AlterarRegistro(String nomeTabela, String varChave, String varChave2){
         variaveisColunasUpdate = variaveisColunasUpdate.substring(0, variaveisColunasUpdate.length() - 2);
-        sql = "update " + nomeTabela + " set " + variaveisColunasUpdate + " where " +
+        sql = "update " + nomeTabela + " set " + variaveisColunasUpdate + ", atualizado = 0 where " +
                 "idEmpresa = " + parametrosNS.be.IdEmpresa + " and " +
                 nomeColunaChave + " = " + varChave;
         if(!nomeColunaChave2.equals("")){
@@ -561,14 +575,22 @@ public class AtualizadorDeBancoDeDados {
         }
         sql += ";";
 //        System.out.println(sql);
-//        sqlstate = dOnl.AlterarRegistroOuConsultaSeTabelaExiste(sql, "N");
-        sqlstate = "00000";
+        sqlstate = dOnl.AlterarRegistroOuConsultaSeTabelaExiste(sql, "N");
+//        sqlstate = "00000
         if(!sqlstate.equals("00000")){
             mensagem = "Erro ao incluir registro n°" + varChave + " da tabela: " + nomeTabela + ";";
             mostraMensagem();
             fatal = "S";
             return;
         }
+        sql = "update " + nomeTabela + " set atualizado = 0 where " +
+                "idEmpresa = " + parametrosNS.be.IdEmpresa + " and " +
+                nomeColunaChave + " = " + varChave;
+        if(!nomeColunaChave2.equals("")){
+            sql += " and " + nomeColunaChave2 + " = " + varChave2;
+        }
+        sql += ";";
+        sqlstate = dLoc.AlterarRegistroOuConsultaSeTabelaExiste(sql, "N");
     }
     
     private void VerificarSubNomeColunaChave(String nomeSubTabela){

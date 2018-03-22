@@ -1060,7 +1060,6 @@ public class RelatorioDeVendas extends javax.swing.JFrame {
                 hm.put("codigoPagamentoFinal"  , binter.codigoFormaPagamentoFinal);
             }
             
-            
             if(Modo.equals("")){
                 jpv = "Relatorios/RelatorioDeVendas.jasper";
             }

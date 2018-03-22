@@ -136,7 +136,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         MontaModulosEmpresa();
         VerificaConexao();
         CarregarInformacoes();
-//        IniciaCarregamentoClusterBancoDeDados();
+        IniciaCarregamentoClusterBancoDeDados();
         setTitle("Empresa: " + fc.FormataCampo(String.valueOf(parametrosNS.bge.CodigoGrupo), 2, 0) + "." + parametrosNS.bge.NomeGrupo + "   " + fc.FormataCampo(String.valueOf(parametrosNS.be.CodigoEmpresa), 3, 0) + "." + parametrosNS.be.NomeEmpresa);
         if(aux == 0){
             PegaEmpresas("N");
