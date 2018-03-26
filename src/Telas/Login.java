@@ -1517,10 +1517,10 @@ public class Login extends javax.swing.JFrame {
             return;
         }
         dispose();
-        sql = "update tb_usuarios set nomeConexao = '" + con + "' where idUsuario = " + parametrosNS.bu.idUsuario + ";" ;
-        SetaConexao();
+//        sql = "update tb_usuarios set nomeConexao = '" + con + "' where idUsuario = " + parametrosNS.bu.idUsuario + ";" ;
+//        SetaConexao();
         if(fatal.equals("S")){DefineAcesso(false);return;}
-        if(parametrosNS.bu.usuario.equalsIgnoreCase("NS3"))
+        if(parametrosNS.bu.usuario.equalsIgnoreCase("NS3")){
             if(parametrosNS.bu.senha.equalsIgnoreCase("adm2322")){
                 PegaInformacoesDoComputador();
                 CarregarInformacoesSistema();
@@ -1536,6 +1536,7 @@ public class Login extends javax.swing.JFrame {
                 MudEmpAtu.setVisible(true);
                 return;
             }
+        }
                 
         LogsDeAcesso();
         if(operacaoEmail.equals("I")){

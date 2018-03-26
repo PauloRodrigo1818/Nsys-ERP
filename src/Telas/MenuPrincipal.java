@@ -134,7 +134,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         if(Tempo != null)Tempo.stop();
         VerificaEspecificacoesDoUsuario();
         MontaModulosEmpresa();
-        VerificaConexao();
+//        VerificaConexao();
         CarregarInformacoes();
         IniciaCarregamentoClusterBancoDeDados();
         setTitle("Empresa: " + fc.FormataCampo(String.valueOf(parametrosNS.bge.CodigoGrupo), 2, 0) + "." + parametrosNS.bge.NomeGrupo + "   " + fc.FormataCampo(String.valueOf(parametrosNS.be.CodigoEmpresa), 3, 0) + "." + parametrosNS.be.NomeEmpresa);
@@ -852,7 +852,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     
     private void FecharSistema(){
         LogaSaida();
-        EncerraConexoes();
+//        EncerraConexoes();
         System.exit(0);
     }
     
@@ -1188,7 +1188,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }
     
     public void EncerraConexoes(){
-        Tempo.stop();
+//        Tempo.stop();
         if(!fabricaConexaoMySQL.fecharConexao(parametrosNS.con).equalsIgnoreCase("OK")){
             Mensagem = "Erro ao encerrar conexão com o banco de dados!!!\nEntre em contato com o Suporte!!!";
             new MostraMensagem(Mensagem);
@@ -1199,7 +1199,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     public void TrocarUsuario(){
         dispose();
         LogaSaida();
-        EncerraConexoes();
+//        EncerraConexoes();
         Lg = new Login(null);
         Lg.setVisible(true);
 //        BarraInicial    bar     = new BarraInicial();
@@ -1304,7 +1304,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         };
 //        TempoCluster = new Timer(1200000, action);
-        TempoCluster = new Timer(60000, action);
+        TempoCluster = new Timer(600000, action);
         TempoCluster.start();
     }
     

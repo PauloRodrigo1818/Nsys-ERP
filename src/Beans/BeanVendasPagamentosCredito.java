@@ -8,9 +8,10 @@ public class BeanVendasPagamentosCredito {
     public int    idEmpresa             = 0;    //1
     public int    codigoGrupo           = 0;    //2
     public int    codigoEmpresa         = 0;    //3
-    public int    codigoPagamento       = 0;    //4
-    public double valorTotalDoPagamento = 0;    //5
-    public int    qtdParcelas           = 0;    //6
-    public double valorDasParcelas      = 0;    //7
+    public int    codigoVenda           = 0;    //4
+    public int    codigoPagamento       = 0;    //5
+    public double valorTotalDoPagamento = 0;    //6
+    public int    qtdParcelas           = 0;    //7
+    public double valorDasParcelas      = 0;    //8
     
 }

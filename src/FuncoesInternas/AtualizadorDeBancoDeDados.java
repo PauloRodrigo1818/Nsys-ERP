@@ -69,9 +69,11 @@ public class AtualizadorDeBancoDeDados {
     String tela               = "";
     
     //Int
-    int qtdColunas = 0;
-    int contador2  = 0;
-    int gii        = 0;
+    int qtdInclusos     = 0;
+    int qtdAtualizados  = 0;
+    int qtdColunas      = 0;
+    int contador2       = 0;
+    int gii             = 0;
     
     //String
     String valorAtualizadoTabelas   = "";
@@ -125,7 +127,7 @@ public class AtualizadorDeBancoDeDados {
 //        sql = "show tables from " + Parametros.parametrosNS.bbd.nomeBanco + ";";
         sql = "show tables from " + parametrosNS.bbd.nomeBanco + " where (substring(Tables_in_" + parametrosNS.bbd.nomeBanco + ", 1, 3) <> 'ns_' and Tables_in_" + parametrosNS.bbd.nomeBanco + " <> 'tb_etiquetas' and Tables_in_" + parametrosNS.bbd.nomeBanco + " <> 'usuarios'and Tables_in_" + parametrosNS.bbd.nomeBanco + " <> 'tb_versao');";
         dadosNomeTabelas = dLoc.Consulta(sql);
-        System.out.println(sql);
+//        System.out.println(sql);
         
         if(tela.equalsIgnoreCase("mp")){
             Mp.barra_tabelas    .setMaximum(dadosNomeTabelas.size());
@@ -355,6 +357,27 @@ public class AtualizadorDeBancoDeDados {
         if(nomeTabela.equalsIgnoreCase("tb_usuarios")){         nomeColunaChave = "codigoUsuario";       return;}
         if(nomeTabela.equalsIgnoreCase("tb_usuarios_email")){   nomeColunaChave = "codigoUsuario";       return;}
         if(nomeTabela.equalsIgnoreCase("tb_veiculos")){         nomeColunaChave = "codigoVeiculo";       return;}
+        if(nomeTabela.equalsIgnoreCase("tb_vendas")){           nomeColunaChave = "codigoVenda";         return;}
+        if(nomeTabela.equalsIgnoreCase("tb_vendas_canceladas")){
+            nomeColunaChave  = "codigoVenda";
+            nomeColunaChave2 = "codigoCancelamento";
+            return;
+        }
+        if(nomeTabela.equalsIgnoreCase("tb_vendas_itens")){
+            nomeColunaChave  = "codigoVenda";
+            nomeColunaChave2 = "codigoVendaItem";
+            return;
+        }
+        if(nomeTabela.equalsIgnoreCase("tb_vendas_pagamentos")){
+            nomeColunaChave  = "codigoVenda";
+            nomeColunaChave2 = "codigoPagamento";
+            return;
+        }
+        if(nomeTabela.equalsIgnoreCase("tb_vendas_pagamentos_credito")){
+            nomeColunaChave  = "codigoVenda";
+            nomeColunaChave2 = "codigoPagamento";
+            return;
+        }
     }
     
     private void ProcessoLerTabelas(String nomeTabela, int i){
@@ -435,14 +458,6 @@ public class AtualizadorDeBancoDeDados {
             else if(tipoDadoMySQL.substring(0, 6).equals("double"  )){tipoDadoJava = "double";}
             else if(tipoDadoMySQL.substring(0, 7).equals("varchar" )){tipoDadoJava = "String";}
             else if(tipoDadoMySQL.substring(0, 8).equals("longblob")){tipoDadoJava = "blob";}
-            
-            if(nomeCampo.equals("atualizado")){
-                if(!aux1.equals("null")){
-                    if(Integer.parseInt(aux1) == 0){
-                        return;
-                    }
-                }
-            }
                  
             variaveisColunasInsert = variaveisColunasInsert + MontaInstrucao(aux1, i, "I", nomeCampo);
             if(verificouSeExiste.equals("S")){variaveisColunasUpdate = variaveisColunasUpdate + MontaInstrucao(aux1, i, "U", nomeCampo);}
@@ -473,6 +488,13 @@ public class AtualizadorDeBancoDeDados {
                 if(dadosTabelasParc.isEmpty()){
                     variaveisColunasUpdate = "";
                 }else{
+                    if(nomeCampo.equals("atualizado")){
+                        if(!aux1.equals("null")){
+                            if(Integer.parseInt(aux1) == 0){
+                                return;
+                            }
+                        }
+                    }
                     variaveisColunasInsert = "";
                 }
             }
@@ -563,6 +585,7 @@ public class AtualizadorDeBancoDeDados {
             fatal = "S";
             return;
         }
+        AtualizaRegistroLocal(nomeTabela, varChave, varChave2);
     }
     
     private void AlterarRegistro(String nomeTabela, String varChave, String varChave2){
@@ -583,6 +606,10 @@ public class AtualizadorDeBancoDeDados {
             fatal = "S";
             return;
         }
+        AtualizaRegistroLocal(nomeTabela, varChave, varChave2);
+    }
+    
+    private void AtualizaRegistroLocal(String nomeTabela, String varChave, String varChave2){
         sql = "update " + nomeTabela + " set atualizado = 0 where " +
                 "idEmpresa = " + parametrosNS.be.IdEmpresa + " and " +
                 nomeColunaChave + " = " + varChave;

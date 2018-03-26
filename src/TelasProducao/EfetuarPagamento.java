@@ -1777,20 +1777,22 @@ public class EfetuarPagamento extends javax.swing.JFrame {
     }
     
     private void IncluirPagamentoEmCreditoVenda(){
-        bvpc.idEmpresa             = bvp.idEmpresa;
-        bvpc.codigoGrupo           = bvp.codigoGrupo;
-        bvpc.codigoEmpresa         = bvp.codigoEmpresa;
-        bvpc.codigoPagamento       = bvp.codigoPagamento;
-        bvpc.valorTotalDoPagamento = bvp.valorDoPagamento;
-        bvpc.qtdParcelas           = qtdDeParcelas;
-        bvpc.valorDasParcelas      = bvpc.valorTotalDoPagamento / bvpc.qtdParcelas;
+        bvpc.idEmpresa              = bvp.idEmpresa;
+        bvpc.codigoGrupo            = bvp.codigoGrupo;
+        bvpc.codigoEmpresa          = bvp.codigoEmpresa;
+        bvpc.codigoVenda            = bvp.codigoVenda;
+        bvpc.codigoPagamento        = bvp.codigoPagamento;
+        bvpc.valorTotalDoPagamento  = bvp.valorDoPagamento;
+        bvpc.qtdParcelas            = qtdDeParcelas;
+        bvpc.valorDasParcelas       = bvpc.valorTotalDoPagamento / bvpc.qtdParcelas;
         
-        sql = "insert into tb_vendas_pagamentos_credito (idEmpresa, codigoGrupo, codigoEmpresa, codigoPagamento, valorTotalDoPagamento, qtdParcelas, valorDasParcelas) "
-            + "values (" + bvpc.idEmpresa + ", " + bvpc.codigoGrupo + ", " + bvpc.codigoEmpresa + ", " + bvpc.codigoPagamento + ", " + bvpc.valorTotalDoPagamento + ", " + bvpc.qtdParcelas + ", " + bvpc.valorDasParcelas + ");";
+        sql = "insert into tb_vendas_pagamentos_credito (idEmpresa, codigoGrupo, codigoEmpresa, codigoVenda, codigoPagamento, valorTotalDoPagamento, qtdParcelas, valorDasParcelas) "
+            + "values (" + bvpc.idEmpresa + ", " + bvpc.codigoGrupo + ", " + bvpc.codigoEmpresa + ", " + bvpc.codigoVenda + ", " + bvpc.codigoPagamento + ", " + bvpc.valorTotalDoPagamento + ", " + bvpc.qtdParcelas + ", " + bvpc.valorDasParcelas + ");";
         sqlstate = parametrosNS.dao.incluirRegistro(sql);
         if(!sqlstate.equals("00000")){
             mensagem = "Erro ao incluir pagamento em crédito!";
             mostraMensagem();
+            return;
         }
     }
     
