@@ -188,13 +188,15 @@ public class UsuariosCadastro extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         check_mudarEmpresa = new javax.swing.JCheckBox();
-        txt_nome = new javax.swing.JTextField();
+        txt_name = new javax.swing.JTextField();
         combo_departamento = new javax.swing.JComboBox();
         jLabel2 = new javax.swing.JLabel();
         txt_senha = new javax.swing.JPasswordField();
         txt_codigoUsuario = new javax.swing.JFormattedTextField();
         combo_empresas = new javax.swing.JComboBox<>();
         jLabel17 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        txt_email = new javax.swing.JTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -579,6 +581,9 @@ public class UsuariosCadastro extends javax.swing.JFrame {
         jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel17.setText("Nível:");
 
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel8.setText("Email: ");
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -606,22 +611,17 @@ public class UsuariosCadastro extends javax.swing.JFrame {
                                 .addComponent(combo_nivelUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE))
+                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
                             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
-                            .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addComponent(txt_nome)
+                                .addComponent(txt_name)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(check_mudarEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addComponent(txt_codigoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(bt_novo)
-                                .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(txt_usuario)
@@ -631,10 +631,15 @@ public class UsuariosCadastro extends javax.swing.JFrame {
                                     .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 6, Short.MAX_VALUE)
-                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txt_datacriacao, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txt_senha, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(24, 24, 24)))))
+                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txt_senha)
+                                    .addComponent(txt_datacriacao, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)))
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addComponent(txt_codigoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(bt_novo)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(txt_email))))
                 .addContainerGap())
         );
 
@@ -654,7 +659,7 @@ public class UsuariosCadastro extends javax.swing.JFrame {
                     .addComponent(check_mudarEmpresa, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel5)
-                        .addComponent(txt_nome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txt_name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(4, 4, 4)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -668,6 +673,10 @@ public class UsuariosCadastro extends javax.swing.JFrame {
                     .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txt_datacriacao, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txt_telefone, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(txt_email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
@@ -688,7 +697,7 @@ public class UsuariosCadastro extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel5Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {bt_novo, check_mudarEmpresa, combo_departamento, combo_nivelUsuario, jLabel1, jLabel11, jLabel12, jLabel13, jLabel16, jLabel17, jLabel2, jLabel3, jLabel5, txt_codigoUsuario, txt_nome, txt_senha, txt_telefone, txt_usuario});
+        jPanel5Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {bt_novo, check_mudarEmpresa, combo_departamento, combo_empresas, combo_nivelUsuario, jLabel1, jLabel11, jLabel12, jLabel13, jLabel15, jLabel16, jLabel17, jLabel2, jLabel3, jLabel5, jLabel8, txt_codigoUsuario, txt_datacriacao, txt_email, txt_name, txt_senha, txt_telefone, txt_usuario});
 
         jMenu1.setText("Arquivo");
 
@@ -834,15 +843,16 @@ public class UsuariosCadastro extends javax.swing.JFrame {
             txt_codigoUsuario.setFocusable  (false);
             txt_codigoUsuario.setText(String.valueOf(bu.codigoUsuario));
             PegaUsuario();
-            txt_nome.grabFocus();
+            txt_name.grabFocus();
         }
 //        if(parametrosNS.bu.codigoUsuario == 999)
 //            bt_pesquisar.setVisible(false);
     }//GEN-LAST:event_formWindowOpened
     
     private void txt_senhaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txt_senhaMouseEntered
-        if(parametrosNS.bu.codigoUsuario == 999)
+        if(parametrosNS.bu.codigoUsuario == 999){
             txt_senha.setToolTipText(txt_senha.getText());
+        }
     }//GEN-LAST:event_txt_senhaMouseEntered
 
     private void combo_departamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo_departamentoActionPerformed
@@ -860,15 +870,17 @@ public class UsuariosCadastro extends javax.swing.JFrame {
             new MostraMensagem(mensagem);
             return;
         }
-        if(bu.codigoUsuario == 0)
+        if(bu.codigoUsuario == 0){
             bu.codigoUsuario = 2;
-        if(bu.codigoUsuario < 999)
+        }
+        if(bu.codigoUsuario < 999){
             bu.codigoUsuario = bu.codigoUsuario - 1;
+        }
         if(bu.codigoUsuario > UltimoRegistro){
             bu.codigoUsuario = UltimoRegistro;
             txt_codigoUsuario.setText("0");
-            mensagem = "Não existe registro anterior!!!";
-            new MostraMensagem(mensagem);
+//            mensagem = "Não existe registro anterior!!!";
+//            new MostraMensagem(mensagem);
             return;
         }
         ReiniciaCampos();
@@ -879,8 +891,9 @@ public class UsuariosCadastro extends javax.swing.JFrame {
 
     private void bt_proximoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_proximoActionPerformed
         bu.codigoUsuario = Integer.parseInt(fc.FormataCampo(txt_codigoUsuario.getText(), 3, 0));
-        if(bu.codigoUsuario < 999)
+        if(bu.codigoUsuario < 999){
             bu.codigoUsuario = bu.codigoUsuario + 1;
+        }
         if(bu.codigoUsuario > UltimoRegistro){
             bu.codigoUsuario = UltimoRegistro;
             mensagem = "Esse é o último registro!!!";
@@ -906,7 +919,7 @@ public class UsuariosCadastro extends javax.swing.JFrame {
         txt_codigoUsuario.setText("999");
         
         bt_confirma.setEnabled(true);
-        txt_nome.grabFocus();
+        txt_name.grabFocus();
         
         label_alteracao.setText("");
     }//GEN-LAST:event_bt_novoActionPerformed
@@ -921,11 +934,13 @@ public class UsuariosCadastro extends javax.swing.JFrame {
 
     private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
         if(parametrosNS.dao.sqlstate.equals("08S01") || parametrosNS.dao.sqlstate.equals("08003")){dispose();}
-        if(abriuUsuario == 0)
+        if(abriuUsuario == 0){
             return;
+        }
         retorno = ConUsu.getRetorno();
-        if(retorno.equals(""))
+        if(retorno.equals("")){
             return;
+        }
         txt_codigoUsuario.setText(retorno);
         abriuUsuario = 0;
         PegaUsuario();
@@ -945,8 +960,9 @@ public class UsuariosCadastro extends javax.swing.JFrame {
 
     private void tabela_modulosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabela_modulosMouseClicked
         coluna = tabela_modulos.getSelectedColumn();
-        if(coluna != 1)
+        if(coluna != 1){
             return;
+        }
         qtdColunas = tabela_modulos.getColumnCount();
         linha  = tabela_modulos.getSelectedRow();
         for(int colunas = 2; colunas < qtdColunas; colunas++){
@@ -1001,13 +1017,15 @@ public class UsuariosCadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_bt_imprimirActionPerformed
 
     private void bt_imagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_imagemActionPerformed
-        if(operacao.equals(""))
+        if(operacao.equals("")){
             return;
+        }
         seletor = new JFileChooser("C:/"); 
         seletor.setFileSelectionMode(JFileChooser.FILES_ONLY);
         int i = seletor.showOpenDialog(null);
-        if(i == 1)
+        if(i == 1){
             return;
+        }
         arquivoPasta = seletor.getSelectedFile();
         if(arquivoPasta.getPath().equals(""))
             return;
@@ -1033,8 +1051,9 @@ public class UsuariosCadastro extends javax.swing.JFrame {
     
     private void Sair(){
         dispose();
-        if(!Tipo.equalsIgnoreCase("Login"))
+        if(!Tipo.equalsIgnoreCase("Login")){
             return;
+        }
         Bar     = new BarraInicial();
         ProIni  = new ProcessoInicial(Bar);
     }
@@ -1044,10 +1063,12 @@ public class UsuariosCadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_bt_sairActionPerformed
 
     private void txt_codigoUsuarioFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_codigoUsuarioFocusGained
-        if(txt_codigoUsuario.getText().replace(" ", "").equals(""))
+        if(txt_codigoUsuario.getText().replace(" ", "").equals("")){
             return;
-        if(txt_codigoUsuario.isEditable() == false)
+        }
+        if(txt_codigoUsuario.isEditable() == false){
             return;
+        }
         operacao = "";
         ReiniciaCampos();
         ReiniciaModulos();
@@ -1055,17 +1076,20 @@ public class UsuariosCadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_codigoUsuarioFocusGained
 
     private void txt_codigoUsuarioFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_codigoUsuarioFocusLost
-        if(txt_codigoUsuario.isEditable() == false)
+        if(txt_codigoUsuario.isEditable() == false){
             return;
-        if(txt_codigoUsuario.getText().equals(""))
+        }
+        if(txt_codigoUsuario.getText().equals("")){
             return;
+        }
         PegaUsuario();
     }//GEN-LAST:event_txt_codigoUsuarioFocusLost
 
     private void txt_codigoUsuarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_codigoUsuarioKeyPressed
-        if(evt.getKeyCode() != KeyEvent.VK_ENTER)
+        if(evt.getKeyCode() != KeyEvent.VK_ENTER){
             return;
-        txt_nome.grabFocus();
+        }
+        txt_name.grabFocus();
     }//GEN-LAST:event_txt_codigoUsuarioKeyPressed
 
     private void txt_codigoUsuarioHierarchyChanged(java.awt.event.HierarchyEvent evt) {//GEN-FIRST:event_txt_codigoUsuarioHierarchyChanged
@@ -1080,19 +1104,21 @@ public class UsuariosCadastro extends javax.swing.JFrame {
         txt_grupoAcesso.setText(parametrosNS.fc.FormataCampo(String.valueOf(bge.CodigoGrupo), 2, 0));
         be.CodigoGrupo      = bge.CodigoGrupo;
         CarregarGruposEEmpresas("SS");
-        if(parametrosNS.bu.codigoUsuario == 999)
+        if(parametrosNS.bu.codigoUsuario == 999){
             be.CodigoEmpresa    = Integer.parseInt(String.valueOf(combo_empresas.getSelectedItem()).substring(6 + bge.nomeGrupo.length(), 9 + bge.nomeGrupo.length()));
-        else
+        }else{
             be.CodigoEmpresa    = Integer.parseInt(String.valueOf(combo_empresas.getSelectedItem()).substring(3, 6));
+        }
         CarregarDepartamentos();
     }//GEN-LAST:event_combo_empresasItemStateChanged
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        if(DepCad != null)
+        if(DepCad != null){
             if(DepCad.isVisible()){
                 DepCad.setState(JFrame.NORMAL);
                 return;
             }
+        }
         combo_empresas.setSelectedIndex(0);
         parametros.clear();
         parametros.add("N");
@@ -1119,8 +1145,9 @@ public class UsuariosCadastro extends javax.swing.JFrame {
     
     private void CarregarDepartamentos(){
         sql = "select * from tb_departamento where codigoGrupo = " + bge.codigoGrupo + " and codigoEmpresa = " + be.CodigoEmpresa + ";";
-        if(parametrosNS.bu.codigoUsuario == 999)
+        if(parametrosNS.bu.codigoUsuario == 999){
             sql = "select * from tb_departamento where idEmpresa = " + parametrosNS.be.IdEmpresa + ";";
+        }
 //        System.out.println(sql);
         dadosDepartamentos.clear();
         dadosDepartamentos = parametrosNS.dao.Consulta(sql);
@@ -1176,6 +1203,7 @@ public class UsuariosCadastro extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
@@ -1193,8 +1221,9 @@ public class UsuariosCadastro extends javax.swing.JFrame {
     private javax.swing.JTable tabela_modulos;
     private javax.swing.JFormattedTextField txt_codigoUsuario;
     private javax.swing.JFormattedTextField txt_datacriacao;
+    private javax.swing.JTextField txt_email;
     private javax.swing.JFormattedTextField txt_grupoAcesso;
-    private javax.swing.JTextField txt_nome;
+    private javax.swing.JTextField txt_name;
     private javax.swing.JTextArea txt_observacoes;
     private javax.swing.JPasswordField txt_senha;
     private javax.swing.JFormattedTextField txt_telefone;
@@ -1202,15 +1231,20 @@ public class UsuariosCadastro extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
     
     private void CarregarGruposEEmpresas(String Add){
-        if(Add.equals("S") || Add.equals("SS"))
+        if(Add.equals("S") || Add.equals("SS")){
             sql = "select nsemp.idEmpresa, nsgru.codigoGrupo, nsgru.nomeGrupo, nsemp.codigoEmpresa, nsemp.nomeFantasia from ns_grupoempresa nsgru inner join ns_empresas nsemp on (nsgru.codigoGrupo = nsemp.codigoGrupo) where nsgru.codigoGrupo = " + bge.CodigoGrupo + ";";
-        if(Add.equals("S"))
-            if(parametrosNS.bu.codigoUsuario == 999)
+        }
+        if(Add.equals("S")){
+            if(parametrosNS.bu.codigoUsuario == 999){
                 sql = "select nsemp.idEmpresa, nsgru.codigoGrupo, nsgru.nomeGrupo, nsemp.codigoEmpresa, nsemp.nomeFantasia from ns_grupoempresa nsgru inner join ns_empresas nsemp on (nsgru.codigoGrupo = nsemp.codigoGrupo);";
-        if(Add.equals("N"))
+            }
+        }
+        if(Add.equals("N")){
             sql = "select nsemp.idEmpresa, nsgru.codigoGrupo, nsgru.nomeGrupo, nsemp.codigoEmpresa, nsemp.nomeFantasia from ns_grupoempresa nsgru inner join ns_empresas nsemp on (nsgru.codigoGrupo = nsemp.codigoGrupo) where nsgru.codigoGrupo = " + bge.CodigoGrupo + ";";
-        if(Add.equals("SN"))
+        }
+        if(Add.equals("SN")){
             sql = "select nsemp.idEmpresa, nsgru.codigoGrupo, nsgru.nomeGrupo, nsemp.codigoEmpresa, nsemp.nomeFantasia from ns_grupoempresa nsgru inner join ns_empresas nsemp on (nsgru.codigoGrupo = nsemp.codigoGrupo) where nsgru.codigoGrupo = " + bge.CodigoGrupo + " and nsemp.codigoEmpresa = " + be.codigoEmpresa + ";";
+        }
         dadosEmpresas.clear();
         dadosEmpresas = parametrosNS.dao.Consulta(sql);
         if(dadosEmpresas.isEmpty()){
@@ -1239,14 +1273,17 @@ public class UsuariosCadastro extends javax.swing.JFrame {
             be.CodigoEmpresa    = Integer.parseInt(  String.valueOf(dadosEmpresas.get(i).get(3)));
             be.NomeFantasia     =                    String.valueOf(dadosEmpresas.get(i).get(4));
             
-            if(Add.equals("S") || Add.equals("SS"))
+            if(Add.equals("S") || Add.equals("SS")){
                 combo_empresaAcesso .addItem(fc.FormataCampo(String.valueOf(be.CodigoEmpresa), 3, 0) + " - " + be.NomeFantasia);
+            }
             
-            if(Add.equals("S"))
-                if(parametrosNS.bu.codigoUsuario != 999)
+            if(Add.equals("S")){
+                if(parametrosNS.bu.codigoUsuario != 999){
                     combo_empresas      .addItem(fc.FormataCampo(String.valueOf(bge.CodigoGrupo), 2, 0) + "." + fc.FormataCampo(String.valueOf(be.CodigoEmpresa), 3, 0) + " - " + be.NomeFantasia);
-                else
+                }else{
                     combo_empresas      .addItem(fc.FormataCampo(String.valueOf(bge.CodigoGrupo), 2, 0) + "." + bge.nomeGrupo +  " - " + fc.FormataCampo(String.valueOf(be.CodigoEmpresa), 3, 0) + "." + be.NomeFantasia);
+                }
+            }
         }
         addEmp = "S";
     }
@@ -1255,8 +1292,9 @@ public class UsuariosCadastro extends javax.swing.JFrame {
         fatal = "N";
         txt_codigoUsuario.setText(fc.FormataCampo(txt_codigoUsuario.getText(), 3, 0));
         bu.codigoUsuario = Integer.parseInt(txt_codigoUsuario.getText());
-        if(bu.codigoUsuario == 0)
+        if(bu.codigoUsuario == 0){
             return;
+        }
         sql = "select * from tb_usuarios where idEmpresa = " + parametrosNS.be.IdEmpresa + " and codigoUsuario = " + bu.codigoUsuario + ";";
         dadosUsuarios.clear();
         dadosUsuarios = parametrosNS.dao.Consulta(sql);
@@ -1283,48 +1321,28 @@ public class UsuariosCadastro extends javax.swing.JFrame {
     private void PegaDadosUsuario(){
         for(int i =0; i < dadosUsuarios.size(); i++){
             bu = new BeanUsuarios();
-            if(dadosUsuarios.get(i).get(0) != null)
-                bu.idUsuario            = Integer.parseInt(  String.valueOf(dadosUsuarios.get(i).get(0)));
-            if(dadosUsuarios.get(i).get(1) != null)
-                bu.idEmpresa            = Integer.parseInt(  String.valueOf(dadosUsuarios.get(i).get(1)));
-            if(dadosUsuarios.get(i).get(2) != null)
-                bu.codigoGrupo          = Integer.parseInt(  String.valueOf(dadosUsuarios.get(i).get(2)));
-            if(dadosUsuarios.get(i).get(3) != null)
-                bu.codigoEmpresa        = Integer.parseInt(  String.valueOf(dadosUsuarios.get(i).get(3)));
-            if(dadosUsuarios.get(i).get(4) != null)
-                bu.codigoUsuario        = Integer.parseInt(  String.valueOf(dadosUsuarios.get(i).get(4)));
-            if(dadosUsuarios.get(i).get(5) != null)
-                bu.dataCriacao          =                    String.valueOf(dadosUsuarios.get(i).get(5));
-            if(dadosUsuarios.get(i).get(6) != null)
-                bu.nome                 =                    String.valueOf(dadosUsuarios.get(i).get(6));
-            if(dadosUsuarios.get(i).get(7) != null)
-                bu.usuario              =                    String.valueOf(dadosUsuarios.get(i).get(7));
-            if(dadosUsuarios.get(i).get(8) != null)
-                bu.senha                =                    String.valueOf(dadosUsuarios.get(i).get(8));
-            if(dadosUsuarios.get(i).get(9) != null)
-                bu.telefone             =                    String.valueOf(dadosUsuarios.get(i).get(9));
-            if(dadosUsuarios.get(i).get(10) != null)
-                bu.codigoDepartamento   = Integer.parseInt(  String.valueOf(dadosUsuarios.get(i).get(10)));
-            if(dadosUsuarios.get(i).get(11) != null)
-                bu.nivelUsuario         = Integer.parseInt(  String.valueOf(dadosUsuarios.get(i).get(11)));
-            if(dadosUsuarios.get(i).get(12) != null)
-                bu.podeMudarEmpresa     = Integer.parseInt(  String.valueOf(dadosUsuarios.get(i).get(12)));
-            if(dadosUsuarios.get(i).get(13) != null)
-                bu.observacoes          =                    String.valueOf(dadosUsuarios.get(i).get(13));
-            if(dadosUsuarios.get(i).get(14) != null)
-                bu.nomeConexao          =                    String.valueOf(dadosUsuarios.get(i).get(14));
-            if(dadosUsuarios.get(i).get(15) != null)
-                bu.dataAlterou          =                    String.valueOf(dadosUsuarios.get(i).get(15));
-            if(dadosUsuarios.get(i).get(16) != null)
-                bu.horaAlterou          =                    String.valueOf(dadosUsuarios.get(i).get(16));
-            if(dadosUsuarios.get(i).get(17) != null)
-                bu.usuarioAlterou       = Integer.parseInt(  String.valueOf(dadosUsuarios.get(i).get(17)));
-            if(dadosUsuarios.get(i).get(18) != null)
-                bu.idEmpresaAlterou     = Integer.parseInt(  String.valueOf(dadosUsuarios.get(i).get(18)));
-            if(dadosUsuarios.get(i).get(19) != null)
-                bu.codigoGrupoAlterou   = Integer.parseInt(  String.valueOf(dadosUsuarios.get(i).get(19)));
-            if(dadosUsuarios.get(i).get(20) != null)
-                bu.codigoEmpresaAlterou = Integer.parseInt(  String.valueOf(dadosUsuarios.get(i).get(20)));
+            if(dadosUsuarios.get(i).get(0)  != null){bu.idUsuario            = Integer.parseInt(  String.valueOf(dadosUsuarios.get(i).get(0)));}
+            if(dadosUsuarios.get(i).get(1)  != null){bu.idEmpresa            = Integer.parseInt(  String.valueOf(dadosUsuarios.get(i).get(1)));}
+            if(dadosUsuarios.get(i).get(2)  != null){bu.codigoGrupo          = Integer.parseInt(  String.valueOf(dadosUsuarios.get(i).get(2)));}
+            if(dadosUsuarios.get(i).get(3)  != null){bu.codigoEmpresa        = Integer.parseInt(  String.valueOf(dadosUsuarios.get(i).get(3)));}
+            if(dadosUsuarios.get(i).get(4)  != null){bu.codigoUsuario        = Integer.parseInt(  String.valueOf(dadosUsuarios.get(i).get(4)));}
+            if(dadosUsuarios.get(i).get(5)  != null){bu.dataCriacao          =                    String.valueOf(dadosUsuarios.get(i).get(5));}
+            if(dadosUsuarios.get(i).get(6)  != null){bu.name                 =                    String.valueOf(dadosUsuarios.get(i).get(6));}
+            if(dadosUsuarios.get(i).get(7)  != null){bu.usuario              =                    String.valueOf(dadosUsuarios.get(i).get(7));}
+            if(dadosUsuarios.get(i).get(8)  != null){bu.senha                =                    String.valueOf(dadosUsuarios.get(i).get(8));}
+            if(dadosUsuarios.get(i).get(9)  != null){bu.telefone             =                    String.valueOf(dadosUsuarios.get(i).get(9));}
+            if(dadosUsuarios.get(i).get(10) != null){bu.email                =                    String.valueOf(dadosUsuarios.get(i).get(10));}
+            if(dadosUsuarios.get(i).get(11) != null){bu.codigoDepartamento   = Integer.parseInt(  String.valueOf(dadosUsuarios.get(i).get(11)));}
+            if(dadosUsuarios.get(i).get(12) != null){bu.nivelUsuario         = Integer.parseInt(  String.valueOf(dadosUsuarios.get(i).get(12)));}
+            if(dadosUsuarios.get(i).get(13) != null){bu.podeMudarEmpresa     = Integer.parseInt(  String.valueOf(dadosUsuarios.get(i).get(13)));}
+            if(dadosUsuarios.get(i).get(14) != null){bu.observacoes          =                    String.valueOf(dadosUsuarios.get(i).get(14));}
+            if(dadosUsuarios.get(i).get(15) != null){bu.nomeConexao          =                    String.valueOf(dadosUsuarios.get(i).get(15));}
+            if(dadosUsuarios.get(i).get(16) != null){bu.dataAlterou          =                    String.valueOf(dadosUsuarios.get(i).get(16));}
+            if(dadosUsuarios.get(i).get(17) != null){bu.horaAlterou          =                    String.valueOf(dadosUsuarios.get(i).get(17));}
+            if(dadosUsuarios.get(i).get(18) != null){bu.usuarioAlterou       = Integer.parseInt(  String.valueOf(dadosUsuarios.get(i).get(18)));}
+            if(dadosUsuarios.get(i).get(19) != null){bu.idEmpresaAlterou     = Integer.parseInt(  String.valueOf(dadosUsuarios.get(i).get(19)));}
+            if(dadosUsuarios.get(i).get(20) != null){bu.codigoGrupoAlterou   = Integer.parseInt(  String.valueOf(dadosUsuarios.get(i).get(20)));}
+            if(dadosUsuarios.get(i).get(21) != null){bu.codigoEmpresaAlterou = Integer.parseInt(  String.valueOf(dadosUsuarios.get(i).get(21)));}
         }
         
 //        bue.idUsuario   = bu.idUsuario;
@@ -1333,22 +1351,27 @@ public class UsuariosCadastro extends javax.swing.JFrame {
         bu.senha = parametrosNS.crpt.CriptografaManualmente(bu.senha);
         txt_codigoUsuario       .setText(fc.FormataCampo(String.valueOf(bu.codigoUsuario), 3, 0));
         bu.dataCriacao = parametrosNS.invdata.inverterData(bu.dataCriacao, 1);
-        txt_datacriacao.setText(bu.dataCriacao);
-        txt_nome                .setText(bu.nome);
-        if(bu.podeMudarEmpresa != 0)check_mudarEmpresa.setSelected(true);
+        txt_datacriacao         .setText(bu.dataCriacao);
+        txt_name                .setText(bu.name);
+        if(bu.podeMudarEmpresa != 0){
+            check_mudarEmpresa.setSelected(true);
+        }
         txt_usuario             .setText(bu.usuario);
         txt_senha               .setText(bu.senha);
-        txt_telefone.setText(bu.telefone);
-        if(parametrosNS.bu.codigoUsuario != 999)
+        txt_telefone            .setText(bu.telefone);
+        txt_email               .setText(bu.email);
+        if(parametrosNS.bu.codigoUsuario != 999){
             combo_empresas.setSelectedIndex(bu.codigoEmpresa);
-        else
+        }else{
             combo_empresas.setSelectedIndex(bu.idEmpresa);
+        }
         combo_departamento.setSelectedIndex(bu.codigoDepartamento);
         
-        if(bu.nivelUsuario == 9)
+        if(bu.nivelUsuario == 9){
             combo_nivelUsuario.setSelectedIndex(5);
-        else
+        }else{
             combo_nivelUsuario.setSelectedIndex(bu.nivelUsuario);
+        }
         
         txt_observacoes.setText(bu.observacoes);
         
@@ -1366,8 +1389,9 @@ public class UsuariosCadastro extends javax.swing.JFrame {
         }
         
         PegaImagemUsuario();
-        if(bu.imagemUsuario == null)
+        if(bu.imagemUsuario == null){
             return;
+        }
         try{
             BuffImg = ImageIO.read(new ByteArrayInputStream(bu.imagemUsuario));
             imgIcon = new ImageIcon(BuffImg);
@@ -1555,14 +1579,16 @@ public class UsuariosCadastro extends javax.swing.JFrame {
     
     public void ReiniciaCampos(){
         txt_codigoUsuario           .setText("");
-        txt_nome                    .setText("");
+        txt_name                    .setText("");
         check_mudarEmpresa          .setSelected(false);
         txt_usuario                 .setText("");
         txt_senha                   .setText("");
         txt_telefone                .setText("");
+        txt_email                   .setText("");
         txt_datacriacao             .setText(cdh.CapturarData());
-        if(combo_departamento.getItemCount() > 0)
+        if(combo_departamento.getItemCount() > 0){
             combo_departamento          .setSelectedIndex(0);
+        }
         combo_nivelUsuario          .setSelectedIndex(0);
         combo_empresas              .setSelectedIndex(0);
         txt_observacoes             .setText("");
@@ -1587,8 +1613,8 @@ public class UsuariosCadastro extends javax.swing.JFrame {
     }
     
     private void HabilitaCampos(boolean Habilita){
-        txt_nome                    .setEditable    (Habilita);
-        txt_nome                    .setFocusable   (Habilita);
+        txt_name                    .setEditable    (Habilita);
+        txt_name                    .setFocusable   (Habilita);
         check_mudarEmpresa          .setEnabled     (Habilita);
         check_mudarEmpresa          .setFocusable   (Habilita);
         txt_usuario                 .setEditable    (Habilita);
@@ -1597,8 +1623,8 @@ public class UsuariosCadastro extends javax.swing.JFrame {
         txt_senha                   .setFocusable   (Habilita);
         txt_telefone                .setEditable    (Habilita);
         txt_telefone                .setFocusable   (Habilita);
-//        txt_email                   .setEditable    (Habilita);
-//        txt_email                   .setFocusable   (Habilita);
+        txt_email                   .setEditable    (Habilita);
+        txt_email                   .setFocusable   (Habilita);
         combo_departamento          .setEnabled     (Habilita);
         combo_departamento          .setFocusable   (Habilita);
         combo_nivelUsuario          .setEnabled     (Habilita);
@@ -1626,10 +1652,11 @@ public class UsuariosCadastro extends javax.swing.JFrame {
         bu.codigoGrupo      = Integer.parseInt(String.valueOf(combo_empresas.getSelectedItem()).substring(0, 2));
         bge.CodigoGrupo             = bu.codigoGrupo;
         CarregarGruposEEmpresas("N");
-        if(parametrosNS.bu.codigoUsuario == 999)
+        if(parametrosNS.bu.codigoUsuario == 999){
             bu.codigoEmpresa            = Integer.parseInt(String.valueOf(combo_empresas.getSelectedItem()).substring(6 + bge.nomeGrupo.length(), 9 + bge.nomeGrupo.length()));
-        else
+        }else{
             bu.codigoEmpresa            = Integer.parseInt(String.valueOf(combo_empresas.getSelectedItem()).substring(3, 6));
+        }
         be.codigoEmpresa            = bu.codigoEmpresa;
         CarregarGruposEEmpresas("SN");
         bu.idEmpresa                = be.idEmpresa;
@@ -1645,16 +1672,18 @@ public class UsuariosCadastro extends javax.swing.JFrame {
             codigoEmpresa = parametrosNS.be.CodigoEmpresa;
             parametrosNS.be.CodigoEmpresa = be.codigoEmpresa;
             bu.codigoUsuario            = PegProReg.PegaProximoRegistro("tb_usuarios", "codigoUsuario", "");
-            if(parametrosNS.bu.codigoUsuario != 999)
+            if(parametrosNS.bu.codigoUsuario != 999){
                 parametrosNS.bge.codigoGrupo = codigoGrupo;
-            else
+            }else{
                 parametrosNS.bge.CodigoGrupo = codigoGrupo;
+            }
             parametrosNS.be.CodigoEmpresa = codigoEmpresa;
-        }else
+        }else{
             bu.codigoUsuario    = Integer.parseInt(txt_codigoUsuario.getText());
+        }
         
         bu.dataCriacao              = validaData.ValidaData(txt_datacriacao.getText());
-        bu.nome                     = txt_nome.getText();
+        bu.name                     = txt_name.getText();
         bu.usuario                  = txt_usuario.getText();
         bu.senha                    = txt_senha.getText();
         bu.telefone                 = txt_telefone.getText();
@@ -1662,17 +1691,32 @@ public class UsuariosCadastro extends javax.swing.JFrame {
         bu.telefone                 = bu.telefone.replace(")", "");
         bu.telefone                 = bu.telefone.replace(" ", "");
         bu.telefone                 = bu.telefone.replace("-", "");
-        if(!bu.telefone.equals(""))
+        if(!bu.telefone.equals("")){
             bu.telefone             = "'" + bu.telefone + "'";
-        else
+        }else{
             bu.telefone             = null;
+        }
+        
+        bu.email    = txt_email.getText().replace(" ", "");
+        if(!bu.email.equals("")){
+            for(int i = 0; i < bu.email.length(); i++){
+                fatal = "N";
+                if(!bu.email.substring(i, i + 1).equals("@")){
+                    fatal = "S";
+                }
+            }
+            bu.email = "'" + bu.email + "'";
+        }else{
+            bu.email = null;
+        }
+        
         bu.observacoes              = txt_observacoes.getText();
         
-        if(bu.nome.equals("")){
+        if(bu.name.equals("")){
             mensagem = "Nome inválido!!!";
             fatal = "S";
             new MostraMensagem(mensagem);
-            txt_nome.grabFocus();
+            txt_name.grabFocus();
             return;
         }
         if(bu.usuario.equals("")){
@@ -1714,10 +1758,11 @@ public class UsuariosCadastro extends javax.swing.JFrame {
             return;
         }
         bu.dataCriacao = parametrosNS.invdata.inverterData(txt_datacriacao.getText(), 2);
-        if(check_mudarEmpresa.isSelected() == false)
+        if(check_mudarEmpresa.isSelected() == false){
             bu.podeMudarEmpresa = 0;
-        else
+        }else{
             bu.podeMudarEmpresa = 1;
+        }
         
         bu.idEmpresaAlterou     = parametrosNS.bu.idEmpresa;
         bu.codigoGrupoAlterou   = parametrosNS.bu.codigoGrupo;
@@ -1780,17 +1825,17 @@ public class UsuariosCadastro extends javax.swing.JFrame {
     
     private void IncluirUsuario(){
         PegaValores();
-        if(fatal.equals("S"))
+        if(fatal.equals("S")){
             return;
-        
+        }
         if(parametrosNS.bu.codigoUsuario == 999){
             parametrosNS.bge.CodigoGrupo  = bge.CodigoGrupo;
             parametrosNS.be.CodigoEmpresa = bu.codigoEmpresa;
             bu.codigoUsuario = PegProReg.PegaProximoRegistro("tb_usuarios", "codigoUsuario", "");
         }
         
-        sql = "insert into tb_usuarios (idEmpresa, codigoGrupo, codigoEmpresa, codigoUsuario, dataCriacao, nome, usuario, senha, telefone, codigoDepartamento, nivelUsuario, podeMudarEmpresa, observacoes) "
-            + "values (" + bu.idEmpresa + ", " + bu.codigoGrupo + ", " + bu.codigoEmpresa + ", " + bu.codigoUsuario + ", '" + bu.dataCriacao + "', '" + bu.nome + "', '" + bu.usuario + "', '" + bu.senha + "', " + bu.telefone + ", " + bu.codigoDepartamento + ", " + bu.nivelUsuario + ", " + bu.podeMudarEmpresa + ", '" + bu.observacoes + "');";
+        sql = "insert into tb_usuarios (idEmpresa, codigoGrupo, codigoEmpresa, codigoUsuario, dataCriacao, name, usuario, senha, telefone, email, codigoDepartamento, nivelUsuario, podeMudarEmpresa, observacoes) "
+            + "values (" + bu.idEmpresa + ", " + bu.codigoGrupo + ", " + bu.codigoEmpresa + ", " + bu.codigoUsuario + ", '" + bu.dataCriacao + "', '" + bu.name + "', '" + bu.usuario + "', '" + bu.senha + "', " + bu.telefone + ", '" + bu.email + "', " + bu.codigoDepartamento + ", " + bu.nivelUsuario + ", " + bu.podeMudarEmpresa + ", '" + bu.observacoes + "');";
         
         sqlstate = parametrosNS.dao.incluirRegistro(sql);
         if(!sqlstate.equals("00000")){
@@ -1815,10 +1860,11 @@ public class UsuariosCadastro extends javax.swing.JFrame {
         sql = "update tb_usuarios set idEmpresa = "             + bu.idEmpresa            + ", "  +
                                      "codigoEmpresa = "         + bu.codigoEmpresa        + ", "  +
                                      "dataCriacao = '"          + bu.dataCriacao          + "', " +
-                                     "nome = '"                 + bu.nome                 + "', " +
+                                     "name = '"                 + bu.name                 + "', " +
                                      "usuario = '"              + bu.usuario              + "', " +
                                      "senha = '"                + bu.senha                + "', " +
                                      "telefone = "              + bu.telefone             + ", "  +
+                                     "email = "                 + bu.email                + ", "  +
                                      "codigoDepartamento = "    + bu.codigoDepartamento   + ", "  +
                                      "nivelUsuario = "          + bu.nivelUsuario         + ", "  +
                                      "podeMudarEmpresa = "      + bu.podeMudarEmpresa     + ", "  +

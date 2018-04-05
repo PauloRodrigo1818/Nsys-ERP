@@ -1557,15 +1557,17 @@ public class GerarBoletoBradesco extends javax.swing.JFrame {
     }
     
     private void PegaDadosUsuario(){
-        for(int i = 0; i < dadosUsuario.size(); i++)
+        for(int i = 0; i < dadosUsuario.size(); i++){
             bu.usuario = String.valueOf(  dadosUsuario.get(i).get(0));
+        }
     }
     
     private void PegaCliente(){
         fatal           = "N";
         bc.nome         = "";
-        if(bc.codigoCliente == 0)
+        if(bc.codigoCliente == 0){
             return;
+        }
         sql = "select idCliente, codigoGrupo, codigoEmpresa, codigoCliente, cpfCnpj, nome from tb_clientes where idEmpresa = " + parametrosNS.be.IdEmpresa + " and codigoCliente = " + bc.codigoCliente + ";";
         dadosCliente.clear();
         dadosCliente = parametrosNS.dao.Consulta(sql);
@@ -1583,13 +1585,13 @@ public class GerarBoletoBradesco extends javax.swing.JFrame {
     
     private void PegaDadosCliente(){
         for(int i = 0; i < dadosCliente.size(); i++){
-            bc.idCliente            = Integer.parseInt(  String.valueOf(dadosCliente.get(i).get(0)));
-            bc.idEmpresa            = Integer.parseInt(  String.valueOf(dadosCliente.get(i).get(1)));
-            bc.codigoGrupo          = Integer.parseInt(  String.valueOf(dadosCliente.get(i).get(2)));
-            bc.codigoEmpresa        = Integer.parseInt(  String.valueOf(dadosCliente.get(i).get(3)));
-            bc.codigoCliente        = Integer.parseInt(  String.valueOf(dadosCliente.get(i).get(4)));
-            bc.cpfCnpj              =                    String.valueOf(dadosCliente.get(i).get(5));
-            bc.nome                 =                    String.valueOf(dadosCliente.get(i).get(6));
+            if(dadosCliente.get(i).get(0) != null)bc.idCliente            = Integer.parseInt(String.valueOf(dadosCliente.get(i).get(0)));
+            if(dadosCliente.get(i).get(1) != null)bc.idEmpresa            = Integer.parseInt(String.valueOf(dadosCliente.get(i).get(1)));
+            if(dadosCliente.get(i).get(2) != null)bc.codigoGrupo          = Integer.parseInt(String.valueOf(dadosCliente.get(i).get(2)));
+            if(dadosCliente.get(i).get(3) != null)bc.codigoEmpresa        = Integer.parseInt(String.valueOf(dadosCliente.get(i).get(3)));
+            if(dadosCliente.get(i).get(4) != null)bc.codigoCliente        = Integer.parseInt(String.valueOf(dadosCliente.get(i).get(4)));
+            if(dadosCliente.get(i).get(5) != null)bc.cpfCnpj              =                  String.valueOf(dadosCliente.get(i).get(5));
+            if(dadosCliente.get(i).get(6) != null)bc.nome                 =                  String.valueOf(dadosCliente.get(i).get(6));
         }
     }
     

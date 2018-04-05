@@ -29,7 +29,7 @@ public class NegociosCadastro extends javax.swing.JFrame {
     //Vetores 
     ArrayList<ArrayList> dadosNegocio = new ArrayList();
     ArrayList<ArrayList> dadosCEP     = new ArrayList();
-       
+    
     //DefaultTableModel
     DefaultTableModel tb0;
     DefaultTableModel tb1;

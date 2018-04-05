@@ -547,8 +547,9 @@ public class LogAcesso extends javax.swing.JFrame {
         Combo_ordem.setSelectedIndex(1);
         VerificaCombo();
         
-        if(parametrosNS.bu.codigoUsuario != 999)
+        if(parametrosNS.bu.codigoUsuario != 999){
             check_todasEmpresas.setVisible(false);
+        }
         
         txt_datainicial .setText(parametrosNS.cdh.CapturarData());
         txt_datafinal   .setText(parametrosNS.cdh.CapturarData());

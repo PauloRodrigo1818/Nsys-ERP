@@ -1219,8 +1219,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
         bla.idLogAcesso = Integer.parseInt(  String.valueOf(dadosLogAcesso.get(0).get(0)));
         sql = "update tb_logacesso set horaSaida = '" + cdh.CapturaHora() + "', atualizado = 1 where idEmpresa = " + bla.idEmpresa + " and idLogAcesso = " + bla.idLogAcesso + ";";
         sqlstate = parametrosNS.dao.AlterarRegistroOuConsultaSeTabelaExiste(sql, "S");
-        if(!sqlstate.equals("00000"))
+        if(!sqlstate.equals("00000")){
             return;
+        }
         bu.idEmpresa     = bla.idEmpresa;
         bu.codigoGrupo   = bla.codigoGrupo;
         bu.codigoEmpresa = bla.codigoEmpresa;

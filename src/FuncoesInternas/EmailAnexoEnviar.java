@@ -54,7 +54,7 @@ public class EmailAnexoEnviar {
         try{
             MulPartEmail.setHostName(parametrosNS.bue.servidorEmail);
             MulPartEmail.addTo      (destinatarioEmail.replace(" ", "").replace(";", ""));
-            MulPartEmail.setFrom    (parametrosNS.bue.email, parametrosNS.bu.nome);
+            MulPartEmail.setFrom    (parametrosNS.bue.email, parametrosNS.bu.name);
             MulPartEmail.setSubject (assuntoEmail);
             MulPartEmail.setMsg     (mensagemEmail);
             MulPartEmail.setAuthentication(parametrosNS.bue.usuarioServidorEmail, parametrosNS.bue.senhaServidorEmail);

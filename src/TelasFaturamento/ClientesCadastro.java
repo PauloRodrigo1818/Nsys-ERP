@@ -1964,8 +1964,9 @@ public class ClientesCadastro extends javax.swing.JFrame {
         bc.cep = txt_cep.getText();
         bc.cep = bc.cep.replace(" ", "");
         bc.cep = bc.cep.replace("-", "");
-        if(bc.cep.equals(""))
+        if(bc.cep.equals("")){
             return;
+        }
         sql = "select * from ns_cep where cep = " + bc.cep + ";";
         dadosCEP.clear();
         dadosCEP = parametrosNS.dao.Consulta(sql);
@@ -1979,11 +1980,12 @@ public class ClientesCadastro extends javax.swing.JFrame {
     
     private void PreencherCEP(){
         for(int i = 0; i < dadosCEP.size(); i++){
-            bcep.cep        = String.valueOf(dadosCEP.get(i).get(0));
-            bcep.endereco   = String.valueOf(dadosCEP.get(i).get(1));
-            bcep.cidade     = String.valueOf(dadosCEP.get(i).get(2));
-            bcep.bairro     = String.valueOf(dadosCEP.get(i).get(3));
-            bcep.uf         = String.valueOf(dadosCEP.get(i).get(4));
+            bcep = new BeanCEP();
+            if(dadosCEP.get(i).get(0) != null){bcep.cep        = String.valueOf(dadosCEP.get(i).get(0));}
+            if(dadosCEP.get(i).get(1) != null){bcep.endereco   = String.valueOf(dadosCEP.get(i).get(1));}
+            if(dadosCEP.get(i).get(2) != null){bcep.cidade     = String.valueOf(dadosCEP.get(i).get(2));}
+            if(dadosCEP.get(i).get(3) != null){bcep.bairro     = String.valueOf(dadosCEP.get(i).get(3));}
+            if(dadosCEP.get(i).get(4) != null){bcep.uf         = String.valueOf(dadosCEP.get(i).get(4));}
         }
         txt_cep.setText(bcep.cep);
         txt_cidade.setText(bcep.cidade);
@@ -1995,7 +1997,7 @@ public class ClientesCadastro extends javax.swing.JFrame {
         PegaPais();
     }
 
-    private void PegaUF() {
+    private void PegaUF(){
         combo_UF.removeAllItems();
         combo_UF.addItem("");
         sql = "select uf from ns_estados;";
@@ -2011,14 +2013,17 @@ public class ClientesCadastro extends javax.swing.JFrame {
     
     private void PegaDadosUF(){
         for(int i = 0; i < dadosEstados.size(); i++){
-            best.uf = String.valueOf(dadosEstados.get(i).get(0));
-            combo_UF.addItem(best.uf);
+            if(dadosEstados.get(i).get(0) != null){
+                best.uf = String.valueOf(dadosEstados.get(i).get(0));
+                combo_UF.addItem(best.uf);
+            }
         }
     }
     
     private void PegaPais(){
-        if(abriuPais == 1)
+        if(abriuPais == 1){
             return;
+        }
         bpais.codigoPais = Integer.parseInt(fc.FormataCampo(txt_codigoPais.getText(), 4, 0));
         if(bpais.codigoPais == 0){
             HabilitaBotoes();
@@ -2037,8 +2042,9 @@ public class ClientesCadastro extends javax.swing.JFrame {
     
     private void PegaDadosPais(){
         for(int i = 0; i < dadosPaises.size(); i++){
-            bpais.codigoPais = Integer.parseInt(  String.valueOf(dadosPaises.get(i).get(0)));
-            bpais.nomePais   =                    String.valueOf(dadosPaises.get(i).get(1));
+            bpais = new BeanPais();
+            if(dadosPaises.get(i).get(0) != null){bpais.codigoPais = Integer.parseInt(  String.valueOf(dadosPaises.get(i).get(0)));}
+            if(dadosPaises.get(i).get(1) != null){bpais.nomePais   =                    String.valueOf(dadosPaises.get(i).get(1));}
         }
         txt_codigoPais.setText(fc.FormataCampo(txt_codigoPais.getText(), 4, 0));
         label_pais.setText(bpais.nomePais);
@@ -2081,9 +2087,11 @@ public class ClientesCadastro extends javax.swing.JFrame {
         sql = "select max(codigoCliente) from tb_clientes where codigoGrupo = " + parametrosNS.bge.codigoGrupo + " and codigoEmpresa = " + parametrosNS.be.CodigoEmpresa + ";";
         dadosAutoIncremento.clear();
         dadosAutoIncremento = parametrosNS.dao.Consulta(sql);
-        if(!dadosAutoIncremento.isEmpty())
-            if(dadosAutoIncremento.get(0).get(0) != null)
+        if(!dadosAutoIncremento.isEmpty()){
+            if(dadosAutoIncremento.get(0).get(0) != null){
                 UltimoRegistro = Integer.parseInt(String.valueOf(dadosAutoIncremento.get(0).get(0)));
+            }
+        }
     }
     
     private void ReiniciaTela(boolean Habilita){
@@ -2201,15 +2209,17 @@ public class ClientesCadastro extends javax.swing.JFrame {
         bc.codigoGrupo      = parametrosNS.bge.CodigoGrupo;
         bc.codigoEmpresa    = parametrosNS.be.CodigoEmpresa;
         bc.codigoCliente    = Integer.parseInt(txt_codigoCliente.getText());
-        if(check_bloqueado.isSelected() == false)
+        if(check_bloqueado.isSelected() == false){
             bc.statusCliente    = 0;
-        else
+        }else{
             bc.statusCliente    = 1;
+        }
         bc.fisicaJuridica   = combo_pessoa.getSelectedIndex();
-        if(chech_NaoInformar.isSelected() == false)
+        if(chech_NaoInformar.isSelected() == false){
             bc.cpfCnpjNaoInformado = 0;
-        else
+        }else{
             bc.cpfCnpjNaoInformado = 1;
+        }
         if(ValidadorCpfCnpj == false){
             mensagem = "CPF ou CNPJ inválido!";
             new MostraMensagem(mensagem);
@@ -2220,8 +2230,9 @@ public class ClientesCadastro extends javax.swing.JFrame {
         bc.cpfCnpj2 = txt_cpfcnpj2.getText().replace(" ", "");
         bc.cpfCnpj3 = txt_cpfcnpj3.getText().replace(" ", "");
         bc.cpfCnpj = bc.cpfCnpj1 + bc.cpfCnpj2 + bc.cpfCnpj3;
-        if(bc.cpfCnpj.equals(""))
+        if(bc.cpfCnpj.equals("")){
             bc.cpfCnpj = fc.FormataCampo("", 15, 0);
+        }
         if(ValidadorIE == false){
             mensagem = "Inscrição Estadual Inválida!";
             new MostraMensagem(mensagem);
@@ -2240,10 +2251,11 @@ public class ClientesCadastro extends javax.swing.JFrame {
         bc.dataNascAber         = txt_nascimento.getText();
         bc.dataNascAber         = bc.dataNascAber.replace(" ", "");
         bc.dataNascAber         = bc.dataNascAber.replace("/", "");
-        if(!bc.dataNascAber.equals("") & Integer.parseInt(parametrosNS.fc.FormataCampo(bc.dataNascAber, 8, 0)) != 0)
+        if(!bc.dataNascAber.equals("") & Integer.parseInt(parametrosNS.fc.FormataCampo(bc.dataNascAber, 8, 0)) != 0){
             bc.dataNascAber     = "'" + invdata.inverterData(bc.dataNascAber, 2) + "'";
-        else
+        }else{
             bc.dataNascAber     = null;
+        }
         bc.dataCadastro         = invdata.inverterData(txt_dataCadastro.getText(), 2);
         bc.nome                 = txt_nome.getText();
         bc.sexo                 = combo_sexo.getSelectedIndex();
@@ -2253,10 +2265,11 @@ public class ClientesCadastro extends javax.swing.JFrame {
         bc.telefone             = bc.telefone.replace(")", "");
         bc.telefone             = bc.telefone.replace(" ", "");
         bc.telefone             = bc.telefone.replace("-", "");
-        if(!bc.telefone.equals(""))
+        if(!bc.telefone.equals("")){
             bc.telefone     = "'" + bc.telefone + "'";
-        else
+        }else{
             bc.telefone     = null;
+        }
         bc.contato              = txt_contato.getText();
         bc.email                = txt_email.getText();
         bc.cei                  = txt_cei.getText();
@@ -2265,20 +2278,22 @@ public class ClientesCadastro extends javax.swing.JFrame {
         bc.celular              = bc.celular.replace(")", "");
         bc.celular              = bc.celular.replace(" ", "");
         bc.celular              = bc.celular.replace("-", "");
-        if(!bc.celular.equals(""))
+        if(!bc.celular.equals("")){
             bc.celular      = "'" + bc.celular + "'";
-        else
+        }else{
             bc.celular      = null;
+        }
         bc.profissao            = txt_profissao.getText();
         bc.site                 = txt_site.getText();
         bc.contrato             = txt_contrato.getText();
         bc.cep                  = txt_cep.getText();
         bc.cep                  = bc.cep.replace(" ", "");
         bc.cep                  = bc.cep.replace("-", "");
-        if(!bc.cep.equals(""))
+        if(!bc.cep.equals("")){
             bc.cep  = "'" + txt_cep.getText() + "'";
-        else
+        }else{
             bc.cep  = null;
+        }
         bc.cidade               = txt_cidade.getText();
         bc.bairro               = txt_bairro.getText();
         bc.endereco             = txt_endereco.getText();
@@ -2309,8 +2324,9 @@ public class ClientesCadastro extends javax.swing.JFrame {
     }
     
     private void PegaDadosUsuario(){
-        for(int i = 0; i < dadosUsuario.size(); i++)
+        for(int i = 0; i < dadosUsuario.size(); i++){
             bu.usuario              = String.valueOf(dadosUsuario.get(i).get(0));
+        }
     }
     
     private void VerificaSexo(){

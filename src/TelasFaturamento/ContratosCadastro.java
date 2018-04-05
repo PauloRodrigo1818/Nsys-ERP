@@ -456,10 +456,12 @@ public class ContratosCadastro extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txt_codigoContratoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_codigoContratoFocusGained
-        if(txt_codigoContrato.isEditable() == false)
+        if(txt_codigoContrato.isEditable() == false){
             return;
-        if(somostra.equals("S"))
+        }
+        if(somostra.equals("S")){
             return;
+        }
         operacao = "";
         ReiniciaCampos();
         HabilitaBotoes();
@@ -467,16 +469,19 @@ public class ContratosCadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_codigoContratoFocusGained
 
     private void txt_codigoContratoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_codigoContratoFocusLost
-        if(txt_codigoContrato.isEditable() == false)
+        if(txt_codigoContrato.isEditable() == false){
             return;
-        if(txt_codigoContrato.getText().replace(" ", "").equals(""))
+        }
+        if(txt_codigoContrato.getText().replace(" ", "").equals("")){
             return;
+        }
         PegaContrato();
     }//GEN-LAST:event_txt_codigoContratoFocusLost
 
     private void txt_codigoContratoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_codigoContratoKeyPressed
-        if(evt.getKeyCode() == KeyEvent.VK_ENTER)
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
             txt_codigoCliente.grabFocus();
+        }
     }//GEN-LAST:event_txt_codigoContratoKeyPressed
 
     private void bt_novoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_novoActionPerformed
@@ -492,27 +497,33 @@ public class ContratosCadastro extends javax.swing.JFrame {
         
         operacao = "I";
         HabilitaBotoes();
-        if(txt_codigoCliente.getText().replace(" ", "").equals(""))
+        if(txt_codigoCliente.getText().replace(" ", "").equals("")){
             txt_codigoCliente.grabFocus();
-        else
+        }else{
             txt_valorContrato.grabFocus();
+        }
     }
     
     private void bt_incluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_incluirActionPerformed
         PegaValores();
-        if(fatal.equals("S"))return;
+        if(fatal.equals("S")){
+            return;
+        }
         
         sql = "insert into tb_contratos (idEmpresa, codigoGrupo, codigoEmpresa, codigoContrato, codigoCliente, codigoUsuario, valorContrato, dataCadastro, dataContrato, dataVencimento, dataReajuste, descricaoContrato, statusContrato) "
             + "values (" + bcon.idEmpresa + ", " + bcon.codigoGrupo + ", " + bcon.codigoEmpresa + ", " + bcon.codigoContrato + ", " + bcon.codigoCliente + ", " + bcon.codigoUsuario + ", " + bcon.valorContrato + ", '" + bcon.dataCadastro + "', '" + bcon.dataContrato + "', " + bcon.dataVencimento + ", '" + bcon.dataReajuste + "', '" + bcon.descricaoContrato + "', 0);";
         sqlstate = parametrosNS.dao.incluirRegistro(sql);
-        if(!sqlstate.equals("00000"))
+        if(!sqlstate.equals("00000")){
             return;
+        }
         txt_codigoContrato.grabFocus();
     }//GEN-LAST:event_bt_incluirActionPerformed
 
     private void bt_alterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_alterarActionPerformed
         PegaValores();
-        if(fatal.equals("S"))return;
+        if(fatal.equals("S")){
+            return;
+        }
         
         sql = "update tb_contratos set dataContrato = '"      + bcon.dataContrato         + "', " +
                                     "dataVencimento = "       + bcon.dataVencimento       + ", "  +
@@ -527,8 +538,9 @@ public class ContratosCadastro extends javax.swing.JFrame {
                                     "atualizado = 1 " +
                                     "where idContrato = " + bcon.idContrato   + ";";
         sqlstate = parametrosNS.dao.AlterarRegistroOuConsultaSeTabelaExiste(sql, "S");
-        if(!sqlstate.equals("00000"))
+        if(!sqlstate.equals("00000")){
             return;
+        }
         txt_codigoContrato.grabFocus();
     }//GEN-LAST:event_bt_alterarActionPerformed
 
@@ -561,19 +573,22 @@ public class ContratosCadastro extends javax.swing.JFrame {
         }
         abriuContratos = 0;
         retorno = ConCon.getRetornoContrato();
-        if(retorno.equals(""))
+        if(retorno.equals("")){
             return;
+        }
         txt_codigoContrato.setText(retorno);
         PegaContrato();
     }//GEN-LAST:event_formWindowGainedFocus
     
     private void AbreClientes(){
-        if(abriuClientes == 0)
+        if(abriuClientes == 0){
             return;
+        }
         abriuClientes = 0;
         retorno = CliCon.getRetorno();
-        if(retorno.equals(""))
+        if(retorno.equals("")){
             return;
+        }
         txt_codigoCliente.setText(retorno);
         PegaCliente();
     }
@@ -589,8 +604,9 @@ public class ContratosCadastro extends javax.swing.JFrame {
             bt_alterar                  .setVisible (false);
             bt_pesquisa                 .setVisible (false);
         }
-        if(somostra.equals("SN"))
+        if(somostra.equals("SN")){
             bt_pesquisa.setVisible(false);
+        }
         if(bcon.codigoContrato != 0){
             txt_codigoContrato.setText(String.valueOf(bcon.codigoContrato));
             PegaContrato();
@@ -605,19 +621,23 @@ public class ContratosCadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowOpened
 
     private void txt_codigoClienteFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_codigoClienteFocusGained
-        if(txt_codigoContrato.isEditable() == false)
+        if(txt_codigoContrato.isEditable() == false){
             return;
-        if(somostra.equals("S"))
+        }
+        if(somostra.equals("S")){
             return;
+        }
         txt_codigoCliente.setText("");
         label_nomeCliente.setText("");
     }//GEN-LAST:event_txt_codigoClienteFocusGained
 
     private void txt_codigoClienteFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_codigoClienteFocusLost
-        if(txt_codigoCliente.isEditable() == false)
+        if(txt_codigoCliente.isEditable() == false){
             return;
-        if(txt_codigoCliente.getText().replace(" ", "").equals(""))
+        }
+        if(txt_codigoCliente.getText().replace(" ", "").equals("")){
             return;
+        }
         PegaCliente();
     }//GEN-LAST:event_txt_codigoClienteFocusLost
 
@@ -639,17 +659,21 @@ public class ContratosCadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosed
 
     private void txt_valorContratoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_valorContratoFocusLost
-        if(txt_valorContrato.isEditable() == false)
+        if(txt_valorContrato.isEditable() == false){
             return;
-        if(!txt_valorContrato.getText().equals(""))
+        }
+        if(!txt_valorContrato.getText().equals("")){
             txt_valorContrato.setText(TransStrDou.TransformaValorStringeDouble(txt_valorContrato.getText(), 0));
+        }
     }//GEN-LAST:event_txt_valorContratoFocusLost
 
     private void txt_valorContratoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_valorContratoFocusGained
-        if(txt_valorContrato.isEditable() == false)
+        if(txt_valorContrato.isEditable() == false){
             return;
-        if(!txt_valorContrato.getText().equals(""))
+        }
+        if(!txt_valorContrato.getText().equals("")){
             txt_valorContrato.setText(TransStrDou.TransformaValorStringeDouble(txt_valorContrato.getText(), 1));
+        }
     }//GEN-LAST:event_txt_valorContratoFocusGained
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -761,48 +785,36 @@ public class ContratosCadastro extends javax.swing.JFrame {
     private void PegaDadosContrato(){
         for(int i = 0; i < dadosContratos.size(); i++){
             bcon = new BeanContratos();
-            if(dadosContratos.get(i).get(0) != null)
-                bcon.idContrato             = Integer.parseInt(  String.valueOf(dadosContratos.get(i).get(0)));
-            if(dadosContratos.get(i).get(1) != null)
-                bcon.idEmpresa              = Integer.parseInt(  String.valueOf(dadosContratos.get(i).get(1)));
-            if(dadosContratos.get(i).get(2) != null)
-                bcon.codigoGrupo            = Integer.parseInt(  String.valueOf(dadosContratos.get(i).get(2)));
-            if(dadosContratos.get(i).get(3) != null)
-                bcon.codigoEmpresa          = Integer.parseInt(  String.valueOf(dadosContratos.get(i).get(3)));
-            if(dadosContratos.get(i).get(4) != null)
-                bcon.codigoContrato         = Integer.parseInt(  String.valueOf(dadosContratos.get(i).get(4)));
-            if(dadosContratos.get(i).get(5) != null)
-                bcon.codigoCliente          = Integer.parseInt(  String.valueOf(dadosContratos.get(i).get(5)));
-            if(dadosContratos.get(i).get(6) != null)
-                bcon.codigoUsuario          = Integer.parseInt(  String.valueOf(dadosContratos.get(i).get(6)));
-            if(dadosContratos.get(i).get(7) != null)
-                bcon.valorContrato          = Double.parseDouble(String.valueOf(dadosContratos.get(i).get(7)));
-                bcon.dataCadastro           =                    String.valueOf(dadosContratos.get(i).get(8));
-                bcon.dataContrato           =                    String.valueOf(dadosContratos.get(i).get(9));
-                bcon.dataVencimento         =                    String.valueOf(dadosContratos.get(i).get(10));
-                bcon.dataReajuste           =                    String.valueOf(dadosContratos.get(i).get(11));
-                bcon.descricaoContrato      =                    String.valueOf(dadosContratos.get(i).get(12));
-            if(dadosContratos.get(i).get(13) != null)
-                bcon.statusContrato         = Integer.parseInt(  String.valueOf(dadosContratos.get(i).get(13)));
-                bcon.dataAlterou            =                    String.valueOf(dadosContratos.get(i).get(14));
-                bcon.horaAlterou            =                    String.valueOf(dadosContratos.get(i).get(15));
-            if(dadosContratos.get(i).get(16) != null)
-                bcon.usuarioAlterou         = Integer.parseInt(  String.valueOf(dadosContratos.get(i).get(16)));
-            if(dadosContratos.get(i).get(17) != null)
-                bcon.idEmpresaAlterou       = Integer.parseInt(  String.valueOf(dadosContratos.get(i).get(17)));
-            if(dadosContratos.get(i).get(18) != null)
-                bcon.codigoGrupoAlterou     = Integer.parseInt(  String.valueOf(dadosContratos.get(i).get(18)));
-            if(dadosContratos.get(i).get(19) != null)
-                bcon.codigoEmpresaAlterou   = Integer.parseInt(  String.valueOf(dadosContratos.get(i).get(19)));
+            if(dadosContratos.get(i).get(0)  != null)bcon.idContrato             = Integer.parseInt(  String.valueOf(dadosContratos.get(i).get(0)));
+            if(dadosContratos.get(i).get(1)  != null)bcon.idEmpresa              = Integer.parseInt(  String.valueOf(dadosContratos.get(i).get(1)));
+            if(dadosContratos.get(i).get(2)  != null)bcon.codigoGrupo            = Integer.parseInt(  String.valueOf(dadosContratos.get(i).get(2)));
+            if(dadosContratos.get(i).get(3)  != null)bcon.codigoEmpresa          = Integer.parseInt(  String.valueOf(dadosContratos.get(i).get(3)));
+            if(dadosContratos.get(i).get(4)  != null)bcon.codigoContrato         = Integer.parseInt(  String.valueOf(dadosContratos.get(i).get(4)));
+            if(dadosContratos.get(i).get(5)  != null)bcon.codigoCliente          = Integer.parseInt(  String.valueOf(dadosContratos.get(i).get(5)));
+            if(dadosContratos.get(i).get(6)  != null)bcon.codigoUsuario          = Integer.parseInt(  String.valueOf(dadosContratos.get(i).get(6)));
+            if(dadosContratos.get(i).get(7)  != null)bcon.valorContrato          = Double.parseDouble(String.valueOf(dadosContratos.get(i).get(7)));
+            if(dadosContratos.get(i).get(8)  != null)bcon.dataCadastro           =                    String.valueOf(dadosContratos.get(i).get(8));
+            if(dadosContratos.get(i).get(9)  != null)bcon.dataContrato           =                    String.valueOf(dadosContratos.get(i).get(9));
+            if(dadosContratos.get(i).get(10) != null)bcon.dataVencimento         =                    String.valueOf(dadosContratos.get(i).get(10));
+            if(dadosContratos.get(i).get(11) != null)bcon.dataReajuste           =                    String.valueOf(dadosContratos.get(i).get(11));
+            if(dadosContratos.get(i).get(12) != null)bcon.descricaoContrato      =                    String.valueOf(dadosContratos.get(i).get(12));
+            if(dadosContratos.get(i).get(13) != null)bcon.statusContrato         = Integer.parseInt(  String.valueOf(dadosContratos.get(i).get(13)));
+            if(dadosContratos.get(i).get(13) != null)bcon.dataAlterou            =                    String.valueOf(dadosContratos.get(i).get(14));
+            if(dadosContratos.get(i).get(13) != null)bcon.horaAlterou            =                    String.valueOf(dadosContratos.get(i).get(15));
+            if(dadosContratos.get(i).get(16) != null)bcon.usuarioAlterou         = Integer.parseInt(  String.valueOf(dadosContratos.get(i).get(16)));
+            if(dadosContratos.get(i).get(17) != null)bcon.idEmpresaAlterou       = Integer.parseInt(  String.valueOf(dadosContratos.get(i).get(17)));
+            if(dadosContratos.get(i).get(18) != null)bcon.codigoGrupoAlterou     = Integer.parseInt(  String.valueOf(dadosContratos.get(i).get(18)));
+            if(dadosContratos.get(i).get(19) != null)bcon.codigoEmpresaAlterou   = Integer.parseInt(  String.valueOf(dadosContratos.get(i).get(19)));
         }
         
-        if(bc.codigoCliente != 0)
+        if(bc.codigoCliente != 0){
             if(bc.codigoCliente != bcon.codigoCliente){
                 txt_codigoContrato  .grabFocus();
                 Mensagem = "Contrato n°" + bcon.codigoContrato + " não pertence ao Cliente n°" + bc.codigoCliente + "!";
                 new MostraMensagem(Mensagem);
                 return;
             }
+        }
         
         bc.codigoCliente            = bcon.codigoCliente;
         txt_codigoCliente           .setText(String.valueOf(bc.codigoCliente));
@@ -843,15 +855,17 @@ public class ContratosCadastro extends javax.swing.JFrame {
     }
     
     private void PegaDadosUsuario(){
-        for(int i = 0; i < dadosUsuario.size(); i++)
-            bu.usuario = String.valueOf(dadosUsuario.get(i).get(0));
+        for(int i = 0; i < dadosUsuario.size(); i++){
+            if(dadosUsuario.get(i).get(0) != null){bu.usuario = String.valueOf(dadosUsuario.get(i).get(0));}
+        }
     }
     
     private void PegaCliente(){
         txt_codigoCliente.setText(fc.FormataCampo(txt_codigoCliente.getText(), 5, 0));
         bc.codigoCliente        = Integer.parseInt(txt_codigoCliente.getText());
-        if(bc.codigoCliente == 0)
+        if(bc.codigoCliente == 0){
             return;
+        }
         sql = "select idCliente, idEmpresa, codigoGrupo, codigoEmpresa, codigoCliente, nome from tb_clientes where idEmpresa = " + parametrosNS.be.IdEmpresa + " and codigoCliente = " + bc.codigoCliente + ";";
         dadosCliente.clear();
         dadosCliente = parametrosNS.dao.Consulta(sql);

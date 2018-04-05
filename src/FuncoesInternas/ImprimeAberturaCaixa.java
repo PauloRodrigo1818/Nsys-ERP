@@ -81,7 +81,7 @@ public class ImprimeAberturaCaixa {
         bu.codigoGrupo      = bge.CodigoGrupo;
         bu.codigoEmpresa    = be .CodigoEmpresa;
         bu.codigoUsuario    = parametrosNS.bu.codigoUsuario;
-        bu.nome             = parametrosNS.bu.nome;
+        bu.name             = parametrosNS.bu.name;
         bu.usuario          = parametrosNS.bu.usuario;
         
         codigoGrupo     = parametrosNS.fc.FormataCampo(String.valueOf(bge.CodigoGrupo ), 2, 0);

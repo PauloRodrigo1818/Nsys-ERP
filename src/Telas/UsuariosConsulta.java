@@ -9,6 +9,9 @@ import FuncoesInternas.InverterData;
 import FuncoesInternas.MostraMensagem;
 import FuncoesInternas.TestarData;
 import Parametros.parametrosNS;
+import Parametros.parametrosNS;
+import Telas.DepartamentosConsulta;
+import Telas.UsuariosCadastro;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -834,6 +837,7 @@ public class UsuariosConsulta extends javax.swing.JFrame {
             + "   usuario, \n"
             + "   senha, \n"
             + "   telefone, \n"
+            + "   email, \n"
             + "   codigoDepartamento, \n"
             + "   nivelUsuario, \n"
             + "   podeMudarEmpresa \n"
@@ -860,22 +864,20 @@ public class UsuariosConsulta extends javax.swing.JFrame {
         Table.setNumRows(0);
         for(int i = 0; i < dadosUsuario.size(); i++){
             bu = new BeanUsuarios();
-            bu.idUsuario            = Integer.parseInt(  String.valueOf(dadosUsuario.get(i).get(0)));
-            bu.idEmpresa            = Integer.parseInt(  String.valueOf(dadosUsuario.get(i).get(1)));
-            bu.codigoGrupo          = Integer.parseInt(  String.valueOf(dadosUsuario.get(i).get(2)));
-            bu.codigoEmpresa        = Integer.parseInt(  String.valueOf(dadosUsuario.get(i).get(3)));
-            bu.codigoUsuario        = Integer.parseInt(  String.valueOf(dadosUsuario.get(i).get(4)));
-            bu.dataCriacao          =                    String.valueOf(dadosUsuario.get(i).get(5));
-            bu.nome                 =                    String.valueOf(dadosUsuario.get(i).get(6));
-            bu.usuario              =                    String.valueOf(dadosUsuario.get(i).get(7));
-            bu.senha                =                    String.valueOf(dadosUsuario.get(i).get(8));
-            bu.telefone             =                    String.valueOf(dadosUsuario.get(i).get(9));
-        if(dadosUsuario.get(i).get(10) != null)
-            bu.codigoDepartamento   = Integer.parseInt(  String.valueOf(dadosUsuario.get(i).get(10)));
-        if(dadosUsuario.get(i).get(11) != null)
-            bu.nivelUsuario         = Integer.parseInt(  String.valueOf(dadosUsuario.get(i).get(11)));
-        if(dadosUsuario.get(i).get(12) != null)
-            bu.podeMudarEmpresa     = Integer.parseInt(  String.valueOf(dadosUsuario.get(i).get(12)));
+            if(dadosUsuario.get(i).get(0)  != null){bu.idUsuario            = Integer.parseInt(String.valueOf(dadosUsuario.get(i).get(0)));}
+            if(dadosUsuario.get(i).get(1)  != null){bu.idEmpresa            = Integer.parseInt(String.valueOf(dadosUsuario.get(i).get(1)));}
+            if(dadosUsuario.get(i).get(2)  != null){bu.codigoGrupo          = Integer.parseInt(String.valueOf(dadosUsuario.get(i).get(2)));}
+            if(dadosUsuario.get(i).get(3)  != null){bu.codigoEmpresa        = Integer.parseInt(String.valueOf(dadosUsuario.get(i).get(3)));}
+            if(dadosUsuario.get(i).get(4)  != null){bu.codigoUsuario        = Integer.parseInt(String.valueOf(dadosUsuario.get(i).get(4)));}
+            if(dadosUsuario.get(i).get(5)  != null){bu.dataCriacao          =                  String.valueOf(dadosUsuario.get(i).get(5));}
+            if(dadosUsuario.get(i).get(6)  != null){bu.name                 =                  String.valueOf(dadosUsuario.get(i).get(6));}
+            if(dadosUsuario.get(i).get(7)  != null){bu.usuario              =                  String.valueOf(dadosUsuario.get(i).get(7));}
+            if(dadosUsuario.get(i).get(8)  != null){bu.senha                =                  String.valueOf(dadosUsuario.get(i).get(8));}
+            if(dadosUsuario.get(i).get(9)  != null){bu.telefone             =                  String.valueOf(dadosUsuario.get(i).get(9));}
+            if(dadosUsuario.get(i).get(10) != null){bu.email                =                  String.valueOf(dadosUsuario.get(i).get(10));}
+            if(dadosUsuario.get(i).get(11) != null){bu.codigoDepartamento   = Integer.parseInt(String.valueOf(dadosUsuario.get(i).get(11)));}
+            if(dadosUsuario.get(i).get(12) != null){bu.nivelUsuario         = Integer.parseInt(String.valueOf(dadosUsuario.get(i).get(12)));}
+            if(dadosUsuario.get(i).get(13) != null){bu.podeMudarEmpresa     = Integer.parseInt(String.valueOf(dadosUsuario.get(i).get(13)));}
             
             bu.dataCriacao          = invdata.inverterData(bu.dataCriacao, 1);
             
@@ -896,7 +898,7 @@ public class UsuariosConsulta extends javax.swing.JFrame {
 //            bue.codigoUsuario   = bu.codigoUsuario;
 //            PegaUsuarioEmail();
             
-            Table.addRow(new Object [] {fc.FormataCampo(String.valueOf(bu.codigoUsuario), 3, 0), bu.dataCriacao, bu.nome, fc.FormataCampo(String.valueOf(bu.codigoDepartamento), 2, 0) + " - " + bd.descricaoDepartamento, bu.telefone, bu.nivelUsuario + " - " + NivelUsuario});
+            Table.addRow(new Object [] {fc.FormataCampo(String.valueOf(bu.codigoUsuario), 3, 0), bu.dataCriacao, bu.name, fc.FormataCampo(String.valueOf(bu.codigoDepartamento), 2, 0) + " - " + bd.descricaoDepartamento, bu.telefone, bu.nivelUsuario + " - " + NivelUsuario});
         }
     }
     

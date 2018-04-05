@@ -396,21 +396,22 @@ public class Login extends javax.swing.JFrame {
             if(dadosUsuario.get(i).get(3)  != null){bu.codigoEmpresa        = Integer.parseInt(String.valueOf(dadosUsuario.get(i).get(3)));}
             if(dadosUsuario.get(i).get(4)  != null){bu.codigoUsuario        = Integer.parseInt(String.valueOf(dadosUsuario.get(i).get(4)));}
             if(dadosUsuario.get(i).get(5)  != null){bu.dataCriacao          =                  String.valueOf(dadosUsuario.get(i).get(5));}
-            if(dadosUsuario.get(i).get(6)  != null){bu.nome                 =                  String.valueOf(dadosUsuario.get(i).get(6));}
+            if(dadosUsuario.get(i).get(6)  != null){bu.name                 =                  String.valueOf(dadosUsuario.get(i).get(6));}
             if(dadosUsuario.get(i).get(7)  != null){bu.usuario              =                  String.valueOf(dadosUsuario.get(i).get(7));}
             if(dadosUsuario.get(i).get(8)  != null){bu.senha                =                  String.valueOf(dadosUsuario.get(i).get(8));}
             if(dadosUsuario.get(i).get(9)  != null){bu.telefone             =                  String.valueOf(dadosUsuario.get(i).get(9));}
-            if(dadosUsuario.get(i).get(10) != null){bu.codigoDepartamento   = Integer.parseInt(String.valueOf(dadosUsuario.get(i).get(10)));}
-            if(dadosUsuario.get(i).get(11) != null){bu.nivelUsuario         = Integer.parseInt(String.valueOf(dadosUsuario.get(i).get(11)));}
-            if(dadosUsuario.get(i).get(12) != null){bu.podeMudarEmpresa     = Integer.parseInt(String.valueOf(dadosUsuario.get(i).get(12)));}
-            if(dadosUsuario.get(i).get(13) != null){bu.observacoes          =                  String.valueOf(dadosUsuario.get(i).get(13));}
-            if(dadosUsuario.get(i).get(14) != null){bu.nomeConexao          =                  String.valueOf(dadosUsuario.get(i).get(14));}
-            if(dadosUsuario.get(i).get(15) != null){bu.dataAlterou          =                  String.valueOf(dadosUsuario.get(i).get(15));}
-            if(dadosUsuario.get(i).get(16) != null){bu.horaAlterou          =                  String.valueOf(dadosUsuario.get(i).get(16));}
-            if(dadosUsuario.get(i).get(17) != null){bu.usuarioAlterou       = Integer.parseInt(String.valueOf(dadosUsuario.get(i).get(17)));}
-            if(dadosUsuario.get(i).get(18) != null){bu.idEmpresaAlterou     = Integer.parseInt(String.valueOf(dadosUsuario.get(i).get(18)));}
-            if(dadosUsuario.get(i).get(19) != null){bu.codigoGrupoAlterou   = Integer.parseInt(String.valueOf(dadosUsuario.get(i).get(19)));}
-            if(dadosUsuario.get(i).get(20) != null){bu.codigoEmpresaAlterou = Integer.parseInt(String.valueOf(dadosUsuario.get(i).get(20)));}
+            if(dadosUsuario.get(i).get(10) != null){bu.email                =                  String.valueOf(dadosUsuario.get(i).get(10));}
+            if(dadosUsuario.get(i).get(11) != null){bu.codigoDepartamento   = Integer.parseInt(String.valueOf(dadosUsuario.get(i).get(11)));}
+            if(dadosUsuario.get(i).get(12) != null){bu.nivelUsuario         = Integer.parseInt(String.valueOf(dadosUsuario.get(i).get(12)));}
+            if(dadosUsuario.get(i).get(13) != null){bu.podeMudarEmpresa     = Integer.parseInt(String.valueOf(dadosUsuario.get(i).get(13)));}
+            if(dadosUsuario.get(i).get(14) != null){bu.observacoes          =                  String.valueOf(dadosUsuario.get(i).get(14));}
+            if(dadosUsuario.get(i).get(15) != null){bu.nomeConexao          =                  String.valueOf(dadosUsuario.get(i).get(15));}
+            if(dadosUsuario.get(i).get(16) != null){bu.dataAlterou          =                  String.valueOf(dadosUsuario.get(i).get(16));}
+            if(dadosUsuario.get(i).get(17) != null){bu.horaAlterou          =                  String.valueOf(dadosUsuario.get(i).get(17));}
+            if(dadosUsuario.get(i).get(18) != null){bu.usuarioAlterou       = Integer.parseInt(String.valueOf(dadosUsuario.get(i).get(18)));}
+            if(dadosUsuario.get(i).get(19) != null){bu.idEmpresaAlterou     = Integer.parseInt(String.valueOf(dadosUsuario.get(i).get(19)));}
+            if(dadosUsuario.get(i).get(20) != null){bu.codigoGrupoAlterou   = Integer.parseInt(String.valueOf(dadosUsuario.get(i).get(20)));}
+            if(dadosUsuario.get(i).get(21) != null){bu.codigoEmpresaAlterou = Integer.parseInt(String.valueOf(dadosUsuario.get(i).get(21)));}
         }
         parametrosNS.bu.idUsuario            = bu.idUsuario;
         parametrosNS.bu.idEmpresa            = bu.idEmpresa;
@@ -418,11 +419,12 @@ public class Login extends javax.swing.JFrame {
         parametrosNS.bu.codigoEmpresa        = bu.codigoEmpresa;
         parametrosNS.bu.codigoUsuario        = bu.codigoUsuario;
         parametrosNS.bu.dataCriacao          = bu.dataCriacao;
-        parametrosNS.bu.nome                 = bu.nome;
+        parametrosNS.bu.name                 = bu.name;
         parametrosNS.bu.usuario              = bu.usuario;
         parametrosNS.bu.senha                = bu.senha;
 //        parametrosNS.bu.senha = parametrosNS.crpt.CriptografaManualmente(parametrosNS.bu.senha);
         parametrosNS.bu.telefone             = bu.telefone;
+        parametrosNS.bu.email                = bu.email;
         parametrosNS.bu.codigoDepartamento   = bu.codigoDepartamento;
         parametrosNS.bu.nivelUsuario         = bu.nivelUsuario;
         parametrosNS.bu.podeMudarEmpresa     = bu.podeMudarEmpresa;
@@ -484,10 +486,11 @@ public class Login extends javax.swing.JFrame {
         parametrosNS.bue.servidorEmail        = bue.servidorEmail;
         parametrosNS.bue.portaEmail           = bue.portaEmail;
         parametrosNS.bue.usuarioServidorEmail = bue.usuarioServidorEmail;
-        if(!bue.senhaServidorEmail.equals("null"))
+        if(!bue.senhaServidorEmail.equals("null")){
             parametrosNS.bue.senhaServidorEmail   = bue.senhaServidorEmail;
-        else
+        }else{
             parametrosNS.bue.senhaServidorEmail   = "";
+        }
         parametrosNS.bue.email                = bue.email;
         parametrosNS.bue.autenticacaoSSL      = bue.autenticacaoSSL;
     }
@@ -1526,7 +1529,7 @@ public class Login extends javax.swing.JFrame {
                 CarregarInformacoesSistema();
                 
                 parametrosNS.bu.codigoUsuario    = 999;
-                parametrosNS.bu.nome             = bu.usuario;
+                parametrosNS.bu.name             = bu.usuario;
                 parametrosNS.bu.usuario          = bu.usuario;
                 parametrosNS.bu.senha            = bu.senha;
                 parametrosNS.bu.nivelUsuario     = 9;

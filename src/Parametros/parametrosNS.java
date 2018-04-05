@@ -162,21 +162,22 @@ public class parametrosNS {
             if(dadosUsuarios.get(i).get(3)  != null){bu.codigoEmpresa        = Integer.parseInt(  String.valueOf(dadosUsuarios.get(i).get(3)));}
             if(dadosUsuarios.get(i).get(4)  != null){bu.codigoUsuario        = Integer.parseInt(  String.valueOf(dadosUsuarios.get(i).get(4)));}
             if(dadosUsuarios.get(i).get(5)  != null){bu.dataCriacao          =                    String.valueOf(dadosUsuarios.get(i).get(5));}
-            if(dadosUsuarios.get(i).get(6)  != null){bu.nome                 =                    String.valueOf(dadosUsuarios.get(i).get(6));}
+            if(dadosUsuarios.get(i).get(6)  != null){bu.name                 =                    String.valueOf(dadosUsuarios.get(i).get(6));}
             if(dadosUsuarios.get(i).get(7)  != null){bu.usuario              =                    String.valueOf(dadosUsuarios.get(i).get(7));}
             if(dadosUsuarios.get(i).get(8)  != null){bu.senha                =                    String.valueOf(dadosUsuarios.get(i).get(8));}
             if(dadosUsuarios.get(i).get(9)  != null){bu.telefone             =                    String.valueOf(dadosUsuarios.get(i).get(9));}
-            if(dadosUsuarios.get(i).get(10) != null){bu.codigoDepartamento   = Integer.parseInt(  String.valueOf(dadosUsuarios.get(i).get(10)));}
-            if(dadosUsuarios.get(i).get(11) != null){bu.nivelUsuario         = Integer.parseInt(  String.valueOf(dadosUsuarios.get(i).get(11)));}
-            if(dadosUsuarios.get(i).get(12) != null){bu.podeMudarEmpresa     = Integer.parseInt(  String.valueOf(dadosUsuarios.get(i).get(12)));}
-            if(dadosUsuarios.get(i).get(13) != null){bu.observacoes          =                    String.valueOf(dadosUsuarios.get(i).get(13));}
-            if(dadosUsuarios.get(i).get(14) != null){bu.nomeConexao          =                    String.valueOf(dadosUsuarios.get(i).get(14));}
-            if(dadosUsuarios.get(i).get(15) != null){bu.dataAlterou          =                    String.valueOf(dadosUsuarios.get(i).get(15));}
-            if(dadosUsuarios.get(i).get(16) != null){bu.horaAlterou          =                    String.valueOf(dadosUsuarios.get(i).get(16));}
-            if(dadosUsuarios.get(i).get(17) != null){bu.usuarioAlterou       = Integer.parseInt(  String.valueOf(dadosUsuarios.get(i).get(17)));}
-            if(dadosUsuarios.get(i).get(18) != null){bu.idEmpresaAlterou     = Integer.parseInt(  String.valueOf(dadosUsuarios.get(i).get(18)));}
-            if(dadosUsuarios.get(i).get(19) != null){bu.codigoGrupoAlterou   = Integer.parseInt(  String.valueOf(dadosUsuarios.get(i).get(19)));}
-            if(dadosUsuarios.get(i).get(20) != null){bu.codigoEmpresaAlterou = Integer.parseInt(  String.valueOf(dadosUsuarios.get(i).get(20)));}
+            if(dadosUsuarios.get(i).get(10) != null){bu.email                =                    String.valueOf(dadosUsuarios.get(i).get(10));}
+            if(dadosUsuarios.get(i).get(11) != null){bu.codigoDepartamento   = Integer.parseInt(  String.valueOf(dadosUsuarios.get(i).get(11)));}
+            if(dadosUsuarios.get(i).get(12) != null){bu.nivelUsuario         = Integer.parseInt(  String.valueOf(dadosUsuarios.get(i).get(12)));}
+            if(dadosUsuarios.get(i).get(13) != null){bu.podeMudarEmpresa     = Integer.parseInt(  String.valueOf(dadosUsuarios.get(i).get(13)));}
+            if(dadosUsuarios.get(i).get(14) != null){bu.observacoes          =                    String.valueOf(dadosUsuarios.get(i).get(14));}
+            if(dadosUsuarios.get(i).get(15) != null){bu.nomeConexao          =                    String.valueOf(dadosUsuarios.get(i).get(15));}
+            if(dadosUsuarios.get(i).get(16) != null){bu.dataAlterou          =                    String.valueOf(dadosUsuarios.get(i).get(16));}
+            if(dadosUsuarios.get(i).get(17) != null){bu.horaAlterou          =                    String.valueOf(dadosUsuarios.get(i).get(17));}
+            if(dadosUsuarios.get(i).get(18) != null){bu.usuarioAlterou       = Integer.parseInt(  String.valueOf(dadosUsuarios.get(i).get(18)));}
+            if(dadosUsuarios.get(i).get(19) != null){bu.idEmpresaAlterou     = Integer.parseInt(  String.valueOf(dadosUsuarios.get(i).get(19)));}
+            if(dadosUsuarios.get(i).get(20) != null){bu.codigoGrupoAlterou   = Integer.parseInt(  String.valueOf(dadosUsuarios.get(i).get(20)));}
+            if(dadosUsuarios.get(i).get(21) != null){bu.codigoEmpresaAlterou = Integer.parseInt(  String.valueOf(dadosUsuarios.get(i).get(21)));}
         }
         PegaImagemUsuario();
         

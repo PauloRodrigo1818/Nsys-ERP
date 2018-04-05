@@ -520,25 +520,18 @@
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="jLabel5" linkSize="23" max="32767" attributes="0"/>
-                                  <Component id="jLabel11" linkSize="23" pref="93" max="32767" attributes="0"/>
-                              </Group>
+                              <Component id="jLabel5" linkSize="23" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jLabel11" linkSize="23" alignment="0" pref="93" max="32767" attributes="0"/>
                               <Component id="jLabel2" linkSize="23" pref="93" max="32767" attributes="0"/>
-                              <Component id="jLabel13" min="-2" pref="93" max="-2" attributes="0"/>
+                              <Component id="jLabel13" max="32767" attributes="0"/>
+                              <Component id="jLabel8" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="txt_nome" max="32767" attributes="0"/>
+                                  <Component id="txt_name" max="32767" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="check_mudarEmpresa" min="-2" pref="173" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="txt_codigoUsuario" min="-2" pref="57" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="bt_novo" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -551,12 +544,18 @@
                                       <Component id="jLabel15" pref="82" max="32767" attributes="0"/>
                                   </Group>
                                   <EmptySpace pref="6" max="32767" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="txt_datacriacao" min="-2" pref="93" max="-2" attributes="0"/>
-                                      <Component id="txt_senha" min="-2" pref="149" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="txt_senha" max="32767" attributes="0"/>
+                                      <Component id="txt_datacriacao" pref="173" max="32767" attributes="0"/>
                                   </Group>
-                                  <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                               </Group>
+                              <Group type="102" attributes="0">
+                                  <Component id="txt_codigoUsuario" min="-2" pref="57" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="bt_novo" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              </Group>
+                              <Component id="txt_email" alignment="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -579,7 +578,7 @@
                       <Component id="check_mudarEmpresa" linkSize="15" alignment="1" min="-2" max="-2" attributes="0"/>
                       <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                           <Component id="jLabel5" linkSize="15" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txt_nome" linkSize="15" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txt_name" linkSize="15" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
@@ -594,14 +593,19 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jLabel13" linkSize="15" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel15" alignment="0" min="-2" pref="22" max="-2" attributes="0"/>
-                      <Component id="txt_datacriacao" alignment="0" min="-2" pref="22" max="-2" attributes="0"/>
+                      <Component id="jLabel15" linkSize="15" alignment="0" min="-2" pref="22" max="-2" attributes="0"/>
+                      <Component id="txt_datacriacao" linkSize="15" alignment="0" min="-2" pref="22" max="-2" attributes="0"/>
                       <Component id="txt_telefone" linkSize="15" alignment="0" min="-2" pref="22" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabel8" linkSize="15" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txt_email" linkSize="15" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel1" linkSize="15" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="combo_empresas" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="combo_empresas" linkSize="15" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -763,7 +767,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="check_mudarEmpresaActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="txt_nome">
+        <Component class="javax.swing.JTextField" name="txt_name">
         </Component>
         <Component class="javax.swing.JComboBox" name="combo_departamento">
           <Properties>
@@ -818,6 +822,14 @@
             <Property name="horizontalAlignment" type="int" value="4"/>
             <Property name="text" type="java.lang.String" value="N&#xed;vel:"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel8">
+          <Properties>
+            <Property name="horizontalAlignment" type="int" value="4"/>
+            <Property name="text" type="java.lang.String" value="Email: "/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="txt_email">
         </Component>
       </SubComponents>
     </Container>

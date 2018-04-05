@@ -1044,14 +1044,10 @@ public class OrdemCompraItemCadastro extends javax.swing.JFrame {
     
     private void PegaDadosEmpresa(){
         for(int i = 0; i < dadosEmpresas.size(); i++){
-            if(dadosEmpresas.get(i).get(0) != null)
-                be.idEmpresa        = Integer.parseInt(String.valueOf(dadosEmpresas.get(i).get(0)));
-            if(dadosEmpresas.get(i).get(1) != null)
-                be.codigoGrupo      = Integer.parseInt(String.valueOf(dadosEmpresas.get(i).get(1)));
-            if(dadosEmpresas.get(i).get(2) != null)
-                be.codigoEmpresa    = Integer.parseInt(String.valueOf(dadosEmpresas.get(i).get(2)));
-            if(dadosEmpresas.get(i).get(3) != null)
-                be.nomeEmpresa      =                  String.valueOf(dadosEmpresas.get(i).get(3));
+            if(dadosEmpresas.get(i).get(0) != null){be.idEmpresa        = Integer.parseInt(String.valueOf(dadosEmpresas.get(i).get(0)));}
+            if(dadosEmpresas.get(i).get(1) != null){be.codigoGrupo      = Integer.parseInt(String.valueOf(dadosEmpresas.get(i).get(1)));}
+            if(dadosEmpresas.get(i).get(2) != null){be.codigoEmpresa    = Integer.parseInt(String.valueOf(dadosEmpresas.get(i).get(2)));}
+            if(dadosEmpresas.get(i).get(3) != null){be.nomeEmpresa      =                  String.valueOf(dadosEmpresas.get(i).get(3));}
         }
         txt_codigoEmpresa.setText(parametrosNS.fc.FormataCampo(String.valueOf(be.codigoEmpresa), 3, 0));
         label_nomeEmpresa.setText(be.nomeEmpresa);
@@ -1086,24 +1082,15 @@ public class OrdemCompraItemCadastro extends javax.swing.JFrame {
     private void PegaDadosProdutos(){
         for(int i = 0; i < dadosProdutos.size(); i++){
             bp  = new BeanProdutos();
-            if(dadosProdutos.get(i).get(0) != null)
-                bp.idProdutos               = Integer.parseInt(  String.valueOf(dadosProdutos.get(i).get(0)));
-            if(dadosProdutos.get(i).get(1) != null)
-                bp.idEmpresa                = Integer.parseInt(  String.valueOf(dadosProdutos.get(i).get(1)));
-            if(dadosProdutos.get(i).get(2) != null)
-                bp.codigoGrupo              = Integer.parseInt(  String.valueOf(dadosProdutos.get(i).get(2)));
-            if(dadosProdutos.get(i).get(3) != null)
-                bp.codigoEmpresa            = Integer.parseInt(  String.valueOf(dadosProdutos.get(i).get(3)));
-            if(dadosProdutos.get(i).get(4) != null)
-                bp.codigoProduto            = Integer.parseInt(  String.valueOf(dadosProdutos.get(i).get(4)));
-            if(dadosProdutos.get(i).get(5) != null)
-                bp.descricaoProduto         =                    String.valueOf(dadosProdutos.get(i).get(5));
-            if(dadosProdutos.get(i).get(6) != null)
-                bp.produtoInativo           = Integer.parseInt(  String.valueOf(dadosProdutos.get(i).get(6)));
-            if(dadosProdutos.get(i).get(7) != null)
-                bp.valorDeVenda             = Double.parseDouble(String.valueOf(dadosProdutos.get(i).get(7)));
-            if(dadosProdutos.get(i).get(8) != null)
-                bp.quantidadeAtual          = Double.parseDouble(String.valueOf(dadosProdutos.get(i).get(8)));
+            if(dadosProdutos.get(i).get(0) != null){bp.idProdutos               = Integer.parseInt(  String.valueOf(dadosProdutos.get(i).get(0)));}
+            if(dadosProdutos.get(i).get(1) != null){bp.idEmpresa                = Integer.parseInt(  String.valueOf(dadosProdutos.get(i).get(1)));}
+            if(dadosProdutos.get(i).get(2) != null){bp.codigoGrupo              = Integer.parseInt(  String.valueOf(dadosProdutos.get(i).get(2)));}
+            if(dadosProdutos.get(i).get(3) != null){bp.codigoEmpresa            = Integer.parseInt(  String.valueOf(dadosProdutos.get(i).get(3)));}
+            if(dadosProdutos.get(i).get(4) != null){bp.codigoProduto            = Integer.parseInt(  String.valueOf(dadosProdutos.get(i).get(4)));}
+            if(dadosProdutos.get(i).get(5) != null){bp.descricaoProduto         =                    String.valueOf(dadosProdutos.get(i).get(5));}
+            if(dadosProdutos.get(i).get(6) != null){bp.produtoInativo           = Integer.parseInt(  String.valueOf(dadosProdutos.get(i).get(6)));}
+            if(dadosProdutos.get(i).get(7) != null){bp.valorDeVenda             = Double.parseDouble(String.valueOf(dadosProdutos.get(i).get(7)));}
+            if(dadosProdutos.get(i).get(8) != null){bp.quantidadeAtual          = Double.parseDouble(String.valueOf(dadosProdutos.get(i).get(8)));}
         }
         if(bp.produtoInativo == 1){
             mensagem = "Produto não está mais a venda!";
@@ -1121,8 +1108,9 @@ public class OrdemCompraItemCadastro extends javax.swing.JFrame {
     
     private void PegaUsuario(){
         bu.usuario = "---------";
-        if(bu.codigoUsuario == 0)
+        if(bu.codigoUsuario == 0){
             return;
+        }
         sql = "select usuario from tb_usuarios where idEmpresa = " + bu.idEmpresa + " and codigoUsuario = " + bu.codigoUsuario + ";";
         dadosUsuarios.clear();
         dadosUsuarios = parametrosNS.dao.Consulta(sql);

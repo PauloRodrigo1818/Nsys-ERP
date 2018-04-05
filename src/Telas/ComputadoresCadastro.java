@@ -873,8 +873,9 @@ public class ComputadoresCadastro extends javax.swing.JFrame {
     }
     
     private void PegaDadosUsuario(){
-        for(int i = 0; i < dadosUsuario.size(); i++)
-            bu.usuario              = String.valueOf(dadosUsuario.get(i).get(12));
+        for(int i = 0; i < dadosUsuario.size(); i++){
+            if(dadosUsuario.get(i).get(12) != null){bu.usuario              = String.valueOf(dadosUsuario.get(i).get(12));}
+        }
     }
 
     private void CarregaInformacoes() {

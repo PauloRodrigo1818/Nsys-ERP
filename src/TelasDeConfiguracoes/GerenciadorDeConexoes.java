@@ -218,8 +218,9 @@ public class GerenciadorDeConexoes extends javax.swing.JFrame {
         sql = "update tb_usuarios set nomeConexao = null where idEmpresa = " + parametrosNS.be.IdEmpresa + " and codigoUsuario = " + bu.codigoUsuario + ";";
 //        System.out.println(sql);
         sqlstate = parametrosNS.dao.AlterarRegistroOuConsultaSeTabelaExiste(sql, "S");
-        if(!sqlstate.equals("00000"))
+        if(!sqlstate.equals("00000")){
             return;
+        }
         PegaUsuarios();
         bt_encerrarConexao.setEnabled(false);
     }//GEN-LAST:event_bt_encerrarConexaoActionPerformed
@@ -297,20 +298,21 @@ public class GerenciadorDeConexoes extends javax.swing.JFrame {
     
     private void PegaDadosUsuarios(){
         for(int i = 0; i < dadosUsuario.size(); i++){
-            bu.idUsuario            = Integer.parseInt(  String.valueOf(dadosUsuario.get(i).get(0)));
-            bu.idEmpresa            = Integer.parseInt(  String.valueOf(dadosUsuario.get(i).get(1)));
-            bu.codigoGrupo          = Integer.parseInt(  String.valueOf(dadosUsuario.get(i).get(2)));
-            bu.codigoEmpresa        = Integer.parseInt(  String.valueOf(dadosUsuario.get(i).get(3)));
-            bu.codigoUsuario        = Integer.parseInt(  String.valueOf(dadosUsuario.get(i).get(4)));
-            bu.nome                 =                    String.valueOf(dadosUsuario.get(i).get(5));
-            bu.usuario              =                    String.valueOf(dadosUsuario.get(i).get(6));
-            bu.codigoDepartamento   = Integer.parseInt(  String.valueOf(dadosUsuario.get(i).get(7)));
+            bu = new BeanUsuarios();
+            if(dadosUsuario.get(i).get(0) != null){bu.idUsuario            = Integer.parseInt(String.valueOf(dadosUsuario.get(i).get(0)));}
+            if(dadosUsuario.get(i).get(1) != null){bu.idEmpresa            = Integer.parseInt(String.valueOf(dadosUsuario.get(i).get(1)));}
+            if(dadosUsuario.get(i).get(2) != null){bu.codigoGrupo          = Integer.parseInt(String.valueOf(dadosUsuario.get(i).get(2)));}
+            if(dadosUsuario.get(i).get(3) != null){bu.codigoEmpresa        = Integer.parseInt(String.valueOf(dadosUsuario.get(i).get(3)));}
+            if(dadosUsuario.get(i).get(4) != null){bu.codigoUsuario        = Integer.parseInt(String.valueOf(dadosUsuario.get(i).get(4)));}
+            if(dadosUsuario.get(i).get(5) != null){bu.name                 =                  String.valueOf(dadosUsuario.get(i).get(5));}
+            if(dadosUsuario.get(i).get(6) != null){bu.usuario              =                  String.valueOf(dadosUsuario.get(i).get(6));}
+            if(dadosUsuario.get(i).get(7) != null){bu.codigoDepartamento   = Integer.parseInt(String.valueOf(dadosUsuario.get(i).get(7)));}
             
             bd.codigoDepartamento  = bu.codigoDepartamento;
             sql = "select * from tb_departamento where idEmpresa = " + parametrosNS.be.IdEmpresa + " and codigoDepartamento = " + bd.codigoDepartamento + ";";
             PegaDepartamento();
             
-            Tabela.addRow(new Object[] {fc.FormataCampo(String.valueOf(bu.codigoUsuario), 3, 0) + "-" + bu.usuario, bu.nome, fc.FormataCampo(String.valueOf(bd.codigoDepartamento), 2, 0) + "-" + bd.descricaoDepartamento});
+            Tabela.addRow(new Object[] {fc.FormataCampo(String.valueOf(bu.codigoUsuario), 3, 0) + "-" + bu.usuario, bu.name, fc.FormataCampo(String.valueOf(bd.codigoDepartamento), 2, 0) + "-" + bd.descricaoDepartamento});
         }
     }
     
@@ -326,12 +328,12 @@ public class GerenciadorDeConexoes extends javax.swing.JFrame {
     private void PegaDadosDepartamento(){
         for(int i = 0; i < dadosDepartamentos.size(); i++){
             bd = new BeanDepartamento();
-            bd.idDepartamento           = Integer.parseInt(  String.valueOf(dadosDepartamentos.get(i).get(0)));
-            bd.idEmpresa                = Integer.parseInt(  String.valueOf(dadosDepartamentos.get(i).get(1)));
-            bd.codigoGrupo              = Integer.parseInt(  String.valueOf(dadosDepartamentos.get(i).get(2)));
-            bd.codigoEmpresa            = Integer.parseInt(  String.valueOf(dadosDepartamentos.get(i).get(3)));
-            bd.codigoDepartamento       = Integer.parseInt(  String.valueOf(dadosDepartamentos.get(i).get(4)));
-            bd.descricaoDepartamento    =                    String.valueOf(dadosDepartamentos.get(i).get(5));
+            if(dadosDepartamentos.get(i).get(0) != null){bd.idDepartamento           = Integer.parseInt(String.valueOf(dadosDepartamentos.get(i).get(0)));}
+            if(dadosDepartamentos.get(i).get(1) != null){bd.idEmpresa                = Integer.parseInt(String.valueOf(dadosDepartamentos.get(i).get(1)));}
+            if(dadosDepartamentos.get(i).get(2) != null){bd.codigoGrupo              = Integer.parseInt(String.valueOf(dadosDepartamentos.get(i).get(2)));}
+            if(dadosDepartamentos.get(i).get(3) != null){bd.codigoEmpresa            = Integer.parseInt(String.valueOf(dadosDepartamentos.get(i).get(3)));}
+            if(dadosDepartamentos.get(i).get(4) != null){bd.codigoDepartamento       = Integer.parseInt(String.valueOf(dadosDepartamentos.get(i).get(4)));}
+            if(dadosDepartamentos.get(i).get(5) != null){bd.descricaoDepartamento    =                  String.valueOf(dadosDepartamentos.get(i).get(5));}
         }
     }
     

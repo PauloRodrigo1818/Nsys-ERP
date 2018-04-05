@@ -864,10 +864,12 @@ public class FornecedorCadastro extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
     private void txt_codigoFornecedorFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_codigoFornecedorFocusGained
-        if(txt_codigoFornecedor.isEditable() == false)
+        if(txt_codigoFornecedor.isEditable() == false){
             return;
-        if(somostra.equals("S"))
+        }
+        if(somostra.equals("S")){
             return;
+        }
         txt_codigoFornecedor.setText("");
         operacao = "";
         ReiniciaTela();
@@ -875,10 +877,12 @@ public class FornecedorCadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_codigoFornecedorFocusGained
 
     private void txt_codigoFornecedorFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_codigoFornecedorFocusLost
-        if(txt_codigoFornecedor.isEditable() == false)
+        if(txt_codigoFornecedor.isEditable() == false){
             return;
-        if(txt_codigoFornecedor.getText().replace(" ", "").equals(""))
+        }
+        if(txt_codigoFornecedor.getText().replace(" ", "").equals("")){
             return;
+        }
         PegaFornecedor();
     }//GEN-LAST:event_txt_codigoFornecedorFocusLost
 
@@ -900,10 +904,12 @@ public class FornecedorCadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_codigoPaisFocusGained
 
     private void txt_codigoPaisFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_codigoPaisFocusLost
-        if(somostra.equals("S"))
+        if(somostra.equals("S")){
             return;
-        if(txt_codigoPais.getText().replace(" ", "").equals(""))
+        }
+        if(txt_codigoPais.getText().replace(" ", "").equals("")){
             return;
+        }
         PegaPais();
     }//GEN-LAST:event_txt_codigoPaisFocusLost
 
@@ -948,8 +954,9 @@ public class FornecedorCadastro extends javax.swing.JFrame {
 
     private void bt_alterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_alterarActionPerformed
         PegaValores();
-        if(fatal.equals("S"))
+        if(fatal.equals("S")){
             return;
+        }
         sql = "update tb_fornecedor set statusFornecedor = "        + bfor.statusFornecedor     + ", "  +
                                        "cnpj = '"                   + bfor.cnpj                 + "', " +
                                        "dataCadastro = '"           + bfor.dataCadastro         + "', " +
@@ -974,21 +981,24 @@ public class FornecedorCadastro extends javax.swing.JFrame {
                                        "atualizado = 1 "            +
                                        "where idFornecedor = "  + bfor.idFornecedor + ";";
         sqlstate = parametrosNS.dao.AlterarRegistroOuConsultaSeTabelaExiste(sql, "S");
-        if(!sqlstate.equals("00000"))
+        if(!sqlstate.equals("00000")){
             return;
+        }
         txt_codigoFornecedor.grabFocus();
     }//GEN-LAST:event_bt_alterarActionPerformed
 
     private void bt_incluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_incluirActionPerformed
         PegaValores();
-        if(fatal.equals("S"))
+        if(fatal.equals("S")){
             return;
+        }
         sql = "insert into tb_fornecedor (idEmpresa, codigoGrupo, codigoEmpresa, codigoFornecedor, statusFornecedor, cnpj, dataCadastro, nome, contato, telefone, email, cep, cidade, endereco, numero, bairro, uf, codigoPais, observacoes) "
             + "values (" + bfor.idEmpresa + ", " + bfor.codigoGrupo + ", " + bfor.codigoEmpresa + ", " + bfor.codigoFornecedor + ", " + bfor.statusFornecedor + ", '" + bfor.cnpj + "', '" + bfor.dataCadastro + "', '" + bfor.nome + "', '" + bfor.contato + "', " + bfor.telefone + ", '" + bfor.email + "', '" + bfor.cep + "', '" + bfor.cidade + "', '" + bfor.endereco + "', '" + bfor.numero + "', '" + bfor.bairro + "', '" + bfor.uf + "', '" + bfor.codigoPais + "', '" + bfor.observacoes + "');";
         
         sqlstate = parametrosNS.dao.incluirRegistro(sql);
-        if(!sqlstate.equals("00000"))
+        if(!sqlstate.equals("00000")){
             return;
+        }
         txt_codigoFornecedor.grabFocus();
     }//GEN-LAST:event_bt_incluirActionPerformed
 
@@ -1046,8 +1056,9 @@ public class FornecedorCadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_bairroActionPerformed
 
     private void txt_cepFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_cepFocusLost
-        if(somostra.equals("S"))
+        if(somostra.equals("S")){
             return;
+        }
         PegaCep();
         txt_numero.grabFocus();
     }//GEN-LAST:event_txt_cepFocusLost
@@ -1060,8 +1071,9 @@ public class FornecedorCadastro extends javax.swing.JFrame {
         }
         abriuFornecedor = 0;
         retorno = ForCon.getRetorno();
-        if(retorno.equals(""))
+        if(retorno.equals("")){
             return;
+        }
         txt_codigoFornecedor.setText(fc.FormataCampo(retorno, 5, 0));
         PegaFornecedor();
     }//GEN-LAST:event_formWindowGainedFocus
@@ -1072,18 +1084,21 @@ public class FornecedorCadastro extends javax.swing.JFrame {
             return;
         }
         retorno = ConCodEndPos.getRetorno();
-        if(retorno.equals(""))
+        if(retorno.equals("")){
             return;
+        }
         txt_cep.setText(retorno);
         PegaCep();
     }
     
     private void AbriuPais(){
-        if(abriuPais == 0)
+        if(abriuPais == 0){
             return;
+        }
         retorno = ConPaises.getRetorno();
-        if(retorno.equals(""))
+        if(retorno.equals("")){
             return;
+        }
         abriuPais = 0;
         txt_codigoPais.setText(fc.FormataCampo(retorno, 4, 0));
         PegaPais();
@@ -1094,8 +1109,9 @@ public class FornecedorCadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_cepMouseClicked
 
     private void txt_cepKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_cepKeyPressed
-        if(evt.getKeyCode() != KeyEvent.VK_ENTER)
+        if(evt.getKeyCode() != KeyEvent.VK_ENTER){
             return;
+        }
         txt_numero.grabFocus();
     }//GEN-LAST:event_txt_cepKeyPressed
 
@@ -1106,8 +1122,9 @@ public class FornecedorCadastro extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         HabilitaCampos(false);
         PegaUF();
-        if(somostra.equals("SN"))
+        if(somostra.equals("SN")){
             bt_pesquisa.setVisible (false);
+        }
         if(bfor.codigoFornecedor != 0){
             txt_codigoFornecedor.setText(String.valueOf(bfor.codigoFornecedor));
             PegaFornecedor();
@@ -1157,8 +1174,9 @@ public class FornecedorCadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosed
 
     private void label_paisMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_paisMouseEntered
-        if(!label_pais.getText().equals(""))
+        if(!label_pais.getText().equals("")){
             label_pais.setToolTipText(label_pais.getText());
+        }
     }//GEN-LAST:event_label_paisMouseEntered
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1308,10 +1326,11 @@ public class FornecedorCadastro extends javax.swing.JFrame {
         bfor.codigoGrupo        = parametrosNS.bge.CodigoGrupo;
         bfor.codigoEmpresa      = parametrosNS.be.CodigoEmpresa;
         bfor.codigoFornecedor   = Integer.parseInt(txt_codigoFornecedor.getText());
-        if(check_bloqueado.isSelected())
+        if(check_bloqueado.isSelected()){
             bfor.statusFornecedor = 1;
-        else
+        }else{
             bfor.statusFornecedor = 0;
+        }
         bfor.cnpj1 = txt_cnpj1.getText().replace(" ", "");
         bfor.cnpj2 = txt_cnpj2.getText();
         bfor.cnpj3 = txt_cnpj3.getText();
@@ -1330,10 +1349,11 @@ public class FornecedorCadastro extends javax.swing.JFrame {
         bfor.telefone           = bfor.telefone.replace(")", "");
         bfor.telefone           = bfor.telefone.replace(" ", "");
         bfor.telefone           = bfor.telefone.replace("-", "");
-        if(!bfor.telefone.equals(""))
+        if(!bfor.telefone.equals("")){
             bfor.telefone   = "'" + bfor.telefone + "'";
-        else
+        }else{
             bfor.telefone   = null;
+        }
         bfor.email              = txt_email.getText();
         bfor.cep                = txt_cep.getText();
         bfor.RecarregaCEPs();
@@ -1388,8 +1408,9 @@ public class FornecedorCadastro extends javax.swing.JFrame {
     private void PegaFornecedor(){
         txt_codigoFornecedor.setText(fc.FormataCampo(txt_codigoFornecedor.getText(), 5, 0));
         bfor.codigoFornecedor = Integer.parseInt(txt_codigoFornecedor.getText());
-        if(bfor.codigoFornecedor == 0)
+        if(bfor.codigoFornecedor == 0){
             return;
+        }
         sql = "select * from tb_fornecedor where idEmpresa = " + parametrosNS.be.IdEmpresa + " and codigoFornecedor = " + bfor.codigoFornecedor + ";";
         dadosFornecedor.clear();
         dadosFornecedor = parametrosNS.dao.Consulta(sql);
@@ -1406,43 +1427,32 @@ public class FornecedorCadastro extends javax.swing.JFrame {
     
     private void PreencherCamposFornecedor(){
         for(int i = 0; i < dadosFornecedor.size(); i++){
-            if(dadosFornecedor.get(i).get(0) != null)
-                bfor.idFornecedor           = Integer.parseInt(  String.valueOf(dadosFornecedor.get(i).get(0)));
-            if(dadosFornecedor.get(i).get(1) != null)
-                bfor.idEmpresa              = Integer.parseInt(  String.valueOf(dadosFornecedor.get(i).get(1)));
-            if(dadosFornecedor.get(i).get(2) != null)
-                bfor.codigoGrupo            = Integer.parseInt(  String.valueOf(dadosFornecedor.get(i).get(2)));
-            if(dadosFornecedor.get(i).get(3) != null)
-                bfor.codigoEmpresa          = Integer.parseInt(  String.valueOf(dadosFornecedor.get(i).get(3)));
-            if(dadosFornecedor.get(i).get(4) != null)
-                bfor.codigoFornecedor       = Integer.parseInt(  String.valueOf(dadosFornecedor.get(i).get(4)));
-            if(dadosFornecedor.get(i).get(5) != null)
-                bfor.statusFornecedor       = Integer.parseInt(  String.valueOf(dadosFornecedor.get(i).get(5)));
-                bfor.dataCadastro           =                    String.valueOf(dadosFornecedor.get(i).get(6));
-                bfor.cnpj                   =                    String.valueOf(dadosFornecedor.get(i).get(7));
-                bfor.nome                   =                    String.valueOf(dadosFornecedor.get(i).get(8));
-                bfor.contato                =                    String.valueOf(dadosFornecedor.get(i).get(9));
-                bfor.telefone               =                    String.valueOf(dadosFornecedor.get(i).get(10));
-                bfor.email                  =                    String.valueOf(dadosFornecedor.get(i).get(11));
-                bfor.cep                    =                    String.valueOf(dadosFornecedor.get(i).get(12));
-                bfor.cidade                 =                    String.valueOf(dadosFornecedor.get(i).get(13));
-                bfor.endereco               =                    String.valueOf(dadosFornecedor.get(i).get(14));
-                bfor.numero                 =                    String.valueOf(dadosFornecedor.get(i).get(15));
-                bfor.bairro                 =                    String.valueOf(dadosFornecedor.get(i).get(16));
-                bfor.uf                     =                    String.valueOf(dadosFornecedor.get(i).get(17));
-            if(dadosFornecedor.get(i).get(18) != null)
-                bfor.codigoPais             = Integer.parseInt(  String.valueOf(dadosFornecedor.get(i).get(18)));
-                bfor.observacoes            =                    String.valueOf(dadosFornecedor.get(i).get(19));
-                bfor.dataAlterou            =                    String.valueOf(dadosFornecedor.get(i).get(20));
-                bfor.horaAlterou            =                    String.valueOf(dadosFornecedor.get(i).get(21));
-            if(dadosFornecedor.get(i).get(22) != null)
-                bfor.usuarioAlterou         = Integer.parseInt(  String.valueOf(dadosFornecedor.get(i).get(22)));
-            if(dadosFornecedor.get(i).get(23) != null)
-                bfor.idEmpresaAlterou       = Integer.parseInt(  String.valueOf(dadosFornecedor.get(i).get(23)));
-            if(dadosFornecedor.get(i).get(24) != null)
-                bfor.codigoGrupoAlterou     = Integer.parseInt(  String.valueOf(dadosFornecedor.get(i).get(24)));
-            if(dadosFornecedor.get(i).get(25) != null)
-                bfor.codigoEmpresaAlterou   = Integer.parseInt(  String.valueOf(dadosFornecedor.get(i).get(25)));
+            if(dadosFornecedor.get(i).get(0)  != null){bfor.idFornecedor           = Integer.parseInt(String.valueOf(dadosFornecedor.get(i).get(0)));}
+            if(dadosFornecedor.get(i).get(1)  != null){bfor.idEmpresa              = Integer.parseInt(String.valueOf(dadosFornecedor.get(i).get(1)));}
+            if(dadosFornecedor.get(i).get(2)  != null){bfor.codigoGrupo            = Integer.parseInt(String.valueOf(dadosFornecedor.get(i).get(2)));}
+            if(dadosFornecedor.get(i).get(3)  != null){bfor.codigoEmpresa          = Integer.parseInt(String.valueOf(dadosFornecedor.get(i).get(3)));}
+            if(dadosFornecedor.get(i).get(4)  != null){bfor.codigoFornecedor       = Integer.parseInt(String.valueOf(dadosFornecedor.get(i).get(4)));}
+            if(dadosFornecedor.get(i).get(5)  != null){bfor.statusFornecedor       = Integer.parseInt(String.valueOf(dadosFornecedor.get(i).get(5)));}
+            if(dadosFornecedor.get(i).get(6)  != null){bfor.dataCadastro           =                  String.valueOf(dadosFornecedor.get(i).get(6));}
+            if(dadosFornecedor.get(i).get(7)  != null){bfor.cnpj                   =                  String.valueOf(dadosFornecedor.get(i).get(7));}
+            if(dadosFornecedor.get(i).get(8)  != null){bfor.nome                   =                  String.valueOf(dadosFornecedor.get(i).get(8));}
+            if(dadosFornecedor.get(i).get(9)  != null){bfor.contato                =                  String.valueOf(dadosFornecedor.get(i).get(9));}
+            if(dadosFornecedor.get(i).get(10) != null){bfor.telefone               =                  String.valueOf(dadosFornecedor.get(i).get(10));}
+            if(dadosFornecedor.get(i).get(11) != null){bfor.email                  =                  String.valueOf(dadosFornecedor.get(i).get(11));}
+            if(dadosFornecedor.get(i).get(12) != null){bfor.cep                    =                  String.valueOf(dadosFornecedor.get(i).get(12));}
+            if(dadosFornecedor.get(i).get(13) != null){bfor.cidade                 =                  String.valueOf(dadosFornecedor.get(i).get(13));}
+            if(dadosFornecedor.get(i).get(14) != null){bfor.endereco               =                  String.valueOf(dadosFornecedor.get(i).get(14));}
+            if(dadosFornecedor.get(i).get(15) != null){bfor.numero                 =                  String.valueOf(dadosFornecedor.get(i).get(15));}
+            if(dadosFornecedor.get(i).get(16) != null){bfor.bairro                 =                  String.valueOf(dadosFornecedor.get(i).get(16));}
+            if(dadosFornecedor.get(i).get(17) != null){bfor.uf                     =                  String.valueOf(dadosFornecedor.get(i).get(17));}
+            if(dadosFornecedor.get(i).get(18) != null){bfor.codigoPais             = Integer.parseInt(String.valueOf(dadosFornecedor.get(i).get(18)));}
+            if(dadosFornecedor.get(i).get(19) != null){bfor.observacoes            =                  String.valueOf(dadosFornecedor.get(i).get(19));}
+            if(dadosFornecedor.get(i).get(20) != null){bfor.dataAlterou            =                  String.valueOf(dadosFornecedor.get(i).get(20));}
+            if(dadosFornecedor.get(i).get(21) != null){bfor.horaAlterou            =                  String.valueOf(dadosFornecedor.get(i).get(21));}
+            if(dadosFornecedor.get(i).get(22) != null){bfor.usuarioAlterou         = Integer.parseInt(String.valueOf(dadosFornecedor.get(i).get(22)));}
+            if(dadosFornecedor.get(i).get(23) != null){bfor.idEmpresaAlterou       = Integer.parseInt(String.valueOf(dadosFornecedor.get(i).get(23)));}
+            if(dadosFornecedor.get(i).get(24) != null){bfor.codigoGrupoAlterou     = Integer.parseInt(String.valueOf(dadosFornecedor.get(i).get(24)));}
+            if(dadosFornecedor.get(i).get(25) != null){bfor.codigoEmpresaAlterou   = Integer.parseInt(String.valueOf(dadosFornecedor.get(i).get(25)));}
         }
         if(bfor.statusFornecedor == 1)
             check_bloqueado.setSelected(true);
@@ -1509,18 +1519,21 @@ public class FornecedorCadastro extends javax.swing.JFrame {
     }
     
     private void PegaDadosUsuarios(){
-        for(int i = 0; i < dadosUsuario.size(); i++)
-            bu.usuario      = String.valueOf(dadosUsuario.get(i).get(0));
+        for(int i = 0; i < dadosUsuario.size(); i++){
+            if(dadosUsuario.get(i).get(0) != null){bu.usuario      = String.valueOf(dadosUsuario.get(i).get(0));}
+        }
     }
     
     private void PegaCep(){
         bfor.cep = txt_cep.getText();
         bfor.cep = bfor.cep.replace(" ", "");
         bfor.cep = bfor.cep.replace("-", "");
-        if(bfor.cep.equals(""))
+        if(bfor.cep.equals("")){
             return;
-        if(Integer.parseInt(bfor.cep) == 0)
+        }
+        if(Integer.parseInt(bfor.cep) == 0){
             return;
+        }
         sql = "select * from ns_cep where cep = '" + bfor.cep + "';";
         dadosCEP.clear();
         dadosCEP = parametrosNS.dao.Consulta(sql);
@@ -1534,11 +1547,12 @@ public class FornecedorCadastro extends javax.swing.JFrame {
     
     private void PreencherCEP(){
         for(int i = 0; i < dadosCEP.size(); i++){
-            bcep.cep        = String.valueOf(dadosCEP.get(i).get(0));
-            bcep.endereco   = String.valueOf(dadosCEP.get(i).get(1));
-            bcep.cidade     = String.valueOf(dadosCEP.get(i).get(2));
-            bcep.bairro     = String.valueOf(dadosCEP.get(i).get(3));
-            bcep.uf         = String.valueOf(dadosCEP.get(i).get(4));
+            bcep = new BeanCEP();
+            if(dadosCEP.get(i).get(0) != null){bcep.cep        = String.valueOf(dadosCEP.get(i).get(0));}
+            if(dadosCEP.get(i).get(1) != null){bcep.endereco   = String.valueOf(dadosCEP.get(i).get(1));}
+            if(dadosCEP.get(i).get(2) != null){bcep.cidade     = String.valueOf(dadosCEP.get(i).get(2));}
+            if(dadosCEP.get(i).get(3) != null){bcep.bairro     = String.valueOf(dadosCEP.get(i).get(3));}
+            if(dadosCEP.get(i).get(4) != null){bcep.uf         = String.valueOf(dadosCEP.get(i).get(4));}
         }
         txt_cep         .setText(bcep.cep);
         txt_cidade      .setText(bcep.cidade);
@@ -1550,15 +1564,19 @@ public class FornecedorCadastro extends javax.swing.JFrame {
     }
     
     private void PegaPais(){
-        if(abriuPais == 1)
+        if(abriuPais == 1){
             return;
+        }
         txt_codigoPais.setText(fc.FormataCampo(txt_codigoPais.getText(), 4, 0));
         bfor.codigoPais = Integer.parseInt(fc.FormataCampo(txt_codigoPais.getText(), 4, 0));
-        if(bfor.codigoPais == 0)
+        if(bfor.codigoPais == 0){
             return;
-        if(String.valueOf(combo_uf.getSelectedItem()).equals("ZZ"))
-            if(bfor.codigoPais == 1058)
+        }
+        if(String.valueOf(combo_uf.getSelectedItem()).equals("ZZ")){
+            if(bfor.codigoPais == 1058){
                 return;
+            }
+        }
         sql = "select * from ns_paises where codigoPais = '" + bfor.codigoPais + "';";
         dadosPaises.clear();
         dadosPaises = parametrosNS.dao.Consulta(sql);
@@ -1571,8 +1589,8 @@ public class FornecedorCadastro extends javax.swing.JFrame {
     
     private void PegaDadosPais(){
         for(int i = 0; i < dadosPaises.size(); i++){
-            bpais.codigoPais = Integer.parseInt(  String.valueOf(dadosPaises.get(i).get(0)));
-            bpais.nomePais   =                    String.valueOf(dadosPaises.get(i).get(1));
+            if(dadosPaises.get(i).get(0) != null){bpais.codigoPais = Integer.parseInt(  String.valueOf(dadosPaises.get(i).get(0)));}
+            if(dadosPaises.get(i).get(1) != null){bpais.nomePais   =                    String.valueOf(dadosPaises.get(i).get(1));}
         }
         label_pais.setText(bpais.nomePais);
     }

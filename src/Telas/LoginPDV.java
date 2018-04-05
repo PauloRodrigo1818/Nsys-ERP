@@ -269,27 +269,13 @@ public class LoginPDV extends javax.swing.JFrame {
     
     private void PegaDadosUsuario(){
         for(int i = 0; i < dadosUsuarios.size(); i++){
-            if(dadosUsuarios.get(i).get(0) != null){
-                bu.idEmpresa     = Integer.parseInt(String.valueOf(dadosUsuarios.get(i).get(0)));
-            }
-            if(dadosUsuarios.get(i).get(1) != null){
-                bu.codigoGrupo   = Integer.parseInt(String.valueOf(dadosUsuarios.get(i).get(1)));
-            }
-            if(dadosUsuarios.get(i).get(2) != null){
-                bu.codigoEmpresa = Integer.parseInt(String.valueOf(dadosUsuarios.get(i).get(2)));
-            }
-            if(dadosUsuarios.get(i).get(3) != null){
-                bu.codigoUsuario = Integer.parseInt(String.valueOf(dadosUsuarios.get(i).get(3)));
-            }
-            if(dadosUsuarios.get(i).get(4) != null){
-                bu.nome          =                  String.valueOf(dadosUsuarios.get(i).get(4));
-            }
-            if(dadosUsuarios.get(i).get(5) != null){
-                bu.usuario       =                  String.valueOf(dadosUsuarios.get(i).get(5));
-            }
-            if(dadosUsuarios.get(i).get(6) != null){
-                bu.senha         =                  String.valueOf(dadosUsuarios.get(i).get(6));
-            }
+            if(dadosUsuarios.get(i).get(0) != null){bu.idEmpresa     = Integer.parseInt(String.valueOf(dadosUsuarios.get(i).get(0)));}
+            if(dadosUsuarios.get(i).get(1) != null){bu.codigoGrupo   = Integer.parseInt(String.valueOf(dadosUsuarios.get(i).get(1)));}
+            if(dadosUsuarios.get(i).get(2) != null){bu.codigoEmpresa = Integer.parseInt(String.valueOf(dadosUsuarios.get(i).get(2)));}
+            if(dadosUsuarios.get(i).get(3) != null){bu.codigoUsuario = Integer.parseInt(String.valueOf(dadosUsuarios.get(i).get(3)));}
+            if(dadosUsuarios.get(i).get(4) != null){bu.name          =                  String.valueOf(dadosUsuarios.get(i).get(4));}
+            if(dadosUsuarios.get(i).get(5) != null){bu.usuario       =                  String.valueOf(dadosUsuarios.get(i).get(5));}
+            if(dadosUsuarios.get(i).get(6) != null){bu.senha         =                  String.valueOf(dadosUsuarios.get(i).get(6));}
         }
         label_nomeGrupo  .setText(parametrosNS.bge.nomeGrupo);
         label_nomeEmpresa.setText(parametrosNS.be.nomeEmpresa);

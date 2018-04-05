@@ -327,12 +327,13 @@ public class ProcessarArquivoRemessa extends javax.swing.JFrame {
     
     private void PegaDadosCliente(){
         for(int i = 0; i < dadosCliente.size(); i++){
-            bc.idCliente            = Integer.parseInt(  String.valueOf(dadosCliente.get(i).get(0)));
-            bc.idEmpresa            = Integer.parseInt(  String.valueOf(dadosCliente.get(i).get(1)));
-            bc.codigoGrupo          = Integer.parseInt(  String.valueOf(dadosCliente.get(i).get(2)));
-            bc.codigoEmpresa        = Integer.parseInt(  String.valueOf(dadosCliente.get(i).get(3)));
-            bc.codigoCliente        = Integer.parseInt(  String.valueOf(dadosCliente.get(i).get(4)));
-            bc.nome                 =                    String.valueOf(dadosCliente.get(i).get(5));
+            bc = new BeanClientes();
+            if(dadosCliente.get(i).get(0) != null){bc.idCliente            = Integer.parseInt(String.valueOf(dadosCliente.get(i).get(0)));}
+            if(dadosCliente.get(i).get(1) != null){bc.idEmpresa            = Integer.parseInt(String.valueOf(dadosCliente.get(i).get(1)));}
+            if(dadosCliente.get(i).get(2) != null){bc.codigoGrupo          = Integer.parseInt(String.valueOf(dadosCliente.get(i).get(2)));}
+            if(dadosCliente.get(i).get(3) != null){bc.codigoEmpresa        = Integer.parseInt(String.valueOf(dadosCliente.get(i).get(3)));}
+            if(dadosCliente.get(i).get(4) != null){bc.codigoCliente        = Integer.parseInt(String.valueOf(dadosCliente.get(i).get(4)));}
+            if(dadosCliente.get(i).get(5) != null){bc.nome                 =                  String.valueOf(dadosCliente.get(i).get(5));}
         }
     }
     
@@ -349,8 +350,9 @@ public class ProcessarArquivoRemessa extends javax.swing.JFrame {
     }
     
     private void PegaDadosUsuario(){
-        for(int i = 0; i < dadosUsuario.size(); i++)
-            bu.usuario = String.valueOf(  dadosUsuario.get(i).get(0));
+        for(int i = 0; i < dadosUsuario.size(); i++){
+            if(dadosUsuario.get(i).get(0) != null){bu.usuario = String.valueOf(dadosUsuario.get(i).get(0));}
+        }
     }
     
     private void MontaSQL(){
@@ -378,65 +380,44 @@ public class ProcessarArquivoRemessa extends javax.swing.JFrame {
         
         for(int i = 0; i < dadosBoletos.size(); i++){
             bbol = new BeanBoletos();
-            if(dadosBoletos.get(i).get(0) != null)
-                bbol.idBoletos              = Integer.parseInt(  String.valueOf(dadosBoletos.get(i).get(0)));
-            if(dadosBoletos.get(i).get(1) != null)
-                bbol.idEmpresa              = Integer.parseInt(  String.valueOf(dadosBoletos.get(i).get(1)));
-            if(dadosBoletos.get(i).get(2) != null)
-                bbol.codigoGrupo            = Integer.parseInt(  String.valueOf(dadosBoletos.get(i).get(2)));
-            if(dadosBoletos.get(i).get(3) != null)
-                bbol.codigoEmpresa          = Integer.parseInt(  String.valueOf(dadosBoletos.get(i).get(3)));
-            if(dadosBoletos.get(i).get(4) != null)
-                bbol.codigoBoleto           = Integer.parseInt(  String.valueOf(dadosBoletos.get(i).get(4)));
-            if(dadosBoletos.get(i).get(5) != null)
-                bbol.codigoCliente          = Integer.parseInt(  String.valueOf(dadosBoletos.get(i).get(5)));
-            if(dadosBoletos.get(i).get(6) != null)
-                bbol.codigoContaCorrente    = Integer.parseInt(  String.valueOf(dadosBoletos.get(i).get(6)));
-            if(dadosBoletos.get(i).get(7) != null)
-                bbol.codigoBoletoInstrucao  = Integer.parseInt(  String.valueOf(dadosBoletos.get(i).get(7)));
-            if(dadosBoletos.get(i).get(8) != null)
-                bbol.codigoUsuario          = Integer.parseInt(  String.valueOf(dadosBoletos.get(i).get(8)));
-            if(dadosBoletos.get(i).get(9) != null)
-                bbol.codigoPagamento        = Integer.parseInt(  String.valueOf(dadosBoletos.get(i).get(9)));
-                bbol.tipoDeFaturamento      =                    String.valueOf(dadosBoletos.get(i).get(10));
-                bbol.nossoNumero            =                    String.valueOf(dadosBoletos.get(i).get(11));
-                bbol.dataEmissao            =                    String.valueOf(dadosBoletos.get(i).get(12));
-                bbol.numeroDocumento        =                    String.valueOf(dadosBoletos.get(i).get(13));
-                bbol.numeroDAC              =                    String.valueOf(dadosBoletos.get(i).get(14));
-            if(dadosBoletos.get(i).get(15) != null)
-                bbol.valorDevido            = Double.parseDouble(String.valueOf(dadosBoletos.get(i).get(15)));
-                bbol.dataDeVencimento       =                    String.valueOf(dadosBoletos.get(i).get(16));
-            if(dadosBoletos.get(i).get(17) != null)
-                bbol.valorPago              = Double.parseDouble(String.valueOf(dadosBoletos.get(i).get(17)));
-                bbol.dataDePagamento        =                    String.valueOf(dadosBoletos.get(i).get(18));
-                bbol.Instrucao1             =                    String.valueOf(dadosBoletos.get(i).get(19));
-                bbol.Instrucao3             =                    String.valueOf(dadosBoletos.get(i).get(20));
-                bbol.CodigoDeBarras1        =                    String.valueOf(dadosBoletos.get(i).get(21));
-                bbol.CodigoDeBarras2        =                    String.valueOf(dadosBoletos.get(i).get(22));
-                bbol.CodigoDeBarras3        =                    String.valueOf(dadosBoletos.get(i).get(23));
-                bbol.CodigoDeBarras4        =                    String.valueOf(dadosBoletos.get(i).get(24));
-                bbol.CodigoDeBarras5        =                    String.valueOf(dadosBoletos.get(i).get(25));
-                bbol.CodigoDeBarras         =                    String.valueOf(dadosBoletos.get(i).get(26));
-            if(dadosBoletos.get(i).get(27) != null)
-                bbol.ocorrenciaRemessa      = Integer.parseInt(  String.valueOf(dadosBoletos.get(i).get(27)));
-            if(dadosBoletos.get(i).get(28) != null)
-                bbol.ocorrenciaRetorno      = Integer.parseInt(  String.valueOf(dadosBoletos.get(i).get(28)));
-            if(dadosBoletos.get(i).get(29) != null)
-                bbol.ParcelaAtual           = Integer.parseInt(  String.valueOf(dadosBoletos.get(i).get(29)));
-            if(dadosBoletos.get(i).get(30) != null)
-                bbol.TotalDeParcelas        = Integer.parseInt(  String.valueOf(dadosBoletos.get(i).get(30)));
-            if(dadosBoletos.get(i).get(31) != null)
-                bbol.statusBoleto           = Integer.parseInt(  String.valueOf(dadosBoletos.get(i).get(31)));
-                bbol.dataAlterou            =                    String.valueOf(dadosBoletos.get(i).get(32));
-                bbol.horaAlterou            =                    String.valueOf(dadosBoletos.get(i).get(33));
-            if(dadosBoletos.get(i).get(34) != null)
-                bbol.usuarioAlterou         = Integer.parseInt(  String.valueOf(dadosBoletos.get(i).get(34)));
-            if(dadosBoletos.get(i).get(35) != null)
-                bbol.idEmpresaAlterou       = Integer.parseInt(  String.valueOf(dadosBoletos.get(i).get(35)));
-            if(dadosBoletos.get(i).get(36) != null)
-                bbol.codigoGrupoAlterou     = Integer.parseInt(  String.valueOf(dadosBoletos.get(i).get(36)));
-            if(dadosBoletos.get(i).get(37) != null)
-                bbol.codigoEmpresaAlterou   = Integer.parseInt(  String.valueOf(dadosBoletos.get(i).get(37)));
+            if(dadosBoletos.get(i).get(0)  != null){bbol.idBoletos              = Integer.parseInt(  String.valueOf(dadosBoletos.get(i).get(0)));}
+            if(dadosBoletos.get(i).get(1)  != null){bbol.idEmpresa              = Integer.parseInt(  String.valueOf(dadosBoletos.get(i).get(1)));}
+            if(dadosBoletos.get(i).get(2)  != null){bbol.codigoGrupo            = Integer.parseInt(  String.valueOf(dadosBoletos.get(i).get(2)));}
+            if(dadosBoletos.get(i).get(3)  != null){bbol.codigoEmpresa          = Integer.parseInt(  String.valueOf(dadosBoletos.get(i).get(3)));}
+            if(dadosBoletos.get(i).get(4)  != null){bbol.codigoBoleto           = Integer.parseInt(  String.valueOf(dadosBoletos.get(i).get(4)));}
+            if(dadosBoletos.get(i).get(5)  != null){bbol.codigoCliente          = Integer.parseInt(  String.valueOf(dadosBoletos.get(i).get(5)));}
+            if(dadosBoletos.get(i).get(6)  != null){bbol.codigoContaCorrente    = Integer.parseInt(  String.valueOf(dadosBoletos.get(i).get(6)));}
+            if(dadosBoletos.get(i).get(7)  != null){bbol.codigoBoletoInstrucao  = Integer.parseInt(  String.valueOf(dadosBoletos.get(i).get(7)));}
+            if(dadosBoletos.get(i).get(8)  != null){bbol.codigoUsuario          = Integer.parseInt(  String.valueOf(dadosBoletos.get(i).get(8)));}
+            if(dadosBoletos.get(i).get(9)  != null){bbol.codigoPagamento        = Integer.parseInt(  String.valueOf(dadosBoletos.get(i).get(9)));}
+            if(dadosBoletos.get(i).get(10) != null){bbol.tipoDeFaturamento      =                    String.valueOf(dadosBoletos.get(i).get(10));}
+            if(dadosBoletos.get(i).get(11) != null){bbol.nossoNumero            =                    String.valueOf(dadosBoletos.get(i).get(11));}
+            if(dadosBoletos.get(i).get(12) != null){bbol.dataEmissao            =                    String.valueOf(dadosBoletos.get(i).get(12));}
+            if(dadosBoletos.get(i).get(13) != null){bbol.numeroDocumento        =                    String.valueOf(dadosBoletos.get(i).get(13));}
+            if(dadosBoletos.get(i).get(14) != null){bbol.numeroDAC              =                    String.valueOf(dadosBoletos.get(i).get(14));}
+            if(dadosBoletos.get(i).get(15) != null){bbol.valorDevido            = Double.parseDouble(String.valueOf(dadosBoletos.get(i).get(15)));}
+            if(dadosBoletos.get(i).get(16) != null){bbol.dataDeVencimento       =                    String.valueOf(dadosBoletos.get(i).get(16));}
+            if(dadosBoletos.get(i).get(17) != null){bbol.valorPago              = Double.parseDouble(String.valueOf(dadosBoletos.get(i).get(17)));}
+            if(dadosBoletos.get(i).get(18) != null){bbol.dataDePagamento        =                    String.valueOf(dadosBoletos.get(i).get(18));}
+            if(dadosBoletos.get(i).get(19) != null){bbol.Instrucao1             =                    String.valueOf(dadosBoletos.get(i).get(19));}
+            if(dadosBoletos.get(i).get(20) != null){bbol.Instrucao3             =                    String.valueOf(dadosBoletos.get(i).get(20));}
+            if(dadosBoletos.get(i).get(21) != null){bbol.CodigoDeBarras1        =                    String.valueOf(dadosBoletos.get(i).get(21));}
+            if(dadosBoletos.get(i).get(22) != null){bbol.CodigoDeBarras2        =                    String.valueOf(dadosBoletos.get(i).get(22));}
+            if(dadosBoletos.get(i).get(23) != null){bbol.CodigoDeBarras3        =                    String.valueOf(dadosBoletos.get(i).get(23));}
+            if(dadosBoletos.get(i).get(24) != null){bbol.CodigoDeBarras4        =                    String.valueOf(dadosBoletos.get(i).get(24));}
+            if(dadosBoletos.get(i).get(25) != null){bbol.CodigoDeBarras5        =                    String.valueOf(dadosBoletos.get(i).get(25));}
+            if(dadosBoletos.get(i).get(26) != null){bbol.CodigoDeBarras         =                    String.valueOf(dadosBoletos.get(i).get(26));}
+            if(dadosBoletos.get(i).get(27) != null){bbol.ocorrenciaRemessa      = Integer.parseInt(  String.valueOf(dadosBoletos.get(i).get(27)));}
+            if(dadosBoletos.get(i).get(28) != null){bbol.ocorrenciaRetorno      = Integer.parseInt(  String.valueOf(dadosBoletos.get(i).get(28)));}
+            if(dadosBoletos.get(i).get(29) != null){bbol.ParcelaAtual           = Integer.parseInt(  String.valueOf(dadosBoletos.get(i).get(29)));}
+            if(dadosBoletos.get(i).get(30) != null){bbol.TotalDeParcelas        = Integer.parseInt(  String.valueOf(dadosBoletos.get(i).get(30)));}
+            if(dadosBoletos.get(i).get(31) != null){bbol.statusBoleto           = Integer.parseInt(  String.valueOf(dadosBoletos.get(i).get(31)));}
+            if(dadosBoletos.get(i).get(32) != null){bbol.dataAlterou            =                    String.valueOf(dadosBoletos.get(i).get(32));}
+            if(dadosBoletos.get(i).get(33) != null){bbol.horaAlterou            =                    String.valueOf(dadosBoletos.get(i).get(33));}
+            if(dadosBoletos.get(i).get(34) != null){bbol.usuarioAlterou         = Integer.parseInt(  String.valueOf(dadosBoletos.get(i).get(34)));}
+            if(dadosBoletos.get(i).get(35) != null){bbol.idEmpresaAlterou       = Integer.parseInt(  String.valueOf(dadosBoletos.get(i).get(35)));}
+            if(dadosBoletos.get(i).get(36) != null){bbol.codigoGrupoAlterou     = Integer.parseInt(  String.valueOf(dadosBoletos.get(i).get(36)));}
+            if(dadosBoletos.get(i).get(37) != null){bbol.codigoEmpresaAlterou   = Integer.parseInt(  String.valueOf(dadosBoletos.get(i).get(37)));}
             
             bc.codigoCliente          = bbol.codigoCliente;
             PegaCliente();

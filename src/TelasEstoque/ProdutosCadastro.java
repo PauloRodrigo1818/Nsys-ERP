@@ -1365,8 +1365,8 @@ public class ProdutosCadastro extends javax.swing.JFrame {
         combo_tipoDeProduto .setSelectedIndex(1);
         txt_codigoFabricante.setText("");
         label_fabricante    .setText("");
-        if(combo_grupoProduto      .getItemCount() > 0){combo_grupoProduto         .setSelectedIndex(0);}
-        if(combo_subGrupoProduto   .getItemCount() > 0){combo_subGrupoProduto      .setSelectedIndex(0);}
+        if(combo_grupoProduto      .getItemCount() > 0){combo_grupoProduto   .setSelectedIndex(0);}
+        if(combo_subGrupoProduto   .getItemCount() > 0){combo_subGrupoProduto.setSelectedIndex(0);}
         txt_quantidadeMinima.setText("");
         txt_quantidadeIdeal .setText("");
         txt_quantidadeAtual .setText("");
@@ -1447,7 +1447,6 @@ public class ProdutosCadastro extends javax.swing.JFrame {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "O erro foi no solicitarRelatorioClientes: " + e);
         }
-
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
@@ -1457,7 +1456,6 @@ public class ProdutosCadastro extends javax.swing.JFrame {
         if(parametrosNS.bu.nivelUsuario  < 4 | somostra.equals("S")){
             jMenuArquivo.setVisible(false);
         }
-        
         if(bp.codigoProduto != 0){
             txt_codigoProduto       .setText(String.valueOf(bp.codigoProduto));
             PegouCodigoProduto = "N";
@@ -1484,7 +1482,6 @@ public class ProdutosCadastro extends javax.swing.JFrame {
             bt_proximo              .setVisible (false);
             bt_ultimo               .setVisible (false);
         }
-        
     }//GEN-LAST:event_formWindowOpened
     
     private void bt_alterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_alterarActionPerformed
@@ -2315,7 +2312,7 @@ public class ProdutosCadastro extends javax.swing.JFrame {
     
     private void PegaDadosUsuario(){
         for(int i = 0; i < dadosUsuario.size(); i++){
-            bu.usuario              = String.valueOf(dadosUsuario.get(i).get(0));
+            if(dadosUsuario.get(i).get(0) != null){bu.usuario              = String.valueOf(dadosUsuario.get(i).get(0));}
         }
     }
     

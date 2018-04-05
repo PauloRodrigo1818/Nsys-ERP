@@ -224,15 +224,17 @@ public class GerarBoletoItau extends javax.swing.JFrame {
             bbi.segundaInstrucao        =                    String.valueOf(dadosBoletosInstrucoes.get(i).get(7));
             bbi.terceiraInstrucao       =                    String.valueOf(dadosBoletosInstrucoes.get(i).get(8));
             
-            if(CarregarComboInstrucoes.equalsIgnoreCase("S"))
+            if(CarregarComboInstrucoes.equalsIgnoreCase("S")){
                 combo_Instrucoes.addItem(fc.FormataCampo(String.valueOf(bbi.codigoBoletoInstrucao), 2, 0) + "-" + bbi.descricaoInstrucao);
+            }
         }
     }
     
     private void PegaBancoItau(){
         bb.codigoBanco  = "341";
-        if(bb.codigoBanco.equals(""))
+        if(bb.codigoBanco.equals("")){
             return;
+        }
         sql = "select * from ns_bancos where codigoBanco = '" + bb.codigoBanco + "';";
         dadosBanco.clear();
         dadosBanco = parametrosNS.dao.Consulta(sql);
@@ -293,36 +295,27 @@ public class GerarBoletoItau extends javax.swing.JFrame {
     private void PegaDadosAgenciaEContaCorrentePadraoItau(){
         for(int i = 0; i < dadosAgenciaEContaCorrente.size(); i++){
             bcc = new BeanContaCorrente();
-        if(dadosAgenciaEContaCorrente.get(i).get(0) != null)
-            bcc.idContaCorrente             = Integer.parseInt(  String.valueOf(dadosAgenciaEContaCorrente.get(i).get(0)));
-        if(dadosAgenciaEContaCorrente.get(i).get(1) != null)
-            bcc.idEmpresa                   = Integer.parseInt(  String.valueOf(dadosAgenciaEContaCorrente.get(i).get(1)));
-        if(dadosAgenciaEContaCorrente.get(i).get(2) != null)
-            bcc.codigoGrupo                 = Integer.parseInt(  String.valueOf(dadosAgenciaEContaCorrente.get(i).get(2)));
-        if(dadosAgenciaEContaCorrente.get(i).get(3) != null)
-            bcc.codigoEmpresa               = Integer.parseInt(  String.valueOf(dadosAgenciaEContaCorrente.get(i).get(3)));
-        if(dadosAgenciaEContaCorrente.get(i).get(4) != null)
-            bcc.codigoContaCorrente         = Integer.parseInt(  String.valueOf(dadosAgenciaEContaCorrente.get(i).get(4)));
-        if(dadosAgenciaEContaCorrente.get(i).get(5) != null)
-            bcc.idBanco                     = Integer.parseInt(  String.valueOf(dadosAgenciaEContaCorrente.get(i).get(5)));
-        if(dadosAgenciaEContaCorrente.get(i).get(6) != null)
-            bcc.numeroAgencia               = Integer.parseInt(  String.valueOf(dadosAgenciaEContaCorrente.get(i).get(6)));
-        if(dadosAgenciaEContaCorrente.get(i).get(7) != null)
-            bcc.digitoVerificadorAgencia    = Integer.parseInt(  String.valueOf(dadosAgenciaEContaCorrente.get(i).get(7)));
-        if(dadosAgenciaEContaCorrente.get(i).get(8) != null)
-            bcc.numeroContaCorrente         = Integer.parseInt(  String.valueOf(dadosAgenciaEContaCorrente.get(i).get(8)));
-        if(dadosAgenciaEContaCorrente.get(i).get(9) != null)
-            bcc.digitoVerificador           = Integer.parseInt(  String.valueOf(dadosAgenciaEContaCorrente.get(i).get(9)));
-        if(dadosAgenciaEContaCorrente.get(i).get(10) != null)
-            bcc.contaCorrentePadrao         = Integer.parseInt(  String.valueOf(dadosAgenciaEContaCorrente.get(i).get(10)));
-            bcc.numeroDaCarteira            =                    String.valueOf(dadosAgenciaEContaCorrente.get(i).get(11));
-            bcc.especieDoDocumento          =                    String.valueOf(dadosAgenciaEContaCorrente.get(i).get(12));
-            bcc.AceiteOuNaoAceite           =                    String.valueOf(dadosAgenciaEContaCorrente.get(i).get(13));
+            if(dadosAgenciaEContaCorrente.get(i).get(0)  != null){bcc.idContaCorrente             = Integer.parseInt(  String.valueOf(dadosAgenciaEContaCorrente.get(i).get(0)));}
+            if(dadosAgenciaEContaCorrente.get(i).get(1)  != null){bcc.idEmpresa                   = Integer.parseInt(  String.valueOf(dadosAgenciaEContaCorrente.get(i).get(1)));}
+            if(dadosAgenciaEContaCorrente.get(i).get(2)  != null){bcc.codigoGrupo                 = Integer.parseInt(  String.valueOf(dadosAgenciaEContaCorrente.get(i).get(2)));}
+            if(dadosAgenciaEContaCorrente.get(i).get(3)  != null){bcc.codigoEmpresa               = Integer.parseInt(  String.valueOf(dadosAgenciaEContaCorrente.get(i).get(3)));}
+            if(dadosAgenciaEContaCorrente.get(i).get(4)  != null){bcc.codigoContaCorrente         = Integer.parseInt(  String.valueOf(dadosAgenciaEContaCorrente.get(i).get(4)));}
+            if(dadosAgenciaEContaCorrente.get(i).get(5)  != null){bcc.idBanco                     = Integer.parseInt(  String.valueOf(dadosAgenciaEContaCorrente.get(i).get(5)));}
+            if(dadosAgenciaEContaCorrente.get(i).get(6)  != null){bcc.numeroAgencia               = Integer.parseInt(  String.valueOf(dadosAgenciaEContaCorrente.get(i).get(6)));}
+            if(dadosAgenciaEContaCorrente.get(i).get(7)  != null){bcc.digitoVerificadorAgencia    = Integer.parseInt(  String.valueOf(dadosAgenciaEContaCorrente.get(i).get(7)));}
+            if(dadosAgenciaEContaCorrente.get(i).get(8)  != null){bcc.numeroContaCorrente         = Integer.parseInt(  String.valueOf(dadosAgenciaEContaCorrente.get(i).get(8)));}
+            if(dadosAgenciaEContaCorrente.get(i).get(9)  != null){bcc.digitoVerificador           = Integer.parseInt(  String.valueOf(dadosAgenciaEContaCorrente.get(i).get(9)));}
+            if(dadosAgenciaEContaCorrente.get(i).get(10) != null){bcc.contaCorrentePadrao         = Integer.parseInt(  String.valueOf(dadosAgenciaEContaCorrente.get(i).get(10)));}
+            if(dadosAgenciaEContaCorrente.get(i).get(11) != null){bcc.numeroDaCarteira            =                    String.valueOf(dadosAgenciaEContaCorrente.get(i).get(11));}
+            if(dadosAgenciaEContaCorrente.get(i).get(12) != null){bcc.especieDoDocumento          =                    String.valueOf(dadosAgenciaEContaCorrente.get(i).get(12));}
+            if(dadosAgenciaEContaCorrente.get(i).get(13) != null){bcc.AceiteOuNaoAceite           =                    String.valueOf(dadosAgenciaEContaCorrente.get(i).get(13));}
         }
-        if(bcc.numeroDaCarteira == null)
+        if(bcc.numeroDaCarteira == null){
             bcc.numeroDaCarteira    = "";
-        if(SetaNumeroCarteira.equals("S"))
+        }
+        if(SetaNumeroCarteira.equals("S")){
             txt_numeroDaCarteira.setText(fc.FormataCampo(bcc.numeroDaCarteira, 3, 0));
+        }
     }
     
     @SuppressWarnings("unchecked")
@@ -1011,10 +1004,12 @@ public class GerarBoletoItau extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txt_codigoBoletoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_codigoBoletoFocusGained
-        if(txt_codigoBoleto.isEditable() == false)
+        if(txt_codigoBoleto.isEditable() == false){
             return;
-        if(somostra.equals("S"))
+        }
+        if(somostra.equals("S")){
             return;
+        }
         operacao = "";
         ReiniciaCampos(false);
         HabilitaBotoes();
@@ -1022,10 +1017,12 @@ public class GerarBoletoItau extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_codigoBoletoFocusGained
 
     private void txt_codigoBoletoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_codigoBoletoFocusLost
-        if(txt_codigoBoleto.isEditable() == false)
+        if(txt_codigoBoleto.isEditable() == false){
             return;
-        if(txt_codigoBoleto.getText().replace(" ", "").equals(""))
+        }
+        if(txt_codigoBoleto.getText().replace(" ", "").equals("")){
             return;
+        }
         PegaBoleto();
     }//GEN-LAST:event_txt_codigoBoletoFocusLost
 
@@ -1046,23 +1043,28 @@ public class GerarBoletoItau extends javax.swing.JFrame {
     }
     
     private void txt_codigoClienteFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_codigoClienteFocusGained
-        if(txt_codigoBoleto.isEditable() == false)
+        if(txt_codigoBoleto.isEditable() == false){
             return;
-        if(somostra.equals("S"))
+        }
+        if(somostra.equals("S")){
             return;
+        }
         label_nomeCliente.setText("");
     }//GEN-LAST:event_txt_codigoClienteFocusGained
 
     private void txt_codigoClienteFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_codigoClienteFocusLost
-        if(txt_codigoCliente.isEditable() == false)
+        if(txt_codigoCliente.isEditable() == false){
             return;
-        if(txt_codigoCliente.getText().replace(" ", "").equals(""))
+        }
+        if(txt_codigoCliente.getText().replace(" ", "").equals("")){
             return;
+        }
         txt_codigoCliente.setText(fc.FormataCampo(txt_codigoCliente.getText(), 5, 0));
         bc.codigoCliente    = Integer.parseInt(txt_codigoCliente.getText());
         PegaCliente();
-        if(fatal.equals("N"))
+        if(fatal.equals("N")){
             label_nomeCliente.setText(bc.nome);
+        }
     }//GEN-LAST:event_txt_codigoClienteFocusLost
 
     private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
@@ -1073,24 +1075,28 @@ public class GerarBoletoItau extends javax.swing.JFrame {
         }
         abriuBoleto = 0;
         retorno = BolCon.getRetorno();
-        if(retorno.equals(""))
+        if(retorno.equals("")){
             return;
+        }
         txt_codigoBoleto.setText(retorno);
         PegaBoleto();
     }//GEN-LAST:event_formWindowGainedFocus
     
     private void AbreCliente(){
-        if(abriuCliente == 0)
+        if(abriuCliente == 0){
             return;
+        }
         abriuCliente = 0;
         retorno = CliCon.getRetorno();
-        if(retorno.equals(""))
+        if(retorno.equals("")){
             return;
+        }
         txt_codigoCliente.setText(fc.FormataCampo(retorno, 5, 0));
         bc.codigoCliente    = Integer.parseInt(txt_codigoCliente.getText());
         PegaCliente();
-        if(fatal.equals("N"))
+        if(fatal.equals("N")){
             label_nomeCliente.setText(bc.nome);
+        }
     }
     
     private void bt_pesquisaClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_pesquisaClienteActionPerformed
@@ -1109,8 +1115,9 @@ public class GerarBoletoItau extends javax.swing.JFrame {
     }//GEN-LAST:event_bt_sairActionPerformed
 
     private void txt_valorDevidoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_valorDevidoFocusLost
-        if(txt_valorDevido.getText().equals(""))
+        if(txt_valorDevido.getText().equals("")){
             return;
+        }
         if(!txt_valorDevido.getText().equals(""))
             txt_valorDevido.setText(TransStrDou.TransformaValorStringeDouble(txt_valorDevido.getText(), 0));
         if(operacao.equals("A")){
@@ -1127,10 +1134,12 @@ public class GerarBoletoItau extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_valorDevidoFocusGained
 
     private void txt_qtdParcelasFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_qtdParcelasFocusLost
-        if(txt_qtdParcelas.getText().replace(" ", "").equals(""))
+        if(txt_qtdParcelas.getText().replace(" ", "").equals("")){
             return;
-        if(txt_valorDevido.getText().equals(""))
+        }
+        if(txt_valorDevido.getText().equals("")){
             return;
+        }
         txt_qtdParcelas.setText(fc.FormataCampo(txt_qtdParcelas.getText(), 3, 0));
         
         bbol.valorDevido        = Double.parseDouble(TransStrDou.TransformaValorStringeDouble(txt_valorDevido.getText(), 1));
@@ -1245,8 +1254,9 @@ public class GerarBoletoItau extends javax.swing.JFrame {
 
     private void bt_alterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_alterarActionPerformed
         PegaValores();
-        if(fatal.equals("S"))return;
-        
+        if(fatal.equals("S")){
+            return;
+        }
         sql = "update tb_boletos set numeroDAC = "              + bbol.numeroDAC                + ", "
                                   + "valorDevido = "            + bbol.valorDevido              + ", "
                                   + "dataDeVencimento = '"      + bbol.dataDeVencimento         + "', "
@@ -1269,8 +1279,9 @@ public class GerarBoletoItau extends javax.swing.JFrame {
                                   + "atualizado = 1 "
                                   + "where idBoletos = "    + bbol.idBoletos    + ";";
         sqlstate = parametrosNS.dao.AlterarRegistroOuConsultaSeTabelaExiste(sql, "S");
-        if(!sqlstate.equals("00000"))
+        if(!sqlstate.equals("00000")){
             return;
+        }
         txt_codigoBoleto.grabFocus();
     }//GEN-LAST:event_bt_alterarActionPerformed
 
@@ -1305,7 +1316,7 @@ public class GerarBoletoItau extends javax.swing.JFrame {
         SetaNumeroCarteira = "S";
         PegaBancoItau();
         
-        if(bbol.codigoBoleto == 0)
+        if(bbol.codigoBoleto == 0){
             if(bc.codigoCliente != 0){
                 NovoBoleto();
                 txt_codigoCliente.setText(fc.FormataCampo(String.valueOf(bc.codigoCliente), 5, 0));
@@ -1325,7 +1336,8 @@ public class GerarBoletoItau extends javax.swing.JFrame {
                 txt_valorDevido.setText(TransStrDou.TransformaValorStringeDouble(String.valueOf(bbol.valorDevido), 0));
                 txt_qtdParcelas.grabFocus();
             }
-        if(bc.codigoCliente == 0)
+        }
+        if(bc.codigoCliente == 0){
             if(bbol.codigoBoleto != 0){
                 txt_codigoBoleto.setText(String.valueOf(bbol.codigoBoleto));
                 PegaBoleto();
@@ -1337,8 +1349,10 @@ public class GerarBoletoItau extends javax.swing.JFrame {
                 bt_baixaManual          .setVisible (false);
                 bt_pesquisa             .setVisible (false);
             }
-        if(somostra.equalsIgnoreCase("SN"))
+        }
+        if(somostra.equalsIgnoreCase("SN")){
             bt_pesquisa             .setVisible (false);
+        }
     }//GEN-LAST:event_formWindowOpened
 
     private void bt_baixaManualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_baixaManualActionPerformed
@@ -1354,8 +1368,8 @@ public class GerarBoletoItau extends javax.swing.JFrame {
     }//GEN-LAST:event_bt_baixaManualActionPerformed
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-        if(CliCon   != null)CliCon.dispose();
-        if(BolCon   != null)BolCon.dispose();
+        if(CliCon   != null){CliCon.dispose();}
+        if(BolCon   != null){BolCon.dispose();}
     }//GEN-LAST:event_formWindowClosed
 
     private void bt_emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_emailActionPerformed
@@ -1501,8 +1515,9 @@ public class GerarBoletoItau extends javax.swing.JFrame {
     private void PegaBoleto(){
         txt_codigoBoleto.setText(fc.FormataCampo(txt_codigoBoleto.getText(), 8, 0));
         bbol.codigoBoleto   = Integer.parseInt(txt_codigoBoleto.getText());
-        if(bbol.codigoBoleto == 0)
+        if(bbol.codigoBoleto == 0){
             return;
+        }
         txt_qtdParcelas             .setEditable (false);
         txt_qtdParcelas             .setFocusable(false);
         combo_vencimentoDasParcelas .setEnabled  (false);
@@ -1523,65 +1538,44 @@ public class GerarBoletoItau extends javax.swing.JFrame {
     private void PegaDadosBoleto(){
         for(int i = 0; i < dadosBoletos.size(); i++){
             bbol = new BeanBoletos();
-            if(dadosBoletos.get(i).get(0) != null)
-                bbol.idBoletos              = Integer.parseInt(  String.valueOf(dadosBoletos.get(i).get(0)));
-            if(dadosBoletos.get(i).get(1) != null)
-                bbol.idEmpresa              = Integer.parseInt(  String.valueOf(dadosBoletos.get(i).get(1)));
-            if(dadosBoletos.get(i).get(2) != null)
-                bbol.codigoGrupo            = Integer.parseInt(  String.valueOf(dadosBoletos.get(i).get(2)));
-            if(dadosBoletos.get(i).get(3) != null)
-                bbol.codigoEmpresa          = Integer.parseInt(  String.valueOf(dadosBoletos.get(i).get(3)));
-            if(dadosBoletos.get(i).get(4) != null)
-                bbol.codigoBoleto           = Integer.parseInt(  String.valueOf(dadosBoletos.get(i).get(4)));
-            if(dadosBoletos.get(i).get(5) != null)
-                bbol.codigoCliente          = Integer.parseInt(  String.valueOf(dadosBoletos.get(i).get(5)));
-            if(dadosBoletos.get(i).get(6) != null)
-                bbol.codigoContaCorrente    = Integer.parseInt(  String.valueOf(dadosBoletos.get(i).get(6)));
-            if(dadosBoletos.get(i).get(7) != null)
-                bbol.codigoBoletoInstrucao  = Integer.parseInt(  String.valueOf(dadosBoletos.get(i).get(7)));
-            if(dadosBoletos.get(i).get(8) != null)
-                bbol.codigoUsuario          = Integer.parseInt(  String.valueOf(dadosBoletos.get(i).get(8)));
-            if(dadosBoletos.get(i).get(9) != null)
-                bbol.codigoPagamento        = Integer.parseInt(  String.valueOf(dadosBoletos.get(i).get(9)));
-                bbol.tipoDeFaturamento      =                    String.valueOf(dadosBoletos.get(i).get(10));
-                bbol.nossoNumero            =                    String.valueOf(dadosBoletos.get(i).get(11));
-                bbol.dataEmissao            =                    String.valueOf(dadosBoletos.get(i).get(12));
-                bbol.numeroDocumento        =                    String.valueOf(dadosBoletos.get(i).get(13));
-                bbol.numeroDAC              =                    String.valueOf(dadosBoletos.get(i).get(14));
-            if(dadosBoletos.get(i).get(15) != null)
-                bbol.valorDevido            = Double.parseDouble(String.valueOf(dadosBoletos.get(i).get(15)));
-                bbol.dataDeVencimento       =                    String.valueOf(dadosBoletos.get(i).get(16));
-            if(dadosBoletos.get(i).get(17) != null)
-                bbol.valorPago              = Double.parseDouble(String.valueOf(dadosBoletos.get(i).get(17)));
-                bbol.dataDePagamento        =                    String.valueOf(dadosBoletos.get(i).get(18));
-                bbol.Instrucao1             =                    String.valueOf(dadosBoletos.get(i).get(19));
-                bbol.Instrucao3             =                    String.valueOf(dadosBoletos.get(i).get(20));
-                bbol.CodigoDeBarras1        =                    String.valueOf(dadosBoletos.get(i).get(21));
-                bbol.CodigoDeBarras2        =                    String.valueOf(dadosBoletos.get(i).get(22));
-                bbol.CodigoDeBarras3        =                    String.valueOf(dadosBoletos.get(i).get(23));
-                bbol.CodigoDeBarras4        =                    String.valueOf(dadosBoletos.get(i).get(24));
-                bbol.CodigoDeBarras5        =                    String.valueOf(dadosBoletos.get(i).get(25));
-                bbol.CodigoDeBarras         =                    String.valueOf(dadosBoletos.get(i).get(26));
-            if(dadosBoletos.get(i).get(27) != null)
-                bbol.ocorrenciaRemessa      = Integer.parseInt(  String.valueOf(dadosBoletos.get(i).get(27)));
-            if(dadosBoletos.get(i).get(28) != null)
-                bbol.ocorrenciaRetorno      = Integer.parseInt(  String.valueOf(dadosBoletos.get(i).get(28)));
-            if(dadosBoletos.get(i).get(29) != null)
-                bbol.ParcelaAtual           = Integer.parseInt(  String.valueOf(dadosBoletos.get(i).get(29)));
-            if(dadosBoletos.get(i).get(30) != null)
-                bbol.TotalDeParcelas        = Integer.parseInt(  String.valueOf(dadosBoletos.get(i).get(30)));
-            if(dadosBoletos.get(i).get(31) != null)
-                bbol.statusBoleto           = Integer.parseInt(  String.valueOf(dadosBoletos.get(i).get(31)));
-                bbol.dataAlterou            =                    String.valueOf(dadosBoletos.get(i).get(32));
-                bbol.horaAlterou            =                    String.valueOf(dadosBoletos.get(i).get(33));
-            if(dadosBoletos.get(i).get(34) != null)
-                bbol.usuarioAlterou         = Integer.parseInt(  String.valueOf(dadosBoletos.get(i).get(34)));
-            if(dadosBoletos.get(i).get(35) != null)
-                bbol.idEmpresaAlterou       = Integer.parseInt(  String.valueOf(dadosBoletos.get(i).get(35)));
-            if(dadosBoletos.get(i).get(36) != null)
-                bbol.codigoGrupoAlterou     = Integer.parseInt(  String.valueOf(dadosBoletos.get(i).get(36)));
-            if(dadosBoletos.get(i).get(37) != null)
-                bbol.codigoEmpresaAlterou   = Integer.parseInt(  String.valueOf(dadosBoletos.get(i).get(37)));
+            if(dadosBoletos.get(i).get(0)  != null)bbol.idBoletos              = Integer.parseInt(  String.valueOf(dadosBoletos.get(i).get(0)));
+            if(dadosBoletos.get(i).get(1)  != null)bbol.idEmpresa              = Integer.parseInt(  String.valueOf(dadosBoletos.get(i).get(1)));
+            if(dadosBoletos.get(i).get(2)  != null)bbol.codigoGrupo            = Integer.parseInt(  String.valueOf(dadosBoletos.get(i).get(2)));
+            if(dadosBoletos.get(i).get(3)  != null)bbol.codigoEmpresa          = Integer.parseInt(  String.valueOf(dadosBoletos.get(i).get(3)));
+            if(dadosBoletos.get(i).get(4)  != null)bbol.codigoBoleto           = Integer.parseInt(  String.valueOf(dadosBoletos.get(i).get(4)));
+            if(dadosBoletos.get(i).get(5)  != null)bbol.codigoCliente          = Integer.parseInt(  String.valueOf(dadosBoletos.get(i).get(5)));
+            if(dadosBoletos.get(i).get(6)  != null)bbol.codigoContaCorrente    = Integer.parseInt(  String.valueOf(dadosBoletos.get(i).get(6)));
+            if(dadosBoletos.get(i).get(7)  != null)bbol.codigoBoletoInstrucao  = Integer.parseInt(  String.valueOf(dadosBoletos.get(i).get(7)));
+            if(dadosBoletos.get(i).get(8)  != null)bbol.codigoUsuario          = Integer.parseInt(  String.valueOf(dadosBoletos.get(i).get(8)));
+            if(dadosBoletos.get(i).get(9)  != null)bbol.codigoPagamento        = Integer.parseInt(  String.valueOf(dadosBoletos.get(i).get(9)));
+            if(dadosBoletos.get(i).get(10) != null)bbol.tipoDeFaturamento      =                    String.valueOf(dadosBoletos.get(i).get(10));
+            if(dadosBoletos.get(i).get(11) != null)bbol.nossoNumero            =                    String.valueOf(dadosBoletos.get(i).get(11));
+            if(dadosBoletos.get(i).get(12) != null)bbol.dataEmissao            =                    String.valueOf(dadosBoletos.get(i).get(12));
+            if(dadosBoletos.get(i).get(13) != null)bbol.numeroDocumento        =                    String.valueOf(dadosBoletos.get(i).get(13));
+            if(dadosBoletos.get(i).get(14) != null)bbol.numeroDAC              =                    String.valueOf(dadosBoletos.get(i).get(14));
+            if(dadosBoletos.get(i).get(15) != null)bbol.valorDevido            = Double.parseDouble(String.valueOf(dadosBoletos.get(i).get(15)));
+            if(dadosBoletos.get(i).get(16) != null)bbol.dataDeVencimento       =                    String.valueOf(dadosBoletos.get(i).get(16));
+            if(dadosBoletos.get(i).get(17) != null)bbol.valorPago              = Double.parseDouble(String.valueOf(dadosBoletos.get(i).get(17)));
+            if(dadosBoletos.get(i).get(18) != null)bbol.dataDePagamento        =                    String.valueOf(dadosBoletos.get(i).get(18));
+            if(dadosBoletos.get(i).get(19) != null)bbol.Instrucao1             =                    String.valueOf(dadosBoletos.get(i).get(19));
+            if(dadosBoletos.get(i).get(20) != null)bbol.Instrucao3             =                    String.valueOf(dadosBoletos.get(i).get(20));
+            if(dadosBoletos.get(i).get(21) != null)bbol.CodigoDeBarras1        =                    String.valueOf(dadosBoletos.get(i).get(21));
+            if(dadosBoletos.get(i).get(22) != null)bbol.CodigoDeBarras2        =                    String.valueOf(dadosBoletos.get(i).get(22));
+            if(dadosBoletos.get(i).get(23) != null)bbol.CodigoDeBarras3        =                    String.valueOf(dadosBoletos.get(i).get(23));
+            if(dadosBoletos.get(i).get(24) != null)bbol.CodigoDeBarras4        =                    String.valueOf(dadosBoletos.get(i).get(24));
+            if(dadosBoletos.get(i).get(25) != null)bbol.CodigoDeBarras5        =                    String.valueOf(dadosBoletos.get(i).get(25));
+            if(dadosBoletos.get(i).get(26) != null)bbol.CodigoDeBarras         =                    String.valueOf(dadosBoletos.get(i).get(26));
+            if(dadosBoletos.get(i).get(27) != null)bbol.ocorrenciaRemessa      = Integer.parseInt(  String.valueOf(dadosBoletos.get(i).get(27)));
+            if(dadosBoletos.get(i).get(28) != null)bbol.ocorrenciaRetorno      = Integer.parseInt(  String.valueOf(dadosBoletos.get(i).get(28)));
+            if(dadosBoletos.get(i).get(29) != null)bbol.ParcelaAtual           = Integer.parseInt(  String.valueOf(dadosBoletos.get(i).get(29)));
+            if(dadosBoletos.get(i).get(30) != null)bbol.TotalDeParcelas        = Integer.parseInt(  String.valueOf(dadosBoletos.get(i).get(30)));
+            if(dadosBoletos.get(i).get(31) != null)bbol.statusBoleto           = Integer.parseInt(  String.valueOf(dadosBoletos.get(i).get(31)));
+            if(dadosBoletos.get(i).get(32) != null)bbol.dataAlterou            =                    String.valueOf(dadosBoletos.get(i).get(32));
+            if(dadosBoletos.get(i).get(33) != null)bbol.horaAlterou            =                    String.valueOf(dadosBoletos.get(i).get(33));
+            if(dadosBoletos.get(i).get(34) != null)bbol.usuarioAlterou         = Integer.parseInt(  String.valueOf(dadosBoletos.get(i).get(34)));
+            if(dadosBoletos.get(i).get(35) != null)bbol.idEmpresaAlterou       = Integer.parseInt(  String.valueOf(dadosBoletos.get(i).get(35)));
+            if(dadosBoletos.get(i).get(36) != null)bbol.codigoGrupoAlterou     = Integer.parseInt(  String.valueOf(dadosBoletos.get(i).get(36)));
+            if(dadosBoletos.get(i).get(37) != null)bbol.codigoEmpresaAlterou   = Integer.parseInt(  String.valueOf(dadosBoletos.get(i).get(37)));
             
             bcc.idEmpresa           = bbol.idEmpresa;
             bcc.codigoGrupo         = bbol.codigoGrupo;
@@ -1606,14 +1600,17 @@ public class GerarBoletoItau extends javax.swing.JFrame {
 //            bfp.codigoPagamento         = bbol.codigoPagamento;
 //            PegaPagamento();
         }
-        if(bbol.ocorrenciaRetorno == 6)operacao = "";
+        if(bbol.ocorrenciaRetorno == 6){
+            operacao = "";
+        }
         HabilitaBotoes();
         txt_codigoCliente           .setText(fc.FormataCampo(String.valueOf(bc.codigoCliente), 5, 0));
         txt_codigoCliente           .setEditable(false);
         bt_pesquisaCliente          .setEnabled (false);
         label_nomeCliente           .setText(bc.nome);
-        if(bbol.usuarioAlterou == 0)
+        if(bbol.usuarioAlterou == 0){
             txt_valorDevido         .setText(TransStrDou.TransformaValorStringeDouble(String.valueOf(bbol.valorDevido * bbol.TotalDeParcelas), 0));
+        }
         txt_numeroDaCarteira        .setText(fc.FormataCampo(bcc.numeroDaCarteira, 3, 0));
         txt_numeroDocumento         .setText(bbol.numeroDocumento);
         txt_qtdParcelas             .setText(fc.FormataCampo(String.valueOf(bbol.TotalDeParcelas), 3, 0));
@@ -1657,15 +1654,17 @@ public class GerarBoletoItau extends javax.swing.JFrame {
     }
     
     private void PegaDadosUsuario(){
-        for(int i = 0; i < dadosUsuario.size(); i++)
+        for(int i = 0; i < dadosUsuario.size(); i++){
             bu.usuario = String.valueOf(  dadosUsuario.get(i).get(0));
+        }
     }
     
     private void PegaCliente(){
         fatal           = "N";
         bc.nome         = "";
-        if(bc.codigoCliente == 0)
+        if(bc.codigoCliente == 0){
             return;
+        }
         sql = "select idCliente, idEmpresa, codigoGrupo, codigoEmpresa, codigoCliente, cpfCnpj, nome from tb_clientes where idEmpresa = " + parametrosNS.be.IdEmpresa + " and codigoCliente = " + bc.codigoCliente + ";";
         dadosCliente.clear();
         dadosCliente = parametrosNS.dao.Consulta(sql);
@@ -1683,13 +1682,13 @@ public class GerarBoletoItau extends javax.swing.JFrame {
     
     private void PegaDadosCliente(){
         for(int i = 0; i < dadosCliente.size(); i++){
-            bc.idCliente            = Integer.parseInt(  String.valueOf(dadosCliente.get(i).get(0)));
-            bc.idEmpresa            = Integer.parseInt(  String.valueOf(dadosCliente.get(i).get(1)));
-            bc.codigoGrupo          = Integer.parseInt(  String.valueOf(dadosCliente.get(i).get(2)));
-            bc.codigoEmpresa        = Integer.parseInt(  String.valueOf(dadosCliente.get(i).get(3)));
-            bc.codigoCliente        = Integer.parseInt(  String.valueOf(dadosCliente.get(i).get(4)));
-            bc.cpfCnpj              =                    String.valueOf(dadosCliente.get(i).get(5));
-            bc.nome                 =                    String.valueOf(dadosCliente.get(i).get(6));
+            if(dadosCliente.get(i).get(0) != null){bc.idCliente            = Integer.parseInt(  String.valueOf(dadosCliente.get(i).get(0)));}
+            if(dadosCliente.get(i).get(1) != null){bc.idEmpresa            = Integer.parseInt(  String.valueOf(dadosCliente.get(i).get(1)));}
+            if(dadosCliente.get(i).get(2) != null){bc.codigoGrupo          = Integer.parseInt(  String.valueOf(dadosCliente.get(i).get(2)));}
+            if(dadosCliente.get(i).get(3) != null){bc.codigoEmpresa        = Integer.parseInt(  String.valueOf(dadosCliente.get(i).get(3)));}
+            if(dadosCliente.get(i).get(4) != null){bc.codigoCliente        = Integer.parseInt(  String.valueOf(dadosCliente.get(i).get(4)));}
+            if(dadosCliente.get(i).get(5) != null){bc.cpfCnpj              =                    String.valueOf(dadosCliente.get(i).get(5));}
+            if(dadosCliente.get(i).get(6) != null){bc.nome                 =                    String.valueOf(dadosCliente.get(i).get(6));}
         }
     }
     
@@ -1708,8 +1707,9 @@ public class GerarBoletoItau extends javax.swing.JFrame {
             return;
         }
         bbol.codigoContaCorrente        = bcc.codigoContaCorrente;
-        if(combo_Instrucoes.getSelectedIndex() != 0)
+        if(combo_Instrucoes.getSelectedIndex() != 0){
             bbol.codigoBoletoInstrucao  = Integer.parseInt(String.valueOf(combo_Instrucoes.getSelectedItem()).substring(0, 2));
+        }
         bbol.codigoUsuario              = parametrosNS.bu.codigoUsuario;
         bbol.codigoPagamento            = 0;
         bbol.tipoDeFaturamento          = TipoDeFaturamento;
@@ -1728,12 +1728,15 @@ public class GerarBoletoItau extends javax.swing.JFrame {
         }
         bbol.valorDevido                = Double.parseDouble(TransStrDou.TransformaValorStringeDouble(txt_valorParcelas.getText(), 1));
         
-        if(bbol.statusBoleto == 2)
-            if(!invdata.inverterData(bbol.dataDeVencimento, 1).equals(txt_dataDeVencimento.getText()))
-                if(JOptionPane.showConfirmDialog(null, "Confirmar alteração na data de vencimento?") != JOptionPane.YES_OPTION)
+        if(bbol.statusBoleto == 2){
+            if(!invdata.inverterData(bbol.dataDeVencimento, 1).equals(txt_dataDeVencimento.getText())){
+                if(JOptionPane.showConfirmDialog(null, "Confirmar alteração na data de vencimento?") != JOptionPane.YES_OPTION){
                     return;
-                else
+                }else{
                     DataVencimento = "S";
+                }
+            }
+        }
         
         bbol.dataDeVencimento           = txt_dataDeVencimento.getText();
         bbol.dataDeVencimento           = bbol.dataDeVencimento.replace(" ", "");
@@ -1745,12 +1748,14 @@ public class GerarBoletoItau extends javax.swing.JFrame {
             return;
         }
         bbol.dataDeVencimento           = invdata.inverterData(bbol.dataDeVencimento, 2);
-        if(i > 0)
+        if(i > 0){
             bbol.dataDeVencimento   = bbol.dataDeVencimento.substring(0, 8) + String.valueOf(combo_vencimentoDasParcelas.getSelectedItem());
-            if(check_VencimentoDiasUteis.isSelected() == false)
+            if(check_VencimentoDiasUteis.isSelected() == false){
                 bbol.dataDeVencimento   = CalVen.CalculaDataDeVencimento(bbol.dataDeVencimento, i, 0);
-            else
+            }else{
                 bbol.dataDeVencimento   = CalVen.CalculaDataDeVencimento(bbol.dataDeVencimento, i, 1);
+            }
+        }
         bbol.valorPago                  = 0;
         bbol.dataDePagamento            = null;
         bbol.Instrucao1                 = txt_primeiraInstrucao.getText();
@@ -1793,8 +1798,9 @@ public class GerarBoletoItau extends javax.swing.JFrame {
         if(bbol.CodigoDeBarras51.substring(String.valueOf(bbol.valorDevido).length() - 2, String.valueOf(bbol.valorDevido).length() - 1).equals(".")){
             bbol.CodigoDeBarras51       = bbol.CodigoDeBarras51.replace(".", "");
             bbol.CodigoDeBarras51       = bbol.CodigoDeBarras51 + "0";
-        }else
+        }else{
             bbol.CodigoDeBarras51       = bbol.CodigoDeBarras51.replace(".", "");
+        }
         bbol.CodigoDeBarras5            += fc.FormataCampo(bbol.CodigoDeBarras51, 10, 0);
         
         //Função Para Gerar o Código De Barras Completo
@@ -1812,11 +1818,13 @@ public class GerarBoletoItau extends javax.swing.JFrame {
         
         bbol.ocorrenciaRemessa          = 1;
         if(operacao.equals("A")){
-            if(bbol.ocorrenciaRetorno != 1)
+            if(bbol.ocorrenciaRetorno != 1){
                 bbol.ocorrenciaRemessa  = 31;
+            }
         }
-        if(DataVencimento.equals("S"))
+        if(DataVencimento.equals("S")){
             bbol.ocorrenciaRemessa = 6;
+        }
         
         bbol.ParcelaAtual               = j;
         bbol.TotalDeParcelas            = Integer.parseInt(txt_qtdParcelas.getText());
@@ -1836,7 +1844,9 @@ public class GerarBoletoItau extends javax.swing.JFrame {
         for(i = 0; i < bbol.TotalDeParcelas; i++){
             j = i + 1;
             PegaValores();
-            if(fatal.equals("S"))return;
+            if(fatal.equals("S")){
+                return;
+            }
             
             sql =   "insert into tb_boletos (idEmpresa, codigoGrupo, codigoEmpresa, codigoBoleto, codigoCliente, codigoContaCorrente, codigoBoletoInstrucao, codigoUsuario, codigoPagamento, tipoDeFaturamento, nossoNumero, dataEmissao, numeroDocumento, numeroDAC, valorDevido, dataDeVencimento, valorPago, dataDePagamento, Instrucao1, Instrucao3, CodigoDeBarras1, CodigoDeBarras2, CodigoDeBarras3, CodigoDeBarras4, CodigoDeBarras5, CodigoDeBarras, ocorrenciaRemessa, ocorrenciaRetorno, ParcelaAtual, TotalDeParcelas, statusBoleto) " +
                     "values (" + bbol.idEmpresa + ", " + bbol.codigoGrupo + ", " + bbol.codigoEmpresa + ", " + bbol.codigoBoleto + ", " + bbol.codigoCliente + ", " + bbol.codigoContaCorrente + ", " + bbol.codigoBoletoInstrucao + ", " + bbol.codigoUsuario + ", " + bbol.codigoPagamento + ", '" + bbol.tipoDeFaturamento + "', '" + bbol.nossoNumero + "', '" + bbol.dataEmissao + "', '" + bbol.numeroDocumento + "', " + bbol.numeroDAC + ", " + bbol.valorDevido + ", '" + bbol.dataDeVencimento + "', " + bbol.valorPago + ", " + bbol.dataDePagamento + ", '" + bbol.Instrucao1 + "', '" + bbol.Instrucao3 + "', '" + bbol.CodigoDeBarras1 + "', '" + bbol.CodigoDeBarras2 + "', '" + bbol.CodigoDeBarras3 + "', '" + bbol.CodigoDeBarras4 + "', '" + bbol.CodigoDeBarras5 + "', '" + bbol.CodigoDeBarras + "', " + bbol.ocorrenciaRemessa + ", " + bbol.ocorrenciaRetorno + ", " + bbol.ParcelaAtual + ", " + bbol.TotalDeParcelas + ", " + bbol.statusBoleto + ");";
@@ -1866,8 +1876,9 @@ public class GerarBoletoItau extends javax.swing.JFrame {
                 return;
             }
             JOption = JOptionPane.showConfirmDialog(null, "Deseja imprimir todos os Boletos em 1 Arquivo?");
-            if(JOption == 2)
+            if(JOption == 2){
                 return;
+            }
         }
         IncluirBoleto();
         if(fatal.equals("S"))return;
@@ -1891,8 +1902,9 @@ public class GerarBoletoItau extends javax.swing.JFrame {
     }
     
     private void PegaPagamento(){
-        if(bfp.codigoPagamento == 0)
+        if(bfp.codigoPagamento == 0){
             return;
+        }
         sql = "select * from tb_formaspagamentos where idEmpresa = " + parametrosNS.be.IdEmpresa + " and codigoPagamento = " + bfp.codigoPagamento + ";";
         dadosFormasPagamentos.clear();
         dadosFormasPagamentos = parametrosNS.dao.Consulta(sql);
@@ -1907,12 +1919,12 @@ public class GerarBoletoItau extends javax.swing.JFrame {
     private void PreencherCamposFormaPagamento(){
         for(int i = 0; i < dadosFormasPagamentos.size(); i++){
             bfp = new BeanFormasPagamentos();
-            bfp.idPagamento             = Integer.parseInt(  String.valueOf(dadosFormasPagamentos.get(i).get(0)));
-            bfp.idEmpresa               = Integer.parseInt(  String.valueOf(dadosFormasPagamentos.get(i).get(1)));
-            bfp.codigoGrupo             = Integer.parseInt(  String.valueOf(dadosFormasPagamentos.get(i).get(2)));
-            bfp.codigoEmpresa           = Integer.parseInt(  String.valueOf(dadosFormasPagamentos.get(i).get(3)));
-            bfp.codigoPagamento         = Integer.parseInt(  String.valueOf(dadosFormasPagamentos.get(i).get(4)));
-            bfp.descricaoPagamento      =                    String.valueOf(dadosFormasPagamentos.get(i).get(5));
+            if(dadosFormasPagamentos.get(i).get(0) != null){bfp.idPagamento             = Integer.parseInt(String.valueOf(dadosFormasPagamentos.get(i).get(0)));}
+            if(dadosFormasPagamentos.get(i).get(1) != null){bfp.idEmpresa               = Integer.parseInt(String.valueOf(dadosFormasPagamentos.get(i).get(1)));}
+            if(dadosFormasPagamentos.get(i).get(2) != null){bfp.codigoGrupo             = Integer.parseInt(String.valueOf(dadosFormasPagamentos.get(i).get(2)));}
+            if(dadosFormasPagamentos.get(i).get(3) != null){bfp.codigoEmpresa           = Integer.parseInt(String.valueOf(dadosFormasPagamentos.get(i).get(3)));}
+            if(dadosFormasPagamentos.get(i).get(4) != null){bfp.codigoPagamento         = Integer.parseInt(String.valueOf(dadosFormasPagamentos.get(i).get(4)));}
+            if(dadosFormasPagamentos.get(i).get(5) != null){bfp.descricaoPagamento      =                  String.valueOf(dadosFormasPagamentos.get(i).get(5));}
         }
     }
     
@@ -1928,10 +1940,11 @@ public class GerarBoletoItau extends javax.swing.JFrame {
             hm.put("idEmpresa"  ,       parametrosNS.be.IdEmpresa);
             hm.put("nomeEmpresa",       parametrosNS.be.NomeEmpresa.toUpperCase());
             hm.put("cnpjEmpresa",       parametrosNS.be.CnpjEmpresa);
-            if(bparcc.imagemBoletos != null)
+            if(bparcc.imagemBoletos != null){
                 hm.put("logoEmpresa",img);
-            else
+            }else{
                 hm.put("logoEmpresa",null);
+            }
             hm.put("codigoBoletoInicial"  , bbol.codigoBoleto);
             hm.put("codigoBoletoFinal"    , UltimoBoleto1);
             hm.put("codigoClienteInicial" , bc.codigoCliente);

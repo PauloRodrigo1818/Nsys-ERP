@@ -1336,15 +1336,17 @@ public class GerarBoletoHsbc extends javax.swing.JFrame {
     }
     
     private void PegaDadosUsuario(){
-        for(int i = 0; i < dadosUsuario.size(); i++)
-            bu.usuario = String.valueOf(  dadosUsuario.get(i).get(0));
+        for(int i = 0; i < dadosUsuario.size(); i++){
+            if(dadosUsuario.get(i).get(0) != null){bu.usuario = String.valueOf(dadosUsuario.get(i).get(0));}
+        }
     }
     
     private void PegaCliente(){
         fatal           = "N";
         bc.nome         = "";
-        if(bc.codigoCliente == 0)
+        if(bc.codigoCliente == 0){
             return;
+        }
         sql = "select idCliente, idEmpresa, codigoGrupo, codigoEmpresa, codigoCliente, cpfCnpj, nome from tb_clientes where idEmpresa = " + parametrosNS.be.IdEmpresa + " and codigoCliente = " + bc.codigoCliente + ";";
         dadosCliente.clear();
         dadosCliente = parametrosNS.dao.Consulta(sql);
@@ -1362,19 +1364,20 @@ public class GerarBoletoHsbc extends javax.swing.JFrame {
     
     private void PegaDadosCliente(){
         for(int i = 0; i < dadosCliente.size(); i++){
-            bc.idCliente            = Integer.parseInt(  String.valueOf(dadosCliente.get(i).get(0)));
-            bc.idEmpresa            = Integer.parseInt(  String.valueOf(dadosCliente.get(i).get(1)));
-            bc.codigoGrupo          = Integer.parseInt(  String.valueOf(dadosCliente.get(i).get(2)));
-            bc.codigoEmpresa        = Integer.parseInt(  String.valueOf(dadosCliente.get(i).get(3)));
-            bc.codigoCliente        = Integer.parseInt(  String.valueOf(dadosCliente.get(i).get(4)));
-            bc.cpfCnpj              =                    String.valueOf(dadosCliente.get(i).get(5));
-            bc.nome                 =                    String.valueOf(dadosCliente.get(i).get(6));
+            if(dadosCliente.get(i).get(0) != null){bc.idCliente            = Integer.parseInt(  String.valueOf(dadosCliente.get(i).get(0)));}
+            if(dadosCliente.get(i).get(1) != null){bc.idEmpresa            = Integer.parseInt(  String.valueOf(dadosCliente.get(i).get(1)));}
+            if(dadosCliente.get(i).get(2) != null){bc.codigoGrupo          = Integer.parseInt(  String.valueOf(dadosCliente.get(i).get(2)));}
+            if(dadosCliente.get(i).get(3) != null){bc.codigoEmpresa        = Integer.parseInt(  String.valueOf(dadosCliente.get(i).get(3)));}
+            if(dadosCliente.get(i).get(4) != null){bc.codigoCliente        = Integer.parseInt(  String.valueOf(dadosCliente.get(i).get(4)));}
+            if(dadosCliente.get(i).get(5) != null){bc.cpfCnpj              =                    String.valueOf(dadosCliente.get(i).get(5));}
+            if(dadosCliente.get(i).get(6) != null){bc.nome                 =                    String.valueOf(dadosCliente.get(i).get(6));}
         }
     }
     
     private void PegaPagamento(){
-        if(bfp.codigoPagamento == 0)
+        if(bfp.codigoPagamento == 0){
             return;
+        }
         sql = "select * from tb_formaspagamentos where idEmpresa = " + parametrosNS.be.IdEmpresa + " and codigoPagamento = " + bfp.codigoPagamento + ";";
         dadosFormasPagamentos.clear();
         dadosFormasPagamentos = parametrosNS.dao.Consulta(sql);
@@ -1389,12 +1392,12 @@ public class GerarBoletoHsbc extends javax.swing.JFrame {
     private void PreencherCamposFormaPagamento(){
         for(int i = 0; i < dadosFormasPagamentos.size(); i++){
             bfp = new BeanFormasPagamentos();
-            bfp.idPagamento             = Integer.parseInt(  String.valueOf(dadosFormasPagamentos.get(i).get(0)));
-            bfp.idEmpresa               = Integer.parseInt(  String.valueOf(dadosFormasPagamentos.get(i).get(1)));
-            bfp.codigoGrupo             = Integer.parseInt(  String.valueOf(dadosFormasPagamentos.get(i).get(2)));
-            bfp.codigoEmpresa           = Integer.parseInt(  String.valueOf(dadosFormasPagamentos.get(i).get(3)));
-            bfp.codigoPagamento         = Integer.parseInt(  String.valueOf(dadosFormasPagamentos.get(i).get(4)));
-            bfp.descricaoPagamento      =                    String.valueOf(dadosFormasPagamentos.get(i).get(5));
+            if(dadosFormasPagamentos.get(i).get(0) != null){bfp.idPagamento             = Integer.parseInt(String.valueOf(dadosFormasPagamentos.get(i).get(0)));}
+            if(dadosFormasPagamentos.get(i).get(1) != null){bfp.idEmpresa               = Integer.parseInt(String.valueOf(dadosFormasPagamentos.get(i).get(1)));}
+            if(dadosFormasPagamentos.get(i).get(2) != null){bfp.codigoGrupo             = Integer.parseInt(String.valueOf(dadosFormasPagamentos.get(i).get(2)));}
+            if(dadosFormasPagamentos.get(i).get(3) != null){bfp.codigoEmpresa           = Integer.parseInt(String.valueOf(dadosFormasPagamentos.get(i).get(3)));}
+            if(dadosFormasPagamentos.get(i).get(4) != null){bfp.codigoPagamento         = Integer.parseInt(String.valueOf(dadosFormasPagamentos.get(i).get(4)));}
+            if(dadosFormasPagamentos.get(i).get(5) != null){bfp.descricaoPagamento      =                  String.valueOf(dadosFormasPagamentos.get(i).get(5));}
         }
     }
     

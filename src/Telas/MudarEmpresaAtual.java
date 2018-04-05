@@ -1,17 +1,12 @@
 package Telas;
 
-import Beans.BeanUsuarios;
-import Dao.DaoMySQL;
 import BeansNS.BeanEmpresas;
-import TelasDeConfiguracoes.daoSQLITE;
 import BeansNS.BeanGrupoEmpresa;
 import FuncoesInternas.*;
 import Telas.MenuPrincipal;
 import BeansNS.BeanModulosAcesso;
 import Main.BarraInicial;
 import Main.ProcessoInicial;
-import java.io.*;
-import java.sql.*;
 import java.util.*;
 import javax.swing.*;
 import javax.swing.table.*;
@@ -313,13 +308,15 @@ public class MudarEmpresaAtual extends javax.swing.JFrame {
 
     void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         dispose();
-        if(parametrosNS.bu.codigoUsuario == 999)
+        if(parametrosNS.bu.codigoUsuario == 999){
             Sair();
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     void TabelaEmpresaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TabelaEmpresaMouseClicked
-        if(evt.getClickCount() < 2)
+        if(evt.getClickCount() < 2){
             return;
+        }
         linhaSelecionada = TabelaEmpresa.getSelectedRow();
         textoCodigo      = TabelaEmpresa.getValueAt(linhaSelecionada, 0);
         textoNome        = TabelaEmpresa.getValueAt(linhaSelecionada, 1);
@@ -365,7 +362,9 @@ public class MudarEmpresaAtual extends javax.swing.JFrame {
     }//GEN-LAST:event_Combo_GrupoFocusLost
 
     private void Combo_GrupoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_Combo_GrupoItemStateChanged
-        if(AdicionaCombo.equals("S"))return;
+        if(AdicionaCombo.equals("S")){
+            return;
+        }
         PegaEmpresa("S");
     }//GEN-LAST:event_Combo_GrupoItemStateChanged
 
@@ -390,13 +389,15 @@ public class MudarEmpresaAtual extends javax.swing.JFrame {
     
     private void PegaGrupo(String Add){
         sql = "select * from ns_grupoempresa where codigoGrupo = " + parametrosNS.bge.CodigoGrupo + ";";
-        if(Add.equals("S"))
-            if(parametrosNS.bu.usuario.equalsIgnoreCase("NS3"))
+        if(Add.equals("S")){
+            if(parametrosNS.bu.usuario.equalsIgnoreCase("NS3")){
                 if(parametrosNS.bu.senha.equalsIgnoreCase("adm2322")){
                     AdicionaCombo = "S";
                     sql = "select * from ns_grupoempresa;";
                     Combo_Grupo.setEnabled(true);
                 }
+            }
+        }
         Grupos.clear();
         Grupos = parametrosNS.dao.Consulta(sql);
         if(Grupos.isEmpty ()){
@@ -408,8 +409,9 @@ public class MudarEmpresaAtual extends javax.swing.JFrame {
     }
     
     private void AdicionaNaComboGrupo(String Add){
-        if(Add.equals("S"))
+        if(Add.equals("S")){
             Combo_Grupo.removeAllItems();
+        }
         for(int i = 0; i < Grupos.size(); i++){
             bge.codigoGrupo             = Integer.parseInt( String.valueOf(Grupos.get(i).get(0)));
             bge.nomeGrupo               =                   String.valueOf(Grupos.get(i).get(1));
@@ -417,14 +419,16 @@ public class MudarEmpresaAtual extends javax.swing.JFrame {
             bge.extensaoImagemLogotipo  =                   String.valueOf(Grupos.get(i).get(3));
             bge.limiteUsuarios          = Integer.parseInt( String.valueOf(Grupos.get(i).get(4)));
             
-            if(Add.equals("S"))
+            if(Add.equals("S")){
                 Combo_Grupo.addItem(fc.FormataCampo(String.valueOf(bge.codigoGrupo), 2, 0) + " - " + bge.nomeGrupo);
+            }
         }
-        if(Add.equals("S"))
+        if(Add.equals("S")){
             AdicionaCombo = "N";
+        }
         
-        if(parametrosNS.bu.usuario.equalsIgnoreCase("NS3"))
-            if(parametrosNS.bu.senha.equalsIgnoreCase("adm2322"))
+        if(parametrosNS.bu.usuario.equalsIgnoreCase("NS3")){
+            if(parametrosNS.bu.senha.equalsIgnoreCase("adm2322")){
                 if(Add.equals("N")){
                     parametrosNS.bge.codigoGrupo            = bge.codigoGrupo;
                     parametrosNS.bge.nomeGrupo              = bge.nomeGrupo;
@@ -432,6 +436,8 @@ public class MudarEmpresaAtual extends javax.swing.JFrame {
                     parametrosNS.bge.extensaoImagemLogotipo = bge.extensaoImagemLogotipo;
                     parametrosNS.bge.limiteUsuarios         = bge.limiteUsuarios;
                 }
+            }
+        }
         parametrosNS.bge.CodigoGrupo            = bge.codigoGrupo;
         parametrosNS.bge.NomeGrupo              = bge.nomeGrupo;
         parametrosNS.bge.PastaImagemLogotipo    = bge.pastaImagemLogotipo;
@@ -440,11 +446,14 @@ public class MudarEmpresaAtual extends javax.swing.JFrame {
     }
     
     private void PegaEmpresa(String Add){
-        if(AdicionaCombo.equals("S"))
+        if(AdicionaCombo.equals("S")){
             return;
+        }
         bge.codigoGrupo = Integer.parseInt(String.valueOf(Combo_Grupo.getSelectedItem()).substring(0, 2));
         sql = "select * from ns_empresas where codigoGrupo = " + bge.codigoGrupo;
-        if(!Add.equals("S"))sql += " and codigoEmpresa = " + be.codigoEmpresa;
+        if(!Add.equals("S")){
+            sql += " and codigoEmpresa = " + be.codigoEmpresa;
+        }
         sql += ";";
         Empresas.clear();
         Empresas = parametrosNS.dao.Consulta(sql);
@@ -457,32 +466,37 @@ public class MudarEmpresaAtual extends javax.swing.JFrame {
     }
     
     private void PegaDadosEmpresa(String Add){
-        if(Add.equals("S"))Table.setNumRows(0);
-        for(int i = 0; i < Empresas.size(); i++){
-            be.idEmpresa                = Integer.parseInt(  String.valueOf(Empresas.get(i).get(0)));
-            be.codigoGrupo              = Integer.parseInt(  String.valueOf(Empresas.get(i).get(1)));
-            be.codigoEmpresa            = Integer.parseInt(  String.valueOf(Empresas.get(i).get(2)));
-            be.idBancoDados             = Integer.parseInt(  String.valueOf(Empresas.get(i).get(3)));
-            be.nomeEmpresa              =                    String.valueOf(Empresas.get(i).get(4));
-            be.nomeFantasia             =                    String.valueOf(Empresas.get(i).get(5));
-            be.cnpjEmpresa              =                    String.valueOf(Empresas.get(i).get(6));
-            be.inscricaoEstadual        =                    String.valueOf(Empresas.get(i).get(7));
-            be.regimeTributario         =                    String.valueOf(Empresas.get(i).get(8));
-            be.cepEmpresa               =                    String.valueOf(Empresas.get(i).get(9));
-            be.cidadeEmpresa            =                    String.valueOf(Empresas.get(i).get(10));
-            be.bairroEmpresa            =                    String.valueOf(Empresas.get(i).get(11));
-            be.enderecoEmpresa          =                    String.valueOf(Empresas.get(i).get(12));
-            be.numeroEmpresa            =                    String.valueOf(Empresas.get(i).get(13));
-            be.ufEmpresa                =                    String.valueOf(Empresas.get(i).get(14));
-            be.telefoneEmpresa          =                    String.valueOf(Empresas.get(i).get(15));
-            be.pastaImagemUsuario       =                    String.valueOf(Empresas.get(i).get(16));
-            be.extensaoImagemUsuario    =                    String.valueOf(Empresas.get(i).get(17));
-            be.dataValidade             =                    String.valueOf(Empresas.get(i).get(18));
-            
-            if(Add.equals("S"))
-                Table.addRow(new Object[] {fc.FormataCampo(String.valueOf(be.codigoEmpresa), 3, 0), be.nomeEmpresa});
+        if(Add.equals("S")){
+            Table.setNumRows(0);
         }
-        if(Add.equals("S"))return;
+        for(int i = 0; i < Empresas.size(); i++){
+            if(Empresas.get(i).get(0)  != null){be.idEmpresa                = Integer.parseInt(  String.valueOf(Empresas.get(i).get(0)));}
+            if(Empresas.get(i).get(1)  != null){be.codigoGrupo              = Integer.parseInt(  String.valueOf(Empresas.get(i).get(1)));}
+            if(Empresas.get(i).get(2)  != null){be.codigoEmpresa            = Integer.parseInt(  String.valueOf(Empresas.get(i).get(2)));}
+            if(Empresas.get(i).get(3)  != null){be.idBancoDados             = Integer.parseInt(  String.valueOf(Empresas.get(i).get(3)));}
+            if(Empresas.get(i).get(4)  != null){be.nomeEmpresa              =                    String.valueOf(Empresas.get(i).get(4));}
+            if(Empresas.get(i).get(5)  != null){be.nomeFantasia             =                    String.valueOf(Empresas.get(i).get(5));}
+            if(Empresas.get(i).get(6)  != null){be.cnpjEmpresa              =                    String.valueOf(Empresas.get(i).get(6));}
+            if(Empresas.get(i).get(7)  != null){be.inscricaoEstadual        =                    String.valueOf(Empresas.get(i).get(7));}
+            if(Empresas.get(i).get(8)  != null){be.regimeTributario         =                    String.valueOf(Empresas.get(i).get(8));}
+            if(Empresas.get(i).get(9)  != null){be.cepEmpresa               =                    String.valueOf(Empresas.get(i).get(9));}
+            if(Empresas.get(i).get(10) != null){be.cidadeEmpresa            =                    String.valueOf(Empresas.get(i).get(10));}
+            if(Empresas.get(i).get(11) != null){be.bairroEmpresa            =                    String.valueOf(Empresas.get(i).get(11));}
+            if(Empresas.get(i).get(12) != null){be.enderecoEmpresa          =                    String.valueOf(Empresas.get(i).get(12));}
+            if(Empresas.get(i).get(13) != null){be.numeroEmpresa            =                    String.valueOf(Empresas.get(i).get(13));}
+            if(Empresas.get(i).get(14) != null){be.ufEmpresa                =                    String.valueOf(Empresas.get(i).get(14));}
+            if(Empresas.get(i).get(15) != null){be.telefoneEmpresa          =                    String.valueOf(Empresas.get(i).get(15));}
+            if(Empresas.get(i).get(16) != null){be.pastaImagemUsuario       =                    String.valueOf(Empresas.get(i).get(16));}
+            if(Empresas.get(i).get(17) != null){be.extensaoImagemUsuario    =                    String.valueOf(Empresas.get(i).get(17));}
+            if(Empresas.get(i).get(18) != null){be.dataValidade             =                    String.valueOf(Empresas.get(i).get(18));}
+            
+            if(Add.equals("S")){
+                Table.addRow(new Object[] {fc.FormataCampo(String.valueOf(be.codigoEmpresa), 3, 0), be.nomeEmpresa});
+            }
+        }
+        if(Add.equals("S")){
+            return;
+        }
         if(parametrosNS.bu.codigoUsuario == 999){
             parametrosNS.be.idEmpresa               = be.idEmpresa;
             parametrosNS.be.codigoGrupo             = be.codigoGrupo;

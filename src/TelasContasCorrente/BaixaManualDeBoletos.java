@@ -2,7 +2,6 @@ package TelasContasCorrente;
 
 import Beans.BeanBoletos;
 import FuncoesInternas.CapturarDataHora;
-import FuncoesInternas.ConverteValorDigitadoEmDouble;
 import FuncoesInternas.FormataCampo;
 import FuncoesInternas.InverterData;
 import FuncoesInternas.MostraMensagem;
@@ -10,8 +9,6 @@ import FuncoesInternas.TransformaValorStringeDouble;
 import FuncoesInternas.ValidarData;
 import Parametros.parametrosNS;
 import java.awt.event.KeyEvent;
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
