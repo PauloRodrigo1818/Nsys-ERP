@@ -3,7 +3,6 @@ package TelasVendas;
 import Beans.BeanCaixaAbertura;
 import Beans.BeanUsuarios;
 import FuncoesInternas.CapturarDataHora;
-import FuncoesInternas.ConverteValorDigitadoEmDouble;
 import FuncoesInternas.FormataCampo;
 import FuncoesInternas.ImprimeAberturaCaixa;
 import FuncoesInternas.InverterData;
@@ -12,8 +11,6 @@ import FuncoesInternas.PegaProximoRegistro;
 import FuncoesInternas.TransformaValorStringeDouble;
 import Parametros.parametrosNS;
 import java.awt.event.KeyEvent;
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
 import java.util.ArrayList;
 /*
  @author Tiago e Paulo
@@ -378,11 +375,12 @@ public class AberturaDeCaixa extends javax.swing.JFrame {
     }//GEN-LAST:event_bt_sairActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        if(parametrosNS.bu.codigoUsuario != 999)
+        if(parametrosNS.bu.codigoUsuario != 999){
             if(parametrosNS.be.idEmpresa != parametrosNS.be.IdEmpresa){
                 dispose();
                 return;
             }
+        }
         
         txt_codigoComputador.setText(fc.FormataCampo(String.valueOf(parametrosNS.bcomp.codigoComputador), 2, 0));
         label_nomeComputador.setText(parametrosNS.bcomp.nomeComputador);

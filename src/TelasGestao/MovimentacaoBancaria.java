@@ -657,9 +657,11 @@ public class MovimentacaoBancaria extends javax.swing.JFrame {
     }
     
     private void PegaContaCorrente(String tipo){
-        if(!tipo.equals("") && !tipo.equals("P"))
-            if(bcc.codigoContaCorrente == 0)
+        if(!tipo.equals("") && !tipo.equals("P")){
+            if(bcc.codigoContaCorrente == 0){
                 return;
+            }
+        }
         sql = "select \n"
             + "   nsban.id, \n"
             + "   nsban.nomeBanco, \n"
@@ -681,14 +683,10 @@ public class MovimentacaoBancaria extends javax.swing.JFrame {
         dadosContaCorrente.clear();
         dadosContaCorrente = parametrosNS.dao.Consulta(sql);
         if(dadosContaCorrente.isEmpty()){
-            if(tipo.equalsIgnoreCase("O"))
-                mensagem = "Conta corrente de Origem não encontrada!";
-            if(tipo.equalsIgnoreCase("D"))
-                mensagem = "Conta corrente de Destino não encontrada!";
-            if(tipo.equalsIgnoreCase("Z"))
-                mensagem = "Conta corrente não encontrada!";
-            if(!tipo.equals(""))
-                new MostraMensagem(mensagem);
+            if( tipo.equalsIgnoreCase("O")){mensagem = "Conta corrente de Origem não encontrada!";}
+            if( tipo.equalsIgnoreCase("D")){mensagem = "Conta corrente de Destino não encontrada!";}
+            if( tipo.equalsIgnoreCase("Z")){mensagem = "Conta corrente não encontrada!";}
+            if(!tipo.equals("")){new MostraMensagem(mensagem);}
             return;
         }
         PegaDadosContaCorrente(tipo);
@@ -812,7 +810,6 @@ public class MovimentacaoBancaria extends javax.swing.JFrame {
             mostraMensagem();
             return;
         }
-        
         PegaSaldoAnterior();
     }
     

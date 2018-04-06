@@ -156,8 +156,8 @@ public class FechamentoDeCaixa extends javax.swing.JFrame {
     
     private void PegaDadosUsuario(){
         for(int i = 0; i < dadosUsuario.size(); i++){
-            bu.codigoUsuario = Integer.parseInt(String.valueOf(dadosUsuario.get(i).get(0)));
-            bu.usuario       = String.valueOf(dadosUsuario.get(i).get(1));
+            if(dadosUsuario.get(i).get(0) != null){bu.codigoUsuario = Integer.parseInt(String.valueOf(dadosUsuario.get(i).get(0)));}
+            if(dadosUsuario.get(i).get(1) != null){bu.usuario       =                  String.valueOf(dadosUsuario.get(i).get(1));}
         }
         txt_codigoUsuario.setText(fc.FormataCampo(String.valueOf(bu.codigoUsuario), 3, 0));
     }
@@ -206,8 +206,9 @@ public class FechamentoDeCaixa extends javax.swing.JFrame {
         sql = "select * from tb_caixa_fechamento where idEmpresa = " + parametrosNS.be.IdEmpresa + " and codigoComputador = " + parametrosNS.bcomp.codigoComputador + " and tipoFechamento = 'X' and dataDoFechamento between " + bcf.dataDoFechamento + " and " + invdata.inverterData(cdh.CapturarData(), 2) + " order by codigoFechamento asc;";
         dadosFechamentoCaixa.clear();
         dadosFechamentoCaixa = parametrosNS.dao.Consulta(sql);
-        if(dadosFechamentoCaixa.isEmpty())
+        if(dadosFechamentoCaixa.isEmpty()){
             return;
+        }
         bt_fecharCaixa.setEnabled(true);
         PegaDadosUltimaLeituraX();
     }
@@ -282,9 +283,10 @@ public class FechamentoDeCaixa extends javax.swing.JFrame {
             
             Table.addRow(new Object [] {bin.descricaoPagamento, TransStrDou.TransformaValorStringeDouble(String.valueOf(bin.valorTotal), 0)});
         }
-        if(tabela_formasPagamentos.getRowCount() > 0)
+        if(tabela_formasPagamentos.getRowCount() > 0){
             Table.addRow(new Object [] {"Totais", TransStrDou.TransformaValorStringeDouble(String.valueOf(ValorTotalDoPagamento), 0)});
-        if(bcf.tipoFechamento.equals("Z"))return;
+        }
+        if(bcf.tipoFechamento.equals("Z")){return;}
         if(ValorTotalDoPagamento <= 0){
             Mensagem = "Não existe valor para fechamento em Leitura X!";
             new MostraMensagem(Mensagem);

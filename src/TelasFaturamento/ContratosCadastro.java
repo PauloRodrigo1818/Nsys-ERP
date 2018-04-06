@@ -856,7 +856,9 @@ public class ContratosCadastro extends javax.swing.JFrame {
     
     private void PegaDadosUsuario(){
         for(int i = 0; i < dadosUsuario.size(); i++){
-            if(dadosUsuario.get(i).get(0) != null){bu.usuario = String.valueOf(dadosUsuario.get(i).get(0));}
+            if(dadosUsuario.get(i).get(0) != null){
+                bu.usuario = String.valueOf(dadosUsuario.get(i).get(0));
+            }
         }
     }
     
@@ -880,12 +882,12 @@ public class ContratosCadastro extends javax.swing.JFrame {
     private void PegaDadosCliente(){
         for(int i = 0; i < dadosCliente.size(); i++){
             bc = new BeanClientes();
-            bc.idCliente            = Integer.parseInt(  String.valueOf(dadosCliente.get(i).get(0)));
-            bc.idEmpresa            = Integer.parseInt(  String.valueOf(dadosCliente.get(i).get(1)));
-            bc.codigoGrupo          = Integer.parseInt(  String.valueOf(dadosCliente.get(i).get(2)));
-            bc.codigoEmpresa        = Integer.parseInt(  String.valueOf(dadosCliente.get(i).get(3)));
-            bc.codigoCliente        = Integer.parseInt(  String.valueOf(dadosCliente.get(i).get(4)));
-            bc.nome                 =                    String.valueOf(dadosCliente.get(i).get(5));
+            if(dadosCliente.get(i).get(0) != null){bc.idCliente            = Integer.parseInt(String.valueOf(dadosCliente.get(i).get(0)));}
+            if(dadosCliente.get(i).get(1) != null){bc.idEmpresa            = Integer.parseInt(String.valueOf(dadosCliente.get(i).get(1)));}
+            if(dadosCliente.get(i).get(2) != null){bc.codigoGrupo          = Integer.parseInt(String.valueOf(dadosCliente.get(i).get(2)));}
+            if(dadosCliente.get(i).get(3) != null){bc.codigoEmpresa        = Integer.parseInt(String.valueOf(dadosCliente.get(i).get(3)));}
+            if(dadosCliente.get(i).get(4) != null){bc.codigoCliente        = Integer.parseInt(String.valueOf(dadosCliente.get(i).get(4)));}
+            if(dadosCliente.get(i).get(5) != null){bc.nome                 =                  String.valueOf(dadosCliente.get(i).get(5));}
         }
         label_nomeCliente.setText(bc.nome);
     }

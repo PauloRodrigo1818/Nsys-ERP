@@ -1352,10 +1352,11 @@ public class OrcamentosCadastro extends javax.swing.JFrame {
         borci.dataCadastro              = invdata.inverterData(cdh.CapturarData(), 2);
         borci.horaCadastro              = cdh.CapturaHora();
         borci.tipo                      = combo_tipo.getSelectedIndex();
-        if(borci.tipo == 1)
+        if(borci.tipo == 1){
             borci.codigoServicoProduto  = bp.codigoProduto;
-        else
+        }else{
             borci.codigoServicoProduto  = bser.codigoServico;
+        }
         borci.valorUnitario             = Double.parseDouble(TransStrDou.TransformaValorStringeDouble(txt_valorUnitario.getText(), 1));
         borci.quantidade                = Double.parseDouble(TransStrDou.TransformaValorStringeDouble(txt_quantidade.getText(), 1));
         borci.valorTotal                = borci.valorUnitario * borci.quantidade;

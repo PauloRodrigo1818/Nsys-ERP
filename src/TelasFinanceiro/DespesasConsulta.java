@@ -684,14 +684,18 @@ public class DespesasConsulta extends javax.swing.JFrame {
             new MostraMensagem(mensagem);
             return;
         }
-        if(Linha == tabela_despesa.getRowCount() - 1)
+        if(Linha == tabela_despesa.getRowCount() - 1){
             return;
-        if(evt.getButton() == MouseEvent.BUTTON3)
-            if(somostra.equals("N"))
+        }
+        if(evt.getButton() == MouseEvent.BUTTON3){
+            if(somostra.equals("N")){
                 MenuPopup.show(evt.getComponent(), evt.getX(), evt.getY());
+            }
+        }
         retorno = String.valueOf(Integer.parseInt(String.valueOf(tabela_despesa.getValueAt(Linha, 0))));
-        if(evt.getClickCount() < 2)
+        if(evt.getClickCount() < 2){
             return;
+        }
         dispose();
     }//GEN-LAST:event_tabela_despesaMouseClicked
 
@@ -738,8 +742,9 @@ public class DespesasConsulta extends javax.swing.JFrame {
         
         InicializaCampos();
         PegaValores();
-        if(parametrosNS.bu.nivelUsuario  < 4 | somostra.equals("S"))
+        if(parametrosNS.bu.nivelUsuario  < 4 | somostra.equals("S")){
             jMenu.setVisible(false);
+        }
     }//GEN-LAST:event_formWindowOpened
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
@@ -855,16 +860,19 @@ public class DespesasConsulta extends javax.swing.JFrame {
                 preenchimento += "\n and (";
                 preenchimento += "dataPagamento between " + binter.dataPagamentoInicial + " and " + binter.dataPagamentoFinal + ") \n";
             }
-        }else
-            if(!preenchimento.equals(""))
+        }else{
+            if(!preenchimento.equals("")){
                 preenchimento   += ") \n";
+            }
+        }
         
         binter.descricaoDespesa             = txt_descricaoDespesa.getText();
-        if(!binter.descricaoDespesa.equals(""))
+        if(!binter.descricaoDespesa.equals("")){
             preenchimento += " and descricaoDespesa like '%" + binter.descricaoDespesa + "%' \n";
-        
-        if(check_IgnorarTransferencias.isSelected())
+        }
+        if(check_IgnorarTransferencias.isSelected()){
             preenchimento += " and transferencia = 0 \n";
+        }
         
         PegaDespesas();
     }
@@ -941,46 +949,41 @@ public class DespesasConsulta extends javax.swing.JFrame {
         String valorDespesa         = "";
         for(int i = 0; i < dadosDespesas.size(); i++){
             bd = new BeanDespesas();
-            
-            bd.idDespesa            = Integer.parseInt  ((String) dadosDespesas.get(i).get(0));
-            bd.idEmpresa            = Integer.parseInt  ((String) dadosDespesas.get(i).get(1));
-            bd.codigoGrupo          = Integer.parseInt  ((String) dadosDespesas.get(i).get(2));
-            bd.codigoEmpresa        = Integer.parseInt  ((String) dadosDespesas.get(i).get(3));
-            bd.codigoDespesa        = Integer.parseInt  ((String) dadosDespesas.get(i).get(4));
-            bd.descricaoDespesa     =                    (String) dadosDespesas.get(i).get(5);
-            bd.transferencia        = Integer.parseInt  ((String) dadosDespesas.get(i).get(6));
+            if(dadosDespesas.get(i).get(0) != null){bd.idDespesa            = Integer.parseInt(String.valueOf(dadosDespesas.get(i).get(0)));}
+            if(dadosDespesas.get(i).get(1) != null){bd.idEmpresa            = Integer.parseInt(String.valueOf(dadosDespesas.get(i).get(1)));}
+            if(dadosDespesas.get(i).get(2) != null){bd.codigoGrupo          = Integer.parseInt(String.valueOf(dadosDespesas.get(i).get(2)));}
+            if(dadosDespesas.get(i).get(3) != null){bd.codigoEmpresa        = Integer.parseInt(String.valueOf(dadosDespesas.get(i).get(3)));}
+            if(dadosDespesas.get(i).get(4) != null){bd.codigoDespesa        = Integer.parseInt(String.valueOf(dadosDespesas.get(i).get(4)));}
+            if(dadosDespesas.get(i).get(5) != null){bd.descricaoDespesa     =                  String.valueOf(dadosDespesas.get(i).get(5));}
+            if(dadosDespesas.get(i).get(6) != null){bd.transferencia        = Integer.parseInt(String.valueOf(dadosDespesas.get(i).get(6)));}
             
             if(bd.transferencia == 0){
-                bd.codigoDespesaTipo    = Integer.parseInt  ((String) dadosDespesas.get(i).get(7));
+                bd.codigoDespesaTipo    = Integer.parseInt  (String.valueOf(dadosDespesas.get(i).get(7)));
             }else{
                 bd.codigoDespesaTipo    = 0;
             }
-            
             if(bd.transferencia == 0){
-                bd.valorDespesa     = Double.parseDouble((String) dadosDespesas.get(i).get(8));
+                bd.valorDespesa     = Double.parseDouble(String.valueOf(dadosDespesas.get(i).get(8)));
             }else{
                 bd.valorDespesa     = 0;
             }
-            
             if(bd.transferencia == 0){
-                bd.dataVencimento   =                    (String) dadosDespesas.get(i).get(9);
+                bd.dataVencimento   =                    String.valueOf(dadosDespesas.get(i).get(9));
             }else{
                 bd.dataVencimento   = "----------";
             }
-            bd.codigoDeBarras       =                    (String) dadosDespesas.get(i).get(10);
-            bd.codigoContaCorrente  = Integer.parseInt  ((String) dadosDespesas.get(i).get(11));
+            bd.codigoDeBarras       =                    String.valueOf(dadosDespesas.get(i).get(10));
+            bd.codigoContaCorrente  = Integer.parseInt  (String.valueOf(dadosDespesas.get(i).get(11)));
             
             if(bd.transferencia == 0){
                 bd.codigoContaCorrenteDestino = 0;// Se não tiver conta corrente
             }else{
-                bd.codigoContaCorrenteDestino = Integer.parseInt  ((String) dadosDespesas.get(i).get(12));
+                bd.codigoContaCorrenteDestino = Integer.parseInt  (String.valueOf(dadosDespesas.get(i).get(12)));
             }
-            
-            bd.dataPagamento        =                    (String) dadosDespesas.get(i).get(13);
+            bd.dataPagamento        =                    String.valueOf(dadosDespesas.get(i).get(13));
             if(dadosDespesas.get(i).get(10) != null){
-                bd.valorPago            = Double.parseDouble((String) dadosDespesas.get(i).get(14));
+                bd.valorPago            = Double.parseDouble(String.valueOf(dadosDespesas.get(i).get(14)));
             }
-            
             if(!bd.dataVencimento.replace("-", "").equals("")){
                 bd.dataVencimento   = invdata.inverterData(bd.dataVencimento, 1);
             }
@@ -989,13 +992,11 @@ public class DespesasConsulta extends javax.swing.JFrame {
             }else{
                 bd.dataPagamento    = "----------";
             }
-            
             if(bd.valorDespesa == 0){
                 valorDespesa    = "----------";
             }else{
                 valorDespesa    = TransStrDou.TransformaValorStringeDouble(String.valueOf(bd.valorDespesa), 0);
             }
-            
             bdt.codigoDespesaTipo       = bd.codigoDespesaTipo;
             PegaDespesasTipo();
             if(bd.transferencia == 0){
@@ -1055,8 +1056,9 @@ public class DespesasConsulta extends javax.swing.JFrame {
             
             TableDespesa.addRow(new Object[] {fc.FormataCampo(String.valueOf(bd.idDespesa), 9, 0), fc.FormataCampo(String.valueOf(bd.codigoDespesa), 6, 0), bdt.descricaoDespesaTipo, bd.descricaoDespesa, valorDespesa, bd.dataVencimento, bd.codigoDeBarras, nomeBancoOrigem, agenciaOrigem, nomeBancoDestino, agenciaDestino, bd.dataPagamento, TransStrDou.TransformaValorStringeDouble(String.valueOf(bd.valorPago), 0)});
         }
-        if(TableDespesa.getRowCount() > 0)
+        if(TableDespesa.getRowCount() > 0){
             TableDespesa.addRow(new Object[] {"", "", "TOTAIS", "", TransStrDou.TransformaValorStringeDouble(String.valueOf(SomaValorDespesa), 0), "", "", "", "", "", "", "", TransStrDou.TransformaValorStringeDouble(String.valueOf(SomaValorPago), 0)});
+        }
         new AjustarLarguraColunas(tabela_despesa);
     }
     
@@ -1080,10 +1082,11 @@ public class DespesasConsulta extends javax.swing.JFrame {
         dadosContaCorrente.clear();
         dadosContaCorrente = parametrosNS.dao.Consulta(sql);
         if(dadosContaCorrente.isEmpty()){
-            if(tipo.equalsIgnoreCase("O"))
+            if(tipo.equalsIgnoreCase("O")){
                 mensagem = "Conta corrente de Origem não encontrada!";
-            else
+            }else{
                 mensagem = "Conta corrente de Destino não encontrada!";
+            }
             new MostraMensagem(mensagem);
             return;
         }
@@ -1098,8 +1101,9 @@ public class DespesasConsulta extends javax.swing.JFrame {
             bbo.nomeBanco                   = String.valueOf    (dadosContaCorrente.get(0).get(1));
             bbo.codigoBanco                 = String.valueOf    (dadosContaCorrente.get(0).get(2));
             bcco.numeroAgencia              = Integer.parseInt  (String.valueOf(dadosContaCorrente.get(0).get(3)));
-            if(dadosContaCorrente.get(0).get(4) != null)
+            if(dadosContaCorrente.get(0).get(4) != null){
                 bcco.digitoVerificadorAgencia   = Integer.parseInt  (String.valueOf(dadosContaCorrente.get(0).get(4)));
+            }
             bcco.numeroContaCorrente        = Integer.parseInt  (String.valueOf(dadosContaCorrente.get(0).get(5)));
             bcco.digitoVerificador          = Integer.parseInt  (String.valueOf(dadosContaCorrente.get(0).get(6)));
             bcco.descricao                  = String.valueOf    (dadosContaCorrente.get(0).get(7));
@@ -1109,8 +1113,9 @@ public class DespesasConsulta extends javax.swing.JFrame {
         bbd.nomeBanco                   = String.valueOf    (dadosContaCorrente.get(0).get(1));
         bbd.codigoBanco                 = String.valueOf    (dadosContaCorrente.get(0).get(2));
         bccd.numeroAgencia              = Integer.parseInt  (String.valueOf(dadosContaCorrente.get(0).get(3)));
-        if(dadosContaCorrente.get(0).get(4) != null)
+        if(dadosContaCorrente.get(0).get(4) != null){
             bccd.digitoVerificadorAgencia   = Integer.parseInt  (String.valueOf(dadosContaCorrente.get(0).get(4)));
+        }
         bccd.numeroContaCorrente        = Integer.parseInt  (String.valueOf(dadosContaCorrente.get(0).get(5)));
         bccd.digitoVerificador          = Integer.parseInt  (String.valueOf(dadosContaCorrente.get(0).get(6)));
         bccd.descricao                  = String.valueOf    (dadosContaCorrente.get(0).get(7));
@@ -1129,14 +1134,16 @@ public class DespesasConsulta extends javax.swing.JFrame {
     }
     
     private void PegaDadosUsuario(){
-        for(int i = 0; i < dadosUsuarios.size(); i++)
-            bu.usuario = String.valueOf(dadosUsuarios.get(i).get(0));
+        for(int i = 0; i < dadosUsuarios.size(); i++){
+            if(dadosUsuarios.get(i).get(0) != null){bu.usuario = String.valueOf(dadosUsuarios.get(i).get(0));}
+        }
     }
     
     private void PegaDespesasTipo(){
         bdt.descricaoDespesaTipo = "----------";
-        if(bdt.idDespesaTipo == 0)
+        if(bdt.idDespesaTipo == 0){
             return;
+        }
         sql = "select idDespesaTipo, idEmpresa, codigoGrupo, codigoEmpresa, codigoDespesaTipo, descricaoDespesaTipo from tb_despesas_tipo where idDespesaTipo = " + bdt.idDespesaTipo + ";";
         dadosDespesasTipo.clear();
         dadosDespesasTipo = parametrosNS.dao.Consulta(sql);
@@ -1151,12 +1158,12 @@ public class DespesasConsulta extends javax.swing.JFrame {
     private void PegaDadosDespesasTipo(){
         for(int i = 0; i < dadosDespesasTipo.size(); i++){
             bdt = new BeanDespesasTipo();
-            bdt.idDespesaTipo         = Integer.parseInt(  String.valueOf(dadosDespesasTipo.get(i).get(0)));
-            bdt.idEmpresa             = Integer.parseInt(  String.valueOf(dadosDespesasTipo.get(i).get(1)));
-            bdt.codigoGrupo           = Integer.parseInt(  String.valueOf(dadosDespesasTipo.get(i).get(2)));
-            bdt.codigoEmpresa         = Integer.parseInt(  String.valueOf(dadosDespesasTipo.get(i).get(3)));
-            bdt.codigoDespesaTipo     = Integer.parseInt(  String.valueOf(dadosDespesasTipo.get(i).get(4)));
-            bdt.descricaoDespesaTipo  =                    String.valueOf(dadosDespesasTipo.get(i).get(5));
+            if(dadosDespesasTipo.get(i).get(0) != null){bdt.idDespesaTipo         = Integer.parseInt(String.valueOf(dadosDespesasTipo.get(i).get(0)));}
+            if(dadosDespesasTipo.get(i).get(1) != null){bdt.idEmpresa             = Integer.parseInt(String.valueOf(dadosDespesasTipo.get(i).get(1)));}
+            if(dadosDespesasTipo.get(i).get(2) != null){bdt.codigoGrupo           = Integer.parseInt(String.valueOf(dadosDespesasTipo.get(i).get(2)));}
+            if(dadosDespesasTipo.get(i).get(3) != null){bdt.codigoEmpresa         = Integer.parseInt(String.valueOf(dadosDespesasTipo.get(i).get(3)));}
+            if(dadosDespesasTipo.get(i).get(4) != null){bdt.codigoDespesaTipo     = Integer.parseInt(String.valueOf(dadosDespesasTipo.get(i).get(4)));}
+            if(dadosDespesasTipo.get(i).get(5) != null){bdt.descricaoDespesaTipo  =                  String.valueOf(dadosDespesasTipo.get(i).get(5));}
         }
     }
     

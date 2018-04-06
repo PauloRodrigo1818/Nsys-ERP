@@ -1177,8 +1177,9 @@ public class FuncionariosCadastro extends javax.swing.JFrame {
             txt_codigoEmpresa.setText(String.valueOf(parametrosNS.be.CodigoEmpresa));
             PegaEmpresa();
         }
-        if(somostra.equals("SN"))
+        if(somostra.equals("SN")){
             bt_pesquisa.setVisible(false);
+        }
     }//GEN-LAST:event_formWindowOpened
 
     private void bt_novoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_novoActionPerformed
@@ -1200,10 +1201,11 @@ public class FuncionariosCadastro extends javax.swing.JFrame {
             return;
         }
         abriuEmpresa = 1;
-        if(parametrosNS.bu.codigoUsuario != 999)
+        if(parametrosNS.bu.codigoUsuario != 999){
             EmpCon = new EmpresasConsulta(parametrosNS.be.codigoEmpresa);
-        else
+        }else{
             EmpCon = new EmpresasConsulta(parametrosNS.be.CodigoEmpresa);
+        }
         EmpCon.setVisible(true);
     }//GEN-LAST:event_bt_pesquisaEmpresaActionPerformed
 
@@ -1216,17 +1218,21 @@ public class FuncionariosCadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_radio_JuridicaItemStateChanged
 
     private void txt_cpfKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_cpfKeyPressed
-        if(evt.getKeyCode() == KeyEvent.VK_ENTER)
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
             txt_dataAdmissao.grabFocus();
-        if(evt.getKeyCode() == KeyEvent.VK_DOWN)
+        }
+        if(evt.getKeyCode() == KeyEvent.VK_DOWN){
             radio_Juridica.setSelected(true);
+        }
     }//GEN-LAST:event_txt_cpfKeyPressed
 
     private void txt_cnpjKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_cnpjKeyPressed
-        if(evt.getKeyCode() == KeyEvent.VK_ENTER)
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
             txt_dataAdmissao.grabFocus();
-        if(evt.getKeyCode() == KeyEvent.VK_UP)
+        }
+        if(evt.getKeyCode() == KeyEvent.VK_UP){
             radio_Fisica.setSelected(true);
+        }
     }//GEN-LAST:event_txt_cnpjKeyPressed
 
     private void txt_cpfFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_cpfFocusLost
@@ -1238,22 +1244,27 @@ public class FuncionariosCadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_cnpjFocusLost
 
     private void txt_codigoFuncionarioFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_codigoFuncionarioFocusGained
-        if(txt_codigoFuncionario.isEditable() == false)
+        if(txt_codigoFuncionario.isEditable() == false){
             return;
-        if(txt_codigoFuncionario.getText().replace(" ", "").equals(""))
+        }
+        if(txt_codigoFuncionario.getText().replace(" ", "").equals("")){
             return;
+        }
         operacao = "";
         ReiniciaTela(false);
     }//GEN-LAST:event_txt_codigoFuncionarioFocusGained
 
     private void txt_codigoFuncionarioFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_codigoFuncionarioFocusLost
-        if(txt_codigoFuncionario.isEditable() == false)
+        if(txt_codigoFuncionario.isEditable() == false){
             return;
-        if(txt_codigoFuncionario.getText().replace(" ", "").equals(""))
+        }
+        if(txt_codigoFuncionario.getText().replace(" ", "").equals("")){
             return;
+        }
         bfunc.codigoFuncionario = Integer.parseInt(fc.FormataCampo(txt_codigoFuncionario.getText(), 6, 0));
-        if(bfunc.codigoFuncionario == 0)
+        if(bfunc.codigoFuncionario == 0){
             return;
+        }
         sql = "select * from tb_funcionarios where idEmpresa = " + parametrosNS.be.IdEmpresa + " and codigoFuncionario = " + bfunc.codigoFuncionario + ";";
         PegaFuncionarios();
     }//GEN-LAST:event_txt_codigoFuncionarioFocusLost
@@ -1262,13 +1273,15 @@ public class FuncionariosCadastro extends javax.swing.JFrame {
         String Data = txt_dataAdmissao.getText();
         Data = Data.replace(" ", " ");
         Data = Data.replace("/", " ");
-        if(Data.equals(""))
-        return;
+        if(Data.equals("")){
+            return;
+        }
         bt_incluir.setEnabled(false);
         bt_alterar.setEnabled(false);
         ValidaData = ValData.ValidaData(Data);
-        if(ValidaData.equals("N"))
+        if(ValidaData.equals("N")){
             return;
+        }
         HabilitaBotoes();
     }//GEN-LAST:event_txt_dataAdmissaoFocusLost
 
@@ -1284,10 +1297,12 @@ public class FuncionariosCadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_bt_pesquisaDepartamentoActionPerformed
 
     private void txt_codigoDepartamentoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_codigoDepartamentoFocusLost
-        if(txt_codigoDepartamento.isEditable() == false)
+        if(txt_codigoDepartamento.isEditable() == false){
             return;
-        if(txt_codigoDepartamento.getText().replace(" ", "").equals(""))
+        }
+        if(txt_codigoDepartamento.getText().replace(" ", "").equals("")){
             return;
+        }
         PegaDepartamento();
     }//GEN-LAST:event_txt_codigoDepartamentoFocusLost
 
@@ -1295,24 +1310,29 @@ public class FuncionariosCadastro extends javax.swing.JFrame {
         String Data = txt_dataNascimento.getText();
         Data = Data.replace(" ", "");
         Data = Data.replace("/", "");
-        if(Data.equals(""))
+        if(Data.equals("")){
             return;
+        }
         ValidaData = ValData.ValidaData(Data);
-        if(ValidaData.equals("S"))
+        if(ValidaData.equals("S")){
             return;
+        }
         mensagem = "Data de nascimento inválida!";
         mostraMensagem();
         txt_dataNascimento.setText("");
     }//GEN-LAST:event_txt_dataNascimentoFocusLost
 
     private void txt_rgFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_rgFocusLost
-        if(txt_rg.isEditable() == false)
+        if(txt_rg.isEditable() == false){
             return;
-        //        if(somostra.equals("N"))
-        //            return;
+        }
+//        if(somostra.equals("N")){
+//            return;
+//        }
         ValidaRG = parametrosNS.ValRG.ValidarRG(txt_rg.getText());
-        if(ValidaRG == true)
+        if(ValidaRG == true){
             return;
+        }
         mensagem = "RG invalido!";
         new MostraMensagem(mensagem);
     }//GEN-LAST:event_txt_rgFocusLost
@@ -1333,16 +1353,19 @@ public class FuncionariosCadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_bt_incluirActionPerformed
 
     private void bt_selecionarImagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_selecionarImagemActionPerformed
-        if(operacao.equals(""))
+        if(operacao.equals("")){
             return;
+        }
         seletor = new JFileChooser("C:/"); 
         seletor.setFileSelectionMode(JFileChooser.FILES_ONLY);
         int i = seletor.showOpenDialog(null);
-        if(i == 1)
+        if(i == 1){
             return;
+        }
         arquivoPasta = seletor.getSelectedFile();
-        if(arquivoPasta.getPath().equals(""))
+        if(arquivoPasta.getPath().equals("")){
             return;
+        }
         pastaImagemFuncionario = arquivoPasta.getPath();
         CarregaImagem();
     }//GEN-LAST:event_bt_selecionarImagemActionPerformed
@@ -1356,8 +1379,9 @@ public class FuncionariosCadastro extends javax.swing.JFrame {
     }
     
     private void txt_cepFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_cepFocusGained
-        if(txt_cep.isEditable() == false)
+        if(txt_cep.isEditable() == false){
             return;
+        }
 //        if(somostra.equals("S"))
 //            return;
         txt_cep.setSelectionStart(0);
@@ -1365,27 +1389,32 @@ public class FuncionariosCadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_cepFocusGained
 
     private void txt_cepFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_cepFocusLost
-        if(txt_cep.isEditable() == false)
+        if(txt_cep.isEditable() == false){
             return;
+        }
 //        if(somostra.equals("S"))
 //            return;
         PegaCep();
     }//GEN-LAST:event_txt_cepFocusLost
 
     private void txt_codigoPaisFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_codigoPaisFocusGained
-        if(txt_codigoPais.isEditable() == false)
+        if(txt_codigoPais.isEditable() == false){
             return;
-        if(somostra.equals("S"))
+        }
+        if(somostra.equals("S")){
             return;
+        }
         txt_codigoPais.setSelectionStart(0);
         txt_codigoPais.setSelectionEnd  (txt_codigoPais.getText().length());
     }//GEN-LAST:event_txt_codigoPaisFocusGained
 
     private void txt_codigoPaisFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_codigoPaisFocusLost
-        if(txt_codigoPais.isEditable() == false)
+        if(txt_codigoPais.isEditable() == false){
             return;
-        if(txt_codigoPais.getText().replace(" ", "").equals(""))
+        }
+        if(txt_codigoPais.getText().replace(" ", "").equals("")){
             return;
+        }
         PegaPais();
     }//GEN-LAST:event_txt_codigoPaisFocusLost
 
@@ -1407,8 +1436,9 @@ public class FuncionariosCadastro extends javax.swing.JFrame {
         }
         abriuEmpresa = 0;
         retorno = EmpCon.getRetorno();
-        if(retorno.equals(""))
+        if(retorno.equals("")){
             return;
+        }
         txt_codigoEmpresa.setText(retorno);
         PegaEmpresa();
     }//GEN-LAST:event_formWindowGainedFocus
@@ -1420,8 +1450,9 @@ public class FuncionariosCadastro extends javax.swing.JFrame {
         }
         abriuDepartamento = 0;
         retorno = DepCon.getRetorno();
-        if(retorno.equals(""))
+        if(retorno.equals("")){
             return;
+        }
         txt_codigoDepartamento.setText(retorno);
         PegaDepartamento();
     }
@@ -1433,8 +1464,9 @@ public class FuncionariosCadastro extends javax.swing.JFrame {
         }
         abriuCEP = 0;
         retorno = CodEndPosCon.getRetorno();
-        if(retorno.equals(""))
+        if(retorno.equals("")){
             return;
+        }
         txt_cep.setText(retorno);
         PegaCep();
     }
@@ -1446,19 +1478,22 @@ public class FuncionariosCadastro extends javax.swing.JFrame {
         }
         abriuPais = 0;
         retorno = PaiCon.getRetorno();
-        if(retorno.equals(""))
+        if(retorno.equals("")){
             return;
+        }
         txt_codigoPais.setText(retorno);
         PegaPais();
     }
     
     private void AbreFuncionarios(){
-        if(abriuFuncionario == 0)
+        if(abriuFuncionario == 0){
             return;
+        }
         abriuFuncionario = 0;
         retorno = FunCon.getRetorno();
-        if(retorno.equals(""))
+        if(retorno.equals("")){
             return;
+        }
         bfunc.idFuncionario = Integer.parseInt(retorno);
         sql = "select * from tb_funcionarios where idFuncionario = " + bfunc.idFuncionario + ";";
         PegaFuncionarios();
@@ -1469,10 +1504,12 @@ public class FuncionariosCadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_codigoEmpresaActionPerformed
 
     private void txt_codigoEmpresaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_codigoEmpresaFocusLost
-        if(txt_codigoEmpresa.isEditable() == false)
+        if(txt_codigoEmpresa.isEditable() == false){
             return;
-        if(txt_codigoEmpresa.getText().replace(" ", "").equals(""))
+        }
+        if(txt_codigoEmpresa.getText().replace(" ", "").equals("")){
             return;
+        }
         PegaEmpresa();
     }//GEN-LAST:event_txt_codigoEmpresaFocusLost
 
@@ -1838,59 +1875,45 @@ public class FuncionariosCadastro extends javax.swing.JFrame {
     private void PegaDadosFuncionarios(){
         for(int i = 0; i < dadosFuncionarios.size(); i++){
             bfunc = new BeanFuncionarios();
-            if(dadosFuncionarios.get(i).get(0) != null)
-                bfunc.idFuncionario         = Integer.parseInt(String.valueOf(dadosFuncionarios.get(i).get(0)));
-            if(dadosFuncionarios.get(i).get(1) != null)
-                bfunc.idEmpresa             = Integer.parseInt(String.valueOf(dadosFuncionarios.get(i).get(1)));
-            if(dadosFuncionarios.get(i).get(2) != null)
-                bfunc.codigoGrupo           = Integer.parseInt(String.valueOf(dadosFuncionarios.get(i).get(2)));
-            if(dadosFuncionarios.get(i).get(3) != null)
-                bfunc.codigoEmpresa         = Integer.parseInt(String.valueOf(dadosFuncionarios.get(i).get(3)));
-            if(dadosFuncionarios.get(i).get(4) != null)
-                bfunc.codigoFuncionario     = Integer.parseInt(String.valueOf(dadosFuncionarios.get(i).get(4)));
-            if(dadosFuncionarios.get(i).get(5) != null)
-                bfunc.codigoDepartamento    = Integer.parseInt(String.valueOf(dadosFuncionarios.get(i).get(5)));
-            if(dadosFuncionarios.get(i).get(6) != null)
-                bfunc.statusFuncionario     = Integer.parseInt(String.valueOf(dadosFuncionarios.get(i).get(6)));
-                bfunc.dataCadastro          =                  String.valueOf(dadosFuncionarios.get(i).get(7));
-            if(dadosFuncionarios.get(i).get(8) != null)
-                bfunc.tipoPessoa            = Integer.parseInt(String.valueOf(dadosFuncionarios.get(i).get(8)));
-                bfunc.cpfCnpj               =                  String.valueOf(dadosFuncionarios.get(i).get(9));
-                bfunc.dataAdmissao          =                  String.valueOf(dadosFuncionarios.get(i).get(10));
-                bfunc.nomeFuncionario       =                  String.valueOf(dadosFuncionarios.get(i).get(11));
-                bfunc.rg                    =                  String.valueOf(dadosFuncionarios.get(i).get(12));
-            if(dadosFuncionarios.get(i).get(13) != null)
-                bfunc.sexo                  = Integer.parseInt(String.valueOf(dadosFuncionarios.get(i).get(13)));
-            if(dadosFuncionarios.get(i).get(14) != null)
-                bfunc.estadoCivil           = Integer.parseInt(String.valueOf(dadosFuncionarios.get(i).get(14)));
-                bfunc.profissao             =                  String.valueOf(dadosFuncionarios.get(i).get(15));
-                bfunc.dataNascimento        =                  String.valueOf(dadosFuncionarios.get(i).get(16));
-                bfunc.nacionalidade         =                  String.valueOf(dadosFuncionarios.get(i).get(17));
-                bfunc.naturalidade          =                  String.valueOf(dadosFuncionarios.get(i).get(18));
-                bfunc.ufNaturalidade        =                  String.valueOf(dadosFuncionarios.get(i).get(19));
-                bfunc.cep                   =                  String.valueOf(dadosFuncionarios.get(i).get(20));
-                bfunc.cidade                =                  String.valueOf(dadosFuncionarios.get(i).get(21));
-                bfunc.municipio             =                  String.valueOf(dadosFuncionarios.get(i).get(22));
-                bfunc.endereco              =                  String.valueOf(dadosFuncionarios.get(i).get(23));
-                bfunc.complemento           =                  String.valueOf(dadosFuncionarios.get(i).get(24));
-                bfunc.bairro                =                  String.valueOf(dadosFuncionarios.get(i).get(25));
-                bfunc.numero                =                  String.valueOf(dadosFuncionarios.get(i).get(26));
-                bfunc.uf                    =                  String.valueOf(dadosFuncionarios.get(i).get(27));
-                bfunc.codigoPais            = Integer.parseInt(String.valueOf(dadosFuncionarios.get(i).get(28)));
-                bfunc.telefone              =                  String.valueOf(dadosFuncionarios.get(i).get(29));
-                bfunc.celular               =                  String.valueOf(dadosFuncionarios.get(i).get(30));
-                bfunc.email                 =                  String.valueOf(dadosFuncionarios.get(i).get(31));
-                bfunc.observacoes           =                  String.valueOf(dadosFuncionarios.get(i).get(32));
-                bfunc.dataAlterou           =                  String.valueOf(dadosFuncionarios.get(i).get(33));
-                bfunc.horaAlterou           =                  String.valueOf(dadosFuncionarios.get(i).get(34));
-            if(dadosFuncionarios.get(i).get(35) != null)
-                bfunc.usuarioAlterou        = Integer.parseInt(String.valueOf(dadosFuncionarios.get(i).get(35)));
-            if(dadosFuncionarios.get(i).get(36) != null)
-                bfunc.idEmpresaAlterou      = Integer.parseInt(String.valueOf(dadosFuncionarios.get(i).get(36)));
-            if(dadosFuncionarios.get(i).get(37) != null)
-                bfunc.codigoGrupoAlterou    = Integer.parseInt(String.valueOf(dadosFuncionarios.get(i).get(37)));
-            if(dadosFuncionarios.get(i).get(38) != null)
-                bfunc.codigoEmpresaAlterou  = Integer.parseInt(String.valueOf(dadosFuncionarios.get(i).get(38)));
+            if(dadosFuncionarios.get(i).get(0)  != null){bfunc.idFuncionario         = Integer.parseInt(String.valueOf(dadosFuncionarios.get(i).get(0)));}
+            if(dadosFuncionarios.get(i).get(1)  != null){bfunc.idEmpresa             = Integer.parseInt(String.valueOf(dadosFuncionarios.get(i).get(1)));}
+            if(dadosFuncionarios.get(i).get(2)  != null){bfunc.codigoGrupo           = Integer.parseInt(String.valueOf(dadosFuncionarios.get(i).get(2)));}
+            if(dadosFuncionarios.get(i).get(3)  != null){bfunc.codigoEmpresa         = Integer.parseInt(String.valueOf(dadosFuncionarios.get(i).get(3)));}
+            if(dadosFuncionarios.get(i).get(4)  != null){bfunc.codigoFuncionario     = Integer.parseInt(String.valueOf(dadosFuncionarios.get(i).get(4)));}
+            if(dadosFuncionarios.get(i).get(5)  != null){bfunc.codigoDepartamento    = Integer.parseInt(String.valueOf(dadosFuncionarios.get(i).get(5)));}
+            if(dadosFuncionarios.get(i).get(6)  != null){bfunc.statusFuncionario     = Integer.parseInt(String.valueOf(dadosFuncionarios.get(i).get(6)));}
+            if(dadosFuncionarios.get(i).get(7)  != null){bfunc.dataCadastro          =                  String.valueOf(dadosFuncionarios.get(i).get(7));}
+            if(dadosFuncionarios.get(i).get(8)  != null){bfunc.tipoPessoa            = Integer.parseInt(String.valueOf(dadosFuncionarios.get(i).get(8)));}
+            if(dadosFuncionarios.get(i).get(9)  != null){bfunc.cpfCnpj               =                  String.valueOf(dadosFuncionarios.get(i).get(9));}
+            if(dadosFuncionarios.get(i).get(10) != null){bfunc.dataAdmissao          =                  String.valueOf(dadosFuncionarios.get(i).get(10));}
+            if(dadosFuncionarios.get(i).get(11) != null){bfunc.nomeFuncionario       =                  String.valueOf(dadosFuncionarios.get(i).get(11));}
+            if(dadosFuncionarios.get(i).get(12) != null){bfunc.rg                    =                  String.valueOf(dadosFuncionarios.get(i).get(12));}
+            if(dadosFuncionarios.get(i).get(13) != null){bfunc.sexo                  = Integer.parseInt(String.valueOf(dadosFuncionarios.get(i).get(13)));}
+            if(dadosFuncionarios.get(i).get(14) != null){bfunc.estadoCivil           = Integer.parseInt(String.valueOf(dadosFuncionarios.get(i).get(14)));}
+            if(dadosFuncionarios.get(i).get(15) != null){bfunc.profissao             =                  String.valueOf(dadosFuncionarios.get(i).get(15));}
+            if(dadosFuncionarios.get(i).get(16) != null){bfunc.dataNascimento        =                  String.valueOf(dadosFuncionarios.get(i).get(16));}
+            if(dadosFuncionarios.get(i).get(17) != null){bfunc.nacionalidade         =                  String.valueOf(dadosFuncionarios.get(i).get(17));}
+            if(dadosFuncionarios.get(i).get(18) != null){bfunc.naturalidade          =                  String.valueOf(dadosFuncionarios.get(i).get(18));}
+            if(dadosFuncionarios.get(i).get(19) != null){bfunc.ufNaturalidade        =                  String.valueOf(dadosFuncionarios.get(i).get(19));}
+            if(dadosFuncionarios.get(i).get(20) != null){bfunc.cep                   =                  String.valueOf(dadosFuncionarios.get(i).get(20));}
+            if(dadosFuncionarios.get(i).get(21) != null){bfunc.cidade                =                  String.valueOf(dadosFuncionarios.get(i).get(21));}
+            if(dadosFuncionarios.get(i).get(22) != null){bfunc.municipio             =                  String.valueOf(dadosFuncionarios.get(i).get(22));}
+            if(dadosFuncionarios.get(i).get(23) != null){bfunc.endereco              =                  String.valueOf(dadosFuncionarios.get(i).get(23));}
+            if(dadosFuncionarios.get(i).get(24) != null){bfunc.complemento           =                  String.valueOf(dadosFuncionarios.get(i).get(24));}
+            if(dadosFuncionarios.get(i).get(25) != null){bfunc.bairro                =                  String.valueOf(dadosFuncionarios.get(i).get(25));}
+            if(dadosFuncionarios.get(i).get(26) != null){bfunc.numero                =                  String.valueOf(dadosFuncionarios.get(i).get(26));}
+            if(dadosFuncionarios.get(i).get(27) != null){bfunc.uf                    =                  String.valueOf(dadosFuncionarios.get(i).get(27));}
+            if(dadosFuncionarios.get(i).get(28) != null){bfunc.codigoPais            = Integer.parseInt(String.valueOf(dadosFuncionarios.get(i).get(28)));}
+            if(dadosFuncionarios.get(i).get(29) != null){bfunc.telefone              =                  String.valueOf(dadosFuncionarios.get(i).get(29));}
+            if(dadosFuncionarios.get(i).get(30) != null){bfunc.celular               =                  String.valueOf(dadosFuncionarios.get(i).get(30));}
+            if(dadosFuncionarios.get(i).get(31) != null){bfunc.email                 =                  String.valueOf(dadosFuncionarios.get(i).get(31));}
+            if(dadosFuncionarios.get(i).get(32) != null){bfunc.observacoes           =                  String.valueOf(dadosFuncionarios.get(i).get(32));}
+            if(dadosFuncionarios.get(i).get(33) != null){bfunc.dataAlterou           =                  String.valueOf(dadosFuncionarios.get(i).get(33));}
+            if(dadosFuncionarios.get(i).get(34) != null){bfunc.horaAlterou           =                  String.valueOf(dadosFuncionarios.get(i).get(34));}
+            if(dadosFuncionarios.get(i).get(35) != null){bfunc.usuarioAlterou        = Integer.parseInt(String.valueOf(dadosFuncionarios.get(i).get(35)));}
+            if(dadosFuncionarios.get(i).get(36) != null){bfunc.idEmpresaAlterou      = Integer.parseInt(String.valueOf(dadosFuncionarios.get(i).get(36)));}
+            if(dadosFuncionarios.get(i).get(37) != null){bfunc.codigoGrupoAlterou    = Integer.parseInt(String.valueOf(dadosFuncionarios.get(i).get(37)));}
+            if(dadosFuncionarios.get(i).get(38) != null){bfunc.codigoEmpresaAlterou  = Integer.parseInt(String.valueOf(dadosFuncionarios.get(i).get(38)));}
         }
         ValidaRG         = true;
         validadorCpfCnpj = true;
@@ -1969,8 +1992,9 @@ public class FuncionariosCadastro extends javax.swing.JFrame {
         }
         
         PegaImagemFuncionario();
-        if(bfunc.imagemFuncionario == null)
+        if(bfunc.imagemFuncionario == null){
             return;
+        }
         try{
             BuffImg = ImageIO.read(new ByteArrayInputStream(bfunc.imagemFuncionario));
             imgIcon = new ImageIcon(BuffImg);
@@ -1997,8 +2021,9 @@ public class FuncionariosCadastro extends javax.swing.JFrame {
     }
     
     private void PegaDadosUsuario(){
-        for(int i = 0; i < dadosUsuarios.size(); i++)
+        for(int i = 0; i < dadosUsuarios.size(); i++){
             bu.usuario = String.valueOf(dadosUsuarios.get(i).get(0));
+        }
     }
     
     private void PegaImagemFuncionario(){
@@ -2009,8 +2034,9 @@ public class FuncionariosCadastro extends javax.swing.JFrame {
     private void PegaEmpresa(){
         be.codigoEmpresa = Integer.parseInt(fc.FormataCampo(txt_codigoEmpresa.getText(), 3, 0));
         sql = "select idEmpresa, codigoGrupo, codigoEmpresa, nomeEmpresa, nomeFantasia from ns_empresas where codigoGrupo = " + parametrosNS.bge.codigoGrupo + " and codigoEmpresa = " + be.codigoEmpresa + ";";
-        if(parametrosNS.bu.codigoUsuario == 999)
+        if(parametrosNS.bu.codigoUsuario == 999){
             sql = "select idEmpresa, codigoGrupo, codigoEmpresa, nomeEmpresa, nomeFantasia from ns_empresas where codigoGrupo = " + parametrosNS.bge.CodigoGrupo + " and codigoEmpresa = " + be.codigoEmpresa + ";";
+        }
         dadosEmpresas.clear();
         dadosEmpresas = parametrosNS.dao.Consulta(sql);
         if(dadosEmpresas.isEmpty()){
@@ -2031,10 +2057,12 @@ public class FuncionariosCadastro extends javax.swing.JFrame {
         }
         txt_codigoEmpresa.setText(fc.FormataCampo(String.valueOf(be.codigoEmpresa), 3, 0));
         label_nomeEmpresa.setText(be.nomeEmpresa);
-        if(radio_Fisica  .isSelected())
+        if(radio_Fisica  .isSelected()){
             txt_cpf .grabFocus();
-        if(radio_Juridica.isSelected())
+        }
+        if(radio_Juridica.isSelected()){
             txt_cnpj.grabFocus();
+        }
     }
     
     private void HabilitaCampos(){
@@ -2094,10 +2122,11 @@ public class FuncionariosCadastro extends javax.swing.JFrame {
         validadorCpfCnpj = Vcc.VALIDARCPFCNPJ(bfunc.cpfCnpj);
         if(validadorCpfCnpj == false){
             mostraMensagem();
-            if(radio_Fisica.isSelected())
+            if(radio_Fisica.isSelected()){
                 txt_cpf.grabFocus();
-            else
+            }else{
                 txt_cnpj.grabFocus();
+            }
             return;
         }
         txt_dataAdmissao.grabFocus();
@@ -2105,8 +2134,9 @@ public class FuncionariosCadastro extends javax.swing.JFrame {
     
     private void PegaDepartamento(){
         bd.codigoDepartamento = Integer.parseInt(fc.FormataCampo(txt_codigoDepartamento.getText(), 2, 0));
-        if(bd.codigoDepartamento == 0)
+        if(bd.codigoDepartamento == 0){
             return;
+        }
         sql = "select * from tb_departamento where idEmpresa = " + parametrosNS.be.IdEmpresa + " and codigoDepartamento = " + bd.codigoDepartamento + ";";
         dadosDepartamentos.clear();
         dadosDepartamentos = parametrosNS.dao.Consulta(sql);
@@ -2135,8 +2165,9 @@ public class FuncionariosCadastro extends javax.swing.JFrame {
         bfunc.cep = txt_cep.getText();
         bfunc.cep = bfunc.cep.replace(" ", "");
         bfunc.cep = bfunc.cep.replace("-", "");
-        if(bfunc.cep.equals(""))
+        if(bfunc.cep.equals("")){
             return;
+        }
         sql = "select * from ns_cep where cep = " + bfunc.cep + ";";
         dadosCEP.clear();
         dadosCEP = parametrosNS.dao.Consulta(sql);
@@ -2167,8 +2198,9 @@ public class FuncionariosCadastro extends javax.swing.JFrame {
     }
     
     private void PegaPais(){
-        if(abriuCEP == 1)
+        if(abriuCEP == 1){
             return;
+        }
         bpais.codigoPais = Integer.parseInt(fc.FormataCampo(txt_codigoPais.getText(), 4, 0));
         if(bpais.codigoPais == 0)
             return;
@@ -2211,15 +2243,16 @@ public class FuncionariosCadastro extends javax.swing.JFrame {
             mostraMensagem();
             return;
         }
-        if(check_bloqueado.isSelected() == false)
+        if(check_bloqueado.isSelected() == false){
             bfunc.statusFuncionario = 0;
-        else
+        }else{
             bfunc.statusFuncionario = 1;
+        }
         
         bfunc.dataCadastro      = parametrosNS.invdata.inverterData(txt_dataCadastro.getText(), 2);
         
-        if(radio_Fisica  .isSelected())bfunc.tipoPessoa = 0;
-        if(radio_Juridica.isSelected())bfunc.tipoPessoa = 1;
+        if(radio_Fisica  .isSelected()){bfunc.tipoPessoa = 0;}
+        if(radio_Juridica.isSelected()){bfunc.tipoPessoa = 1;}
         
         bfunc.cpfCnpj = txt_cpf.getText() + txt_cnpj.getText();
         bfunc.cpfCnpj = bfunc.cpfCnpj.replace(" ", "");
@@ -2227,17 +2260,16 @@ public class FuncionariosCadastro extends javax.swing.JFrame {
         bfunc.cpfCnpj = bfunc.cpfCnpj.replace("/", "");
         bfunc.cpfCnpj = bfunc.cpfCnpj.replace("-", "");
         
-        if(bfunc.tipoPessoa == 0)
-            bfunc.cpfCnpj = fc.FormataCampo(bfunc.cpfCnpj, 11, 0);
-        if(bfunc.tipoPessoa == 1)
-            bfunc.cpfCnpj = fc.FormataCampo(bfunc.cpfCnpj, 15, 0);
+        if(bfunc.tipoPessoa == 0){bfunc.cpfCnpj = fc.FormataCampo(bfunc.cpfCnpj, 11, 0);}
+        if(bfunc.tipoPessoa == 1){bfunc.cpfCnpj = fc.FormataCampo(bfunc.cpfCnpj, 15, 0);}
         
         bfunc.dataAdmissao    = txt_dataAdmissao.getText();
         bfunc.dataAdmissao    = parametrosNS.invdata.inverterData(bfunc.dataAdmissao, 2);
-        if(!bfunc.dataAdmissao.equals(""))
+        if(!bfunc.dataAdmissao.equals("")){
             bfunc.dataAdmissao = "'" + bfunc.dataAdmissao + "'";
-        else
+        }else{
             bfunc.dataAdmissao = null;
+        }
         
         bfunc.nomeFuncionario = txt_nome.getText();
         if(bfunc.nomeFuncionario.equals("")){
@@ -2247,62 +2279,69 @@ public class FuncionariosCadastro extends javax.swing.JFrame {
             return;
         }
         
-        if(ValidaRG == false)
+        if(ValidaRG == false){
             if(bfunc.tipoPessoa == 0){
                 fatal = "S";
                 mensagem = "RG inválido!";
                 mostraMensagem();
                 return;
             }
+        }
         bfunc.rg = txt_rg.getText();
         bfunc.rg = bfunc.rg.replace(" ", "");
         bfunc.rg = bfunc.rg.replace(".", "");
         bfunc.rg = bfunc.rg.replace("-", "");
-        if(!bfunc.rg.equals(""))
+        if(!bfunc.rg.equals("")){
             bfunc.rg = "'" + bfunc.rg + "'";
-        else
+        }else{
             bfunc.rg = null;
+        }
         
-        if(bfunc.tipoPessoa == 0)
+        if(bfunc.tipoPessoa == 0){
             if(combo_sexo.getSelectedIndex() == 0){
                 fatal = "S";
                 mensagem = "Sexo inválido!";
                 mostraMensagem();
                 return;
             }
+        }
         bfunc.sexo           = combo_sexo.getSelectedIndex();
-        if(bfunc.tipoPessoa == 0)
+        if(bfunc.tipoPessoa == 0){
             if(combo_estadoCivil.getSelectedIndex() == 0){
                 fatal = "S";
                 mensagem = "Estado civil inválido!";
                 mostraMensagem();
                 return;
             }
+        }
         bfunc.estadoCivil    = combo_estadoCivil.getSelectedIndex();
         bfunc.profissao      = txt_profissao.getText();
         bfunc.dataNascimento = txt_dataNascimento.getText();
         bfunc.dataNascimento = bfunc.dataNascimento.replace(" ", "");
         bfunc.dataNascimento = bfunc.dataNascimento.replace("/", "");
-        if(!bfunc.dataNascimento.equals(""))
+        if(!bfunc.dataNascimento.equals("")){
             bfunc.dataNascimento = "'" + parametrosNS.invdata.inverterData(bfunc.dataNascimento, 2) + "'";
-        else
+        }else{
             bfunc.dataNascimento = null;
+        }
         
         bfunc.nacionalidade  = txt_nacionalidade.getText();
         bfunc.naturalidade   = txt_naturalidade .getText();
         
-        if(combo_UFnaturalidade.getSelectedIndex() > 0)
+        if(combo_UFnaturalidade.getSelectedIndex() > 0){
             bfunc.ufNaturalidade = "'" + String.valueOf(combo_UFnaturalidade.getSelectedItem()) + "'";
-        else
+        }else{
             bfunc.ufNaturalidade = null;
+        }
         
         bfunc.cep     = txt_cep.getText();
         bfunc.cep     = bfunc.cep.replace(" ", "");
         bfunc.cep     = bfunc.cep.replace("-", "");
-        if(!bfunc.cep.equals(""))
+        if(!bfunc.cep.equals("")){
             bfunc.cep = "'" + bfunc.cep + "'";
-        else
+        }else{
             bfunc.cep = null;
+        }
         
         bfunc.cidade        = txt_cidade.getText();
         bfunc.municipio     = txt_municipio.getText();
@@ -2311,10 +2350,11 @@ public class FuncionariosCadastro extends javax.swing.JFrame {
         bfunc.bairro        = txt_bairro.getText();
         bfunc.numero        = txt_numero.getText();
         
-        if(combo_UF.getSelectedIndex() > 0)
+        if(combo_UF.getSelectedIndex() > 0){
             bfunc.uf = "'" + String.valueOf(combo_UF.getSelectedItem()) + "'";
-        else
+        }else{
             bfunc.uf = null;
+        }
         
         bfunc.codigoPais = Integer.parseInt(fc.FormataCampo(txt_codigoPais.getText(), 4, 0));
         
@@ -2323,20 +2363,22 @@ public class FuncionariosCadastro extends javax.swing.JFrame {
         bfunc.telefone  = bfunc.telefone.replace("(", "");
         bfunc.telefone  = bfunc.telefone.replace(")", "");
         bfunc.telefone  = bfunc.telefone.replace("-", "");
-        if(!bfunc.telefone.equals(("")))
+        if(!bfunc.telefone.equals((""))){
             bfunc.telefone = "'" + bfunc.telefone + "'";
-        else
+        }else{
             bfunc.telefone = null;
+        }
         
         bfunc.celular   = txt_celular.getText();
         bfunc.celular   = bfunc.celular.replace(" ", "");
         bfunc.celular   = bfunc.celular.replace("(", "");
         bfunc.celular   = bfunc.celular.replace(")", "");
         bfunc.celular   = bfunc.celular.replace("-", "");
-        if(!bfunc.celular.equals(""))
+        if(!bfunc.celular.equals("")){
             bfunc.celular  = "'" + bfunc.celular  + "'";
-        else
+        }else{
             bfunc.celular  = null;
+        }
         
         bfunc.email     = txt_email.getText();
         
@@ -2366,8 +2408,9 @@ public class FuncionariosCadastro extends javax.swing.JFrame {
     
     private void IncluirFuncionario(){
         PegaValores();
-        if(fatal.equals("S"))
+        if(fatal.equals("S")){
             return;
+        }
         sql = "insert into tb_funcionarios (idEmpresa, codigoGrupo, codigoEmpresa, codigoFuncionario, codigoDepartamento, statusFuncionario, dataCadastro, tipoPessoa, cpfCnpj, dataAdmissao, nomeFuncionario, rg, sexo, estadoCivil, profissao, dataNascimento, nacionalidade, naturalidade, ufNaturalidade, cep, cidade, municipio, endereco, complemento, bairro, numero, uf, codigoPais, telefone, celular, email, observacoes) "
             + "values (" + bfunc.idEmpresa + ", " + bfunc.codigoGrupo + ", " + bfunc.codigoEmpresa + ", " + bfunc.codigoFuncionario + ", " + bfunc.codigoDepartamento + ", " + bfunc.statusFuncionario + ", '" + bfunc.dataCadastro + "', " + bfunc.tipoPessoa + ", '" + bfunc.cpfCnpj + "', " + bfunc.dataAdmissao + ", '" + bfunc.nomeFuncionario + "', " + bfunc.rg + ", " + bfunc.sexo + ", " + bfunc.estadoCivil + ", '" + bfunc.profissao + "', " + bfunc.dataNascimento + ", '" + bfunc.nacionalidade + "', '" + bfunc.naturalidade + "', " + bfunc.ufNaturalidade + ", " + bfunc.cep + ", '" + bfunc.cidade + "', '" + bfunc.municipio + "', '" + bfunc.endereco + "', '" + bfunc.complemento + "', '" + bfunc.bairro + "', '" + bfunc.numero + "', " + bfunc.uf + ", " + bfunc.codigoPais + ", " + bfunc.telefone + ", " + bfunc.celular + ", '" + bfunc.email + "', '" + bfunc.observacoes + "');";
         sqlstate = parametrosNS.dao.incluirRegistro(sql);
@@ -2389,8 +2432,9 @@ public class FuncionariosCadastro extends javax.swing.JFrame {
     
     private void AlterarFuncionario(){
         PegaValores();
-        if(fatal.equals("S"))
+        if(fatal.equals("S")){
             return;
+        }
         
         sql = "update tb_funcionarios set idEmpresa = "             + bfunc.idEmpresa            + ", \n"  +
                                          "codigoEmpresa = "         + bfunc.codigoEmpresa        + ", \n"  +

@@ -261,16 +261,19 @@ public class OrdemServicoSemSolucaoCadastro extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txt_codigoMotivoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_codigoMotivoKeyPressed
-        if(evt.getKeyCode() != KeyEvent.VK_ENTER)
+        if(evt.getKeyCode() != KeyEvent.VK_ENTER){
             return;
+        }
         txt_detalhes.grabFocus();
     }//GEN-LAST:event_txt_codigoMotivoKeyPressed
 
     private void txt_codigoMotivoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_codigoMotivoFocusLost
-        if(txt_codigoMotivo.getText().replace(" ", "").equals(""))
+        if(txt_codigoMotivo.getText().replace(" ", "").equals("")){
             return;
-        if(txt_codigoMotivo.isEditable() == false)
+        }
+        if(txt_codigoMotivo.isEditable() == false){
             return;
+        }
         PegaCancelamento();
     }//GEN-LAST:event_txt_codigoMotivoFocusLost
 
@@ -286,20 +289,23 @@ public class OrdemServicoSemSolucaoCadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_bt_pesquisarActionPerformed
 
     private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
-        if(abriuPesquisaCancelamento == 0)
+        if(abriuPesquisaCancelamento == 0){
             return;
+        }
         abriuPesquisaCancelamento = 0;
         retorno = CanCon.getRetorno();
-        if(retorno.equals(""))
+        if(retorno.equals("")){
             return;
+        }
         txt_codigoMotivo.setText(retorno);
         PegaCancelamento();
     }//GEN-LAST:event_formWindowGainedFocus
 
     private void bt_confirmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_confirmaActionPerformed
         PegaValores();
-        if(fatal.equals("S"))
+        if(fatal.equals("S")){
             return;
+        }
         sql = "update tb_os set statusOs = 3, "
                              + "codigoCancelamentoSemSolucao = "    + bos.codigoCancelamentoSemSolucao   + ", "
                              + "detalhesCancelamentoSemSolucao = '" + bos.detalhesCancelamentoSemSolucao + "', "
@@ -311,8 +317,9 @@ public class OrdemServicoSemSolucaoCadastro extends javax.swing.JFrame {
                              + "atualizado = 1 "
                              + "where idOrdemServico = " + bos.idOrdemServico + ";";
         sqlstate = parametrosNS.dao.AlterarRegistroOuConsultaSeTabelaExiste(sql, "S");
-        if(!sqlstate.equals("00000"))
+        if(!sqlstate.equals("00000")){
             return;
+        }
         sqlstate = "ok";
         dispose();
     }//GEN-LAST:event_bt_confirmaActionPerformed
@@ -323,8 +330,9 @@ public class OrdemServicoSemSolucaoCadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void txt_codigoMotivoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_codigoMotivoFocusGained
-        if(txt_codigoMotivo.isEditable() == false)
+        if(txt_codigoMotivo.isEditable() == false){
             return;
+        }
         bos.codigoCancelamentoSemSolucao = 0;
         txt_codigoMotivo.setText("");
         label_descricao.setText("");
@@ -335,8 +343,9 @@ public class OrdemServicoSemSolucaoCadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_bt_sairActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        if(bos.idOrdemServico != 0)
+        if(bos.idOrdemServico != 0){
             PegaOrdemServico();
+        }
     }//GEN-LAST:event_formWindowOpened
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
@@ -392,22 +401,14 @@ public class OrdemServicoSemSolucaoCadastro extends javax.swing.JFrame {
     private void PegaDadosOrdemServico(){
         for(int i = 0; i < dadosOrdemServico.size(); i++){
             bos     = new BeanOrdemServico();
-            if(dadosOrdemServico.get(i).get(0) != null)
-                bos.idOrdemServico          = Integer.parseInt(  String.valueOf(dadosOrdemServico.get(i).get(0)));
-            if(dadosOrdemServico.get(i).get(1) != null)
-                bos.idEmpresa               = Integer.parseInt(  String.valueOf(dadosOrdemServico.get(i).get(1)));
-            if(dadosOrdemServico.get(i).get(2) != null)
-                bos.codigoGrupo             = Integer.parseInt(  String.valueOf(dadosOrdemServico.get(i).get(2)));
-            if(dadosOrdemServico.get(i).get(3) != null)
-                bos.codigoEmpresa           = Integer.parseInt(  String.valueOf(dadosOrdemServico.get(i).get(3)));
-            if(dadosOrdemServico.get(i).get(4) != null)
-                bos.codigoOrdemServico      = Integer.parseInt(  String.valueOf(dadosOrdemServico.get(i).get(4)));
-            if(dadosOrdemServico.get(i).get(5) != null)
-                bos.codigoCliente           = Integer.parseInt(  String.valueOf(dadosOrdemServico.get(i).get(5)));
-            if(dadosOrdemServico.get(i).get(6) != null)
-                bos.codigoUsuario           = Integer.parseInt(  String.valueOf(dadosOrdemServico.get(i).get(6)));
-            if(dadosOrdemServico.get(i).get(7) != null)
-                bos.statusOs                = Integer.parseInt(  String.valueOf(dadosOrdemServico.get(i).get(7)));
+            if(dadosOrdemServico.get(i).get(0) != null){bos.idOrdemServico          = Integer.parseInt(  String.valueOf(dadosOrdemServico.get(i).get(0)));}
+            if(dadosOrdemServico.get(i).get(1) != null){bos.idEmpresa               = Integer.parseInt(  String.valueOf(dadosOrdemServico.get(i).get(1)));}
+            if(dadosOrdemServico.get(i).get(2) != null){bos.codigoGrupo             = Integer.parseInt(  String.valueOf(dadosOrdemServico.get(i).get(2)));}
+            if(dadosOrdemServico.get(i).get(3) != null){bos.codigoEmpresa           = Integer.parseInt(  String.valueOf(dadosOrdemServico.get(i).get(3)));}
+            if(dadosOrdemServico.get(i).get(4) != null){bos.codigoOrdemServico      = Integer.parseInt(  String.valueOf(dadosOrdemServico.get(i).get(4)));}
+            if(dadosOrdemServico.get(i).get(5) != null){bos.codigoCliente           = Integer.parseInt(  String.valueOf(dadosOrdemServico.get(i).get(5)));}
+            if(dadosOrdemServico.get(i).get(6) != null){bos.codigoUsuario           = Integer.parseInt(  String.valueOf(dadosOrdemServico.get(i).get(6)));}
+            if(dadosOrdemServico.get(i).get(7) != null){bos.statusOs                = Integer.parseInt(  String.valueOf(dadosOrdemServico.get(i).get(7)));}
         }
         if(bos.statusOs == 3){
             Mensagem = "Ordem de Serviço n°" + bos.codigoOrdemServico + " já foi Finalizada como Sem Solução!";

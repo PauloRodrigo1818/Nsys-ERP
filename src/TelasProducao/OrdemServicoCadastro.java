@@ -1,6 +1,5 @@
 package TelasProducao;
 
-import FuncoesInternas.InverterData;
 import Beans.*;
 import FuncoesInternas.*;
 import TelasFaturamento.ClientesConsulta;
@@ -8,7 +7,6 @@ import Parametros.parametrosNS;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
-import java.text.*;
 import java.util.*;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -147,26 +145,21 @@ public class OrdemServicoCadastro extends javax.swing.JFrame {
             + " from tb_parametrosproducao where idEmpresa = " + parametrosNS.be.IdEmpresa + ";";
         dadosParametrosProducao.clear();
         dadosParametrosProducao = parametrosNS.dao.Consulta(sql);
-        if(dadosParametrosProducao.isEmpty())
+        if(dadosParametrosProducao.isEmpty()){
             return;
+        }
         PegaDadosParametrosContabil();
     }
     
     private void PegaDadosParametrosContabil(){
         for(int i = 0; i < dadosParametrosProducao.size(); i++){
             bparpro = new BeanParametrosProducao();
-            if(dadosParametrosProducao.get(i).get(0) != null)
-                bparpro.idParametrosProducao = Integer.parseInt(String.valueOf(dadosParametrosProducao.get(i).get(0)));
-            if(dadosParametrosProducao.get(i).get(1) != null)
-                bparpro.idEmpresa            = Integer.parseInt(String.valueOf(dadosParametrosProducao.get(i).get(1)));
-            if(dadosParametrosProducao.get(i).get(2) != null)
-                bparpro.codigoGrupo          = Integer.parseInt(String.valueOf(dadosParametrosProducao.get(i).get(2)));
-            if(dadosParametrosProducao.get(i).get(3) != null)
-                bparpro.codigoEmpresa        = Integer.parseInt(String.valueOf(dadosParametrosProducao.get(i).get(3)));
-            if(dadosParametrosProducao.get(i).get(4) != null)
-                bparpro.impressaoDoLaudo     = Integer.parseInt(String.valueOf(dadosParametrosProducao.get(i).get(4)));
-            if(dadosParametrosProducao.get(i).get(5) != null)
-                bparpro.termoDeRecebimento   =                  String.valueOf(dadosParametrosProducao.get(i).get(5));
+            if(dadosParametrosProducao.get(i).get(0) != null){bparpro.idParametrosProducao = Integer.parseInt(String.valueOf(dadosParametrosProducao.get(i).get(0)));}
+            if(dadosParametrosProducao.get(i).get(1) != null){bparpro.idEmpresa            = Integer.parseInt(String.valueOf(dadosParametrosProducao.get(i).get(1)));}
+            if(dadosParametrosProducao.get(i).get(2) != null){bparpro.codigoGrupo          = Integer.parseInt(String.valueOf(dadosParametrosProducao.get(i).get(2)));}
+            if(dadosParametrosProducao.get(i).get(3) != null){bparpro.codigoEmpresa        = Integer.parseInt(String.valueOf(dadosParametrosProducao.get(i).get(3)));}
+            if(dadosParametrosProducao.get(i).get(4) != null){bparpro.impressaoDoLaudo     = Integer.parseInt(String.valueOf(dadosParametrosProducao.get(i).get(4)));}
+            if(dadosParametrosProducao.get(i).get(5) != null){bparpro.termoDeRecebimento   =                  String.valueOf(dadosParametrosProducao.get(i).get(5));}
         }
     }
     
@@ -1599,12 +1592,15 @@ public class OrdemServicoCadastro extends javax.swing.JFrame {
 
     private void bt_incluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_incluirActionPerformed
         PegaValores();
-        if(fatal.equals("S"))return;
+        if(fatal.equals("S")){
+            return;
+        }
         sql = "insert into tb_os (idEmpresa, codigoGrupo, codigoEmpresa, codigoOrdemServico, codigoCliente, codigoUsuario, dataCadastro, horaCadastro, dataEntrada, horaEntrada, dataSaida, horaSaida, dataGarantia, dataPrevista, codigoSituacao, valorAdiantamento, valorMaoDeObra, valorPecas, valorTerceiros, valorOutros, valorDeslocamento, descricao, marca, modelo, serie, patrimonio, numeroNF, acessorio, defeito, observacoes, laudo, prioridade, statusOs, aprovacao, pagamento) "
             + "values (" + bos.idEmpresa + ", " + bos.codigoGrupo + ", " + bos.codigoEmpresa + ", " + bos.codigoOrdemServico + ", '" + bos.codigoCliente+ "', '" + parametrosNS.bu.codigoUsuario + "', '" + bos.dataCadastro + "', '" + bos.horaCadastro + "', " + bos.dataEntrada + ", " + bos.horaEntrada + ", " + bos.dataSaida + ", " + bos.horaSaida + ", " + bos.dataGarantia + ", " + bos.dataPrevista + ", '" + bos.codigoSituacao + "', '" + bos.valorAdiantamento + "', '" + bos.valorMaoDeObra + "', '" + bos.valorPecas + "', '" + bos.valorTerceiros + "', '" + bos.valorOutros + "', '" + bos.valorDeslocamento + "', '" + bos.descricao + "', '" + bos.marca + "', '" + bos.modelo + "', '" + bos.serie + "', '" + bos.patrimonio + "', '" + bos.numeroNF + "', '" + bos.acessorio + "', '" + bos.defeito + "', '" + bos.observacoes + "', '" + bos.laudo + "', '" + bos.prioridade + "', '" + bos.statusOs + "', '" + bos.aprovacao + "', '" + bos.pagamento + "');";
         sqlstate = parametrosNS.dao.incluirRegistro(sql);
-        if(!sqlstate.equals("00000"))
+        if(!sqlstate.equals("00000")){
             return;
+        }
         if(OrdSerIteCad != null)if(OrdSerIteCad.isVisible()){
             OrdSerIteCad.setState(JFrame.NORMAL);
             return;
@@ -1624,7 +1620,9 @@ public class OrdemServicoCadastro extends javax.swing.JFrame {
     
     private void bt_alterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_alterarActionPerformed
         PegaValores();
-        if(fatal.equals("S"))return;
+        if(fatal.equals("S")){
+            return;
+        }
         sql = "update tb_os set codigoCliente = "                   + bos.codigoCliente         + ", "  +
                                "dataEntrada = "                     + bos.dataEntrada           + ", "  +
                                "horaEntrada = "                     + bos.horaEntrada           + ", "  +
@@ -1662,18 +1660,21 @@ public class OrdemServicoCadastro extends javax.swing.JFrame {
                                "atualizado = 1 "                    + 
                                "where idOrdemServico = "    + bos.idOrdemServico    + ";";
         sqlstate = parametrosNS.dao.AlterarRegistroOuConsultaSeTabelaExiste(sql, "S");
-        if(!sqlstate.equals("00000"))
+        if(!sqlstate.equals("00000")){
             return;
+        }
         mensagem = "Ordem de serviço n°" + bos.codigoOrdemServico + " alterada com êxito!";
         mostraMensagem();
         txt_codigoOrdemServico.grabFocus();
     }//GEN-LAST:event_bt_alterarActionPerformed
 
     private void txt_codigoClienteFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_codigoClienteFocusLost
-        if(txt_codigoCliente.isEnabled() == false)
+        if(txt_codigoCliente.isEnabled() == false){
             return;
-        if(txt_codigoCliente.getText().replace(" ", "").equals(""))
+        }
+        if(txt_codigoCliente.getText().replace(" ", "").equals("")){
             return;
+        }
         PegaCliente();
     }//GEN-LAST:event_txt_codigoClienteFocusLost
 
@@ -1717,13 +1718,16 @@ public class OrdemServicoCadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_codigoUsuarioDigitouFocusLost
 
     private void txt_codigoOrdemServicoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_codigoOrdemServicoFocusLost
-        if(txt_codigoOrdemServico.isEditable() == false)
+        if(txt_codigoOrdemServico.isEditable() == false){
             return;
-        if(txt_codigoOrdemServico.getText().replace(" ", "").equals(""))
+        }
+        if(txt_codigoOrdemServico.getText().replace(" ", "").equals("")){
             return;
+        }
         bos.codigoOrdemServico = Integer.parseInt(txt_codigoOrdemServico.getText().replace(" ", ""));
-        if(bos.codigoOrdemServico == 0)
+        if(bos.codigoOrdemServico == 0){
             return;
+        }
         sql = "select * from tb_os where idEmpresa = " + parametrosNS.be.IdEmpresa + " and codigoOrdemServico = " + bos.codigoOrdemServico + ";";
         PegaOrdemServico();
     }//GEN-LAST:event_txt_codigoOrdemServicoFocusLost
@@ -1785,10 +1789,12 @@ public class OrdemServicoCadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_valorOutrosFocusLost
 
     private void txt_codigoOrdemServicoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_codigoOrdemServicoFocusGained
-        if(txt_codigoOrdemServico.isEditable() == false)
+        if(txt_codigoOrdemServico.isEditable() == false){
             return;
-        if(somostra.equals("S"))
+        }
+        if(somostra.equals("S")){
             return;
+        }
         operacao = "";
         HabilitaBotoes();
         txt_codigoOrdemServico.setText("");
@@ -1834,8 +1840,9 @@ public class OrdemServicoCadastro extends javax.swing.JFrame {
         }
         abriuCliente = 0;
         retorno = CliCon.getRetorno();
-        if(retorno.equals(""))
+        if(retorno.equals("")){
             return;
+        }
         txt_codigoCliente.setText(retorno);
         PegaCliente();
     }//GEN-LAST:event_formWindowGainedFocus
@@ -1856,8 +1863,9 @@ public class OrdemServicoCadastro extends javax.swing.JFrame {
         }
         abriuOrdemServico = 0;
         retorno = OrdSerConMan.getRetorno();
-        if(retorno.equals(""))
+        if(retorno.equals("")){
             return;
+        }
         operacao = "A";
         bos.idOrdemServico = Integer.parseInt(retorno);
         sql = "select * from tb_os where idOrdemServico = " + bos.idOrdemServico + ";";
@@ -1871,9 +1879,11 @@ public class OrdemServicoCadastro extends javax.swing.JFrame {
         }
         FinalizaOrdemServico = 0;
         sqlstate = FinalizaOS.getRetornoFinalizaOrdemServico();
-        if(!sqlstate.equals("00000"))
-            if(!sqlstate.equals("ok"))
+        if(!sqlstate.equals("00000")){
+            if(!sqlstate.equals("ok")){
                 return;
+            }
+        }
         txt_codigoOrdemServico.grabFocus();
     }
     
@@ -1884,14 +1894,16 @@ public class OrdemServicoCadastro extends javax.swing.JFrame {
         }
         CancelaOrdemServico = 0;
         sqlstate = OrdSerCan.getRetornoCancelaOrdemServico();
-        if(!sqlstate.equals("00000"))
+        if(!sqlstate.equals("00000")){
             return;
+        }
         txt_codigoOrdemServico.grabFocus();
     }
     
     private void AbreSituacoes(){
-        if(abriuSituacao == 0)
+        if(abriuSituacao == 0){
             return;
+        }
         abriuSituacao = 0;
         PegaSituacoes();
     }
@@ -1914,11 +1926,13 @@ public class OrdemServicoCadastro extends javax.swing.JFrame {
     
     private void tabela_detalhesOrdemServicoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabela_detalhesOrdemServicoMouseClicked
         bt_detalhesItem.setEnabled(true);
-        if(bos.statusOs != 0)
+        if(bos.statusOs != 0){
             return;
+        }
         linha = tabela_detalhesOrdemServico.getSelectedRow();
-        if(linha < 0)
+        if(linha < 0){
             return;
+        }
         bosi.codigoOrdemServicoItem = Integer.parseInt(String.valueOf(tabela_detalhesOrdemServico.getValueAt(linha, 0)));
         bt_alterarItem .setEnabled(true);
         bt_excluirItem .setEnabled(true);
@@ -1936,18 +1950,21 @@ public class OrdemServicoCadastro extends javax.swing.JFrame {
         bosi.codigoEmpresa      = bos.codigoEmpresa;
         bosi.codigoOrdemServico = bos.codigoOrdemServico;
         bosi.codigoOrdemServicoItem = Integer.parseInt(String.valueOf(tabela_detalhesOrdemServico.getValueAt(linha, 0)));
-        if(JOptionPane.showConfirmDialog(null, "Deseja excluir o item n°" + bosi.codigoOrdemServicoItem + " da OS n°" + bos.codigoOrdemServico + "?", "", JOptionPane.YES_NO_OPTION) != JOptionPane.YES_OPTION)
+        if(JOptionPane.showConfirmDialog(null, "Deseja excluir o item n°" + bosi.codigoOrdemServicoItem + " da OS n°" + bos.codigoOrdemServico + "?", "", JOptionPane.YES_NO_OPTION) != JOptionPane.YES_OPTION){
             return;
+        }
         bosi.codigoServicoProduto   = Integer.parseInt(String.valueOf(tabela_detalhesOrdemServico.getValueAt(linha, 2)).substring(0, 6));
         bosi.quantidade             = Double.parseDouble(String.valueOf(tabela_detalhesOrdemServico.getValueAt(linha, 4)));
         
         sql = "delete from tb_os_itens where idEmpresa = " + bosi.idEmpresa + " and codigoOrdemServico = " + bosi.codigoOrdemServico + " and codigoOrdemServicoItem = " + bosi.codigoOrdemServicoItem + ";";
         sqlstate = parametrosNS.dao.ExcluirRegistro(sql);
-        if(!sqlstate.equals("00000"))
+        if(!sqlstate.equals("00000")){
             return;
+        }
         AtualizaEstoque();
-        if(!sqlstate.equals("00000"))
+        if(!sqlstate.equals("00000")){
             return;
+        }
         int codigoOrdemServicoItem = 0;
         for(int i = linha; i < tabela_detalhesOrdemServico.getRowCount(); i++){
             bosi.codigoOrdemServicoItem = Integer.parseInt(String.valueOf(tabela_detalhesOrdemServico.getValueAt(i, 0)));
@@ -1999,12 +2016,14 @@ public class OrdemServicoCadastro extends javax.swing.JFrame {
         String Data = txt_dataEntrada.getText();
         Data = Data.replace(" ", "");
         Data = Data.replace("/", "");
-        if(Data.equals(""))
+        if(Data.equals("")){
             return;
+        }
         bt_incluir.setEnabled(false);
         bt_alterar.setEnabled(false);
-        if(parametrosNS.ValData.ValidaData(txt_dataEntrada.getText()).equals("N"))
+        if(parametrosNS.ValData.ValidaData(txt_dataEntrada.getText()).equals("N")){
             return;
+        }
         HabilitaBotoes();
     }//GEN-LAST:event_txt_dataEntradaFocusLost
 
@@ -2012,12 +2031,14 @@ public class OrdemServicoCadastro extends javax.swing.JFrame {
         String Data = txt_dataSaida.getText();
         Data = Data.replace(" ", "");
         Data = Data.replace("/", "");
-        if(Data.equals(""))
+        if(Data.equals("")){
             return;
+        }
         bt_incluir.setEnabled(false);
         bt_alterar.setEnabled(false);
-        if(parametrosNS.ValData.ValidaData(txt_dataSaida.getText()).equals("N"))
+        if(parametrosNS.ValData.ValidaData(txt_dataSaida.getText()).equals("N")){
             return;
+        }
         HabilitaBotoes();
     }//GEN-LAST:event_txt_dataSaidaFocusLost
 
@@ -2025,12 +2046,14 @@ public class OrdemServicoCadastro extends javax.swing.JFrame {
         String Data = txt_dataGarantia.getText();
         Data = Data.replace(" ", "");
         Data = Data.replace("/", "");
-        if(Data.equals(""))
+        if(Data.equals("")){
             return;
+        }
         bt_incluir.setEnabled(false);
         bt_alterar.setEnabled(false);
-        if(parametrosNS.ValData.ValidaData(txt_dataGarantia.getText()).equals("N"))
+        if(parametrosNS.ValData.ValidaData(txt_dataGarantia.getText()).equals("N")){
             return;
+        }
         HabilitaBotoes();
     }//GEN-LAST:event_txt_dataGarantiaFocusLost
 
@@ -2038,12 +2061,14 @@ public class OrdemServicoCadastro extends javax.swing.JFrame {
         String Data = txt_dataPrevista.getText();
         Data = Data.replace(" ", "");
         Data = Data.replace("/", "");
-        if(Data.equals(""))
+        if(Data.equals("")){
             return;
+        }
         bt_incluir.setEnabled(false);
         bt_alterar.setEnabled(false);
-        if(parametrosNS.ValData.ValidaData(txt_dataPrevista.getText()).equals("N"))
+        if(parametrosNS.ValData.ValidaData(txt_dataPrevista.getText()).equals("N")){
             return;
+        }
         HabilitaBotoes();
     }//GEN-LAST:event_txt_dataPrevistaFocusLost
 
@@ -2162,11 +2187,12 @@ public class OrdemServicoCadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_valorOutrosFocusGained
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        if(SitCad != null)
+        if(SitCad != null){
             if(SitCad.isVisible()){
                 SitCad.setState(JFrame.NORMAL);
                 return;
             }
+        }
         abriuSituacao = 1;
         AbrirCadastroSituacoes();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
@@ -2192,10 +2218,11 @@ public class OrdemServicoCadastro extends javax.swing.JFrame {
             hm.put("enderecoEmpresa"   , parametrosNS.be.EnderecoEmpresa + ", " + parametrosNS.be.NumeroEmpresa + ", " + parametrosNS.be.bairroEmpresa);
             hm.put("cepEmpresa"        , parametrosNS.be.CepEmpresa);
             hm.put("telefoneEmpresa"   , parametrosNS.be.TelefoneEmpresa);
-            if(img != null)
+            if(img != null){
                 hm.put("logotipoEmpresa", img);
-            else
+            }else{
                 hm.put("logotipoEmpresa", null);
+            }
             hm.put("codigoOrdemServico", bos.codigoOrdemServico);
             hm.put("impressaoDoLaudo"  , bparpro.impressaoDoLaudo);
             hm.put("termoDeRecebimento", bparpro.termoDeRecebimento);
@@ -2227,10 +2254,11 @@ public class OrdemServicoCadastro extends javax.swing.JFrame {
             hm.put("enderecoEmpresa"   , parametrosNS.be.EnderecoEmpresa + ", " + parametrosNS.be.NumeroEmpresa + ", " + parametrosNS.be.bairroEmpresa);
             hm.put("cepEmpresa"        , parametrosNS.be.CepEmpresa);
             hm.put("telefoneEmpresa"   , parametrosNS.be.TelefoneEmpresa);
-            if(img != null)
+            if(img != null){
                 hm.put("logotipoEmpresa", img);
-            else
+            }else{
                 hm.put("logotipoEmpresa", null);
+            }
             hm.put("codigoOrdemServico", bos.codigoOrdemServico);
             hm.put("impressaoDoLaudo"  , bparpro.impressaoDoLaudo);
             hm.put("termoDeRecebimento", bparpro.termoDeRecebimento);
@@ -2418,8 +2446,9 @@ public class OrdemServicoCadastro extends javax.swing.JFrame {
         dadosSituacoes.clear();
         dadosSituacoes = parametrosNS.dao.Consulta(sql);
         if(dadosSituacoes.isEmpty()){
-            if(JOptionPane.showConfirmDialog(null, "Não foram encontradas situações cadastradas! Deseja cadastrar?", "", JOptionPane.YES_NO_OPTION) == JOptionPane.NO_OPTION)
+            if(JOptionPane.showConfirmDialog(null, "Não foram encontradas situações cadastradas! Deseja cadastrar?", "", JOptionPane.YES_NO_OPTION) == JOptionPane.NO_OPTION){
                 return;
+            }
             dispose();
             AbrirCadastroSituacoes();
             return;
@@ -2429,12 +2458,13 @@ public class OrdemServicoCadastro extends javax.swing.JFrame {
     
     private void PegaDadosSituacoes(){
         for(int i = 0; i < dadosSituacoes.size(); i++){
-            bsit.idSituacao         = Integer.parseInt(  String.valueOf(dadosSituacoes.get(i).get(0)));
-            bsit.idEmpresa          = Integer.parseInt(  String.valueOf(dadosSituacoes.get(i).get(1)));
-            bsit.codigoGrupo        = Integer.parseInt(  String.valueOf(dadosSituacoes.get(i).get(2)));
-            bsit.codigoEmpresa      = Integer.parseInt(  String.valueOf(dadosSituacoes.get(i).get(3)));
-            bsit.codigoSituacao     = Integer.parseInt(  String.valueOf(dadosSituacoes.get(i).get(4)));
-            bsit.descricaoSituacao  =                    String.valueOf(dadosSituacoes.get(i).get(5));
+            bsit = new BeanSituacoes();
+            if(dadosSituacoes.get(i).get(0) != null){bsit.idSituacao         = Integer.parseInt(String.valueOf(dadosSituacoes.get(i).get(0)));}
+            if(dadosSituacoes.get(i).get(1) != null){bsit.idEmpresa          = Integer.parseInt(String.valueOf(dadosSituacoes.get(i).get(1)));}
+            if(dadosSituacoes.get(i).get(2) != null){bsit.codigoGrupo        = Integer.parseInt(String.valueOf(dadosSituacoes.get(i).get(2)));}
+            if(dadosSituacoes.get(i).get(3) != null){bsit.codigoEmpresa      = Integer.parseInt(String.valueOf(dadosSituacoes.get(i).get(3)));}
+            if(dadosSituacoes.get(i).get(4) != null){bsit.codigoSituacao     = Integer.parseInt(String.valueOf(dadosSituacoes.get(i).get(4)));}
+            if(dadosSituacoes.get(i).get(5) != null){bsit.descricaoSituacao  =                  String.valueOf(dadosSituacoes.get(i).get(5));}
             
             combo_Situacao.addItem(bsit.descricaoSituacao);
         }
@@ -2531,7 +2561,7 @@ public class OrdemServicoCadastro extends javax.swing.JFrame {
         PegaUsuario("N");
         label_nomeUsuarioDigitou.setText(bu.usuario);
         
-        if(bos.statusOs == 2)
+        if(bos.statusOs == 2){
             if(bos.usuarioFinalizou != 0){
                 bu.usuario      = "NS3";
                 if(bos.usuarioFinalizou != 999){
@@ -2541,9 +2571,7 @@ public class OrdemServicoCadastro extends javax.swing.JFrame {
                     PegaUsuario("S");
                 }
                 label_nomeUsuarioFinalizou.setText(bu.usuario);
-            }
-        
-        if(bos.statusOs == 2)
+            }else
             if(bos.usuarioFinalizou == 0){
                 if(bos.usuarioSemSolucao != 0){
                     bu.usuario      = "NS3";
@@ -2556,8 +2584,8 @@ public class OrdemServicoCadastro extends javax.swing.JFrame {
                     label_nomeUsuarioFinalizou.setText(bu.usuario);
                 }
             }
-        
-        if(bos.statusOs == 1)
+        }
+        if(bos.statusOs == 1){
             if(bos.usuarioCancelou != 0){
                 bu.usuario      = "NS3";
                 if(bos.usuarioCancelou != 999){
@@ -2568,6 +2596,7 @@ public class OrdemServicoCadastro extends javax.swing.JFrame {
                 }
                 label_nomeUsuarioCancelou.setText(bu.usuario);
             }
+        }
         
         txt_dataDeCadastro.setText(parametrosNS.invdata.inverterData(bos.dataCadastro, 1));
         combo_Situacao.setSelectedIndex(bos.codigoSituacao);
@@ -2681,42 +2710,18 @@ public class OrdemServicoCadastro extends javax.swing.JFrame {
         for(int i = 0; i < dadosOrdemServicoItens.size(); i++){
             tipoItem = "";
             bosi = new BeanOrdemServicoItens();
-            if(dadosOrdemServicoItens.get(i).get(0) != null){
-                bosi.idOrdemServicoItem     = Integer.parseInt(  String.valueOf(dadosOrdemServicoItens.get(i).get(0)));
-            }
-            if(dadosOrdemServicoItens.get(i).get(1) != null){
-                bosi.idEmpresa              = Integer.parseInt(  String.valueOf(dadosOrdemServicoItens.get(i).get(1)));
-            }
-            if(dadosOrdemServicoItens.get(i).get(2) != null){
-                bosi.codigoGrupo            = Integer.parseInt(  String.valueOf(dadosOrdemServicoItens.get(i).get(2)));
-            }
-            if(dadosOrdemServicoItens.get(i).get(3) != null){
-                bosi.codigoEmpresa          = Integer.parseInt(  String.valueOf(dadosOrdemServicoItens.get(i).get(3)));
-            }
-            if(dadosOrdemServicoItens.get(i).get(4) != null){
-                bosi.codigoOrdemServico     = Integer.parseInt(  String.valueOf(dadosOrdemServicoItens.get(i).get(4)));
-            }
-            if(dadosOrdemServicoItens.get(i).get(5) != null){
-                bosi.codigoOrdemServicoItem = Integer.parseInt(  String.valueOf(dadosOrdemServicoItens.get(i).get(5)));
-            }
-            if(dadosOrdemServicoItens.get(i).get(6) != null){
-                bosi.codigoUsuario          = Integer.parseInt(  String.valueOf(dadosOrdemServicoItens.get(i).get(6)));
-            }
-            if(dadosOrdemServicoItens.get(i).get(7) != null){
-                bosi.valorUnitario          = Double.parseDouble(String.valueOf(dadosOrdemServicoItens.get(i).get(7)));
-            }
-            if(dadosOrdemServicoItens.get(i).get(8) != null){
-                bosi.quantidade             = Double.parseDouble(String.valueOf(dadosOrdemServicoItens.get(i).get(8)));
-            }
-            if(dadosOrdemServicoItens.get(i).get(9) != null){
-                bosi.valorTotal             = Double.parseDouble(String.valueOf(dadosOrdemServicoItens.get(i).get(9)));
-            }
-            if(dadosOrdemServicoItens.get(i).get(10) != null){
-                bosi.codigoServico          = Integer.parseInt(  String.valueOf(dadosOrdemServicoItens.get(i).get(10)));
-            }
-            if(dadosOrdemServicoItens.get(i).get(11) != null){
-                bosi.codigoProduto          = Integer.parseInt(  String.valueOf(dadosOrdemServicoItens.get(i).get(11)));
-            }
+            if(dadosOrdemServicoItens.get(i).get(0) != null){bosi.idOrdemServicoItem     = Integer.parseInt(  String.valueOf(dadosOrdemServicoItens.get(i).get(0)));}
+            if(dadosOrdemServicoItens.get(i).get(1) != null){bosi.idEmpresa              = Integer.parseInt(  String.valueOf(dadosOrdemServicoItens.get(i).get(1)));}
+            if(dadosOrdemServicoItens.get(i).get(2) != null){bosi.codigoGrupo            = Integer.parseInt(  String.valueOf(dadosOrdemServicoItens.get(i).get(2)));}
+            if(dadosOrdemServicoItens.get(i).get(3) != null){bosi.codigoEmpresa          = Integer.parseInt(  String.valueOf(dadosOrdemServicoItens.get(i).get(3)));}
+            if(dadosOrdemServicoItens.get(i).get(4) != null){bosi.codigoOrdemServico     = Integer.parseInt(  String.valueOf(dadosOrdemServicoItens.get(i).get(4)));}
+            if(dadosOrdemServicoItens.get(i).get(5) != null){bosi.codigoOrdemServicoItem = Integer.parseInt(  String.valueOf(dadosOrdemServicoItens.get(i).get(5)));}
+            if(dadosOrdemServicoItens.get(i).get(6) != null){bosi.codigoUsuario          = Integer.parseInt(  String.valueOf(dadosOrdemServicoItens.get(i).get(6)));}
+            if(dadosOrdemServicoItens.get(i).get(7) != null){bosi.valorUnitario          = Double.parseDouble(String.valueOf(dadosOrdemServicoItens.get(i).get(7)));}
+            if(dadosOrdemServicoItens.get(i).get(8) != null){bosi.quantidade             = Double.parseDouble(String.valueOf(dadosOrdemServicoItens.get(i).get(8)));}
+            if(dadosOrdemServicoItens.get(i).get(9) != null){bosi.valorTotal             = Double.parseDouble(String.valueOf(dadosOrdemServicoItens.get(i).get(9)));}
+            if(dadosOrdemServicoItens.get(i).get(10) != null){bosi.codigoServico          = Integer.parseInt(  String.valueOf(dadosOrdemServicoItens.get(i).get(10)));}
+            if(dadosOrdemServicoItens.get(i).get(11) != null){bosi.codigoProduto          = Integer.parseInt(  String.valueOf(dadosOrdemServicoItens.get(i).get(11)));}
         
             if(bosi.codigoProduto != 0){
                 tipoItem = "Produto";
@@ -2814,27 +2819,17 @@ public class OrdemServicoCadastro extends javax.swing.JFrame {
     private void PegaDadosProdutos(){
         for (int i = 0; i < dadosProdutos.size(); i++) {
             bp  = new BeanProdutos();
-            if(dadosProdutos.get(i).get(0) != null)
-                bp.idProdutos               = Integer.parseInt(  String.valueOf(dadosProdutos.get(i).get(0)));
-            if(dadosProdutos.get(i).get(1) != null)
-                bp.idEmpresa                = Integer.parseInt(  String.valueOf(dadosProdutos.get(i).get(1)));
-            if(dadosProdutos.get(i).get(2) != null)
-                bp.codigoGrupo              = Integer.parseInt(  String.valueOf(dadosProdutos.get(i).get(2)));
-            if(dadosProdutos.get(i).get(3) != null)
-                bp.codigoEmpresa            = Integer.parseInt(  String.valueOf(dadosProdutos.get(i).get(3)));
-            if(dadosProdutos.get(i).get(4) != null)
-                bp.codigoProduto            = Integer.parseInt(  String.valueOf(dadosProdutos.get(i).get(4)));
-                bp.descricaoProduto         =                    String.valueOf(dadosProdutos.get(i).get(5));
-            if(dadosProdutos.get(i).get(6) != null)
-                bp.valorDeCompra            = Double.parseDouble(String.valueOf(dadosProdutos.get(i).get(6)));
-            if(dadosProdutos.get(i).get(7) != null)
-                bp.valorDeVenda             = Double.parseDouble(String.valueOf(dadosProdutos.get(i).get(7)));
-            if(dadosProdutos.get(i).get(8) != null)
-                bp.quantidadeMinima         = Double.parseDouble(String.valueOf(dadosProdutos.get(i).get(8)));
-            if(dadosProdutos.get(i).get(9) != null)
-                bp.quantidadeIdeal          = Double.parseDouble(String.valueOf(dadosProdutos.get(i).get(9)));
-            if(dadosProdutos.get(i).get(10) != null)
-                bp.quantidadeAtual          = Double.parseDouble(String.valueOf(dadosProdutos.get(i).get(10)));
+            if(dadosProdutos.get(i).get(0)  != null){bp.idProdutos               = Integer.parseInt(  String.valueOf(dadosProdutos.get(i).get(0)));}
+            if(dadosProdutos.get(i).get(1)  != null){bp.idEmpresa                = Integer.parseInt(  String.valueOf(dadosProdutos.get(i).get(1)));}
+            if(dadosProdutos.get(i).get(2)  != null){bp.codigoGrupo              = Integer.parseInt(  String.valueOf(dadosProdutos.get(i).get(2)));}
+            if(dadosProdutos.get(i).get(3)  != null){bp.codigoEmpresa            = Integer.parseInt(  String.valueOf(dadosProdutos.get(i).get(3)));}
+            if(dadosProdutos.get(i).get(4)  != null){bp.codigoProduto            = Integer.parseInt(  String.valueOf(dadosProdutos.get(i).get(4)));}
+            if(dadosProdutos.get(i).get(5)  != null){bp.descricaoProduto         =                    String.valueOf(dadosProdutos.get(i).get(5));}
+            if(dadosProdutos.get(i).get(6)  != null){bp.valorDeCompra            = Double.parseDouble(String.valueOf(dadosProdutos.get(i).get(6)));}
+            if(dadosProdutos.get(i).get(7)  != null){bp.valorDeVenda             = Double.parseDouble(String.valueOf(dadosProdutos.get(i).get(7)));}
+            if(dadosProdutos.get(i).get(8)  != null){bp.quantidadeMinima         = Double.parseDouble(String.valueOf(dadosProdutos.get(i).get(8)));}
+            if(dadosProdutos.get(i).get(9)  != null){bp.quantidadeIdeal          = Double.parseDouble(String.valueOf(dadosProdutos.get(i).get(9)));}
+            if(dadosProdutos.get(i).get(10) != null){bp.quantidadeAtual          = Double.parseDouble(String.valueOf(dadosProdutos.get(i).get(10)));}
         }
     }
     
@@ -2853,19 +2848,14 @@ public class OrdemServicoCadastro extends javax.swing.JFrame {
     
     private void PegaDadosServicos(){
         for(int i = 0; i < dadosServicos.size(); i++){
-            if(dadosServicos.get(i).get(0) != null)
-                bser.idServico          = Integer.parseInt(  String.valueOf(dadosServicos.get(i).get(0)));
-            if(dadosServicos.get(i).get(1) != null)
-                bser.idEmpresa          = Integer.parseInt(  String.valueOf(dadosServicos.get(i).get(1)));
-            if(dadosServicos.get(i).get(2) != null)
-                bser.codigoGrupo        = Integer.parseInt(  String.valueOf(dadosServicos.get(i).get(2)));
-            if(dadosServicos.get(i).get(3) != null)
-                bser.codigoEmpresa      = Integer.parseInt(  String.valueOf(dadosServicos.get(i).get(3)));
-            if(dadosServicos.get(i).get(4) != null)
-                bser.codigoServico      = Integer.parseInt(  String.valueOf(dadosServicos.get(i).get(4)));
-                bser.descricaoServico   =                    String.valueOf(dadosServicos.get(i).get(5));
-            if(dadosServicos.get(i).get(6) != null)
-                bser.valorServico       = Double.parseDouble(String.valueOf(dadosServicos.get(i).get(6)));
+            bser = new BeanServicos();
+            if(dadosServicos.get(i).get(0) != null){bser.idServico          = Integer.parseInt(  String.valueOf(dadosServicos.get(i).get(0)));}
+            if(dadosServicos.get(i).get(1) != null){bser.idEmpresa          = Integer.parseInt(  String.valueOf(dadosServicos.get(i).get(1)));}
+            if(dadosServicos.get(i).get(2) != null){bser.codigoGrupo        = Integer.parseInt(  String.valueOf(dadosServicos.get(i).get(2)));}
+            if(dadosServicos.get(i).get(3) != null){bser.codigoEmpresa      = Integer.parseInt(  String.valueOf(dadosServicos.get(i).get(3)));}
+            if(dadosServicos.get(i).get(4) != null){bser.codigoServico      = Integer.parseInt(  String.valueOf(dadosServicos.get(i).get(4)));}
+            if(dadosServicos.get(i).get(5) != null){bser.descricaoServico   =                    String.valueOf(dadosServicos.get(i).get(5));}
+            if(dadosServicos.get(i).get(6) != null){bser.valorServico       = Double.parseDouble(String.valueOf(dadosServicos.get(i).get(6)));}
         }
     }
     
@@ -2918,11 +2908,13 @@ public class OrdemServicoCadastro extends javax.swing.JFrame {
     
     private void PegaUsuario(String Alterou){
         bu.usuario = "----------";
-        if(bu.codigoUsuario == 0)
+        if(bu.codigoUsuario == 0){
             return;
+        }
         sql = "select usuario from tb_usuarios where idEmpresa = " + parametrosNS.be.IdEmpresa + " and codigoUsuario = " + bu.codigoUsuario + ";";
-        if(Alterou.equals("S"))
+        if(Alterou.equals("S")){
             sql = "select usuario from tb_usuarios where idEmpresa = " + bu.idEmpresa + " and codigoUsuario = " + bu.codigoUsuario + ";";
+        }
         dadosUsuario.clear();
         dadosUsuario = parametrosNS.dao.Consulta(sql);
         if(dadosUsuario.isEmpty()){
@@ -2935,7 +2927,7 @@ public class OrdemServicoCadastro extends javax.swing.JFrame {
     
     private void PegaDadosUsuarios(){
         for(int i = 0; i < dadosUsuario.size(); i++){
-            bu.usuario = String.valueOf(dadosUsuario.get(i).get(0));
+            if(dadosUsuario.get(i).get(0) != null){bu.usuario = String.valueOf(dadosUsuario.get(i).get(0));}
         }
     }
     
@@ -3119,7 +3111,6 @@ public class OrdemServicoCadastro extends javax.swing.JFrame {
         if(!txt_valorOutros.getText().equals("")){
             bos.valorOutros         = Double.parseDouble(parametrosNS.TransStrDou.TransformaValorStringeDouble(txt_valorOutros.getText()      , 1));
         }
-        
         bos.idEmpresaAlterou        = parametrosNS.be.idEmpresa;
         bos.codigoGrupoAlterou      = parametrosNS.be.codigoGrupo;
         bos.codigoEmpresaAlterou    = parametrosNS.be.codigoEmpresa;
@@ -3129,8 +3120,9 @@ public class OrdemServicoCadastro extends javax.swing.JFrame {
     }
     
     private void AtualizaEstoque(){
-        if(bosi.tipo != 1)
+        if(bosi.tipo != 1){
             return;
+        }
         bp.codigoProduto = bosi.codigoServicoProduto;
         PegaProdutos();
         
@@ -3138,8 +3130,9 @@ public class OrdemServicoCadastro extends javax.swing.JFrame {
         
         sql = "update tb_produtos set quantidadeAtual = " + bp.quantidadeAtual + ", atualizado = 1 where idEmpresa = " + parametrosNS.be.IdEmpresa + " and codigoProduto = " + bp.codigoProduto + ";";
         sqlstate = parametrosNS.dao.AlterarRegistroOuConsultaSeTabelaExiste(sql, "S");
-        if(sqlstate.equals("00000"))
+        if(sqlstate.equals("00000")){
             return;
+        }
         mensagem = "Erro ao atualizar estoque do produto " + bp.codigoProduto + "!";
         mostraMensagem();
     }

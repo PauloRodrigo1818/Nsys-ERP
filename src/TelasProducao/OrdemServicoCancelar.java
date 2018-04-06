@@ -260,16 +260,19 @@ public class OrdemServicoCancelar extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txt_codigoCancelamentoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_codigoCancelamentoKeyPressed
-        if(evt.getKeyCode() != KeyEvent.VK_ENTER)
+        if(evt.getKeyCode() != KeyEvent.VK_ENTER){
             return;
+        }
         txt_detalhesCancelamento.grabFocus();
     }//GEN-LAST:event_txt_codigoCancelamentoKeyPressed
 
     private void txt_codigoCancelamentoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_codigoCancelamentoFocusLost
-        if(txt_codigoCancelamento.getText().replace(" ", "").equals(""))
+        if(txt_codigoCancelamento.getText().replace(" ", "").equals("")){
             return;
-        if(txt_codigoCancelamento.isEditable() == false)
+        }
+        if(txt_codigoCancelamento.isEditable() == false){
             return;
+        }
         PegaCancelamento();
     }//GEN-LAST:event_txt_codigoCancelamentoFocusLost
 
@@ -285,20 +288,23 @@ public class OrdemServicoCancelar extends javax.swing.JFrame {
     }//GEN-LAST:event_bt_pesquisarCancelamentoActionPerformed
 
     private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
-        if(abriuPesquisaCancelamento == 0)
+        if(abriuPesquisaCancelamento == 0){
             return;
+        }
         abriuPesquisaCancelamento = 0;
         retorno = CanCon.getRetorno();
-        if(retorno.equals(""))
+        if(retorno.equals("")){
             return;
+        }
         txt_codigoCancelamento.setText(retorno);
         PegaCancelamento();
     }//GEN-LAST:event_formWindowGainedFocus
 
     private void bt_confirmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_confirmaActionPerformed
         PegaValores();
-        if(fatal.equals("S"))
+        if(fatal.equals("S")){
             return;
+        }
         sql = "update tb_os set statusOs = 1, "
                              + "codigoCancelamento = "      + bos.codigoCancelamento   + ", "
                              + "detalhesCancelamento = '"   + bos.detalhesCancelamento + "', "
@@ -311,8 +317,9 @@ public class OrdemServicoCancelar extends javax.swing.JFrame {
                              + "atualizado = 1 "
                              + "where idOrdemServico = " +  bos.idOrdemServico + ";";
         sqlstate = parametrosNS.dao.AlterarRegistroOuConsultaSeTabelaExiste(sql, "S");
-        if(!sqlstate.equals("00000"))
+        if(!sqlstate.equals("00000")){
             return;
+        }
         dispose();
     }//GEN-LAST:event_bt_confirmaActionPerformed
 
@@ -322,8 +329,9 @@ public class OrdemServicoCancelar extends javax.swing.JFrame {
     }//GEN-LAST:event_bt_sairActionPerformed
 
     private void txt_codigoCancelamentoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_codigoCancelamentoFocusGained
-        if(txt_codigoCancelamento.isEditable() == false)
+        if(txt_codigoCancelamento.isEditable() == false){
             return;
+        }
         bos.codigoCancelamento = 0;
         txt_codigoCancelamento.setText("");
         label_descricaoCancelamento.setText("");
@@ -334,8 +342,9 @@ public class OrdemServicoCancelar extends javax.swing.JFrame {
     }//GEN-LAST:event_bt_sair1ActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        if(bos.idOrdemServico != 0)
+        if(bos.idOrdemServico != 0){
             PegaOrdemServico();
+        }
     }//GEN-LAST:event_formWindowOpened
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
@@ -381,22 +390,14 @@ public class OrdemServicoCancelar extends javax.swing.JFrame {
     private void PegaDadosOrdemServico(){
         for(int i = 0; i < dadosOrdemServico.size(); i++){
             bos     = new BeanOrdemServico();
-            if(dadosOrdemServico.get(i).get(0) != null)
-                bos.idOrdemServico          = Integer.parseInt(  String.valueOf(dadosOrdemServico.get(i).get(0)));
-            if(dadosOrdemServico.get(i).get(1) != null)
-                bos.idEmpresa               = Integer.parseInt(  String.valueOf(dadosOrdemServico.get(i).get(1)));
-            if(dadosOrdemServico.get(i).get(2) != null)
-                bos.codigoGrupo             = Integer.parseInt(  String.valueOf(dadosOrdemServico.get(i).get(2)));
-            if(dadosOrdemServico.get(i).get(3) != null)
-                bos.codigoEmpresa           = Integer.parseInt(  String.valueOf(dadosOrdemServico.get(i).get(3)));
-            if(dadosOrdemServico.get(i).get(4) != null)
-                bos.codigoOrdemServico      = Integer.parseInt(  String.valueOf(dadosOrdemServico.get(i).get(4)));
-            if(dadosOrdemServico.get(i).get(5) != null)
-                bos.codigoCliente           = Integer.parseInt(  String.valueOf(dadosOrdemServico.get(i).get(5)));
-            if(dadosOrdemServico.get(i).get(6) != null)
-                bos.codigoUsuario           = Integer.parseInt(  String.valueOf(dadosOrdemServico.get(i).get(6)));
-            if(dadosOrdemServico.get(i).get(7) != null)
-                bos.statusOs                = Integer.parseInt(  String.valueOf(dadosOrdemServico.get(i).get(7)));
+            if(dadosOrdemServico.get(i).get(0) != null){bos.idOrdemServico          = Integer.parseInt(  String.valueOf(dadosOrdemServico.get(i).get(0)));}
+            if(dadosOrdemServico.get(i).get(1) != null){bos.idEmpresa               = Integer.parseInt(  String.valueOf(dadosOrdemServico.get(i).get(1)));}
+            if(dadosOrdemServico.get(i).get(2) != null){bos.codigoGrupo             = Integer.parseInt(  String.valueOf(dadosOrdemServico.get(i).get(2)));}
+            if(dadosOrdemServico.get(i).get(3) != null){bos.codigoEmpresa           = Integer.parseInt(  String.valueOf(dadosOrdemServico.get(i).get(3)));}
+            if(dadosOrdemServico.get(i).get(4) != null){bos.codigoOrdemServico      = Integer.parseInt(  String.valueOf(dadosOrdemServico.get(i).get(4)));}
+            if(dadosOrdemServico.get(i).get(5) != null){bos.codigoCliente           = Integer.parseInt(  String.valueOf(dadosOrdemServico.get(i).get(5)));}
+            if(dadosOrdemServico.get(i).get(6) != null){bos.codigoUsuario           = Integer.parseInt(  String.valueOf(dadosOrdemServico.get(i).get(6)));}
+            if(dadosOrdemServico.get(i).get(7) != null){bos.statusOs                = Integer.parseInt(  String.valueOf(dadosOrdemServico.get(i).get(7)));}
         }
         if(bos.statusOs == 1){
             Mensagem = "Ordem de Serviço n°" + bos.codigoOrdemServico + " já foi Cancelada!";

@@ -4,15 +4,12 @@ import Beans.BeanCaixaAbertura;
 import Beans.BeanCaixaMotivoSaida;
 import Beans.BeanCaixaSaida;
 import FuncoesInternas.CapturarDataHora;
-import FuncoesInternas.ConverteValorDigitadoEmDouble;
 import FuncoesInternas.FormataCampo;
 import FuncoesInternas.InverterData;
 import FuncoesInternas.MostraMensagem;
 import FuncoesInternas.PegaProximoRegistro;
 import FuncoesInternas.TransformaValorStringeDouble;
 import Parametros.parametrosNS;
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 /*

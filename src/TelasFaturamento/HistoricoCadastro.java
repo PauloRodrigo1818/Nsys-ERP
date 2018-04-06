@@ -71,13 +71,13 @@ public class HistoricoCadastro extends javax.swing.JFrame {
     private void PreencherCliente(){
         for(int i = 0; i < dadosCliente.size(); i++){
             bc = new BeanClientes();
-            bc.idCliente            = Integer.parseInt(  String.valueOf(dadosCliente.get(i).get(0)));
-            bc.idEmpresa            = Integer.parseInt(  String.valueOf(dadosCliente.get(i).get(1)));
-            bc.codigoGrupo          = Integer.parseInt(  String.valueOf(dadosCliente.get(i).get(2)));
-            bc.codigoEmpresa        = Integer.parseInt(  String.valueOf(dadosCliente.get(i).get(3)));
-            bc.codigoCliente        = Integer.parseInt(  String.valueOf(dadosCliente.get(i).get(4)));
-            bc.cpfCnpj              =                    String.valueOf(dadosCliente.get(i).get(5));
-            bc.nome                 =                    String.valueOf(dadosCliente.get(i).get(6));
+            if(dadosCliente.get(i).get(0) != null){bc.idCliente            = Integer.parseInt(String.valueOf(dadosCliente.get(i).get(0)));}
+            if(dadosCliente.get(i).get(1) != null){bc.idEmpresa            = Integer.parseInt(String.valueOf(dadosCliente.get(i).get(1)));}
+            if(dadosCliente.get(i).get(2) != null){bc.codigoGrupo          = Integer.parseInt(String.valueOf(dadosCliente.get(i).get(2)));}
+            if(dadosCliente.get(i).get(3) != null){bc.codigoEmpresa        = Integer.parseInt(String.valueOf(dadosCliente.get(i).get(3)));}
+            if(dadosCliente.get(i).get(4) != null){bc.codigoCliente        = Integer.parseInt(String.valueOf(dadosCliente.get(i).get(4)));}
+            if(dadosCliente.get(i).get(5) != null){bc.cpfCnpj              =                  String.valueOf(dadosCliente.get(i).get(5));}
+            if(dadosCliente.get(i).get(6) != null){bc.nome                 =                  String.valueOf(dadosCliente.get(i).get(6));}
         }
         txt_codigoCliente.setText(fc.FormataCampo(String.valueOf(bc.codigoCliente), 5, 0));
         label_nomeCliente.setText(bc.nome);
@@ -106,13 +106,13 @@ public class HistoricoCadastro extends javax.swing.JFrame {
         combo_lista.addItem("");
         for(int i = 0; i < dadosPredefenidas.size(); i++){
             bchl = new BeanClientesHistoricoLista();
-            bchl.idClienteHistorico         = Integer.parseInt(  String.valueOf(dadosPredefenidas.get(i).get(0)));
-            bchl.idEmpresa                  = Integer.parseInt(  String.valueOf(dadosPredefenidas.get(i).get(1)));
-            bchl.codigoGrupo                = Integer.parseInt(  String.valueOf(dadosPredefenidas.get(i).get(2)));
-            bchl.codigoEmpresa              = Integer.parseInt(  String.valueOf(dadosPredefenidas.get(i).get(3)));
-            bchl.codigoPredefenido          = Integer.parseInt(  String.valueOf(dadosPredefenidas.get(i).get(4)));
-            bchl.descricaoPredefenida       =                    String.valueOf(dadosPredefenidas.get(i).get(5));
-            bchl.dataCadastro               =                    String.valueOf(dadosPredefenidas.get(i).get(6));
+            if(dadosPredefenidas.get(i).get(0) != null){bchl.idClienteHistorico         = Integer.parseInt(String.valueOf(dadosPredefenidas.get(i).get(0)));}
+            if(dadosPredefenidas.get(i).get(1) != null){bchl.idEmpresa                  = Integer.parseInt(String.valueOf(dadosPredefenidas.get(i).get(1)));}
+            if(dadosPredefenidas.get(i).get(2) != null){bchl.codigoGrupo                = Integer.parseInt(String.valueOf(dadosPredefenidas.get(i).get(2)));}
+            if(dadosPredefenidas.get(i).get(3) != null){bchl.codigoEmpresa              = Integer.parseInt(String.valueOf(dadosPredefenidas.get(i).get(3)));}
+            if(dadosPredefenidas.get(i).get(4) != null){bchl.codigoPredefenido          = Integer.parseInt(String.valueOf(dadosPredefenidas.get(i).get(4)));}
+            if(dadosPredefenidas.get(i).get(5) != null){bchl.descricaoPredefenida       =                  String.valueOf(dadosPredefenidas.get(i).get(5));}
+            if(dadosPredefenidas.get(i).get(6) != null){bchl.dataCadastro               =                  String.valueOf(dadosPredefenidas.get(i).get(6));}
             
             combo_lista.addItem(bchl.descricaoPredefenida);
         }

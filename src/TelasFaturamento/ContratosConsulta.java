@@ -190,29 +190,20 @@ public class ContratosConsulta extends javax.swing.JFrame {
         QtdRegistros = 0;
         for(int i = 0; i < dadosContratos.size(); i++){
             bcon = new BeanContratos();
-            if(dadosContratos.get(i).get(0) != null)
-                bcon.idContrato         = Integer.parseInt(  String.valueOf(dadosContratos.get(i).get(0)));
-            if(dadosContratos.get(i).get(1) != null)
-                bcon.idEmpresa          = Integer.parseInt(  String.valueOf(dadosContratos.get(i).get(1)));
-            if(dadosContratos.get(i).get(2) != null)
-                bcon.codigoGrupo        = Integer.parseInt(  String.valueOf(dadosContratos.get(i).get(2)));
-            if(dadosContratos.get(i).get(3) != null)
-                bcon.codigoEmpresa      = Integer.parseInt(  String.valueOf(dadosContratos.get(i).get(3)));
-            if(dadosContratos.get(i).get(4) != null)
-                bcon.codigoContrato     = Integer.parseInt(  String.valueOf(dadosContratos.get(i).get(4)));
-            if(dadosContratos.get(i).get(5) != null)
-                bcon.codigoCliente      = Integer.parseInt(  String.valueOf(dadosContratos.get(i).get(5)));
-            if(dadosContratos.get(i).get(6) != null)
-                bcon.codigoUsuario      = Integer.parseInt(  String.valueOf(dadosContratos.get(i).get(6)));
-            if(dadosContratos.get(i).get(7) != null)
-                bcon.valorContrato      = Double.parseDouble(String.valueOf(dadosContratos.get(i).get(7)));
-                bcon.dataCadastro       =                    String.valueOf(dadosContratos.get(i).get(8));
-                bcon.dataContrato       =                    String.valueOf(dadosContratos.get(i).get(9));
-                bcon.dataVencimento     =                    String.valueOf(dadosContratos.get(i).get(10));
-                bcon.dataReajuste       =                    String.valueOf(dadosContratos.get(i).get(11));
-                bcon.descricaoContrato  =                    String.valueOf(dadosContratos.get(i).get(12));
-            if(dadosContratos.get(i).get(13) != null)
-                bcon.statusContrato     = Integer.parseInt(  String.valueOf(dadosContratos.get(i).get(13)));
+            if(dadosContratos.get(i).get(0)  != null){bcon.idContrato         = Integer.parseInt(  String.valueOf(dadosContratos.get(i).get(0)));}
+            if(dadosContratos.get(i).get(1)  != null){bcon.idEmpresa          = Integer.parseInt(  String.valueOf(dadosContratos.get(i).get(1)));}
+            if(dadosContratos.get(i).get(2)  != null){bcon.codigoGrupo        = Integer.parseInt(  String.valueOf(dadosContratos.get(i).get(2)));}
+            if(dadosContratos.get(i).get(3)  != null){bcon.codigoEmpresa      = Integer.parseInt(  String.valueOf(dadosContratos.get(i).get(3)));}
+            if(dadosContratos.get(i).get(4)  != null){bcon.codigoContrato     = Integer.parseInt(  String.valueOf(dadosContratos.get(i).get(4)));}
+            if(dadosContratos.get(i).get(5)  != null){bcon.codigoCliente      = Integer.parseInt(  String.valueOf(dadosContratos.get(i).get(5)));}
+            if(dadosContratos.get(i).get(6)  != null){bcon.codigoUsuario      = Integer.parseInt(  String.valueOf(dadosContratos.get(i).get(6)));}
+            if(dadosContratos.get(i).get(7)  != null){bcon.valorContrato      = Double.parseDouble(String.valueOf(dadosContratos.get(i).get(7)));}
+            if(dadosContratos.get(i).get(8)  != null){bcon.dataCadastro       =                    String.valueOf(dadosContratos.get(i).get(8));}
+            if(dadosContratos.get(i).get(9)  != null){bcon.dataContrato       =                    String.valueOf(dadosContratos.get(i).get(9));}
+            if(dadosContratos.get(i).get(10) != null){bcon.dataVencimento     =                    String.valueOf(dadosContratos.get(i).get(10));}
+            if(dadosContratos.get(i).get(11) != null){bcon.dataReajuste       =                    String.valueOf(dadosContratos.get(i).get(11));}
+            if(dadosContratos.get(i).get(12) != null){bcon.descricaoContrato  =                    String.valueOf(dadosContratos.get(i).get(12));}
+            if(dadosContratos.get(i).get(13) != null){bcon.statusContrato     = Integer.parseInt(  String.valueOf(dadosContratos.get(i).get(13)));}
             
             if(bcon.dataCadastro    != null)dataCadastro      = Test.Testa(invdata.inverterData(bcon.dataCadastro  , 1));else dataCadastro    = 0;
             if(bcon.dataContrato    != null)dataContrato      = Test.Testa(invdata.inverterData(bcon.dataContrato  , 1));else dataContrato    = 0;
@@ -267,11 +258,12 @@ public class ContratosConsulta extends javax.swing.JFrame {
     
     private void PegaDadosEmpresa(){
         for(int i = 0; i < dadosEmpresas.size(); i++){
-            be.CodigoGrupo      = Integer.parseInt(  String.valueOf(dadosEmpresas.get(i).get(1)));
-            be.CodigoEmpresa    = Integer.parseInt(  String.valueOf(dadosEmpresas.get(i).get(2)));
-            be.NomeEmpresa      =                    String.valueOf(dadosEmpresas.get(i).get(4));
-            be.NomeFantasia     =                    String.valueOf(dadosEmpresas.get(i).get(5));
-            be.CnpjEmpresa      =                    String.valueOf(dadosEmpresas.get(i).get(6));
+            be = new BeanEmpresas();
+            if(dadosEmpresas.get(i).get(1) != null){be.CodigoGrupo      = Integer.parseInt(  String.valueOf(dadosEmpresas.get(i).get(1)));}
+            if(dadosEmpresas.get(i).get(2) != null){be.CodigoEmpresa    = Integer.parseInt(  String.valueOf(dadosEmpresas.get(i).get(2)));}
+            if(dadosEmpresas.get(i).get(4) != null){be.NomeEmpresa      =                    String.valueOf(dadosEmpresas.get(i).get(4));}
+            if(dadosEmpresas.get(i).get(5) != null){be.NomeFantasia     =                    String.valueOf(dadosEmpresas.get(i).get(5));}
+            if(dadosEmpresas.get(i).get(6) != null){be.CnpjEmpresa      =                    String.valueOf(dadosEmpresas.get(i).get(6));}
         }
         be.NomeEmpresa  = fc.FormataCampo(String.valueOf(be.CodigoEmpresa), 3, 0) + "-" + be.NomeEmpresa;
     }
@@ -1287,13 +1279,13 @@ public class ContratosConsulta extends javax.swing.JFrame {
     }//GEN-LAST:event_bt_pesquisaUsuarioInicialActionPerformed
     
     private void PesquisaUsuario(){
-        parametros.clear();
-        parametros.add("N");
         if(UsuCon != null)if(UsuCon.isVisible()){
             Mensagem = "Tela já aberta!";
             new MostraMensagem(Mensagem);
             return;
         }
+        parametros.clear();
+        parametros.add("N");
         abriuUsuario = 1;
         UsuCon = new UsuariosConsulta(parametros);
         UsuCon.setVisible(true);
@@ -1305,13 +1297,13 @@ public class ContratosConsulta extends javax.swing.JFrame {
     }//GEN-LAST:event_bt_pesquisaUsuarioFinalActionPerformed
     
     private void PesquisaManutencao(){
-        parametros.clear();
-        parametros.add("N");
         if(ManCon != null)if(ManCon.isVisible()){
             Mensagem = "Tela já aberta!";
             new MostraMensagem(Mensagem);
             return;
         }
+        parametros.clear();
+        parametros.add("N");
         abriuManutencao = 1;
         ManCon = new ManutencoesConsulta(parametros);
         ManCon.setVisible(true);
@@ -1324,8 +1316,9 @@ public class ContratosConsulta extends javax.swing.JFrame {
         }
         abriuCliente = 0;
         retorno = CliCon.getRetorno();
-        if(retorno.equals(""))
+        if(retorno.equals("")){
             return;
+        }
         if(Campo.equals("I")){
             txt_codigoClienteInicial.setText(fc.FormataCampo(retorno, 5, 0));
             return;
@@ -1340,12 +1333,14 @@ public class ContratosConsulta extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosed
     
     private void AbreUsuarios(){
-        if(abriuUsuario == 0)
+        if(abriuUsuario == 0){
             return;
+        }
         abriuUsuario = 0;
         retorno = UsuCon.getRetorno();
-        if(retorno.equals(""))
+        if(retorno.equals("")){
             return;
+        }
         if(Campo.equals("I")){
             txt_codigoUsuarioInicial.setText(fc.FormataCampo(retorno, 3, 0));
             return;
@@ -1436,8 +1431,11 @@ public class ContratosConsulta extends javax.swing.JFrame {
     }
     
     private void PegaDadosUsuario(){
-        for(int i = 0; i < dadosUsuario.size(); i++)
-            bu.usuario = String.valueOf(dadosUsuario.get(i).get(0));
+        for(int i = 0; i < dadosUsuario.size(); i++){
+            if(dadosUsuario.get(i).get(0) != null){
+                bu.usuario = String.valueOf(dadosUsuario.get(i).get(0));
+            }
+        }
     }
     
 }

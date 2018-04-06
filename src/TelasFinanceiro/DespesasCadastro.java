@@ -671,10 +671,12 @@ public class DespesasCadastro extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txt_codigoDespesaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_codigoDespesaFocusGained
-        if(txt_codigoDespesa.getText().replace(" ", "").equals(""))
+        if(txt_codigoDespesa.getText().replace(" ", "").equals("")){
             return;
-        if(txt_codigoDespesa.isEditable() == false)
+        }
+        if(txt_codigoDespesa.isEditable() == false){
             return;
+        }
         operacao = "";
         ReiniciaCampos();
         HabilitaBotoes();
@@ -682,12 +684,16 @@ public class DespesasCadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_codigoDespesaFocusGained
 
     private void txt_codigoDespesaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_codigoDespesaFocusLost
-        if(txt_codigoDespesa.getText().replace(" ", "").equals(""))
+        if(txt_codigoDespesa.getText().replace(" ", "").equals("")){
             return;
-        if(somostra.equals("S"))
+        }
+        if(somostra.equals("S")){
             return;
+        }
         bd.codigoDespesa  = Integer.parseInt(txt_codigoDespesa.getText());
-        if(bd.codigoDespesa == 0)return;
+        if(bd.codigoDespesa == 0){
+            return;
+        }
         sql = "select * from tb_despesas where idEmpresa = " + parametrosNS.be.IdEmpresa + " and codigoDespesa = " + bd.codigoDespesa + ";";
         PegaDespesa();
     }//GEN-LAST:event_txt_codigoDespesaFocusLost
@@ -705,14 +711,16 @@ public class DespesasCadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_bt_novoActionPerformed
 
     private void txt_valorDespesaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_valorDespesaFocusGained
-        if(!txt_valorDespesa.getText().equals(""))
+        if(!txt_valorDespesa.getText().equals("")){
             txt_valorDespesa.setText(TransStrDou.TransformaValorStringeDouble(txt_valorDespesa.getText(), 0));
+        }
     }//GEN-LAST:event_txt_valorDespesaFocusGained
 
     private void txt_valorDespesaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_valorDespesaFocusLost
         try{
-            if(!txt_valorDespesa.getText().equals(""))
+            if(!txt_valorDespesa.getText().equals("")){
                 txt_valorDespesa.setText(TransStrDou.TransformaValorStringeDouble(txt_valorDespesa.getText(), 0));
+            }
             HabilitaBotoes();
         }catch(Exception erro){
             mensagem = "Valor de despesa inválido!";
@@ -724,13 +732,16 @@ public class DespesasCadastro extends javax.swing.JFrame {
 
     private void bt_incluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_incluirActionPerformed
         bd.qtdMeses = Integer.parseInt(fc.FormataCampo(txt_qtdMeses.getText().replace(" ", ""), 2, 0));
-        if(bd.qtdMeses < 1)
+        if(bd.qtdMeses < 1){
             bd.qtdMeses = 1;
+        }
         bd.dataVencimento = txt_dataVencimento.getText().replace(" ", "");
         bd.dataVencimento = bd.dataVencimento.replace("/", "");
-//        if(!bd.dataVencimento.equals(""))
-//            if(JOptionPane.showConfirmDialog(null, "Confirma data de Vencimento " + txt_dataVencimento.getText() + "?", "", JOptionPane.YES_NO_OPTION) != JOptionPane.YES_OPTION)
+//        if(!bd.dataVencimento.equals("")){
+//            if(JOptionPane.showConfirmDialog(null, "Confirma data de Vencimento " + txt_dataVencimento.getText() + "?", "", JOptionPane.YES_NO_OPTION) != JOptionPane.YES_OPTION){
 //                return;
+//            }
+//        }
         if(check_transferencias.isSelected() == false){
             IncluirDespesa();
             return;
@@ -745,8 +756,9 @@ public class DespesasCadastro extends javax.swing.JFrame {
 
     private void txt_valorPagoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_valorPagoFocusLost
 //        try{
-            if(!txt_valorPago.getText().equals(""))
+            if(!txt_valorPago.getText().equals("")){
                 txt_valorPago.setText(TransStrDou.TransformaValorStringeDouble(txt_valorPago.getText(), 0));
+            }
             HabilitaBotoes();
 //        }catch(Exception erro){
 //            Mensagem = "Valor Pago inválido!";
@@ -758,7 +770,9 @@ public class DespesasCadastro extends javax.swing.JFrame {
 
     private void bt_alterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_alterarActionPerformed
         PegaValores();
-        if(fatal.equals("S"))return;
+        if(fatal.equals("S")){
+            return;
+        }
         
         sql =  "update tb_despesas set codigoDespesaTipo = "    + bd.codigoDespesaTipo      + ", "
                                     + "descricaoDespesa = '"    + bd.descricaoDespesa       + "', "
@@ -777,12 +791,14 @@ public class DespesasCadastro extends javax.swing.JFrame {
                                     + "atualizado = 1 "
                                     + "where idDespesa = "  + bd.idDespesa              + ";";
         sqlstate = parametrosNS.dao.AlterarRegistroOuConsultaSeTabelaExiste(sql, "S");
-        if(!sqlstate.equals("00000"))
+        if(!sqlstate.equals("00000")){
             return;
-        if(bd.transferencia == 0)
+        }
+        if(bd.transferencia == 0){
             mensagem = "Despesa alterada com sucesso!";
-        else
+        }else{
             mensagem = "Transferência alterada com sucesso!";
+        }
         new MostraMensagem(mensagem);
         txt_codigoDespesa.grabFocus();
     }//GEN-LAST:event_bt_alterarActionPerformed
@@ -798,8 +814,9 @@ public class DespesasCadastro extends javax.swing.JFrame {
         }
         abriuDespesa = 0;
         retorno = DesCon.getRetorno();
-        if(retorno.equals(""))
+        if(retorno.equals("")){
             return;
+        }
         bd.idDespesa = Integer.parseInt(retorno);
         sql = "select * from tb_despesas where idDespesa = " + bd.idDespesa + ";";
         PegaDespesa();
@@ -812,26 +829,31 @@ public class DespesasCadastro extends javax.swing.JFrame {
         }
         abriuDespesaTipo = 0;
         retorno = DesTipoCon.getRetorno();
-        if(retorno.equals(""))
+        if(retorno.equals("")){
             return;
+        }
         txt_codigoDespesaTipo.setText(fc.FormataCampo(retorno, 2, 0));
         bdt.codigoDespesaTipo = Integer.parseInt(txt_codigoDespesaTipo.getText());
-        if(bdt.codigoDespesaTipo == 0)
+        if(bdt.codigoDespesaTipo == 0){
             return;
+        }
         sql = "select * from tb_despesas_tipo where idEmpresa = " + parametrosNS.be.IdEmpresa + " and codigoDespesaTipo = " + bdt.codigoDespesaTipo + ";";
         PegaDespesasTipo();
     }
     
     private void abreContaCorrenteOrigem(){
-        if(abriuContaCorrente == 0)
+        if(abriuContaCorrente == 0){
             return;
+        }
         abriuContaCorrente = 0;
         retorno = ConCorCon.getRetornoContaCorrente();
-        if(retorno.equals(""))
+        if(retorno.equals("")){
             return;
+        }
         bcc.idContaCorrente = Integer.parseInt(retorno);
-        if(bcc.idContaCorrente == 0)
+        if(bcc.idContaCorrente == 0){
             return;
+        }
         sql = "select idContaCorrente, idEmpresa, codigoGrupo, codigoEmpresa, codigoContaCorrente, idBanco, numeroAgencia, digitoVerificadorAgencia, numeroContaCorrente, digitoVerificador from tb_contacorrente where idContaCorrente = " + bcc.idContaCorrente + ";";
         PegaContaCorrente();
         if(saida.equalsIgnoreCase("O")){
@@ -855,14 +877,17 @@ public class DespesasCadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_bt_pesquisaActionPerformed
 
     private void txt_codigoContaCorrenteOrigemFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_codigoContaCorrenteOrigemFocusLost
-        if(txt_codigoDespesa.getText().replace(" ", "").equals(""))
+        if(txt_codigoDespesa.getText().replace(" ", "").equals("")){
             return;
-        if(somostra.equals("S"))
+        }
+        if(somostra.equals("S")){
             return;
+        }
         txt_codigoContaCorrenteOrigem.setText(fc.FormataCampo(txt_codigoContaCorrenteOrigem.getText(), 6, 0));
         bcc.codigoContaCorrente = Integer.parseInt(txt_codigoContaCorrenteOrigem.getText());
-        if(bcc.codigoContaCorrente == 0)
+        if(bcc.codigoContaCorrente == 0){
             return;
+        }
         saida = "O";
         sql = "select idContaCorrente, idEmpresa, codigoGrupo, codigoEmpresa, codigoContaCorrente, idBanco, numeroAgencia, digitoVerificadorAgencia, numeroContaCorrente, digitoVerificador from tb_contacorrente where idEmpresa = " + parametrosNS.be.IdEmpresa + " and codigoContaCorrente = " + bcc.codigoContaCorrente + ";";
         PegaContaCorrente();
@@ -906,14 +931,17 @@ public class DespesasCadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_codigoDespesaTipoFocusGained
 
     private void txt_codigoDespesaTipoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_codigoDespesaTipoFocusLost
-        if(txt_codigoDespesaTipo.getText().replace(" ", "").equals(""))
+        if(txt_codigoDespesaTipo.getText().replace(" ", "").equals("")){
             return;
-        if(somostra.equals("S"))
+        }
+        if(somostra.equals("S")){
             return;
+        }
         txt_codigoDespesaTipo.setText(fc.FormataCampo(txt_codigoDespesaTipo.getText(), 2, 0));
         bdt.codigoDespesaTipo = Integer.parseInt(txt_codigoDespesaTipo.getText());
-        if(bdt.codigoDespesaTipo == 0)
+        if(bdt.codigoDespesaTipo == 0){
             return;
+        }
         sql = "select * from tb_despesas_tipo where idEmpresa = " + parametrosNS.be.IdEmpresa + " and codigoDespesaTipo = " + bdt.codigoDespesaTipo + ";";
         PegaDespesasTipo();
     }//GEN-LAST:event_txt_codigoDespesaTipoFocusLost
@@ -955,8 +983,9 @@ public class DespesasCadastro extends javax.swing.JFrame {
             bt_pesquisaDespesasTipo     .setEnabled (false);
             bt_pesquisaContaCorrenteOrigem    .setEnabled (false);
         }
-        if(somostra.equals("SN"))
+        if(somostra.equals("SN")){
             bt_pesquisa                 .setVisible (false);
+        }
     }//GEN-LAST:event_formWindowOpened
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
@@ -980,16 +1009,18 @@ public class DespesasCadastro extends javax.swing.JFrame {
     private void txt_dataVencimentoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_dataVencimentoFocusLost
         bt_incluir.setEnabled(false);
         bt_alterar.setEnabled(false);
-        if(ValData.ValidaData(txt_dataVencimento.getText()).equals("N"))
+        if(ValData.ValidaData(txt_dataVencimento.getText()).equals("N")){
             return;
+        }
         HabilitaBotoes();
     }//GEN-LAST:event_txt_dataVencimentoFocusLost
 
     private void txt_dataPagamentoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_dataPagamentoFocusLost
         bd.dataPagamento    = txt_dataPagamento.getText().replace(" ", "");
         bd.dataPagamento    = bd.dataPagamento.replace("/", "");
-        if(bd.dataPagamento.equals(""))
+        if(bd.dataPagamento.equals("")){
             return;
+        }
         if(ValData.ValidaData(txt_dataPagamento.getText()).equals("N")){
             mensagem = "Data de Pagamento inválida!";
             new MostraMensagem(mensagem);
@@ -1004,14 +1035,17 @@ public class DespesasCadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_codigoContaCorrenteDestinoFocusGained
 
     private void txt_codigoContaCorrenteDestinoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_codigoContaCorrenteDestinoFocusLost
-        if(txt_codigoDespesa.getText().replace(" ", "").equals(""))
+        if(txt_codigoDespesa.getText().replace(" ", "").equals("")){
             return;
-        if(somostra.equals("S"))
+        }
+        if(somostra.equals("S")){
             return;
+        }
         txt_codigoContaCorrenteDestino.setText(fc.FormataCampo(txt_codigoContaCorrenteDestino.getText(), 6, 0));
         bcc.codigoContaCorrente = Integer.parseInt(txt_codigoContaCorrenteDestino.getText());
-        if(bcc.codigoContaCorrente == 0)
+        if(bcc.codigoContaCorrente == 0){
             return;
+        }
         saida = "D";
         sql = "select idContaCorrente, idEmpresa, codigoGrupo, codigoEmpresa, codigoContaCorrente, idBanco, numeroAgencia, digitoVerificadorAgencia, numeroContaCorrente, digitoVerificador from tb_contacorrente where idEmpresa = " + parametrosNS.be.IdEmpresa + " and codigoContaCorrente = " + bcc.codigoContaCorrente + ";";
         PegaContaCorrente();
@@ -1165,8 +1199,9 @@ public class DespesasCadastro extends javax.swing.JFrame {
         bt_pesquisaContaCorrenteDestino .setFocusable   (false);
 //        label_contaCorrenteDestino      .setEnabled     (false);
         
-        if(Verifica == false)
+        if(Verifica == false){
             return;
+        }
         
         transferencias = 0;
         txt_qtdMeses                    .setEditable    (true);
@@ -1186,8 +1221,9 @@ public class DespesasCadastro extends javax.swing.JFrame {
         bt_pesquisaContaCorrenteDestino .setEnabled     (false);
         bt_pesquisaContaCorrenteDestino .setFocusable   (false);
 //        label_contaCorrenteDestino      .setEnabled     (false);
-        if(check_transferencias.isSelected() == false)
+        if(check_transferencias.isSelected() == false){
             return;
+        }
         transferencias = 1;
         txt_qtdMeses                    .setEditable    (false);
         txt_qtdMeses                    .setFocusable   (false);
@@ -1226,48 +1262,31 @@ public class DespesasCadastro extends javax.swing.JFrame {
     private void PegaDadosDespesa(){
         for(int i = 0; i < dadosDespesas.size(); i++){
             bd = new BeanDespesas();
-            if(dadosDespesas.get(i).get(0) != null)
-                bd.idDespesa                 = Integer.parseInt(  String.valueOf(dadosDespesas.get(i).get(0)));
-            if(dadosDespesas.get(i).get(1) != null)
-                bd.idEmpresa                 = Integer.parseInt(  String.valueOf(dadosDespesas.get(i).get(1)));
-            if(dadosDespesas.get(i).get(2)  != null)
-                bd.codigoGrupo               = Integer.parseInt(  String.valueOf(dadosDespesas.get(i).get(2)));
-            if(dadosDespesas.get(i).get(3)  != null)
-                bd.codigoEmpresa             = Integer.parseInt(  String.valueOf(dadosDespesas.get(i).get(3)));
-            if(dadosDespesas.get(i).get(4)  != null)
-                bd.codigoDespesa             = Integer.parseInt(  String.valueOf(dadosDespesas.get(i).get(4)));
-            if(dadosDespesas.get(i).get(5)  != null)
-                bd.codigoDespesaTipo         = Integer.parseInt(  String.valueOf(dadosDespesas.get(i).get(5)));
-                bd.descricaoDespesa          =                    String.valueOf(dadosDespesas.get(i).get(6));
-            if(dadosDespesas.get(i).get(7)  != null)
-                bd.valorDespesa              = Double.parseDouble(String.valueOf(dadosDespesas.get(i).get(7)));
-            if(dadosDespesas.get(i).get(8)  != null)
-                bd.codigoUsuario             = Integer.parseInt(  String.valueOf(dadosDespesas.get(i).get(8)));
-                bd.dataCadastro              =                    String.valueOf(dadosDespesas.get(i).get(9));
-                bd.horaCadastro              =                    String.valueOf(dadosDespesas.get(i).get(10));
-                bd.codigoDeBarras            =                    String.valueOf(dadosDespesas.get(i).get(11));
-            if(dadosDespesas.get(i).get(12) != null)
-                bd.qtdMeses                  = Integer.parseInt(  String.valueOf(dadosDespesas.get(i).get(12)));
-                bd.dataVencimento            =                    String.valueOf(dadosDespesas.get(i).get(13));
-            if(dadosDespesas.get(i).get(14) != null)
-                bd.codigoContaCorrente       = Integer.parseInt(  String.valueOf(dadosDespesas.get(i).get(14)));
-                bd.dataPagamento             =                    String.valueOf(dadosDespesas.get(i).get(15));
-            if(dadosDespesas.get(i).get(16) != null)
-                bd.valorPago                 = Double.parseDouble(String.valueOf(dadosDespesas.get(i).get(16)));
-                bd.dataAlterou               =                    String.valueOf(dadosDespesas.get(i).get(17));
-                bd.horaAlterou               =                    String.valueOf(dadosDespesas.get(i).get(18));
-            if(dadosDespesas.get(i).get(19) != null)
-                bd.usuarioAlterou            = Integer.parseInt(  String.valueOf(dadosDespesas.get(i).get(19)));
-            if(dadosDespesas.get(i).get(20) != null)
-                bd.idEmpresaAlterou          = Integer.parseInt(  String.valueOf(dadosDespesas.get(i).get(20)));
-            if(dadosDespesas.get(i).get(21) != null)
-                bd.codigoGrupoAlterou        = Integer.parseInt(  String.valueOf(dadosDespesas.get(i).get(21)));
-            if(dadosDespesas.get(i).get(22) != null)
-                bd.codigoEmpresaAlterou      = Integer.parseInt(  String.valueOf(dadosDespesas.get(i).get(22)));
-            if(dadosDespesas.get(i).get(23) != null)
-                bd.codigoContaCorrenteDestino= Integer.parseInt(  String.valueOf(dadosDespesas.get(i).get(23)));
-            if(dadosDespesas.get(i).get(24) != null)
-                bd.transferencia             = Integer.parseInt(  String.valueOf(dadosDespesas.get(i).get(24)));
+            if(dadosDespesas.get(i).get(0)  != null){bd.idDespesa                 = Integer.parseInt(  String.valueOf(dadosDespesas.get(i).get(0)));}
+            if(dadosDespesas.get(i).get(1)  != null){bd.idEmpresa                 = Integer.parseInt(  String.valueOf(dadosDespesas.get(i).get(1)));}
+            if(dadosDespesas.get(i).get(2)  != null){bd.codigoGrupo               = Integer.parseInt(  String.valueOf(dadosDespesas.get(i).get(2)));}
+            if(dadosDespesas.get(i).get(3)  != null){bd.codigoEmpresa             = Integer.parseInt(  String.valueOf(dadosDespesas.get(i).get(3)));}
+            if(dadosDespesas.get(i).get(4)  != null){bd.codigoDespesa             = Integer.parseInt(  String.valueOf(dadosDespesas.get(i).get(4)));}
+            if(dadosDespesas.get(i).get(5)  != null){bd.codigoDespesaTipo         = Integer.parseInt(  String.valueOf(dadosDespesas.get(i).get(5)));}
+            if(dadosDespesas.get(i).get(6)  != null){bd.descricaoDespesa          =                    String.valueOf(dadosDespesas.get(i).get(6));}
+            if(dadosDespesas.get(i).get(7)  != null){bd.valorDespesa              = Double.parseDouble(String.valueOf(dadosDespesas.get(i).get(7)));}
+            if(dadosDespesas.get(i).get(8)  != null){bd.codigoUsuario             = Integer.parseInt(  String.valueOf(dadosDespesas.get(i).get(8)));}
+            if(dadosDespesas.get(i).get(9)  != null){bd.dataCadastro              =                    String.valueOf(dadosDespesas.get(i).get(9));}
+            if(dadosDespesas.get(i).get(10) != null){bd.horaCadastro              =                    String.valueOf(dadosDespesas.get(i).get(10));}
+            if(dadosDespesas.get(i).get(11) != null){bd.codigoDeBarras            =                    String.valueOf(dadosDespesas.get(i).get(11));}
+            if(dadosDespesas.get(i).get(12) != null){bd.qtdMeses                  = Integer.parseInt(  String.valueOf(dadosDespesas.get(i).get(12)));}
+            if(dadosDespesas.get(i).get(13) != null){bd.dataVencimento            =                    String.valueOf(dadosDespesas.get(i).get(13));}
+            if(dadosDespesas.get(i).get(14) != null){bd.codigoContaCorrente       = Integer.parseInt(  String.valueOf(dadosDespesas.get(i).get(14)));}
+            if(dadosDespesas.get(i).get(15) != null){bd.dataPagamento             =                    String.valueOf(dadosDespesas.get(i).get(15));}
+            if(dadosDespesas.get(i).get(16) != null){bd.valorPago                 = Double.parseDouble(String.valueOf(dadosDespesas.get(i).get(16)));}
+            if(dadosDespesas.get(i).get(17) != null){bd.dataAlterou               =                    String.valueOf(dadosDespesas.get(i).get(17));}
+            if(dadosDespesas.get(i).get(18) != null){bd.horaAlterou               =                    String.valueOf(dadosDespesas.get(i).get(18));}
+            if(dadosDespesas.get(i).get(19) != null){bd.usuarioAlterou            = Integer.parseInt(  String.valueOf(dadosDespesas.get(i).get(19)));}
+            if(dadosDespesas.get(i).get(20) != null){bd.idEmpresaAlterou          = Integer.parseInt(  String.valueOf(dadosDespesas.get(i).get(20)));}
+            if(dadosDespesas.get(i).get(21) != null){bd.codigoGrupoAlterou        = Integer.parseInt(  String.valueOf(dadosDespesas.get(i).get(21)));}
+            if(dadosDespesas.get(i).get(22) != null){bd.codigoEmpresaAlterou      = Integer.parseInt(  String.valueOf(dadosDespesas.get(i).get(22)));}
+            if(dadosDespesas.get(i).get(23) != null){bd.codigoContaCorrenteDestino= Integer.parseInt(  String.valueOf(dadosDespesas.get(i).get(23)));}
+            if(dadosDespesas.get(i).get(24) != null){bd.transferencia             = Integer.parseInt(  String.valueOf(dadosDespesas.get(i).get(24)));}
         }
         txt_codigoDespesa.setText(fc.FormataCampo(String.valueOf(bd.codigoDespesa), 6, 0));
         switch(bd.transferencia){
@@ -1284,11 +1303,13 @@ public class DespesasCadastro extends javax.swing.JFrame {
             PegaDespesasTipo();
         }
         txt_descricaoDespesa            .setText(bd.descricaoDespesa);
-        if(bd.transferencia == 0)
+        if(bd.transferencia == 0){
             txt_valorDespesa                .setText(TransStrDou.TransformaValorStringeDouble(String.valueOf(bd.valorDespesa), 0));
+        }
         txt_codigoDeBarras              .setText(bd.codigoDeBarras);
-        if(bd.transferencia == 0)
+        if(bd.transferencia == 0){
             txt_qtdMeses                    .setText(fc.FormataCampo(String.valueOf(bd.qtdMeses), 2, 0));
+        }
         bd.dataVencimento               = invdata.inverterData(bd.dataVencimento, 1);
         txt_dataVencimento              .setText(bd.dataVencimento);
         
@@ -1301,7 +1322,9 @@ public class DespesasCadastro extends javax.swing.JFrame {
         PegaContaCorrente();
         
         saida = "D";
-        if(bd.transferencia == 0){saida = "";}
+        if(bd.transferencia == 0){
+            saida = "";
+        }
         bcc.idEmpresa           = bd.idEmpresa;
         bcc.codigoGrupo         = bd.codigoGrupo;
         bcc.codigoEmpresa       = bd.codigoEmpresa;
@@ -1311,10 +1334,11 @@ public class DespesasCadastro extends javax.swing.JFrame {
             PegaContaCorrente();
         }
         
-        if(bd.dataPagamento != null)
+        if(bd.dataPagamento != null){
             bd.dataPagamento = invdata.inverterData(bd.dataPagamento, 1);
-        else
+        }else{
             bd.dataPagamento = "";
+        }
         txt_dataPagamento.setText(bd.dataPagamento);
         
         txt_valorPago                   .setText(TransStrDou.TransformaValorStringeDouble(String.valueOf(bd.valorPago), 0));
@@ -1350,12 +1374,12 @@ public class DespesasCadastro extends javax.swing.JFrame {
     private void PegaDadosDespesasTipo(){
         for(int i = 0; i < dadosDespesasTipo.size(); i++){
             bdt = new BeanDespesasTipo();
-            bdt.idDespesaTipo         = Integer.parseInt(  String.valueOf(dadosDespesasTipo.get(i).get(0)));
-            bdt.idEmpresa             = Integer.parseInt(  String.valueOf(dadosDespesasTipo.get(i).get(1)));
-            bdt.codigoGrupo           = Integer.parseInt(  String.valueOf(dadosDespesasTipo.get(i).get(2)));
-            bdt.codigoEmpresa         = Integer.parseInt(  String.valueOf(dadosDespesasTipo.get(i).get(3)));
-            bdt.codigoDespesaTipo     = Integer.parseInt(  String.valueOf(dadosDespesasTipo.get(i).get(4)));
-            bdt.descricaoDespesaTipo  =                    String.valueOf(dadosDespesasTipo.get(i).get(5));
+            if(dadosDespesasTipo.get(i).get(0) != null){bdt.idDespesaTipo         = Integer.parseInt(String.valueOf(dadosDespesasTipo.get(i).get(0)));}
+            if(dadosDespesasTipo.get(i).get(1) != null){bdt.idEmpresa             = Integer.parseInt(String.valueOf(dadosDespesasTipo.get(i).get(1)));}
+            if(dadosDespesasTipo.get(i).get(2) != null){bdt.codigoGrupo           = Integer.parseInt(String.valueOf(dadosDespesasTipo.get(i).get(2)));}
+            if(dadosDespesasTipo.get(i).get(3) != null){bdt.codigoEmpresa         = Integer.parseInt(String.valueOf(dadosDespesasTipo.get(i).get(3)));}
+            if(dadosDespesasTipo.get(i).get(4) != null){bdt.codigoDespesaTipo     = Integer.parseInt(String.valueOf(dadosDespesasTipo.get(i).get(4)));}
+            if(dadosDespesasTipo.get(i).get(5) != null){bdt.descricaoDespesaTipo  =                  String.valueOf(dadosDespesasTipo.get(i).get(5));}
         }
         txt_codigoDespesaTipo.setText(fc.FormataCampo(String.valueOf(bdt.codigoDespesaTipo), 2, 0));
         label_descricaoDespesaTipo.setText(bdt.descricaoDespesaTipo);
@@ -1381,56 +1405,50 @@ public class DespesasCadastro extends javax.swing.JFrame {
         String contaCorrente    = "";
         for(int i = 0; i < dadosContaCorrente.size(); i++){
             bcc = new BeanContaCorrente();
-        if(dadosContaCorrente.get(i).get(0) != null)
-            bcc.idContaCorrente             = Integer.parseInt(  String.valueOf(dadosContaCorrente.get(i).get(0)));
-        if(dadosContaCorrente.get(i).get(1) != null)
-            bcc.idEmpresa                   = Integer.parseInt(  String.valueOf(dadosContaCorrente.get(i).get(1)));
-        if(dadosContaCorrente.get(i).get(2) != null)
-            bcc.codigoGrupo                 = Integer.parseInt(  String.valueOf(dadosContaCorrente.get(i).get(2)));
-        if(dadosContaCorrente.get(i).get(3) != null)
-            bcc.codigoEmpresa               = Integer.parseInt(  String.valueOf(dadosContaCorrente.get(i).get(3)));
-        if(dadosContaCorrente.get(i).get(4) != null)
-            bcc.codigoContaCorrente         = Integer.parseInt(  String.valueOf(dadosContaCorrente.get(i).get(4)));
-        if(dadosContaCorrente.get(i).get(5) != null)
-            bcc.idBanco                     = Integer.parseInt(  String.valueOf(dadosContaCorrente.get(i).get(5)));
-        if(dadosContaCorrente.get(i).get(6) != null)
-            bcc.numeroAgencia               = Integer.parseInt(  String.valueOf(dadosContaCorrente.get(i).get(6)));
-        if(dadosContaCorrente.get(i).get(7) != null)
-            bcc.digitoVerificadorAgencia    = Integer.parseInt(  String.valueOf(dadosContaCorrente.get(i).get(7)));
-        if(dadosContaCorrente.get(i).get(8) != null)
-            bcc.numeroContaCorrente         = Integer.parseInt(  String.valueOf(dadosContaCorrente.get(i).get(8)));
-        if(dadosContaCorrente.get(i).get(9) != null)
-            bcc.digitoVerificador           = Integer.parseInt(  String.valueOf(dadosContaCorrente.get(i).get(9)));
+            if(dadosContaCorrente.get(i).get(0) != null){bcc.idContaCorrente             = Integer.parseInt(  String.valueOf(dadosContaCorrente.get(i).get(0)));}
+            if(dadosContaCorrente.get(i).get(1) != null){bcc.idEmpresa                   = Integer.parseInt(  String.valueOf(dadosContaCorrente.get(i).get(1)));}
+            if(dadosContaCorrente.get(i).get(2) != null){bcc.codigoGrupo                 = Integer.parseInt(  String.valueOf(dadosContaCorrente.get(i).get(2)));}
+            if(dadosContaCorrente.get(i).get(3) != null){bcc.codigoEmpresa               = Integer.parseInt(  String.valueOf(dadosContaCorrente.get(i).get(3)));}
+            if(dadosContaCorrente.get(i).get(4) != null){bcc.codigoContaCorrente         = Integer.parseInt(  String.valueOf(dadosContaCorrente.get(i).get(4)));}
+            if(dadosContaCorrente.get(i).get(5) != null){bcc.idBanco                     = Integer.parseInt(  String.valueOf(dadosContaCorrente.get(i).get(5)));}
+            if(dadosContaCorrente.get(i).get(6) != null){bcc.numeroAgencia               = Integer.parseInt(  String.valueOf(dadosContaCorrente.get(i).get(6)));}
+            if(dadosContaCorrente.get(i).get(7) != null){bcc.digitoVerificadorAgencia    = Integer.parseInt(  String.valueOf(dadosContaCorrente.get(i).get(7)));}
+            if(dadosContaCorrente.get(i).get(8) != null){bcc.numeroContaCorrente         = Integer.parseInt(  String.valueOf(dadosContaCorrente.get(i).get(8)));}
+            if(dadosContaCorrente.get(i).get(9) != null){bcc.digitoVerificador           = Integer.parseInt(  String.valueOf(dadosContaCorrente.get(i).get(9)));}
             
             be.codigoGrupo      = bcc.codigoGrupo;
             be.codigoEmpresa    = bcc.codigoEmpresa;
             PegaEmpresa();
             
             bb.idBanco  = bcc.idBanco;
-            if(bb.idBanco != 999)
+            if(bb.idBanco != 999){
                 PegaBanco();
+            }
             
             agencia             = fc.FormataCampo(String.valueOf(bcc.numeroAgencia), 4, 0);
-            if(bcc.digitoVerificadorAgencia != 0)
+            if(bcc.digitoVerificadorAgencia != 0){
                 agencia        += "-" + String.valueOf(bcc.digitoVerificadorAgencia);
+            }
             contaCorrente   = fc.FormataCampo(String.valueOf(bcc.numeroContaCorrente), 5, 0) + "-" + String.valueOf(bcc.digitoVerificador);
         }
         if(saida.equalsIgnoreCase("O")){
             txt_codigoContaCorrenteOrigem .setText(fc.FormataCampo(String.valueOf(bcc.codigoContaCorrente), 6, 0));
             label_contaCorrenteOrigem.setText("Empresa: " + fc.FormataCampo(String.valueOf(be.codigoGrupo), 2, 0) + "." + fc.FormataCampo(String.valueOf(be.codigoEmpresa), 3, 0) + "-" + be.NomeFantasia);
-            if(bcc.idBanco != 999)
+            if(bcc.idBanco != 999){
                 label_contaCorrenteOrigem .setText(label_contaCorrenteOrigem.getText() + "\nBanco: " + bb.codigoBanco + "-" + bb.nomeBanco + "\nAgência: " + agencia + "        Conta: " + contaCorrente);
-            else
+            }else{
                 label_contaCorrenteOrigem .setText(label_contaCorrenteOrigem.getText() + "\nBanco: Caixa");
+            }
             bd.codigoContaCorrente              = bcc.codigoContaCorrente;
         }
         if(saida.equalsIgnoreCase("D")){
             txt_codigoContaCorrenteDestino.setText(fc.FormataCampo(String.valueOf(bcc.codigoContaCorrente), 6, 0));
             label_contaCorrenteDestino.setText("Empresa: " + fc.FormataCampo(String.valueOf(be.codigoGrupo), 2, 0) + "." + fc.FormataCampo(String.valueOf(be.codigoEmpresa), 3, 0) + "-" + be.NomeFantasia);
-            if(bcc.idBanco != 999)
+            if(bcc.idBanco != 999){
                 label_contaCorrenteDestino.setText(label_contaCorrenteDestino.getText() + "\nBanco: " + bb.codigoBanco + "-" + bb.nomeBanco + "\nAgência: " + agencia + "        Conta: " + contaCorrente);
-            else
+            }else{
                 label_contaCorrenteDestino.setText(label_contaCorrenteDestino.getText() + "\nBanco: Caixa");
+            }
             bd.codigoContaCorrenteDestino       = bcc.codigoContaCorrente;
         }
     }
@@ -1445,11 +1463,12 @@ public class DespesasCadastro extends javax.swing.JFrame {
     private void PegaDadosEmpresa(){
         be.NomeEmpresa  = "----------------------------------------";
         for(int i = 0; i < dadosEmpresas.size(); i++){
-            be.CodigoGrupo      = Integer.parseInt(  String.valueOf(dadosEmpresas.get(i).get(1)));
-            be.CodigoEmpresa    = Integer.parseInt(  String.valueOf(dadosEmpresas.get(i).get(2)));
-            be.NomeEmpresa      =                    String.valueOf(dadosEmpresas.get(i).get(4));
-            be.NomeFantasia     =                    String.valueOf(dadosEmpresas.get(i).get(5));
-            be.CnpjEmpresa      =                    String.valueOf(dadosEmpresas.get(i).get(6));
+            be = new BeanEmpresas();
+            if(dadosEmpresas.get(i).get(1) != null){be.CodigoGrupo      = Integer.parseInt(String.valueOf(dadosEmpresas.get(i).get(1)));}
+            if(dadosEmpresas.get(i).get(2) != null){be.CodigoEmpresa    = Integer.parseInt(String.valueOf(dadosEmpresas.get(i).get(2)));}
+            if(dadosEmpresas.get(i).get(4) != null){be.NomeEmpresa      =                  String.valueOf(dadosEmpresas.get(i).get(4));}
+            if(dadosEmpresas.get(i).get(5) != null){be.NomeFantasia     =                  String.valueOf(dadosEmpresas.get(i).get(5));}
+            if(dadosEmpresas.get(i).get(6) != null){be.CnpjEmpresa      =                  String.valueOf(dadosEmpresas.get(i).get(6));}
         }
     }
     
@@ -1465,9 +1484,10 @@ public class DespesasCadastro extends javax.swing.JFrame {
     
     private void PegaDadosBancos(){
         for(int i = 0; i < dadosBancos.size(); i++){
-            bb.idBanco      = Integer.parseInt(  String.valueOf(dadosBancos.get(i).get(0)));
-            bb.nomeBanco    =                    String.valueOf(dadosBancos.get(i).get(1));
-            bb.codigoBanco  =                    String.valueOf(dadosBancos.get(i).get(2));
+            bb = new BeanBanco();
+            if(dadosBancos.get(i).get(0) != null){bb.idBanco      = Integer.parseInt(String.valueOf(dadosBancos.get(i).get(0)));}
+            if(dadosBancos.get(i).get(1) != null){bb.nomeBanco    =                  String.valueOf(dadosBancos.get(i).get(1));}
+            if(dadosBancos.get(i).get(2) != null){bb.codigoBanco  =                  String.valueOf(dadosBancos.get(i).get(2));}
         }
     }
     
@@ -1485,8 +1505,10 @@ public class DespesasCadastro extends javax.swing.JFrame {
     }
     
     private void PegaDadosUsuario(){
-        for(int i = 0; i < dadosUsuarios.size(); i++)
-            bu.usuario = String.valueOf(dadosUsuarios.get(i).get(0));
+        for(int i = 0; i < dadosUsuarios.size(); i++){
+            bu = new BeanUsuarios();
+            if(dadosUsuarios.get(i).get(0) != null){bu.usuario = String.valueOf(dadosUsuarios.get(i).get(0));}
+        }
     }
     
     private void PegaValores(){
@@ -1494,10 +1516,11 @@ public class DespesasCadastro extends javax.swing.JFrame {
         bd.codigoGrupo          = parametrosNS.bge.CodigoGrupo;
         bd.codigoEmpresa        = parametrosNS.be.CodigoEmpresa;
         bd.codigoDespesa        = Integer.parseInt(txt_codigoDespesa.getText());
-        if(check_transferencias.isSelected() == false)
+        if(check_transferencias.isSelected() == false){
             bd.transferencia    = 0;
-        else
+        }else{
             bd.transferencia    = 1;
+        }
         bd.descricaoDespesa     = txt_descricaoDespesa.getText();
         if(bd.descricaoDespesa.equals("")){
             mensagem = "Descrição da despesa inválida!";
@@ -1505,19 +1528,20 @@ public class DespesasCadastro extends javax.swing.JFrame {
             fatal = "S";
             return;
         }
-        if(!txt_valorDespesa.getText().equals(""))
+        if(!txt_valorDespesa.getText().equals("")){
             bd.valorDespesa     = Double.parseDouble(TransStrDou.TransformaValorStringeDouble(txt_valorDespesa.getText(), 1));
-        else
+        }else{
             bd.valorDespesa     = 0;
+        }
         bd.codigoUsuario        = parametrosNS.bu.codigoUsuario;
         bd.dataCadastro         = invdata.inverterData(cdh.CapturarData(), 2);
         bd.horaCadastro         = cdh.CapturaHora();
         bd.codigoDeBarras       = txt_codigoDeBarras.getText();
-        if(!bd.codigoDeBarras.equals(""))
+        if(!bd.codigoDeBarras.equals("")){
             bd.codigoDeBarras   = "'" + bd.codigoDeBarras + "'";
-        else
+        }else{
             bd.codigoDeBarras   = null;
-        
+        }
         bd.dataVencimento       = txt_dataVencimento.getText();
         bd.dataVencimento       = bd.dataVencimento.replace(" ", "");
         bd.dataVencimento       = bd.dataVencimento.replace("/", "");
@@ -1529,12 +1553,14 @@ public class DespesasCadastro extends javax.swing.JFrame {
                 return;
             }
             bd.dataVencimento       = invdata.inverterData(txt_dataVencimento.getText(), 2);
-            if(check_VencimentoDiasUteis.isSelected() == false)
+            if(check_VencimentoDiasUteis.isSelected() == false){
                 bd.dataVencimento   = "'" + CalVen.CalculaDataDeVencimento(bd.dataVencimento, i, 0) + "'";
-            else
+            }else{
                 bd.dataVencimento   = "'" + CalVen.CalculaDataDeVencimento(bd.dataVencimento, i, 1) + "'";
-        }else
+            }
+        }else{
             bd.dataVencimento   = null;
+        }
         
         if(bd.codigoContaCorrente == 0){
             mensagem = "Conta corrente de origem inválida!";
@@ -1571,21 +1597,24 @@ public class DespesasCadastro extends javax.swing.JFrame {
         if(!bd.dataPagamento.equals("")){
             bd.dataPagamento    = invdata.inverterData(txt_dataPagamento.getText(), 2);
             bd.dataPagamento    = "'" + bd.dataPagamento + "'";
-        }else
+        }else{
             bd.dataPagamento    = null;
+        }
         
-        if(bd.dataPagamento != null)
+        if(bd.dataPagamento != null){
             if(ValData.ValidaData(txt_dataPagamento.getText()).equals("N")){
                 mensagem    = "Data de pagamento inválida!";
                 new MostraMensagem(mensagem);
                 fatal = "S";
                 return;
             }
+        }
         
-        if(!txt_valorPago.getText().equals(""))
+        if(!txt_valorPago.getText().equals("")){
             bd.valorPago        = Double.parseDouble(TransStrDou.TransformaValorStringeDouble(txt_valorPago.getText(), 1));
-        else
+        }else{
             bd.valorPago        = 0;
+        }
         
         bd.idEmpresaAlterou     = parametrosNS.be.idEmpresa;
         bd.codigoGrupoAlterou   = parametrosNS.bge.codigoGrupo;
@@ -1598,7 +1627,9 @@ public class DespesasCadastro extends javax.swing.JFrame {
     private void IncluirDespesa(){
         for(i = 0; i < bd.qtdMeses; i++){
             PegaValores();
-            if(fatal.equals("S"))return;
+            if(fatal.equals("S")){
+                return;
+            }
             
             sql = "insert into tb_despesas (idEmpresa, codigoGrupo, codigoEmpresa, codigoDespesa, codigoDespesaTipo, descricaoDespesa, valorDespesa, codigoUsuario, dataCadastro, horaCadastro, codigoDeBarras, qtdMeses, dataVencimento, codigoContaCorrente, dataPagamento, valorPago, transferencia) "
                 + "values (" + bd.idEmpresa + ", " + bd.codigoGrupo + ", " + bd.codigoEmpresa + ", "  + bd.codigoDespesa + ", " + bd.codigoDespesaTipo + ", '" + bd.descricaoDespesa + "', " + bd.valorDespesa + ", " + bd.codigoUsuario + ", '" + bd.dataCadastro + "', '" + bd.horaCadastro + "', " + bd.codigoDeBarras + ", " + bd.qtdMeses + ", " + bd.dataVencimento + ", " + bd.codigoContaCorrente + ", " + bd.dataPagamento + ", " + bd.valorPago + ", " + bd.transferencia + ");";
@@ -1610,23 +1641,27 @@ public class DespesasCadastro extends javax.swing.JFrame {
                 return;
             }
         }
-        if(bd.transferencia == 0)
+        if(bd.transferencia == 0){
             mensagem = "Despesa incluida com sucesso!";
-        else
+        }else{
             mensagem = "Transferência incluida com sucesso!";
+        }
         new MostraMensagem(mensagem);
         txt_codigoDespesa.grabFocus();
     }
     
     private void IncluirTransferencia(){
         PegaValores();
-        if(fatal.equals("S"))return;
+        if(fatal.equals("S")){
+            return;
+        }
         
         sql = "insert into tb_despesas (idEmpresa, codigoGrupo, codigoEmpresa, codigoDespesa, codigoDespesaTipo, descricaoDespesa, valorDespesa, codigoUsuario, dataCadastro, horaCadastro, codigoDeBarras, qtdMeses, dataVencimento, codigoContaCorrente, dataPagamento, valorPago, codigoContaCorrenteDestino, transferencia) "
             + "values (" + bd.idEmpresa + ", " + bd.codigoGrupo + ", " + bd.codigoEmpresa + ", " + bd.codigoDespesa + ", " + bd.codigoDespesaTipo + ", '" + bd.descricaoDespesa + "', " + bd.valorDespesa + ", " + bd.codigoUsuario + ", '" + bd.dataCadastro + "', '" + bd.horaCadastro + "', " + bd.codigoDeBarras + ", " + bd.qtdMeses + ", " + bd.dataVencimento + ", " + bd.codigoContaCorrente + ", " + bd.dataPagamento + ", " + bd.valorPago + ", " + bd.codigoContaCorrenteDestino + ", " + bd.transferencia + ");";
         sqlstate = parametrosNS.dao.incluirRegistro(sql);
-        if(!sqlstate.equals("00000"))
+        if(!sqlstate.equals("00000")){
             return;
+        }
         mensagem = "Transferência incluída com sucesso!";
         new MostraMensagem(mensagem);
         txt_codigoDespesa.grabFocus();

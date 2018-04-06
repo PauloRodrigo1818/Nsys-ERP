@@ -1378,14 +1378,11 @@ public class ClientesCadastro extends javax.swing.JFrame {
             txt_codigoCliente.setText(fc.FormataCampo("", 5, 0));
         }
         bc.codigoCliente = Integer.parseInt(txt_codigoCliente.getText().replace(" ", "")) + 1;
-        if(bc.codigoCliente == UltimoRegistro){
-            bc.codigoCliente = bc.codigoCliente - 1;
+        if(bc.codigoCliente > UltimoRegistro){
+            bc.codigoCliente = UltimoRegistro;
             mensagem = "Esse é o último registro!";
             new MostraMensagem(mensagem);
             return;
-        }
-        if(bc.codigoCliente > UltimoRegistro){
-            bc.codigoCliente = UltimoRegistro - 1;
         }
         do{
             pegouCodigoCliente = "";
@@ -1398,7 +1395,7 @@ public class ClientesCadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_bt_proximoActionPerformed
 
     private void bt_ultimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_ultimoActionPerformed
-        bc.codigoCliente = UltimoRegistro - 1;
+        bc.codigoCliente = UltimoRegistro;
         pegouCodigoCliente = "N";
         txt_codigoCliente.setText(String.valueOf(bc.codigoCliente));
         PegaCliente();
@@ -1660,8 +1657,9 @@ public class ClientesCadastro extends javax.swing.JFrame {
                 bt_pesquisa      .setVisible  (false);
             }
         }
-        if(somostra.equals("SN"))
+        if(somostra.equals("SN")){
             bt_pesquisa         .setVisible (false);
+        }
     }//GEN-LAST:event_formWindowOpened
 
     private void txt_inscricaoEstadualFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_inscricaoEstadualFocusLost

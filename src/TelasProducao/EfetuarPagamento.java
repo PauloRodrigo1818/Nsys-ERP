@@ -951,13 +951,13 @@ public class EfetuarPagamento extends javax.swing.JFrame {
     private void PegaDadosCliente(){
         for(int i = 0; i < dadosCliente.size(); i++){
             bc = new BeanClientes();
-            bc.idCliente            = Integer.parseInt(  String.valueOf(dadosCliente.get(i).get(0)));
-            bc.idEmpresa            = Integer.parseInt(  String.valueOf(dadosCliente.get(i).get(1)));
-            bc.codigoGrupo          = Integer.parseInt(  String.valueOf(dadosCliente.get(i).get(2)));
-            bc.codigoEmpresa        = Integer.parseInt(  String.valueOf(dadosCliente.get(i).get(3)));
-            bc.codigoCliente        = Integer.parseInt(  String.valueOf(dadosCliente.get(i).get(4)));
-            bc.cpfCnpj              =                    String.valueOf(dadosCliente.get(i).get(5));
-            bc.nome                 =                    String.valueOf(dadosCliente.get(i).get(6));
+            bc.idCliente            = Integer.parseInt(String.valueOf(dadosCliente.get(i).get(0)));
+            bc.idEmpresa            = Integer.parseInt(String.valueOf(dadosCliente.get(i).get(1)));
+            bc.codigoGrupo          = Integer.parseInt(String.valueOf(dadosCliente.get(i).get(2)));
+            bc.codigoEmpresa        = Integer.parseInt(String.valueOf(dadosCliente.get(i).get(3)));
+            bc.codigoCliente        = Integer.parseInt(String.valueOf(dadosCliente.get(i).get(4)));
+            bc.cpfCnpj              =                  String.valueOf(dadosCliente.get(i).get(5));
+            bc.nome                 =                  String.valueOf(dadosCliente.get(i).get(6));
         }
         txt_codigoCliente.setText(parametrosNS.fc.FormataCampo(String.valueOf(bc.codigoCliente), 5, 0));
         label_nomeCliente.setText(bc.nome);
@@ -1002,45 +1002,19 @@ public class EfetuarPagamento extends javax.swing.JFrame {
         ValorAPagar     = 0;
         for(int i = 0; i < dadosOrdemServico.size(); i++){
             bos     = new BeanOrdemServico();
-            if(dadosOrdemServico.get(i).get(0) != null){
-                bos.idOrdemServico          = Integer.parseInt(  String.valueOf(dadosOrdemServico.get(i).get(0)));
-            }
-            if(dadosOrdemServico.get(i).get(1) != null){
-                bos.idEmpresa               = Integer.parseInt(  String.valueOf(dadosOrdemServico.get(i).get(1)));
-            }
-            if(dadosOrdemServico.get(i).get(2) != null){
-                bos.codigoGrupo             = Integer.parseInt(  String.valueOf(dadosOrdemServico.get(i).get(2)));
-            }
-            if(dadosOrdemServico.get(i).get(3) != null){
-                bos.codigoEmpresa           = Integer.parseInt(  String.valueOf(dadosOrdemServico.get(i).get(3)));
-            }
-            if(dadosOrdemServico.get(i).get(4) != null){
-                bos.codigoOrdemServico      = Integer.parseInt(  String.valueOf(dadosOrdemServico.get(i).get(4)));
-            }
-            if(dadosOrdemServico.get(i).get(5) != null){
-                bos.codigoCliente           = Integer.parseInt(  String.valueOf(dadosOrdemServico.get(i).get(5)));
-            }
-            if(dadosOrdemServico.get(i).get(6) != null){
-                bos.codigoUsuario           = Integer.parseInt(  String.valueOf(dadosOrdemServico.get(i).get(6)));
-            }
-            if(dadosOrdemServico.get(i).get(7) != null){
-                bos.valorAdiantamento       = Double.parseDouble(String.valueOf(dadosOrdemServico.get(i).get(7)));
-            }
-            if(dadosOrdemServico.get(i).get(8) != null){
-                bos.valorDeslocamento       = Double.parseDouble(String.valueOf(dadosOrdemServico.get(i).get(8)));
-            }
-            if(dadosOrdemServico.get(i).get(9) != null){
-                bos.valorPecas              = Double.parseDouble(String.valueOf(dadosOrdemServico.get(i).get(9)));
-            }
-            if(dadosOrdemServico.get(i).get(10) != null){
-                bos.valorMaoDeObra          = Double.parseDouble(String.valueOf(dadosOrdemServico.get(i).get(10)));
-            }
-            if(dadosOrdemServico.get(i).get(11) != null){
-                bos.valorTerceiros          = Double.parseDouble(String.valueOf(dadosOrdemServico.get(i).get(11)));
-            }
-            if(dadosOrdemServico.get(i).get(12) != null){
-                bos.valorOutros             = Double.parseDouble(String.valueOf(dadosOrdemServico.get(i).get(12)));
-            }
+            if(dadosOrdemServico.get(i).get(0)  != null){bos.idOrdemServico          = Integer.parseInt(  String.valueOf(dadosOrdemServico.get(i).get(0)));}
+            if(dadosOrdemServico.get(i).get(1)  != null){bos.idEmpresa               = Integer.parseInt(  String.valueOf(dadosOrdemServico.get(i).get(1)));}
+            if(dadosOrdemServico.get(i).get(2)  != null){bos.codigoGrupo             = Integer.parseInt(  String.valueOf(dadosOrdemServico.get(i).get(2)));}
+            if(dadosOrdemServico.get(i).get(3)  != null){bos.codigoEmpresa           = Integer.parseInt(  String.valueOf(dadosOrdemServico.get(i).get(3)));}
+            if(dadosOrdemServico.get(i).get(4)  != null){bos.codigoOrdemServico      = Integer.parseInt(  String.valueOf(dadosOrdemServico.get(i).get(4)));}
+            if(dadosOrdemServico.get(i).get(5)  != null){bos.codigoCliente           = Integer.parseInt(  String.valueOf(dadosOrdemServico.get(i).get(5)));}
+            if(dadosOrdemServico.get(i).get(6)  != null){bos.codigoUsuario           = Integer.parseInt(  String.valueOf(dadosOrdemServico.get(i).get(6)));}
+            if(dadosOrdemServico.get(i).get(7)  != null){bos.valorAdiantamento       = Double.parseDouble(String.valueOf(dadosOrdemServico.get(i).get(7)));}
+            if(dadosOrdemServico.get(i).get(8)  != null){bos.valorDeslocamento       = Double.parseDouble(String.valueOf(dadosOrdemServico.get(i).get(8)));}
+            if(dadosOrdemServico.get(i).get(9)  != null){bos.valorPecas              = Double.parseDouble(String.valueOf(dadosOrdemServico.get(i).get(9)));}
+            if(dadosOrdemServico.get(i).get(10) != null){bos.valorMaoDeObra          = Double.parseDouble(String.valueOf(dadosOrdemServico.get(i).get(10)));}
+            if(dadosOrdemServico.get(i).get(11) != null){bos.valorTerceiros          = Double.parseDouble(String.valueOf(dadosOrdemServico.get(i).get(11)));}
+            if(dadosOrdemServico.get(i).get(12) != null){bos.valorOutros             = Double.parseDouble(String.valueOf(dadosOrdemServico.get(i).get(12)));}
             
             bosi.idEmpresa          = bos.idEmpresa;
             bosi.codigoGrupo        = bos.codigoGrupo;
@@ -1093,39 +1067,17 @@ public class EfetuarPagamento extends javax.swing.JFrame {
             bosi = new BeanOrdemServicoItens();
             bp   = new BeanProdutos();
             bser = new BeanServicos();
-            if(dadosOrdemServicoItens.get(i).get(0) != null){
-                bosi.idOrdemServicoItem     = Integer.parseInt(  String.valueOf(dadosOrdemServicoItens.get(i).get(0)));
-            }
-            if(dadosOrdemServicoItens.get(i).get(1) != null){
-                bosi.idEmpresa              = Integer.parseInt(  String.valueOf(dadosOrdemServicoItens.get(i).get(1)));
-            }
-            if(dadosOrdemServicoItens.get(i).get(2) != null){
-                bosi.codigoGrupo            = Integer.parseInt(  String.valueOf(dadosOrdemServicoItens.get(i).get(2)));
-            }
-            if(dadosOrdemServicoItens.get(i).get(3) != null){
-                bosi.codigoEmpresa          = Integer.parseInt(  String.valueOf(dadosOrdemServicoItens.get(i).get(3)));
-            }
-            if(dadosOrdemServicoItens.get(i).get(4) != null){
-                bosi.codigoOrdemServico     = Integer.parseInt(  String.valueOf(dadosOrdemServicoItens.get(i).get(4)));
-            }
-            if(dadosOrdemServicoItens.get(i).get(5) != null){
-                bosi.codigoOrdemServicoItem = Integer.parseInt(  String.valueOf(dadosOrdemServicoItens.get(i).get(5)));
-            }
-            if(dadosOrdemServicoItens.get(i).get(6) != null){
-                bosi.valorUnitario          = Double.parseDouble(String.valueOf(dadosOrdemServicoItens.get(i).get(6)));
-            }
-            if(dadosOrdemServicoItens.get(i).get(7) != null){
-                bosi.quantidade             = Double.parseDouble(String.valueOf(dadosOrdemServicoItens.get(i).get(7)));
-            }
-            if(dadosOrdemServicoItens.get(i).get(8) != null){
-                bosi.valorTotal             = Double.parseDouble(String.valueOf(dadosOrdemServicoItens.get(i).get(8)));
-            }
-            if(dadosOrdemServicoItens.get(i).get(9) != null){
-                bosi.codigoServico          = Integer.parseInt(  String.valueOf(dadosOrdemServicoItens.get(i).get(9)));
-            }
-            if(dadosOrdemServicoItens.get(i).get(10) != null){
-                bosi.codigoProduto          = Integer.parseInt(  String.valueOf(dadosOrdemServicoItens.get(i).get(10)));
-            }
+            if(dadosOrdemServicoItens.get(i).get(0)  != null){bosi.idOrdemServicoItem     = Integer.parseInt(  String.valueOf(dadosOrdemServicoItens.get(i).get(0)));}
+            if(dadosOrdemServicoItens.get(i).get(1)  != null){bosi.idEmpresa              = Integer.parseInt(  String.valueOf(dadosOrdemServicoItens.get(i).get(1)));}
+            if(dadosOrdemServicoItens.get(i).get(2)  != null){bosi.codigoGrupo            = Integer.parseInt(  String.valueOf(dadosOrdemServicoItens.get(i).get(2)));}
+            if(dadosOrdemServicoItens.get(i).get(3)  != null){bosi.codigoEmpresa          = Integer.parseInt(  String.valueOf(dadosOrdemServicoItens.get(i).get(3)));}
+            if(dadosOrdemServicoItens.get(i).get(4)  != null){bosi.codigoOrdemServico     = Integer.parseInt(  String.valueOf(dadosOrdemServicoItens.get(i).get(4)));}
+            if(dadosOrdemServicoItens.get(i).get(5)  != null){bosi.codigoOrdemServicoItem = Integer.parseInt(  String.valueOf(dadosOrdemServicoItens.get(i).get(5)));}
+            if(dadosOrdemServicoItens.get(i).get(6)  != null){bosi.valorUnitario          = Double.parseDouble(String.valueOf(dadosOrdemServicoItens.get(i).get(6)));}
+            if(dadosOrdemServicoItens.get(i).get(7)  != null){bosi.quantidade             = Double.parseDouble(String.valueOf(dadosOrdemServicoItens.get(i).get(7)));}
+            if(dadosOrdemServicoItens.get(i).get(8)  != null){bosi.valorTotal             = Double.parseDouble(String.valueOf(dadosOrdemServicoItens.get(i).get(8)));}
+            if(dadosOrdemServicoItens.get(i).get(9)  != null){bosi.codigoServico          = Integer.parseInt(  String.valueOf(dadosOrdemServicoItens.get(i).get(9)));}
+            if(dadosOrdemServicoItens.get(i).get(10) != null){bosi.codigoProduto          = Integer.parseInt(  String.valueOf(dadosOrdemServicoItens.get(i).get(10)));}
             
             bp.codigoProduto   = bosi.codigoProduto;
             if(bp.codigoProduto != 0){
@@ -1170,33 +1122,15 @@ public class EfetuarPagamento extends javax.swing.JFrame {
     
     private void PegaDadosProduto(){
         for(int i = 0; i < dadosProdutos.size(); i++){
-            if(dadosProdutos.get(i).get(0) != null){
-                bp.idProdutos               = Integer.parseInt(  String.valueOf(dadosProdutos.get(i).get(0)));
-            }
-            if(dadosProdutos.get(i).get(1) != null){
-                bp.idEmpresa                = Integer.parseInt(  String.valueOf(dadosProdutos.get(i).get(1)));
-            }
-            if(dadosProdutos.get(i).get(2) != null){
-                bp.codigoGrupo              = Integer.parseInt(  String.valueOf(dadosProdutos.get(i).get(2)));
-            }
-            if(dadosProdutos.get(i).get(3) != null){
-                bp.codigoEmpresa            = Integer.parseInt(  String.valueOf(dadosProdutos.get(i).get(3)));
-            }
-            if(dadosProdutos.get(i).get(4) != null){
-                bp.codigoProduto            = Integer.parseInt(  String.valueOf(dadosProdutos.get(i).get(4)));
-            }
-            if(dadosProdutos.get(i).get(5) != null){
-                bp.descricaoProduto         =                    String.valueOf(dadosProdutos.get(i).get(5));
-            }
-            if(dadosProdutos.get(i).get(6) != null){
-                bp.quantidadeMinima         = Double.parseDouble(String.valueOf(dadosProdutos.get(i).get(6)));
-            }
-            if(dadosProdutos.get(i).get(7) != null){
-                bp.quantidadeIdeal          = Double.parseDouble(String.valueOf(dadosProdutos.get(i).get(7)));
-            }
-            if(dadosProdutos.get(i).get(8) != null){
-                bp.quantidadeAtual          = Double.parseDouble(String.valueOf(dadosProdutos.get(i).get(8)));
-            }
+            if(dadosProdutos.get(i).get(0) != null){bp.idProdutos               = Integer.parseInt(  String.valueOf(dadosProdutos.get(i).get(0)));}
+            if(dadosProdutos.get(i).get(1) != null){bp.idEmpresa                = Integer.parseInt(  String.valueOf(dadosProdutos.get(i).get(1)));}
+            if(dadosProdutos.get(i).get(2) != null){bp.codigoGrupo              = Integer.parseInt(  String.valueOf(dadosProdutos.get(i).get(2)));}
+            if(dadosProdutos.get(i).get(3) != null){bp.codigoEmpresa            = Integer.parseInt(  String.valueOf(dadosProdutos.get(i).get(3)));}
+            if(dadosProdutos.get(i).get(4) != null){bp.codigoProduto            = Integer.parseInt(  String.valueOf(dadosProdutos.get(i).get(4)));}
+            if(dadosProdutos.get(i).get(5) != null){bp.descricaoProduto         =                    String.valueOf(dadosProdutos.get(i).get(5));}
+            if(dadosProdutos.get(i).get(6) != null){bp.quantidadeMinima         = Double.parseDouble(String.valueOf(dadosProdutos.get(i).get(6)));}
+            if(dadosProdutos.get(i).get(7) != null){bp.quantidadeIdeal          = Double.parseDouble(String.valueOf(dadosProdutos.get(i).get(7)));}
+            if(dadosProdutos.get(i).get(8) != null){bp.quantidadeAtual          = Double.parseDouble(String.valueOf(dadosProdutos.get(i).get(8)));}
         }
         DescricaoProdutoServico = bp.descricaoProduto;
     }
@@ -1225,27 +1159,13 @@ public class EfetuarPagamento extends javax.swing.JFrame {
     
     private void PegaDadosServico(){
         for(int i = 0; i < dadosServicos.size(); i++){
-            if(dadosServicos.get(i).get(0) != null){
-                bser.idServico          = Integer.parseInt(  String.valueOf(dadosServicos.get(i).get(0)));
-            }
-            if(dadosServicos.get(i).get(1) != null){
-                bser.idEmpresa          = Integer.parseInt(  String.valueOf(dadosServicos.get(i).get(1)));
-            }
-            if(dadosServicos.get(i).get(2) != null){
-                bser.codigoGrupo        = Integer.parseInt(  String.valueOf(dadosServicos.get(i).get(2)));
-            }
-            if(dadosServicos.get(i).get(3) != null){
-                bser.codigoEmpresa      = Integer.parseInt(  String.valueOf(dadosServicos.get(i).get(3)));
-            }
-            if(dadosServicos.get(i).get(4) != null){
-                bser.codigoServico      = Integer.parseInt(  String.valueOf(dadosServicos.get(i).get(4)));
-            }
-            if(dadosServicos.get(i).get(5) != null){
-                bser.descricaoServico   =                    String.valueOf(dadosServicos.get(i).get(5));
-            }
-            if(dadosServicos.get(i).get(6) != null){
-                bser.valorServico       = Double.parseDouble(String.valueOf(dadosServicos.get(i).get(6)));
-            }
+            if(dadosServicos.get(i).get(0) != null){bser.idServico          = Integer.parseInt(  String.valueOf(dadosServicos.get(i).get(0)));}
+            if(dadosServicos.get(i).get(1) != null){bser.idEmpresa          = Integer.parseInt(  String.valueOf(dadosServicos.get(i).get(1)));}
+            if(dadosServicos.get(i).get(2) != null){bser.codigoGrupo        = Integer.parseInt(  String.valueOf(dadosServicos.get(i).get(2)));}
+            if(dadosServicos.get(i).get(3) != null){bser.codigoEmpresa      = Integer.parseInt(  String.valueOf(dadosServicos.get(i).get(3)));}
+            if(dadosServicos.get(i).get(4) != null){bser.codigoServico      = Integer.parseInt(  String.valueOf(dadosServicos.get(i).get(4)));}
+            if(dadosServicos.get(i).get(5) != null){bser.descricaoServico   =                    String.valueOf(dadosServicos.get(i).get(5));}
+            if(dadosServicos.get(i).get(6) != null){bser.valorServico       = Double.parseDouble(String.valueOf(dadosServicos.get(i).get(6)));}
         }
         DescricaoProdutoServico = bser.descricaoServico;
     }
@@ -1452,7 +1372,7 @@ public class EfetuarPagamento extends javax.swing.JFrame {
     }
     
     private void PegaFormasDePagamentos(){
-        sql = "select codigoPagamento, descricaoPagamento from tb_formaspagamentos where idEmpresa = " + parametrosNS.be.IdEmpresa + ";";
+        sql = "select idPagamento, idEmpresa, codigoGrupo, codigoEmpresa, codigoPagamento, descricaoPagamento from tb_formaspagamentos where idEmpresa = " + parametrosNS.be.IdEmpresa + ";";
         dadosFormasPagamentos.clear();
         dadosFormasPagamentos = parametrosNS.dao.Consulta(sql);
         if(dadosFormasPagamentos.isEmpty()){
@@ -1468,12 +1388,12 @@ public class EfetuarPagamento extends javax.swing.JFrame {
         combo_Pagamento.addItem("");
         for(int i = 0; i < dadosFormasPagamentos.size(); i++){
             bfp = new BeanFormasPagamentos();
-//            bfp.idPagamento             = Integer.parseInt(  String.valueOf(dadosFormasPagamentos.get(i).get(0)));
-//            bfp.idEmpresa               = Integer.parseInt(  String.valueOf(dadosFormasPagamentos.get(i).get(1)));
-//            bfp.codigoGrupo             = Integer.parseInt(  String.valueOf(dadosFormasPagamentos.get(i).get(2)));
-//            bfp.codigoEmpresa           = Integer.parseInt(  String.valueOf(dadosFormasPagamentos.get(i).get(3)));
-            bfp.codigoPagamento         = Integer.parseInt(  String.valueOf(dadosFormasPagamentos.get(i).get(0)));
-            bfp.descricaoPagamento      =                    String.valueOf(dadosFormasPagamentos.get(i).get(1));
+            bfp.idPagamento             = Integer.parseInt(  String.valueOf(dadosFormasPagamentos.get(i).get(0)));
+            bfp.idEmpresa               = Integer.parseInt(  String.valueOf(dadosFormasPagamentos.get(i).get(1)));
+            bfp.codigoGrupo             = Integer.parseInt(  String.valueOf(dadosFormasPagamentos.get(i).get(2)));
+            bfp.codigoEmpresa           = Integer.parseInt(  String.valueOf(dadosFormasPagamentos.get(i).get(3)));
+            bfp.codigoPagamento         = Integer.parseInt(  String.valueOf(dadosFormasPagamentos.get(i).get(4)));
+            bfp.descricaoPagamento      =                    String.valueOf(dadosFormasPagamentos.get(i).get(5));
             
             combo_Pagamento.addItem(fc.FormataCampo(String.valueOf(bfp.codigoPagamento), 2, 0) + " - " + bfp.descricaoPagamento);
         }
@@ -1523,16 +1443,16 @@ public class EfetuarPagamento extends javax.swing.JFrame {
     private void PegaDadosVenda(){
         for(int i = 0; i < dadosVendas.size(); i++){
             bv = new BeanVendas();
-            bv.idVenda          = Integer.parseInt(  String.valueOf(dadosVendas.get(i).get(0)));
-            bv.idEmpresa        = Integer.parseInt(  String.valueOf(dadosVendas.get(i).get(1)));
-            bv.codigoGrupo      = Integer.parseInt(  String.valueOf(dadosVendas.get(i).get(2)));
-            bv.codigoEmpresa    = Integer.parseInt(  String.valueOf(dadosVendas.get(i).get(3)));
-            bv.codigoVenda      = Integer.parseInt(  String.valueOf(dadosVendas.get(i).get(4)));
-            bv.codigoUsuario    = Integer.parseInt(  String.valueOf(dadosVendas.get(i).get(5)));
-            bv.codigoCliente    = Integer.parseInt(  String.valueOf(dadosVendas.get(i).get(6)));
-            bv.codigoComputador = Integer.parseInt(  String.valueOf(dadosVendas.get(i).get(7)));
-            bv.dataVenda        =                    String.valueOf(dadosVendas.get(i).get(8));
-            bv.horaVenda        =                    String.valueOf(dadosVendas.get(i).get(9));
+            if(dadosVendas.get(i).get(0) != null){bv.idVenda          = Integer.parseInt(  String.valueOf(dadosVendas.get(i).get(0)));}
+            if(dadosVendas.get(i).get(1) != null){bv.idEmpresa        = Integer.parseInt(  String.valueOf(dadosVendas.get(i).get(1)));}
+            if(dadosVendas.get(i).get(2) != null){bv.codigoGrupo      = Integer.parseInt(  String.valueOf(dadosVendas.get(i).get(2)));}
+            if(dadosVendas.get(i).get(3) != null){bv.codigoEmpresa    = Integer.parseInt(  String.valueOf(dadosVendas.get(i).get(3)));}
+            if(dadosVendas.get(i).get(4) != null){bv.codigoVenda      = Integer.parseInt(  String.valueOf(dadosVendas.get(i).get(4)));}
+            if(dadosVendas.get(i).get(5) != null){bv.codigoUsuario    = Integer.parseInt(  String.valueOf(dadosVendas.get(i).get(5)));}
+            if(dadosVendas.get(i).get(6) != null){bv.codigoCliente    = Integer.parseInt(  String.valueOf(dadosVendas.get(i).get(6)));}
+            if(dadosVendas.get(i).get(7) != null){bv.codigoComputador = Integer.parseInt(  String.valueOf(dadosVendas.get(i).get(7)));}
+            if(dadosVendas.get(i).get(8) != null){bv.dataVenda        =                    String.valueOf(dadosVendas.get(i).get(8));}
+            if(dadosVendas.get(i).get(9) != null){bv.horaVenda        =                    String.valueOf(dadosVendas.get(i).get(9));}
         }
         
         bc.codigoCliente = bv.codigoCliente;
