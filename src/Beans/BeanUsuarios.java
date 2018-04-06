@@ -8,7 +8,7 @@ public class BeanUsuarios {
     public int    idEmpresa             = 0;    //1
     public int    codigoGrupo           = 0;    //2
     public int    codigoEmpresa         = 0;    //3
-    public int    codigoUsuari         = 0;    //4
+    public int    codigoUsuario         = 0;    //4
     public String dataCriacao           = "";   //5
     public String name                  = "";   //6
     public String usuario               = "";   //7
