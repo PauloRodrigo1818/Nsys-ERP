@@ -501,7 +501,7 @@ public class BuscaAvancada extends javax.swing.JFrame {
     
     private void VerificaTabelasColunas(){
         switch(nomeTabela){
-            case "tb_usuarios": sql = "SHOW COLUMNS FROM TB_USUARIOS WHERE FIELD <> 'SENHA' AND FIELD <> 'DATAALTEROU' AND FIELD <> 'HOTAALTEROU' AND FIELD <> 'USUARIOALTEROU'"; break;
+            case "tb_usuarios": sql = "show columns from tb_usuarios where filed <> 'senha' and field <> 'dataAlterou' and field <> 'horaAlterou' and filed <> 'usuarioAlterou'"; break;
         }
     }
     

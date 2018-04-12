@@ -7,10 +7,7 @@ import Beans.BeanComputadores;
 import Beans.BeanModulos;
 import Beans.BeanUsuariosEmail;
 import Dao.DaoMySQL;
-import FuncoesInternas.CalcularDiasRestantesSistema;
-import FuncoesInternas.TransformarSenhaSistemaEmData;
 import FuncoesInternas.CapturarDataHora;
-import FuncoesInternas.Criptografia;
 import FuncoesInternas.FormataCampo;
 import FuncoesInternas.MostraMensagem;
 import FuncoesInternas.TestarData;
@@ -114,11 +111,8 @@ public class Login extends javax.swing.JFrame {
     //Outros
     FormataCampo                  fc      = new FormataCampo();
     TestarData                    Test    = new TestarData();
-    CalcularDiasRestantesSistema  cdr     = new CalcularDiasRestantesSistema();
     CapturarDataHora              cdh     = new CapturarDataHora();
     InverterData                  invdata = new InverterData();
-    Criptografia                  crpt    = new Criptografia();
-    TransformarSenhaSistemaEmData Tssed   = new TransformarSenhaSistemaEmData();
     
     //Beans
     BeanBancoDados     bbd     = new BeanBancoDados();
@@ -398,7 +392,7 @@ public class Login extends javax.swing.JFrame {
             if(dadosUsuario.get(i).get(5)  != null){bu.dataCriacao          =                  String.valueOf(dadosUsuario.get(i).get(5));}
             if(dadosUsuario.get(i).get(6)  != null){bu.name                 =                  String.valueOf(dadosUsuario.get(i).get(6));}
             if(dadosUsuario.get(i).get(7)  != null){bu.usuario              =                  String.valueOf(dadosUsuario.get(i).get(7));}
-            if(dadosUsuario.get(i).get(8)  != null){bu.senha                =                  String.valueOf(dadosUsuario.get(i).get(8));}
+            if(dadosUsuario.get(i).get(8)  != null){bu.password             =                  String.valueOf(dadosUsuario.get(i).get(8));}
             if(dadosUsuario.get(i).get(9)  != null){bu.telefone             =                  String.valueOf(dadosUsuario.get(i).get(9));}
             if(dadosUsuario.get(i).get(10) != null){bu.email                =                  String.valueOf(dadosUsuario.get(i).get(10));}
             if(dadosUsuario.get(i).get(11) != null){bu.codigoDepartamento   = Integer.parseInt(String.valueOf(dadosUsuario.get(i).get(11)));}
@@ -421,7 +415,7 @@ public class Login extends javax.swing.JFrame {
         parametrosNS.bu.dataCriacao          = bu.dataCriacao;
         parametrosNS.bu.name                 = bu.name;
         parametrosNS.bu.usuario              = bu.usuario;
-        parametrosNS.bu.senha                = bu.senha;
+        parametrosNS.bu.password             = bu.password;
 //        parametrosNS.bu.senha = parametrosNS.crpt.CriptografaManualmente(parametrosNS.bu.senha);
         parametrosNS.bu.telefone             = bu.telefone;
         parametrosNS.bu.email                = bu.email;
@@ -455,7 +449,7 @@ public class Login extends javax.swing.JFrame {
     }
     
     private void PegaImagemUsuario(){
-        sql = "select imagemUsuario from tb_usuarios where idUsuario = " + parametrosNS.bu.idUsuario + ";";
+        sql = "select imagemUsuario from tb_usuarios where id = " + parametrosNS.bu.idUsuario + ";";
         bu.imagemUsuario = parametrosNS.dao.ConsultaLogotipo(sql, "imagemUsuario");
     }
     
@@ -777,9 +771,9 @@ public class Login extends javax.swing.JFrame {
             InformarSenhaSistema();
             return;
         }
-        senhaSistema = crpt.Criptografa(parametrosNS.be.dataValidade, "Descriptografar");
+        senhaSistema = parametrosNS.crpt.Criptografa(parametrosNS.be.dataValidade, "Descriptografar");
         //System.out.println(senhaSistema);
-        senhaValida = Tssed.TransformarSenhaSistemaEmData(parametrosNS.be.dataValidade);
+        senhaValida = parametrosNS.Tssed.TransformarSenhaSistemaEmData(parametrosNS.be.dataValidade);
         //System.out.println(dataAtual + " - " + senhaValida);
         if(senhaValida >= dataAtual){
             return;
@@ -792,7 +786,7 @@ public class Login extends javax.swing.JFrame {
     
     private void InformarSenhaSistema(){
         dispose();
-        Inf = new InformarSenhaSistema("Login");
+        Inf = new InformarSenhaSistema("Login", 0, 0, "", 0, "");
         fatal = "S";
     }
     
@@ -942,7 +936,7 @@ public class Login extends javax.swing.JFrame {
         if(data.equals("")){
             return;
         }
-        dias = cdr.RetornaDias(cdh.CapturarData(), data);
+        dias = parametrosNS.cdr.RetornaDias(cdh.CapturarData(), data);
         parametrosNS.Dias = dias;
     }
     
@@ -1341,19 +1335,19 @@ public class Login extends javax.swing.JFrame {
     
     private void PegaUsuarioParaLogar(){
         bu.usuario  = txt_usuario.getText();
-        bu.senha    = txt_senha.getText();
+        bu.password = txt_senha.getText();
 //        if(!bu.usuario.equalsIgnoreCase("NS3")){
-//            bu.senha    = crpt.CriptografaManualmente(bu.senha);
+//            bu.senha    = parametrosNS.crpt.CriptografaManualmente(bu.senha);
 //        }
         if(bu.usuario.equalsIgnoreCase("NS3")){
-            if(bu.senha.equalsIgnoreCase("adm2322")){
-                parametrosNS.bu.usuario = "NS3";
-                parametrosNS.bu.senha   = "adm2322";
+            if(bu.password.equalsIgnoreCase("adm2322")){
+                parametrosNS.bu.usuario  = "NS3";
+                parametrosNS.bu.password = "adm2322";
                 Logar();
                 return;
             }
         }
-        sql = "select * from tb_usuarios where usuario = '" + bu.usuario + "' and senha = '" + bu.senha + "';";
+        sql = "select * from tb_usuarios where usuario = '" + bu.usuario + "' and senha = '" + bu.password + "';";
         parametrosNS.PegaUsuario(sql);
         txt_senha.grabFocus();
         if(!parametrosNS.dadosUsuarios.isEmpty()){CarregamentoSistema();}
@@ -1520,18 +1514,18 @@ public class Login extends javax.swing.JFrame {
             return;
         }
         dispose();
-//        sql = "update tb_usuarios set nomeConexao = '" + con + "' where idUsuario = " + parametrosNS.bu.idUsuario + ";" ;
+//        sql = "update tb_usuarios set nomeConexao = '" + con + "' where id = " + parametrosNS.bu.idUsuario + ";" ;
 //        SetaConexao();
         if(fatal.equals("S")){DefineAcesso(false);return;}
         if(parametrosNS.bu.usuario.equalsIgnoreCase("NS3")){
-            if(parametrosNS.bu.senha.equalsIgnoreCase("adm2322")){
+            if(parametrosNS.bu.password.equalsIgnoreCase("adm2322")){
                 PegaInformacoesDoComputador();
                 CarregarInformacoesSistema();
                 
                 parametrosNS.bu.codigoUsuario    = 999;
                 parametrosNS.bu.name             = bu.usuario;
                 parametrosNS.bu.usuario          = bu.usuario;
-                parametrosNS.bu.senha            = bu.senha;
+                parametrosNS.bu.password         = bu.password;
                 parametrosNS.bu.nivelUsuario     = 9;
                 parametrosNS.bu.podeMudarEmpresa = 1;
                 dispose();

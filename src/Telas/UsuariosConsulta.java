@@ -9,7 +9,6 @@ import FuncoesInternas.InverterData;
 import FuncoesInternas.MostraMensagem;
 import FuncoesInternas.TestarData;
 import Parametros.parametrosNS;
-import Parametros.parametrosNS;
 import Telas.DepartamentosConsulta;
 import Telas.UsuariosCadastro;
 import java.awt.event.KeyEvent;
@@ -827,7 +826,7 @@ public class UsuariosConsulta extends javax.swing.JFrame {
     
     private void PegaUsuario(){
         sql = "select \n"
-            + "   idUsuario, \n"
+            + "   id, \n"
             + "   idEmpresa, \n"
             + "   codigoGrupo, \n"
             + "   codigoEmpresa, \n"
@@ -872,7 +871,7 @@ public class UsuariosConsulta extends javax.swing.JFrame {
             if(dadosUsuario.get(i).get(5)  != null){bu.dataCriacao          =                  String.valueOf(dadosUsuario.get(i).get(5));}
             if(dadosUsuario.get(i).get(6)  != null){bu.name                 =                  String.valueOf(dadosUsuario.get(i).get(6));}
             if(dadosUsuario.get(i).get(7)  != null){bu.usuario              =                  String.valueOf(dadosUsuario.get(i).get(7));}
-            if(dadosUsuario.get(i).get(8)  != null){bu.senha                =                  String.valueOf(dadosUsuario.get(i).get(8));}
+            if(dadosUsuario.get(i).get(8)  != null){bu.password             =                  String.valueOf(dadosUsuario.get(i).get(8));}
             if(dadosUsuario.get(i).get(9)  != null){bu.telefone             =                  String.valueOf(dadosUsuario.get(i).get(9));}
             if(dadosUsuario.get(i).get(10) != null){bu.email                =                  String.valueOf(dadosUsuario.get(i).get(10));}
             if(dadosUsuario.get(i).get(11) != null){bu.codigoDepartamento   = Integer.parseInt(String.valueOf(dadosUsuario.get(i).get(11)));}
@@ -932,8 +931,9 @@ public class UsuariosConsulta extends javax.swing.JFrame {
         sql = "select * from tb_departamento where idEmpresa = " + parametrosNS.be.IdEmpresa + " and codigoDepartamento = " + bd.codigoDepartamento + ";";
         dadosDepartamentos.clear();
         dadosDepartamentos = parametrosNS.dao.Consulta(sql);
-        if(dadosDepartamentos.isEmpty())
+        if(dadosDepartamentos.isEmpty()){
             return;
+        }
         PegaDadosDepartamento();
     }
     

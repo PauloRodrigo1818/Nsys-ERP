@@ -2547,7 +2547,7 @@ public class PDV extends javax.swing.JFrame {
             }
         }
         sql = "select \n"
-                + "   idUsuario, \n"
+                + "   id, \n"
                 + "   idEmpresa, \n"
                 + "   codigoGrupo, \n"
                 + "   codigoEmpresa, \n"

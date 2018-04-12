@@ -22,6 +22,7 @@ import MenusPrincipais.MenuProducao;
 import MenusPrincipais.MenuRecebimento;
 import MenusPrincipais.MenuRecursosHumanos;
 import MenusPrincipais.MenuVendas;
+import TelasNS3.GerenciadorDeValidade;
 import daoConexao.*;
 import java.util.*;
 import javax.swing.*;
@@ -92,6 +93,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     MenuRecursosHumanos     MRH   = null;
     MudarEmpresaAtual       MudEmpAtu;
     GerenciadorDeConexoes   GerCon;
+    GerenciadorDeValidade   GerVal;
     BuscaAvancada           BusAvan;
     Parametros              Param;
     ComputadoresCadastro    CompCad;
@@ -352,6 +354,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem8 = new javax.swing.JMenuItem();
         bt_gerenciadorDeConexoes = new javax.swing.JMenuItem();
+        bt_gerenciadorDeValidade = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
 
         bt_contabil.setText("Contabilidade");
@@ -390,6 +393,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
         setBackground(new java.awt.Color(255, 255, 255));
         setMinimumSize(new java.awt.Dimension(1024, 768));
         addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentHidden(java.awt.event.ComponentEvent evt) {
+                formComponentHidden(evt);
+            }
             public void componentResized(java.awt.event.ComponentEvent evt) {
                 formComponentResized(evt);
             }
@@ -758,6 +764,15 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
         jMenu1.add(bt_gerenciadorDeConexoes);
 
+        bt_gerenciadorDeValidade.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icones/Calendar.png"))); // NOI18N
+        bt_gerenciadorDeValidade.setText(":: Gerenciador de Validade");
+        bt_gerenciadorDeValidade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_gerenciadorDeValidadeActionPerformed(evt);
+            }
+        });
+        jMenu1.add(bt_gerenciadorDeValidade);
+
         jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_ESCAPE, 0));
         jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/18x18/Exit.png"))); // NOI18N
         jMenuItem2.setText(":: Sair");
@@ -869,6 +884,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
             MenuVendas();
         }
         add = 1;
+        if(parametrosNS.bu.codigoUsuario != 999){
+            bt_gerenciadorDeValidade.setVisible(false);
+        }
     }//GEN-LAST:event_formWindowOpened
     
     private void bt_mudarEmpresaAtualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_mudarEmpresaAtualActionPerformed
@@ -881,7 +899,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             new MostraMensagem(Mensagem);
             return;
         }
-        InfSenSis = new InformarSenhaSistema("Menu");
+        InfSenSis = new InformarSenhaSistema("Menu", 0, 0, "", 0, "");
         InfSenSis.setVisible(true);
     }//GEN-LAST:event_bt_senhaDoSistemaActionPerformed
 
@@ -1102,6 +1120,20 @@ public class MenuPrincipal extends javax.swing.JFrame {
         AtualizadorCluster AtuClu = new AtualizadorCluster(this);
         AtuClu.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void bt_gerenciadorDeValidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_gerenciadorDeValidadeActionPerformed
+        if(GerVal != null)if(GerVal.isVisible()){
+            Mensagem = "Tela já aberta!";
+            new MostraMensagem(Mensagem);
+            return;
+        }
+        GerVal = new GerenciadorDeValidade();
+        GerVal .setVisible(true);
+    }//GEN-LAST:event_bt_gerenciadorDeValidadeActionPerformed
+
+    private void formComponentHidden(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentHidden
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formComponentHidden
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Painel_Logo;
@@ -1126,6 +1158,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton bt_financeiro;
     private javax.swing.JMenuItem bt_fiscal;
     private javax.swing.JMenuItem bt_gerenciadorDeConexoes;
+    private javax.swing.JMenuItem bt_gerenciadorDeValidade;
     private javax.swing.JButton bt_gestao;
     private javax.swing.JMenuItem bt_mudarEmpresaAtual;
     private javax.swing.JButton bt_producao;
@@ -1296,6 +1329,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }
     
     private void IniciaCarregamentoClusterBancoDeDados(){
+        if(parametrosNS.bbd.servidor.equals("mysql.ns3info.com.br")){
+            painel_atualizacaoBancoDeDados.setVisible(false);
+            return;
+        }
         if(TempoCluster != null){
             TempoCluster.stop();
         }

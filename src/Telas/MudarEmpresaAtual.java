@@ -391,7 +391,7 @@ public class MudarEmpresaAtual extends javax.swing.JFrame {
         sql = "select * from ns_grupoempresa where codigoGrupo = " + parametrosNS.bge.CodigoGrupo + ";";
         if(Add.equals("S")){
             if(parametrosNS.bu.usuario.equalsIgnoreCase("NS3")){
-                if(parametrosNS.bu.senha.equalsIgnoreCase("adm2322")){
+                if(parametrosNS.bu.password.equalsIgnoreCase("adm2322")){
                     AdicionaCombo = "S";
                     sql = "select * from ns_grupoempresa;";
                     Combo_Grupo.setEnabled(true);
@@ -428,7 +428,7 @@ public class MudarEmpresaAtual extends javax.swing.JFrame {
         }
         
         if(parametrosNS.bu.usuario.equalsIgnoreCase("NS3")){
-            if(parametrosNS.bu.senha.equalsIgnoreCase("adm2322")){
+            if(parametrosNS.bu.password.equalsIgnoreCase("adm2322")){
                 if(Add.equals("N")){
                     parametrosNS.bge.codigoGrupo            = bge.codigoGrupo;
                     parametrosNS.bge.nomeGrupo              = bge.nomeGrupo;
@@ -540,7 +540,7 @@ public class MudarEmpresaAtual extends javax.swing.JFrame {
         PegaLogotipoEmpresa();
         
         if(!parametrosNS.bu.usuario.equalsIgnoreCase("NS3")){
-            if(!parametrosNS.bu.senha.equalsIgnoreCase("adm2322")){
+            if(!parametrosNS.bu.password.equalsIgnoreCase("adm2322")){
                 return;
             }
         }
@@ -551,8 +551,9 @@ public class MudarEmpresaAtual extends javax.swing.JFrame {
     private void PegaLogotipoEmpresa(){
         sql = "select imagemLogotipoEmpresa from ns_empresas where codigoGrupo = " + bge.codigoGrupo + " and codigoEmpresa = " + be.codigoEmpresa + ";";
         parametrosNS.be.ImagemLogotipoEmpresa = parametrosNS.dao.ConsultaLogotipo(sql, "imagemLogotipoEmpresa");
-        if(parametrosNS.bu.codigoUsuario == 999)
+        if(parametrosNS.bu.codigoUsuario == 999){
             parametrosNS.be.imagemLogotipoEmpresa = parametrosNS.be.ImagemLogotipoEmpresa;
+        }
     }
     
     private void SetaModulosGrupo(){

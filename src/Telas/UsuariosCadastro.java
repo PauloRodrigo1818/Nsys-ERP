@@ -1329,7 +1329,7 @@ public class UsuariosCadastro extends javax.swing.JFrame {
             if(dadosUsuarios.get(i).get(5)  != null){bu.dataCriacao          =                    String.valueOf(dadosUsuarios.get(i).get(5));}
             if(dadosUsuarios.get(i).get(6)  != null){bu.name                 =                    String.valueOf(dadosUsuarios.get(i).get(6));}
             if(dadosUsuarios.get(i).get(7)  != null){bu.usuario              =                    String.valueOf(dadosUsuarios.get(i).get(7));}
-            if(dadosUsuarios.get(i).get(8)  != null){bu.senha                =                    String.valueOf(dadosUsuarios.get(i).get(8));}
+            if(dadosUsuarios.get(i).get(8)  != null){bu.password             =                    String.valueOf(dadosUsuarios.get(i).get(8));}
             if(dadosUsuarios.get(i).get(9)  != null){bu.telefone             =                    String.valueOf(dadosUsuarios.get(i).get(9));}
             if(dadosUsuarios.get(i).get(10) != null){bu.email                =                    String.valueOf(dadosUsuarios.get(i).get(10));}
             if(dadosUsuarios.get(i).get(11) != null){bu.codigoDepartamento   = Integer.parseInt(  String.valueOf(dadosUsuarios.get(i).get(11)));}
@@ -1348,16 +1348,16 @@ public class UsuariosCadastro extends javax.swing.JFrame {
 //        bue.idUsuario   = bu.idUsuario;
 //        PegaUsuarioEmail();
         
-        bu.senha = parametrosNS.crpt.CriptografaManualmente(bu.senha);
+        bu.password     = parametrosNS.crpt.CriptografaManualmente(bu.password);
         txt_codigoUsuario       .setText(fc.FormataCampo(String.valueOf(bu.codigoUsuario), 3, 0));
-        bu.dataCriacao = parametrosNS.invdata.inverterData(bu.dataCriacao, 1);
+        bu.dataCriacao  = parametrosNS.invdata.inverterData(bu.dataCriacao, 1);
         txt_datacriacao         .setText(bu.dataCriacao);
         txt_name                .setText(bu.name);
         if(bu.podeMudarEmpresa != 0){
             check_mudarEmpresa.setSelected(true);
         }
         txt_usuario             .setText(bu.usuario);
-        txt_senha               .setText(bu.senha);
+        txt_senha               .setText(bu.password);
         txt_telefone            .setText(bu.telefone);
         txt_email               .setText(bu.email);
         if(parametrosNS.bu.codigoUsuario != 999){
@@ -1405,12 +1405,12 @@ public class UsuariosCadastro extends javax.swing.JFrame {
     }
     
     private void PegaImagemUsuario(){
-        sql = "select imagemUsuario from tb_usuarios where idUsuario = " + bu.idUsuario + ";";
+        sql = "select imagemUsuario from tb_usuarios where id = " + bu.idUsuario + ";";
         bu.imagemUsuario = parametrosNS.dao.ConsultaLogotipo(sql, "imagemUsuario");
     }
     
 //    private void PegaUsuarioEmail(){
-//        sql = "select * from tb_usuarios_email where idUsuario = " + bue.idUsuario + ";";
+//        sql = "select * from tb_usuarios_email where id = " + bue.idUsuario + ";";
 //        dadosUsuariosEmail.clear();
 //        dadosUsuariosEmail = parametrosNS.dao.Consulta(sql);
 //        if(dadosUsuariosEmail.isEmpty()){
@@ -1685,7 +1685,7 @@ public class UsuariosCadastro extends javax.swing.JFrame {
         bu.dataCriacao              = validaData.ValidaData(txt_datacriacao.getText());
         bu.name                     = txt_name.getText();
         bu.usuario                  = txt_usuario.getText();
-        bu.senha                    = txt_senha.getText();
+        bu.password                 = txt_senha.getText();
         bu.telefone                 = txt_telefone.getText();
         bu.telefone                 = bu.telefone.replace("(", "");
         bu.telefone                 = bu.telefone.replace(")", "");
@@ -1726,7 +1726,7 @@ public class UsuariosCadastro extends javax.swing.JFrame {
             txt_usuario.grabFocus();
             return;
         }
-        if(bu.senha.equals("")){
+        if(bu.password.equals("")){
             mensagem = "Senha inválida!!!";
             fatal = "S";
             new MostraMensagem(mensagem);
@@ -1834,8 +1834,8 @@ public class UsuariosCadastro extends javax.swing.JFrame {
             bu.codigoUsuario = PegProReg.PegaProximoRegistro("tb_usuarios", "codigoUsuario", "");
         }
         
-        sql = "insert into tb_usuarios (idEmpresa, codigoGrupo, codigoEmpresa, codigoUsuario, dataCriacao, name, usuario, senha, telefone, email, codigoDepartamento, nivelUsuario, podeMudarEmpresa, observacoes) "
-            + "values (" + bu.idEmpresa + ", " + bu.codigoGrupo + ", " + bu.codigoEmpresa + ", " + bu.codigoUsuario + ", '" + bu.dataCriacao + "', '" + bu.name + "', '" + bu.usuario + "', '" + bu.senha + "', " + bu.telefone + ", '" + bu.email + "', " + bu.codigoDepartamento + ", " + bu.nivelUsuario + ", " + bu.podeMudarEmpresa + ", '" + bu.observacoes + "');";
+        sql = "insert into tb_usuarios (idEmpresa, codigoGrupo, codigoEmpresa, codigoUsuario, dataCriacao, name, usuario, password, telefone, email, codigoDepartamento, nivelUsuario, podeMudarEmpresa, observacoes) "
+            + "values (" + bu.idEmpresa + ", " + bu.codigoGrupo + ", " + bu.codigoEmpresa + ", " + bu.codigoUsuario + ", '" + bu.dataCriacao + "', '" + bu.name + "', '" + bu.usuario + "', '" + bu.password + "', " + bu.telefone + ", '" + bu.email + "', " + bu.codigoDepartamento + ", " + bu.nivelUsuario + ", " + bu.podeMudarEmpresa + ", '" + bu.observacoes + "');";
         
         sqlstate = parametrosNS.dao.incluirRegistro(sql);
         if(!sqlstate.equals("00000")){
@@ -1862,7 +1862,7 @@ public class UsuariosCadastro extends javax.swing.JFrame {
                                      "dataCriacao = '"          + bu.dataCriacao          + "', " +
                                      "name = '"                 + bu.name                 + "', " +
                                      "usuario = '"              + bu.usuario              + "', " +
-                                     "senha = '"                + bu.senha                + "', " +
+                                     "password = '"             + bu.password             + "', " +
                                      "telefone = "              + bu.telefone             + ", "  +
                                      "email = "                 + bu.email                + ", "  +
                                      "codigoDepartamento = "    + bu.codigoDepartamento   + ", "  +
@@ -1876,7 +1876,7 @@ public class UsuariosCadastro extends javax.swing.JFrame {
                                      "horaAlterou = '"          + bu.horaAlterou          + "', " +
                                      "usuarioAlterou = "        + bu.usuarioAlterou       + ", "  + 
                                      "atualizado = 1 "          +
-                                     "where idUsuario = "   + bu.idUsuario          + ";";
+                                     "where id = "              + bu.idUsuario          + ";";
         
         sqlstate = parametrosNS.dao.AlterarRegistroOuConsultaSeTabelaExiste(sql, "S");
         if(!sqlstate.equals("00000")){
@@ -1901,12 +1901,12 @@ public class UsuariosCadastro extends javax.swing.JFrame {
 //        PegaValoresEmail();
 //        if(fatal.equals("S"))
 //            return;
-//        sql = "select idUsuario from tb_usuarios where idEmpresa = " + bu.idEmpresa + " and codigoUsuario = " + bu.codigoUsuario + ";";
+//        sql = "select id from tb_usuarios where idEmpresa = " + bu.idEmpresa + " and codigoUsuario = " + bu.codigoUsuario + ";";
 //        dadosUsuarios = parametrosNS.dao.Consulta(sql);
 //        bue.idUsuario = Integer.parseInt(String.valueOf(dadosUsuarios.get(0).get(0)));
 //        
-//        sql = "insert into tb_usuarios_email (idUsuario, servidorEmail, portaEmail, usuarioServidorEmail, senhaServidorEmail, email, autenticacaoSSL) "
-//            + "values (" + bue.idUsuario + ", '" + bue.servidorEmail + "', '" + bue.portaEmail + "', '" + bue.usuarioServidorEmail + "', '" + bue.senhaServidorEmail + "', '" + bue.email + "', " + bue.autenticacaoSSL + ");";
+//        sql = "insert into tb_usuarios_email (id, servidorEmail, portaEmail, usuarioServidorEmail, senhaServidorEmail, email, autenticacaoSSL) "
+//            + "values (" + bue.id + ", '" + bue.servidorEmail + "', '" + bue.portaEmail + "', '" + bue.usuarioServidorEmail + "', '" + bue.senhaServidorEmail + "', '" + bue.email + "', " + bue.autenticacaoSSL + ");";
 //        sqlstate = parametrosNS.dao.incluirRegistro(sql);
 //        if(!sqlstate.equals("00000")){
 //            mensagem = "Não foi possível incluir as informações de email do usuário " + bu.codigoUsuario + "!";
@@ -1926,7 +1926,7 @@ public class UsuariosCadastro extends javax.swing.JFrame {
 //                                           "email = '"                + bue.email                      + "', " +
 //                                           "autenticacaoSSL = "       + bue.autenticacaoSSL            + ", "  +
 //                                           "atualizado = 1 "
-//                                           "where idUsuario = " + bue.idUsuario + ";";
+//                                           "where id = " + bue.idUsuario + ";";
 //        sqlstate = parametrosNS.dao.AlterarRegistroOuConsultaSeTabelaExiste(sql, "S");
 //        if(!sqlstate.equals("00000")){
 //            mensagem = "Não foi possível atualizar as informações de email do usuário " + bu.codigoUsuario + "!";

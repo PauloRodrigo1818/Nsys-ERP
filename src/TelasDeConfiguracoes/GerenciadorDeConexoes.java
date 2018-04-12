@@ -274,7 +274,7 @@ public class GerenciadorDeConexoes extends javax.swing.JFrame {
     private void PegaUsuarios(){
         Tabela.setNumRows(0);
         sql    = "select \n" +
-                 "   idUsuario, \n" +
+                 "   id, \n" +
                  "   idEmpresa, \n" +
                  "   codigoGrupo, \n" +
                  "   codigoEmpresa, \n" +

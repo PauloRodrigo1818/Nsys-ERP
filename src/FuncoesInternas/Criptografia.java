@@ -18,7 +18,7 @@ public class Criptografia {
     int    Length        = 0;
     
     public String Criptografa(String Texto, String tipo){
-        if(Texto.equals("null") && Texto.equals("")){
+        if(Texto.equals("null") || Texto.equals("")){
             return "";
         }
         encrypt = new BasicTextEncryptor();

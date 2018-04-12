@@ -628,7 +628,7 @@ public class OrdemCompraConsultaEManutencao extends javax.swing.JFrame {
 //        bu.usuario = "----------";
 //        if(bu.codigoUsuario == 0)
 //            return;
-//        sql = "select idUsuario, idEmpresa, codigoGrupo, codigoEmpresa, codigoUsuario, usuario from tb_usuarios where idEmpresa = " + parametrosNS.be.IdEmpresa + " and codigoUsuario = " + bu.codigoUsuario + ";";
+//        sql = "select id, idEmpresa, codigoGrupo, codigoEmpresa, codigoUsuario, usuario from tb_usuarios where idEmpresa = " + parametrosNS.be.IdEmpresa + " and codigoUsuario = " + bu.codigoUsuario + ";";
 //        dadosUsuarios.clear();
 //        dadosUsuarios = parametrosNS.dao.Consulta(sql);
 //        if(dadosUsuarios.isEmpty()){

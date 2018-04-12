@@ -4,7 +4,7 @@ package Beans;
  */
 public class BeanUsuarios {
     
-    public int    idUsuario             = 0;    //0
+    public int    idUsuario             = 0;    //0 id
     public int    idEmpresa             = 0;    //1
     public int    codigoGrupo           = 0;    //2
     public int    codigoEmpresa         = 0;    //3
@@ -12,7 +12,7 @@ public class BeanUsuarios {
     public String dataCriacao           = "";   //5
     public String name                  = "";   //6
     public String usuario               = "";   //7
-    public String senha                 = "";   //8
+    public String password              = "";   //8
     public String telefone              = "";   //9
     public String email                 = "";   //10
     public int    codigoDepartamento    = 0;    //11

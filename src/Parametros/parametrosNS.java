@@ -10,6 +10,7 @@ import Beans.BeanUsuarios;
 import Beans.BeanUsuariosEmail;
 import Dao.DaoMySQL;
 import Dao.DaoTabelas;
+import FuncoesInternas.CalcularDiasRestantesSistema;
 import FuncoesInternas.CapturarDataHora;
 import FuncoesInternas.Criptografia;
 import FuncoesInternas.FormataCPFCNPJ;
@@ -22,6 +23,7 @@ import FuncoesInternas.PegaProximoRegistro;
 import FuncoesInternas.PesquisaAvancada;
 import FuncoesInternas.TestarData;
 import FuncoesInternas.TransformaValorStringeDouble;
+import FuncoesInternas.TransformarSenhaSistemaEmData;
 import FuncoesInternas.ValidarCpfCnpj;
 import FuncoesInternas.ValidarData;
 import FuncoesInternas.ValidarRG;
@@ -80,20 +82,22 @@ public class parametrosNS {
     public static DaoTabelas dtab;
     
     //Especiais
-    public static CapturarDataHora             cdh           = new CapturarDataHora();
-    public static Criptografia                 crpt          = new Criptografia();
-    public static InverterData                 invdata       = new InverterData();
-    public static ValidarRG                    ValRG         = new ValidarRG();
-    public static FormataCampo                 fc            = new FormataCampo();
-    public static FormataCPFCNPJ               FCpfCnpj      = new FormataCPFCNPJ();
-    public static TestarData                   Test          = new TestarData();
-    public static TransformaValorStringeDouble TransStrDou   = new TransformaValorStringeDouble();
-    public static ValidarCpfCnpj               Vcc           = new ValidarCpfCnpj();
-    public static PegaProximoRegistro          PegProReg     = new PegaProximoRegistro();
-    public static FormataCampoCpfCnpj          FCampoCpfCnpj = new FormataCampoCpfCnpj();
-    public static ValidarData                  ValData       = new ValidarData();
-    public static FormataPorcentagem           FcPor         = new FormataPorcentagem();
-    public static PesquisaAvancada             PesqAvan      = new PesquisaAvancada();
+    public static CapturarDataHora              cdh           = new CapturarDataHora();
+    public static Criptografia                  crpt          = new Criptografia();
+    public static InverterData                  invdata       = new InverterData();
+    public static ValidarRG                     ValRG         = new ValidarRG();
+    public static FormataCampo                  fc            = new FormataCampo();
+    public static FormataCPFCNPJ                FCpfCnpj      = new FormataCPFCNPJ();
+    public static TestarData                    Test          = new TestarData();
+    public static TransformaValorStringeDouble  TransStrDou   = new TransformaValorStringeDouble();
+    public static TransformarSenhaSistemaEmData Tssed         = new TransformarSenhaSistemaEmData();
+    public static CalcularDiasRestantesSistema  cdr           = new CalcularDiasRestantesSistema();
+    public static ValidarCpfCnpj                Vcc           = new ValidarCpfCnpj();
+    public static PegaProximoRegistro           PegProReg     = new PegaProximoRegistro();
+    public static FormataCampoCpfCnpj           FCampoCpfCnpj = new FormataCampoCpfCnpj();
+    public static ValidarData                   ValData       = new ValidarData();
+    public static FormataPorcentagem            FcPor         = new FormataPorcentagem();
+    public static PesquisaAvancada              PesqAvan      = new PesquisaAvancada();
     
     @SuppressWarnings("empty-statement")
     public static void RecarregaConexao(){
@@ -164,7 +168,7 @@ public class parametrosNS {
             if(dadosUsuarios.get(i).get(5)  != null){bu.dataCriacao          =                    String.valueOf(dadosUsuarios.get(i).get(5));}
             if(dadosUsuarios.get(i).get(6)  != null){bu.name                 =                    String.valueOf(dadosUsuarios.get(i).get(6));}
             if(dadosUsuarios.get(i).get(7)  != null){bu.usuario              =                    String.valueOf(dadosUsuarios.get(i).get(7));}
-            if(dadosUsuarios.get(i).get(8)  != null){bu.senha                =                    String.valueOf(dadosUsuarios.get(i).get(8));}
+            if(dadosUsuarios.get(i).get(8)  != null){bu.password             =                    String.valueOf(dadosUsuarios.get(i).get(8));}
             if(dadosUsuarios.get(i).get(9)  != null){bu.telefone             =                    String.valueOf(dadosUsuarios.get(i).get(9));}
             if(dadosUsuarios.get(i).get(10) != null){bu.email                =                    String.valueOf(dadosUsuarios.get(i).get(10));}
             if(dadosUsuarios.get(i).get(11) != null){bu.codigoDepartamento   = Integer.parseInt(  String.valueOf(dadosUsuarios.get(i).get(11)));}
@@ -200,7 +204,7 @@ public class parametrosNS {
     }
     
     private static void PegaImagemUsuario(){
-        sql = "select imagemUsuario from tb_usuarios where idUsuario = " + bu.idUsuario + ";";
+        sql = "select imagemUsuario from tb_usuarios where id = " + bu.idUsuario + ";";
         bu.imagemUsuario = parametrosNS.dao.ConsultaLogotipo(sql, "imagemUsuario");
     }
     

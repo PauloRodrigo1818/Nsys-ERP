@@ -48,7 +48,7 @@ public class AberturaDeCaixa extends javax.swing.JFrame {
     
     private void PegaUsuario(){
         txt_codigoUsuario.setText(fc.FormataCampo(String.valueOf(bu.codigoUsuario), 3, 0));
-        sql = "select idUsuario, idEmpresa, codigoGrupo, codigoEmpresa, codigoUsuario, usuario from tb_usuarios where idEmpresa = " + parametrosNS.be.IdEmpresa + " and codigoUsuario = " + bu.codigoUsuario + ";";
+        sql = "select id, idEmpresa, codigoGrupo, codigoEmpresa, codigoUsuario, usuario from tb_usuarios where idEmpresa = " + parametrosNS.be.IdEmpresa + " and codigoUsuario = " + bu.codigoUsuario + ";";
         dadosUsuario.clear();
         dadosUsuario = parametrosNS.dao.Consulta(sql);
         if(dadosUsuario.isEmpty()){

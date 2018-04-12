@@ -275,12 +275,12 @@ public class LoginPDV extends javax.swing.JFrame {
             if(dadosUsuarios.get(i).get(3) != null){bu.codigoUsuario = Integer.parseInt(String.valueOf(dadosUsuarios.get(i).get(3)));}
             if(dadosUsuarios.get(i).get(4) != null){bu.name          =                  String.valueOf(dadosUsuarios.get(i).get(4));}
             if(dadosUsuarios.get(i).get(5) != null){bu.usuario       =                  String.valueOf(dadosUsuarios.get(i).get(5));}
-            if(dadosUsuarios.get(i).get(6) != null){bu.senha         =                  String.valueOf(dadosUsuarios.get(i).get(6));}
+            if(dadosUsuarios.get(i).get(6) != null){bu.password      =                  String.valueOf(dadosUsuarios.get(i).get(6));}
         }
         label_nomeGrupo  .setText(parametrosNS.bge.nomeGrupo);
         label_nomeEmpresa.setText(parametrosNS.be.nomeEmpresa);
         label_usuario    .setText(bu.usuario);
-        bu.senha = parametrosNS.crpt.CriptografaManualmente(bu.senha);
+        bu.password = parametrosNS.crpt.CriptografaManualmente(bu.password);
     }
     
     private void Login(){
@@ -289,7 +289,7 @@ public class LoginPDV extends javax.swing.JFrame {
             return;
         }
         senha = txt_senha.getText();
-        if(!senha.equalsIgnoreCase(bu.senha)){
+        if(!senha.equalsIgnoreCase(bu.password)){
             txt_senha.setText("");
             txt_senha.grabFocus();
             mensagem = "Senha inválida!";

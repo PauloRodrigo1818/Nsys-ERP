@@ -538,48 +538,6 @@ public class ArquivoRemessaItau {
         }
     }
     
-//    private void PegaUsuario(){
-//        sql = "select * from tb_usuarios where idEmpresa = " + parametrosNS.be.IdEmpresa + " and codigoUsuario = " + bu.codigoUsuario + ";";
-//        bu = new BeanUsuarios();
-//        dadosUsuario.clear();
-//        dadosUsuario = parametrosNS.dao.Consulta(sql);
-//        if(dadosUsuario.isEmpty())
-//            return;
-//        PegaDadosUsuario();
-//    }
-//    
-//    private void PegaDadosUsuario(){
-//        for(int i = 0; i < dadosUsuario.size(); i++){
-//            bu = new BeanUsuarios();
-//            bu.idUsuario            = Integer.parseInt(  String.valueOf(dadosUsuario.get(i).get(0)));
-//            bu.idEmpresa            = Integer.parseInt(  String.valueOf(dadosUsuario.get(i).get(1)));
-//            bu.codigoGrupo          = Integer.parseInt(  String.valueOf(dadosUsuario.get(i).get(2)));
-//            bu.codigoEmpresa        = Integer.parseInt(  String.valueOf(dadosUsuario.get(i).get(3)));
-//            bu.codigoUsuario        = Integer.parseInt(  String.valueOf(dadosUsuario.get(i).get(4)));
-//            bu.dataCriacao          =                    String.valueOf(dadosUsuario.get(i).get(5));
-//            bu.servidorEmail        =                    String.valueOf(dadosUsuario.get(i).get(6));
-//        if(dadosUsuario.get(i).get(7) != null)
-//            bu.portaEmail           = Integer.parseInt(  String.valueOf(dadosUsuario.get(i).get(7)));
-//            bu.usuarioServidorEmail =                    String.valueOf(dadosUsuario.get(i).get(8));
-//            bu.senhaServidorEmail   =                    String.valueOf(dadosUsuario.get(i).get(9));
-//            bu.email                =                    String.valueOf(dadosUsuario.get(i).get(10));
-//        if(dadosUsuario.get(i).get(11) != null)
-//            bu.autenticacaoSSL      = Integer.parseInt(  String.valueOf(dadosUsuario.get(i).get(11)));
-//            bu.nome                 =                    String.valueOf(dadosUsuario.get(i).get(12));
-//            bu.usuario              =                    String.valueOf(dadosUsuario.get(i).get(13));
-//            bu.senha                =                    String.valueOf(dadosUsuario.get(i).get(14));
-//            bu.telefone             =                    String.valueOf(dadosUsuario.get(i).get(15));
-//        if(dadosUsuario.get(i).get(16) != null)
-//            bu.codigoDepartamento   = Integer.parseInt(  String.valueOf(dadosUsuario.get(i).get(16)));
-//        if(dadosUsuario.get(i).get(17) != null)
-//            bu.nivelUsuario         = Integer.parseInt(  String.valueOf(dadosUsuario.get(i).get(17)));
-//        if(dadosUsuario.get(i).get(18) != null)
-//            bu.podeMudarEmpresa     = Integer.parseInt(  String.valueOf(dadosUsuario.get(i).get(18)));
-//            bu.observacoes          =                    String.valueOf(dadosUsuario.get(i).get(19));
-//            bu.nomeConexao          =                    String.valueOf(dadosUsuario.get(i).get(20));
-//        }
-//    }
-    
     private void PegaPagamento(){
         sql = "select * from tb_formaspagamentos where idEmpresa = " + parametrosNS.be.IdEmpresa + " and codigoPagamento = " + bfp.codigoPagamento + ";";
         dadosFormasPagamentos.clear();
